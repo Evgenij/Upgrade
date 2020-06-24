@@ -21,7 +21,7 @@ namespace Upgrade.Forms
         {
             timer = new Timer();
             timer.Enabled = false;
-            timer.Interval = 5;
+            timer.Interval = 1;
             timer.Tick += Timer_Tick;
 
             panel = movesPanel;

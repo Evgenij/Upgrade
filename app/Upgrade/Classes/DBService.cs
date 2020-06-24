@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Classes;
+using Upgrade.Forms;
 
 namespace Upgrade
 {
@@ -60,24 +61,63 @@ namespace Upgrade
             if (!ServiceData.reader.HasRows)
             {
                 // регистрация 
-                string[] values = { "NULL", "NULL", login, password, email, "0", "0" };
-                ServiceData.DataType[] datas = { 
-                    ServiceData.DataType.NULL, 
-                    ServiceData.DataType.NULL,
-                    ServiceData.DataType.TEXT,
-                    ServiceData.DataType.TEXT,
-                    ServiceData.DataType.TEXT,
-                    ServiceData.DataType.INTEGER,
-                    ServiceData.DataType.INTEGER
-                };
 
-                InsertDataToTable(ServiceData.Tables.user, values, datas);
+                if (GlobalData.RegistrationCode == null)
+                {
+                    GlobalData.RegistrationCode = GlobalData.GererateCode();
+                }
 
-                MessageBox.Show(
-                    "Регистрация прошла успешно!",
-                    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (email != "")
+                {
+                    if (MailSender.SendMail(email, "Успешная регистрация", GlobalData.RegistrationCode))
+                    {
+                        string[] values = { "NULL", "NULL", login, password, email, GlobalData.RegistrationCode, "0", "0" };
+                            ServiceData.DataType[] datas = {
+                            ServiceData.DataType.NULL,
+                            ServiceData.DataType.NULL,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.INTEGER,
+                            ServiceData.DataType.INTEGER
+                        };
 
-                return true;
+                        InsertDataToTable(ServiceData.Tables.user, values, datas);
+
+                        //MessageBox.Show(
+                        //    "Регистрация прошла успешно!",
+                        //    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Не удалось зарегистрироваться... \n\n Проверьте правильность указанной электронной почты",
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return false;
+                    }
+                }
+                else 
+                {
+                    string[] values = { "NULL", "NULL", login, password, "отсутствует", GlobalData.RegistrationCode, "0", "0" };
+                    ServiceData.DataType[] datas = {
+                            ServiceData.DataType.NULL,
+                            ServiceData.DataType.NULL,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.TEXT,
+                            ServiceData.DataType.INTEGER,
+                            ServiceData.DataType.INTEGER
+                        };
+
+                    InsertDataToTable(ServiceData.Tables.user, values, datas);
+
+                    return true;
+                }
             }
             else
             {

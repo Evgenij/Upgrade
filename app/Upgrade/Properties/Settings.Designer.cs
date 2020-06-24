@@ -63,7 +63,7 @@ namespace Upgrade.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
             "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>47</string>\r\n  <string>70</string>\r\n  <string>192</string>\r\n</ArrayOfStrin" +
+            "tring>30</string>\r\n  <string>120</string>\r\n  <string>30</string>\r\n</ArrayOfStrin" +
             "g>")]
         public global::System.Collections.Specialized.StringCollection color {
             get {
