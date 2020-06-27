@@ -69,7 +69,11 @@ namespace Upgrade
 
                 if (email != "")
                 {
-                    if (MailSender.SendMail(email, "Успешная регистрация", GlobalData.RegistrationCode))
+                    if (MailSender.SendMail(email, 
+                                            "Подтверждение регистрации", 
+                                            "Это ваш регистрационный код, который необходим для " +
+                                            "подтверждения вашей электронной почты и восстановления данных аккаунта", 
+                                            GlobalData.RegistrationCode))
                     {
                         string[] values = { "NULL", "NULL", login, password, email, GlobalData.RegistrationCode, "0", "0" };
                             ServiceData.DataType[] datas = {

@@ -28,52 +28,26 @@ namespace Upgrade
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        Color backColor = Color.FromArgb(248, 252, 255);
-
         public Reg_AuthForm()
         {
             InitializeComponent();
             this.Load += RegistrationForm_Load;
             this.FormClosed += RegistrationForm_FormClosed;
 
-            this.BackColor = backColor;
+            this.BackColor = Design.backColor;
 
-            login_auth.BackColor = backColor;
-            pass_auth.BackColor = backColor;
-            login_reg.BackColor = backColor;
-            pass_reg.BackColor = backColor;
-            email_reg.BackColor = backColor;
-            data_box.BackColor = backColor;
-            domen_list.BackColor = backColor;
-            data_box.BackColor = backColor;
-            pass_rest.BackColor = backColor;
-            panel_rest_pass.BackColor = backColor;
+            login_auth.BackColor = Design.backColor;
+            pass_auth.BackColor = Design.backColor;
+            login_reg.BackColor = Design.backColor;
+            pass_reg.BackColor = Design.backColor;
+            email_reg.BackColor = Design.backColor;
+            data_box.BackColor = Design.backColor;
+            domen_list.BackColor = Design.backColor;
+            data_box.BackColor = Design.backColor;
+            pass_rest.BackColor = Design.backColor;
+            panel_rest_pass.BackColor = Design.backColor;
             domen_list.SelectedIndex = 0;
             panel_reg.BringToFront();
-        }
-
-        private void RegistrationForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            DBService.CloseConnectionWithDB();
-        }
-
-        private void RegistrationForm_Load(object sender, EventArgs e)
-        {
-            IntPtr hRgn = CreateRoundRectRgn(-1, -1, 370, 565, 80, 80);
-            SetWindowRgn(this.Handle, hRgn, true);
-
-            if (Properties.Settings.Default.remember_me == true)
-            {
-                remember.AccessibleName = "on";
-                remember.Image = Properties.Resources.rem_1;
-                login_auth.Text = Properties.Settings.Default.login;
-                pass_auth.Text = Properties.Settings.Default.password;
-            }
-            else 
-            {
-                remember.AccessibleName = "off";
-                remember.Image = Properties.Resources.rem_0;
-            }
 
             // стилизация кнопки авторизации
             authorization.StrokeColor = Color.FromArgb(
@@ -195,9 +169,33 @@ namespace Upgrade
                 Convert.ToInt32(Properties.Settings.Default.color[2]));
         }
 
+        private void RegistrationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DBService.CloseConnectionWithDB();
+        }
+
+        private void RegistrationForm_Load(object sender, EventArgs e)
+        {
+            IntPtr hRgn = CreateRoundRectRgn(-1, -1, 370, 565, 80, 80);
+            SetWindowRgn(this.Handle, hRgn, true);
+
+            if (Properties.Settings.Default.remember_me == true)
+            {
+                remember.AccessibleName = "on";
+                remember.Image = Properties.Resources.rem_1;
+                login_auth.Text = Properties.Settings.Default.login;
+                pass_auth.Text = Properties.Settings.Default.password;
+            }
+            else 
+            {
+                remember.AccessibleName = "off";
+                remember.Image = Properties.Resources.rem_0;
+            }
+        }
+
         private void back_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(panel_reg, 0, 370);
+            Design.MovePanel(panel_reg, Design.Direction.Horizontal, 0, 370);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -230,7 +228,7 @@ namespace Upgrade
 
         private void label8_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(panel_reg, 370, 0);
+            Design.MovePanel(panel_reg, Design.Direction.Horizontal, 370, 0);
         }
 
         private void remember_Click(object sender, EventArgs e)
@@ -432,9 +430,7 @@ namespace Upgrade
 
         private void chart_Click(object sender, EventArgs e)
         {
-            if (MailSender.SendMail("iermolienko.00@mail.ru", "Подтверждение регистрации",
-                "<h2>Код подтверждения</h2> " +
-                "<span>34538</span>"))
+            if (MailSender.SendMail("iermolienko.00@mail.ru", "Подтверждение регистрации", "траливали", GlobalData.GererateCode()))
             {
                 MessageBox.Show("success!");
             }
@@ -514,6 +510,10 @@ namespace Upgrade
                             {
                                 pass_rest.Text = ServiceData.reader.GetString(0);
                             }
+                            panel_rest_pass.BackColor = Color.Transparent;
+                            label_pass_rest.Visible = true;
+                            pass_rest.Visible = true;
+                            panel_rest_pass.Visible = true;
                         }
                         else
                         {
@@ -563,12 +563,16 @@ namespace Upgrade
                         {
                             while (ServiceData.reader.Read())
                             {
-                                if (MailSender.SendMail(data_box.Text, "Восстановление доступа", ServiceData.reader.GetString(0)))
+                                if (MailSender.SendMail(data_box.Text, 
+                                                        "Восстановление доступа",
+                                                        "Ваш пароль для входа в систему",
+                                                        ServiceData.reader.GetString(0)))
                                 {
                                     MessageBox.Show("Пароль для авторизации отправлен на вашу электронную почту",
                                                     "Сообщение",
                                                     MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
+                                    panel_reg_code.Visible = false;
                                 }
                                 else 
                                 {
@@ -614,10 +618,6 @@ namespace Upgrade
                         }
                     }
                 }
-                panel_rest_pass.BackColor = Color.Transparent;
-                label_pass_rest.Visible = true;
-                pass_rest.Visible = true;
-                panel_rest_pass.Visible = true;
             }
         }
 
@@ -636,7 +636,7 @@ namespace Upgrade
 
             label_pass_rest.Visible = false;
             pass_rest.Visible = false;
-            panel_rest_pass.BackColor = backColor;
+            panel_rest_pass.BackColor = Design.backColor;
             panel_rest_pass.Visible = true;
 
             label_reg_later.Visible = false;

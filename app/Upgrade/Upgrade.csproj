@@ -210,6 +210,45 @@
   <ItemGroup>
     <None Include="Resources\restoring_access.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_panel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tardets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tardets_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stat_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\schedule_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\schedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panel_profile.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

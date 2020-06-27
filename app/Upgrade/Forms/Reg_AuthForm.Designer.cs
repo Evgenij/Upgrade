@@ -111,7 +111,7 @@
             this.login_auth.Name = "login_auth";
             this.login_auth.Size = new System.Drawing.Size(241, 20);
             this.login_auth.TabIndex = 14;
-            this.login_auth.Text = "введите ваш псевдоним";
+            this.login_auth.Text = "Игорь";
             this.login_auth.Enter += new System.EventHandler(this.Enter);
             this.login_auth.Leave += new System.EventHandler(this.Leave);
             // 
@@ -169,7 +169,7 @@
             this.pass_auth.Name = "pass_auth";
             this.pass_auth.Size = new System.Drawing.Size(215, 20);
             this.pass_auth.TabIndex = 18;
-            this.pass_auth.Text = "введите пароль";
+            this.pass_auth.Text = "123";
             this.pass_auth.Enter += new System.EventHandler(this.Enter);
             this.pass_auth.Leave += new System.EventHandler(this.Leave);
             // 

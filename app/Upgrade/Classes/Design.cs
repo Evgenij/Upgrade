@@ -10,14 +10,23 @@ namespace Upgrade.Forms
 {
     class Design
     {
+        public enum Direction
+        {
+            Horizontal,
+            Vertical
+        }
+
         private static Timer timer;
         private static Point p;
+        static public Color backColor = Color.FromArgb(248, 252, 255);
 
-        private static Panel panel;
+        private static Control panel;
         private static int start;
         private static int finish;
 
-        static public void MovePanel(Panel movesPanel, int s, int f) 
+        private static Direction direction;
+
+        static public void MovePanel(Control movesPanel, Direction dir, int s, int f) 
         {
             timer = new Timer();
             timer.Enabled = false;
@@ -25,36 +34,67 @@ namespace Upgrade.Forms
             timer.Tick += Timer_Tick;
 
             panel = movesPanel;
+            direction = dir;
             start = s;
             finish = f;
 
             timer.Start();
         }
-        
+
         private static void Timer_Tick(object sender, EventArgs e)
         {
-            if (start > finish)
+            if (direction == Direction.Horizontal)
             {
-                if (panel.Location.X != finish)
+                if (start > finish)
                 {
-                    p = new Point(panel.Location.X - 10, panel.Location.Y);
-                    panel.Location = p;
+                    if (panel.Location.X != finish)
+                    {
+                        p = new Point(panel.Location.X - 10, panel.Location.Y);
+                        panel.Location = p;
+                    }
+                    else
+                    {
+                        timer.Stop();
+                    }
                 }
                 else
                 {
-                    timer.Stop();
+                    if (panel.Location.X != finish)
+                    {
+                        p = new Point(panel.Location.X + 10, panel.Location.Y);
+                        panel.Location = p;
+                    }
+                    else
+                    {
+                        timer.Stop();
+                    }
                 }
             }
             else 
             {
-                if (panel.Location.X != finish)
+                if (start > finish)
                 {
-                    p = new Point(panel.Location.X + 10, panel.Location.Y);
-                    panel.Location = p;
+                    if (panel.Location.Y != finish)
+                    {
+                        p = new Point(panel.Location.X, panel.Location.Y - 5);
+                        panel.Location = p;
+                    }
+                    else
+                    {
+                        timer.Stop();
+                    }
                 }
                 else
                 {
-                    timer.Stop();
+                    if (panel.Location.Y != finish)
+                    {
+                        p = new Point(panel.Location.X, panel.Location.Y + 5);
+                        panel.Location = p;
+                    }
+                    else
+                    {
+                        timer.Stop();
+                    }
                 }
             }
         }
