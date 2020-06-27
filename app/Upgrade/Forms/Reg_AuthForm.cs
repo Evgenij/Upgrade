@@ -28,7 +28,7 @@ namespace Upgrade
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        Color color = Color.FromArgb(248, 252, 255);
+        Color backColor = Color.FromArgb(248, 252, 255);
 
         public Reg_AuthForm()
         {
@@ -36,18 +36,18 @@ namespace Upgrade
             this.Load += RegistrationForm_Load;
             this.FormClosed += RegistrationForm_FormClosed;
 
-            this.BackColor = color;
+            this.BackColor = backColor;
 
-            login_auth.BackColor = color;
-            pass_auth.BackColor = color;
-            login_reg.BackColor = color;
-            pass_reg.BackColor = color;
-            email_reg.BackColor = color;
-            data_box.BackColor = color;
-            domen_list.BackColor = color;
-            data_box.BackColor = color;
-            pass_rest.BackColor = color;
-            panel_rest_pass.BackColor = color;
+            login_auth.BackColor = backColor;
+            pass_auth.BackColor = backColor;
+            login_reg.BackColor = backColor;
+            pass_reg.BackColor = backColor;
+            email_reg.BackColor = backColor;
+            data_box.BackColor = backColor;
+            domen_list.BackColor = backColor;
+            data_box.BackColor = backColor;
+            pass_rest.BackColor = backColor;
+            panel_rest_pass.BackColor = backColor;
             domen_list.SelectedIndex = 0;
             panel_reg.BringToFront();
         }
@@ -290,6 +290,14 @@ namespace Upgrade
                     if (DBService.Registration(login_reg.Text, pass_reg.Text, email_reg.Text + domen_list.Text))
                     {
                         panel_reg.Visible = false;
+                        panel_reg_code.AccessibleName = "reg_code";
+                        panel_reg_code.BackgroundImage = Properties.Resources.reg_code;
+                        data_box.Text = "ваш код";
+                        data_box.AccessibleName = "code";
+                        data_box.Width = 80;
+                        data_box.Left = 97;
+                        data_box.TextAlign = HorizontalAlignment.Center;
+                        label_data_rest.Visible = false;
                         panel_reg_code.BringToFront();
                         panel_reg_code.Visible = true;
                     }
@@ -456,7 +464,7 @@ namespace Upgrade
 
         private void accept_code_reg_Click(object sender, EventArgs e)
         {
-            if (panel_reg_code.BackgroundImage == Properties.Resources.reg_code)
+            if (panel_reg_code.AccessibleName == "reg_code")
             {
                 ServiceData.commandText = @"SELECT * FROM user WHERE login = @login AND password = @password AND reg_code = @code";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
@@ -506,10 +514,6 @@ namespace Upgrade
                             {
                                 pass_rest.Text = ServiceData.reader.GetString(0);
                             }
-                            panel_rest_pass.BackColor = Color.Transparent;
-                            label_pass_rest.Visible = true;
-                            pass_rest.Visible = true;
-                            panel_rest_pass.Visible = true;
                         }
                         else
                         {
@@ -610,19 +614,34 @@ namespace Upgrade
                         }
                     }
                 }
+                panel_rest_pass.BackColor = Color.Transparent;
+                label_pass_rest.Visible = true;
+                pass_rest.Visible = true;
+                panel_rest_pass.Visible = true;
             }
         }
 
         private void rest_pass_Click(object sender, EventArgs e)
         {
+            panel_reg_code.AccessibleName = "restoring_access";
             panel_reg_code.BackgroundImage = Properties.Resources.restoring_access;
+
+            data_box.ForeColor = Color.Gray;
+            data_box.Font = new Font("PF DinDisplay Pro", 12);
             data_box.Text = "введите данные";
             data_box.AccessibleName = "data";
             data_box.Width = 208;
             data_box.Left = 34;
             data_box.TextAlign = HorizontalAlignment.Left;
+
+            label_pass_rest.Visible = false;
+            pass_rest.Visible = false;
+            panel_rest_pass.BackColor = backColor;
+            panel_rest_pass.Visible = true;
+
             label_reg_later.Visible = false;
             label_data_rest.Visible = true;
+            rest_pass_back.Visible = true;
 
             accept_code_reg.Text = "восстановить";
             panel_reg_code.Visible = true;

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel_chart = new System.Windows.Forms.Panel();
+            this.chart = new System.Windows.Forms.PictureBox();
             this.login_auth = new System.Windows.Forms.TextBox();
             this.label_auth_password = new System.Windows.Forms.Label();
             this.authorization = new AltoControls.AltoButton();
@@ -37,6 +38,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label_for_reg = new System.Windows.Forms.Label();
             this.panel_exit = new System.Windows.Forms.Panel();
+            this.exit = new System.Windows.Forms.PictureBox();
             this.label_remember_me = new System.Windows.Forms.Label();
             this.rest_pass = new System.Windows.Forms.Label();
             this.panel_reg_code = new System.Windows.Forms.Panel();
@@ -50,7 +52,6 @@
             this.data_box = new System.Windows.Forms.TextBox();
             this.eye = new System.Windows.Forms.PictureBox();
             this.remember = new System.Windows.Forms.PictureBox();
-            this.exit = new System.Windows.Forms.PictureBox();
             this.panel_reg = new System.Windows.Forms.Panel();
             this.domen_list = new System.Windows.Forms.ComboBox();
             this.panel_back = new System.Windows.Forms.Panel();
@@ -64,20 +65,19 @@
             this.pass_reg = new System.Windows.Forms.TextBox();
             this.label_reg_email = new System.Windows.Forms.Label();
             this.backgr_reg = new System.Windows.Forms.PictureBox();
-            this.chart = new System.Windows.Forms.PictureBox();
             this.backgr_auth = new System.Windows.Forms.PictureBox();
             this.panel_chart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.panel_exit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
             this.panel_reg_code.SuspendLayout();
             this.panel_rest_pass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eye)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remember)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
             this.panel_reg.SuspendLayout();
             this.panel_back.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgr_reg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgr_auth)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,6 +89,18 @@
             this.panel_chart.Name = "panel_chart";
             this.panel_chart.Size = new System.Drawing.Size(350, 92);
             this.panel_chart.TabIndex = 1;
+            // 
+            // chart
+            // 
+            this.chart.BackColor = System.Drawing.Color.Transparent;
+            this.chart.Image = global::Upgrade.Properties.Resources.chart_background;
+            this.chart.Location = new System.Drawing.Point(0, 0);
+            this.chart.Name = "chart";
+            this.chart.Size = new System.Drawing.Size(350, 92);
+            this.chart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.chart.TabIndex = 0;
+            this.chart.TabStop = false;
+            this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // login_auth
             // 
@@ -194,6 +206,18 @@
             this.panel_exit.Size = new System.Drawing.Size(51, 36);
             this.panel_exit.TabIndex = 3;
             // 
+            // exit
+            // 
+            this.exit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exit.Image = global::Upgrade.Properties.Resources.exit;
+            this.exit.Location = new System.Drawing.Point(0, 0);
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(51, 36);
+            this.exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.exit.TabIndex = 21;
+            this.exit.TabStop = false;
+            this.exit.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // label_remember_me
             // 
             this.label_remember_me.AutoSize = true;
@@ -236,7 +260,7 @@
             this.panel_reg_code.Controls.Add(this.accept_code_reg);
             this.panel_reg_code.Controls.Add(this.label_reg_later);
             this.panel_reg_code.Controls.Add(this.data_box);
-            this.panel_reg_code.Location = new System.Drawing.Point(47, 79);
+            this.panel_reg_code.Location = new System.Drawing.Point(50, 75);
             this.panel_reg_code.Name = "panel_reg_code";
             this.panel_reg_code.Size = new System.Drawing.Size(274, 380);
             this.panel_reg_code.TabIndex = 25;
@@ -272,6 +296,7 @@
             this.rest_pass_back.Size = new System.Drawing.Size(69, 16);
             this.rest_pass_back.TabIndex = 16;
             this.rest_pass_back.Text = "вернуться";
+            this.rest_pass_back.Visible = false;
             this.rest_pass_back.Click += new System.EventHandler(this.rest_pass_back_Click);
             // 
             // label_pass_rest
@@ -377,18 +402,6 @@
             this.remember.TabIndex = 23;
             this.remember.TabStop = false;
             this.remember.Click += new System.EventHandler(this.remember_Click);
-            // 
-            // exit
-            // 
-            this.exit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.exit.Image = global::Upgrade.Properties.Resources.exit;
-            this.exit.Location = new System.Drawing.Point(0, 0);
-            this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(51, 36);
-            this.exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.exit.TabIndex = 21;
-            this.exit.TabStop = false;
-            this.exit.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel_reg
             // 
@@ -522,13 +535,13 @@
             // email_reg
             // 
             this.email_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.email_reg.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.email_reg.Font = new System.Drawing.Font("PF DinDisplay Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.email_reg.ForeColor = System.Drawing.Color.Gray;
             this.email_reg.Location = new System.Drawing.Point(66, 330);
             this.email_reg.Name = "email_reg";
             this.email_reg.Size = new System.Drawing.Size(135, 20);
             this.email_reg.TabIndex = 9;
-            this.email_reg.Text = "evgenij.ermolenko";
+            this.email_reg.Text = "введите email";
             this.email_reg.Enter += new System.EventHandler(this.Enter);
             this.email_reg.Leave += new System.EventHandler(this.Leave);
             // 
@@ -579,18 +592,6 @@
             this.backgr_reg.TabIndex = 1;
             this.backgr_reg.TabStop = false;
             // 
-            // chart
-            // 
-            this.chart.BackColor = System.Drawing.Color.Transparent;
-            this.chart.Image = global::Upgrade.Properties.Resources.chart_background;
-            this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Name = "chart";
-            this.chart.Size = new System.Drawing.Size(350, 92);
-            this.chart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.chart.TabIndex = 0;
-            this.chart.TabStop = false;
-            this.chart.Click += new System.EventHandler(this.chart_Click);
-            // 
             // backgr_auth
             // 
             this.backgr_auth.Image = global::Upgrade.Properties.Resources.AutorizationForm;
@@ -630,22 +631,22 @@
             this.Shown += new System.EventHandler(this.RegistrationForm_Shown);
             this.panel_chart.ResumeLayout(false);
             this.panel_chart.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.panel_exit.ResumeLayout(false);
             this.panel_exit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exit)).EndInit();
             this.panel_reg_code.ResumeLayout(false);
             this.panel_reg_code.PerformLayout();
             this.panel_rest_pass.ResumeLayout(false);
             this.panel_rest_pass.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eye)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.remember)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exit)).EndInit();
             this.panel_reg.ResumeLayout(false);
             this.panel_reg.PerformLayout();
             this.panel_back.ResumeLayout(false);
             this.panel_back.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgr_reg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgr_auth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
