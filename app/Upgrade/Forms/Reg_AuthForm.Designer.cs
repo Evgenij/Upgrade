@@ -38,15 +38,21 @@
             this.label_for_reg = new System.Windows.Forms.Label();
             this.panel_exit = new System.Windows.Forms.Panel();
             this.label_remember_me = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.rest_pass = new System.Windows.Forms.Label();
             this.panel_reg_code = new System.Windows.Forms.Panel();
+            this.panel_rest_pass = new System.Windows.Forms.Panel();
+            this.pass_rest = new System.Windows.Forms.TextBox();
+            this.rest_pass_back = new System.Windows.Forms.Label();
+            this.label_pass_rest = new System.Windows.Forms.Label();
+            this.label_data_rest = new System.Windows.Forms.Label();
             this.accept_code_reg = new AltoControls.AltoButton();
             this.label_reg_later = new System.Windows.Forms.Label();
-            this.reg_code = new System.Windows.Forms.TextBox();
+            this.data_box = new System.Windows.Forms.TextBox();
             this.eye = new System.Windows.Forms.PictureBox();
             this.remember = new System.Windows.Forms.PictureBox();
             this.exit = new System.Windows.Forms.PictureBox();
             this.panel_reg = new System.Windows.Forms.Panel();
+            this.domen_list = new System.Windows.Forms.ComboBox();
             this.panel_back = new System.Windows.Forms.Panel();
             this.back = new System.Windows.Forms.PictureBox();
             this.label_reg_login = new System.Windows.Forms.Label();
@@ -63,6 +69,7 @@
             this.panel_chart.SuspendLayout();
             this.panel_exit.SuspendLayout();
             this.panel_reg_code.SuspendLayout();
+            this.panel_rest_pass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eye)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remember)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
@@ -202,33 +209,96 @@
             this.label_remember_me.MouseLeave += new System.EventHandler(this.label_remember_me_MouseLeave);
             this.label_remember_me.MouseHover += new System.EventHandler(this.label_remember_me_MouseHover);
             // 
-            // label10
+            // rest_pass
             // 
-            this.label10.AutoSize = true;
-            this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label10.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.ForeColor = System.Drawing.Color.DimGray;
-            this.label10.Location = new System.Drawing.Point(218, 313);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(91, 16);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Забыл пароль";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label10.MouseLeave += new System.EventHandler(this.label10_MouseLeave);
-            this.label10.MouseHover += new System.EventHandler(this.label10_MouseHover);
+            this.rest_pass.AutoSize = true;
+            this.rest_pass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rest_pass.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rest_pass.ForeColor = System.Drawing.Color.DimGray;
+            this.rest_pass.Location = new System.Drawing.Point(218, 313);
+            this.rest_pass.Name = "rest_pass";
+            this.rest_pass.Size = new System.Drawing.Size(91, 16);
+            this.rest_pass.TabIndex = 22;
+            this.rest_pass.Text = "Забыл пароль";
+            this.rest_pass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.rest_pass.Click += new System.EventHandler(this.rest_pass_Click);
+            this.rest_pass.MouseLeave += new System.EventHandler(this.label10_MouseLeave);
+            this.rest_pass.MouseHover += new System.EventHandler(this.label10_MouseHover);
             // 
             // panel_reg_code
             // 
             this.panel_reg_code.BackColor = System.Drawing.Color.Transparent;
-            this.panel_reg_code.BackgroundImage = global::Upgrade.Properties.Resources.reg_code;
+            this.panel_reg_code.BackgroundImage = global::Upgrade.Properties.Resources.restoring_access;
+            this.panel_reg_code.Controls.Add(this.panel_rest_pass);
+            this.panel_reg_code.Controls.Add(this.rest_pass_back);
+            this.panel_reg_code.Controls.Add(this.label_pass_rest);
+            this.panel_reg_code.Controls.Add(this.label_data_rest);
             this.panel_reg_code.Controls.Add(this.accept_code_reg);
             this.panel_reg_code.Controls.Add(this.label_reg_later);
-            this.panel_reg_code.Controls.Add(this.reg_code);
+            this.panel_reg_code.Controls.Add(this.data_box);
             this.panel_reg_code.Location = new System.Drawing.Point(47, 79);
             this.panel_reg_code.Name = "panel_reg_code";
             this.panel_reg_code.Size = new System.Drawing.Size(274, 380);
             this.panel_reg_code.TabIndex = 25;
             this.panel_reg_code.Visible = false;
+            // 
+            // panel_rest_pass
+            // 
+            this.panel_rest_pass.Controls.Add(this.pass_rest);
+            this.panel_rest_pass.Location = new System.Drawing.Point(18, 241);
+            this.panel_rest_pass.Name = "panel_rest_pass";
+            this.panel_rest_pass.Size = new System.Drawing.Size(239, 35);
+            this.panel_rest_pass.TabIndex = 17;
+            // 
+            // pass_rest
+            // 
+            this.pass_rest.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.pass_rest.Font = new System.Drawing.Font("PF DinDisplay Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pass_rest.ForeColor = System.Drawing.Color.Gray;
+            this.pass_rest.Location = new System.Drawing.Point(16, 7);
+            this.pass_rest.Name = "pass_rest";
+            this.pass_rest.Size = new System.Drawing.Size(208, 20);
+            this.pass_rest.TabIndex = 13;
+            this.pass_rest.Visible = false;
+            // 
+            // rest_pass_back
+            // 
+            this.rest_pass_back.AutoSize = true;
+            this.rest_pass_back.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rest_pass_back.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rest_pass_back.ForeColor = System.Drawing.Color.DimGray;
+            this.rest_pass_back.Location = new System.Drawing.Point(102, 346);
+            this.rest_pass_back.Name = "rest_pass_back";
+            this.rest_pass_back.Size = new System.Drawing.Size(69, 16);
+            this.rest_pass_back.TabIndex = 16;
+            this.rest_pass_back.Text = "вернуться";
+            this.rest_pass_back.Click += new System.EventHandler(this.rest_pass_back_Click);
+            // 
+            // label_pass_rest
+            // 
+            this.label_pass_rest.AutoSize = true;
+            this.label_pass_rest.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label_pass_rest.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_pass_rest.ForeColor = System.Drawing.Color.DimGray;
+            this.label_pass_rest.Location = new System.Drawing.Point(31, 225);
+            this.label_pass_rest.Name = "label_pass_rest";
+            this.label_pass_rest.Size = new System.Drawing.Size(77, 16);
+            this.label_pass_rest.TabIndex = 15;
+            this.label_pass_rest.Text = "ваш пароль";
+            this.label_pass_rest.Visible = false;
+            // 
+            // label_data_rest
+            // 
+            this.label_data_rest.AutoSize = true;
+            this.label_data_rest.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label_data_rest.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_data_rest.ForeColor = System.Drawing.Color.DimGray;
+            this.label_data_rest.Location = new System.Drawing.Point(31, 173);
+            this.label_data_rest.Name = "label_data_rest";
+            this.label_data_rest.Size = new System.Drawing.Size(88, 16);
+            this.label_data_rest.TabIndex = 14;
+            this.label_data_rest.Text = "ваши данные";
+            this.label_data_rest.Visible = false;
             // 
             // accept_code_reg
             // 
@@ -241,7 +311,7 @@
             this.accept_code_reg.ForeColor = System.Drawing.Color.DarkBlue;
             this.accept_code_reg.Inactive1 = System.Drawing.Color.Transparent;
             this.accept_code_reg.Inactive2 = System.Drawing.Color.Transparent;
-            this.accept_code_reg.Location = new System.Drawing.Point(67, 285);
+            this.accept_code_reg.Location = new System.Drawing.Point(67, 308);
             this.accept_code_reg.Name = "accept_code_reg";
             this.accept_code_reg.Radius = 18;
             this.accept_code_reg.Size = new System.Drawing.Size(138, 35);
@@ -258,7 +328,7 @@
             this.label_reg_later.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label_reg_later.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_reg_later.ForeColor = System.Drawing.Color.DimGray;
-            this.label_reg_later.Location = new System.Drawing.Point(93, 233);
+            this.label_reg_later.Location = new System.Drawing.Point(93, 224);
             this.label_reg_later.Name = "label_reg_later";
             this.label_reg_later.Size = new System.Drawing.Size(88, 16);
             this.label_reg_later.TabIndex = 12;
@@ -267,19 +337,20 @@
             this.label_reg_later.MouseLeave += new System.EventHandler(this.label_reg_later_MouseLeave);
             this.label_reg_later.MouseHover += new System.EventHandler(this.label_reg_later_MouseHover);
             // 
-            // reg_code
+            // data_box
             // 
-            this.reg_code.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.reg_code.Font = new System.Drawing.Font("PF DinDisplay Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reg_code.ForeColor = System.Drawing.Color.Gray;
-            this.reg_code.Location = new System.Drawing.Point(97, 203);
-            this.reg_code.Name = "reg_code";
-            this.reg_code.Size = new System.Drawing.Size(77, 20);
-            this.reg_code.TabIndex = 12;
-            this.reg_code.Text = "ваш код";
-            this.reg_code.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.reg_code.Enter += new System.EventHandler(this.Enter);
-            this.reg_code.Leave += new System.EventHandler(this.Leave);
+            this.data_box.AccessibleName = "code";
+            this.data_box.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.data_box.Font = new System.Drawing.Font("PF DinDisplay Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.data_box.ForeColor = System.Drawing.Color.Gray;
+            this.data_box.Location = new System.Drawing.Point(97, 195);
+            this.data_box.Name = "data_box";
+            this.data_box.Size = new System.Drawing.Size(80, 20);
+            this.data_box.TabIndex = 12;
+            this.data_box.Text = "ваш код";
+            this.data_box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.data_box.Enter += new System.EventHandler(this.Enter);
+            this.data_box.Leave += new System.EventHandler(this.Leave);
             // 
             // eye
             // 
@@ -323,6 +394,7 @@
             // 
             this.panel_reg.BackColor = System.Drawing.Color.Transparent;
             this.panel_reg.BackgroundImage = global::Upgrade.Properties.Resources.RegistrationForm;
+            this.panel_reg.Controls.Add(this.domen_list);
             this.panel_reg.Controls.Add(this.panel_back);
             this.panel_reg.Controls.Add(this.label_reg_login);
             this.panel_reg.Controls.Add(this.registration);
@@ -337,6 +409,32 @@
             this.panel_reg.Name = "panel_reg";
             this.panel_reg.Size = new System.Drawing.Size(370, 463);
             this.panel_reg.TabIndex = 12;
+            // 
+            // domen_list
+            // 
+            this.domen_list.BackColor = System.Drawing.Color.White;
+            this.domen_list.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.domen_list.DropDownHeight = 70;
+            this.domen_list.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.domen_list.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.domen_list.FormattingEnabled = true;
+            this.domen_list.IntegralHeight = false;
+            this.domen_list.ItemHeight = 19;
+            this.domen_list.Items.AddRange(new object[] {
+            "@mail.ru",
+            "@bk.ru",
+            "@inbox.ru",
+            "@list.ru",
+            "@gmail.com",
+            "@yandex.ua",
+            "@outlook.com",
+            "@yahoo.com",
+            "@rambler.ru"});
+            this.domen_list.Location = new System.Drawing.Point(203, 326);
+            this.domen_list.MaxDropDownItems = 4;
+            this.domen_list.Name = "domen_list";
+            this.domen_list.Size = new System.Drawing.Size(105, 27);
+            this.domen_list.TabIndex = 26;
             // 
             // panel_back
             // 
@@ -365,7 +463,7 @@
             this.label_reg_login.AutoSize = true;
             this.label_reg_login.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_reg_login.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_reg_login.Location = new System.Drawing.Point(65, 200);
+            this.label_reg_login.Location = new System.Drawing.Point(63, 200);
             this.label_reg_login.Name = "label_reg_login";
             this.label_reg_login.Size = new System.Drawing.Size(74, 16);
             this.label_reg_login.TabIndex = 2;
@@ -400,7 +498,7 @@
             this.login_reg.ForeColor = System.Drawing.Color.Gray;
             this.login_reg.Location = new System.Drawing.Point(66, 222);
             this.login_reg.Name = "login_reg";
-            this.login_reg.Size = new System.Drawing.Size(242, 20);
+            this.login_reg.Size = new System.Drawing.Size(241, 20);
             this.login_reg.TabIndex = 7;
             this.login_reg.Text = "введите ваш псевдоним";
             this.login_reg.Enter += new System.EventHandler(this.Enter);
@@ -424,13 +522,13 @@
             // email_reg
             // 
             this.email_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.email_reg.Font = new System.Drawing.Font("PF DinDisplay Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.email_reg.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.email_reg.ForeColor = System.Drawing.Color.Gray;
-            this.email_reg.Location = new System.Drawing.Point(66, 329);
+            this.email_reg.Location = new System.Drawing.Point(66, 330);
             this.email_reg.Name = "email_reg";
-            this.email_reg.Size = new System.Drawing.Size(241, 20);
+            this.email_reg.Size = new System.Drawing.Size(135, 20);
             this.email_reg.TabIndex = 9;
-            this.email_reg.Text = "iermolienko.00@mail.ru";
+            this.email_reg.Text = "evgenij.ermolenko";
             this.email_reg.Enter += new System.EventHandler(this.Enter);
             this.email_reg.Leave += new System.EventHandler(this.Leave);
             // 
@@ -439,7 +537,7 @@
             this.label_reg_password.AutoSize = true;
             this.label_reg_password.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_reg_password.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_reg_password.Location = new System.Drawing.Point(65, 254);
+            this.label_reg_password.Location = new System.Drawing.Point(64, 254);
             this.label_reg_password.Name = "label_reg_password";
             this.label_reg_password.Size = new System.Drawing.Size(50, 16);
             this.label_reg_password.TabIndex = 3;
@@ -450,7 +548,7 @@
             this.pass_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pass_reg.Font = new System.Drawing.Font("PF DinDisplay Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pass_reg.ForeColor = System.Drawing.Color.Gray;
-            this.pass_reg.Location = new System.Drawing.Point(66, 276);
+            this.pass_reg.Location = new System.Drawing.Point(67, 276);
             this.pass_reg.Name = "pass_reg";
             this.pass_reg.Size = new System.Drawing.Size(241, 20);
             this.pass_reg.TabIndex = 8;
@@ -463,7 +561,7 @@
             this.label_reg_email.AutoSize = true;
             this.label_reg_email.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_reg_email.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_reg_email.Location = new System.Drawing.Point(65, 308);
+            this.label_reg_email.Location = new System.Drawing.Point(63, 308);
             this.label_reg_email.Name = "label_reg_email";
             this.label_reg_email.Size = new System.Drawing.Size(120, 16);
             this.label_reg_email.TabIndex = 4;
@@ -511,7 +609,7 @@
             this.Controls.Add(this.panel_reg_code);
             this.Controls.Add(this.eye);
             this.Controls.Add(this.remember);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.rest_pass);
             this.Controls.Add(this.label_remember_me);
             this.Controls.Add(this.panel_exit);
             this.Controls.Add(this.label_for_reg);
@@ -536,6 +634,8 @@
             this.panel_exit.PerformLayout();
             this.panel_reg_code.ResumeLayout(false);
             this.panel_reg_code.PerformLayout();
+            this.panel_rest_pass.ResumeLayout(false);
+            this.panel_rest_pass.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eye)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.remember)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).EndInit();
@@ -578,14 +678,20 @@
         private System.Windows.Forms.Panel panel_exit;
         private System.Windows.Forms.PictureBox exit;
         private System.Windows.Forms.Label label_remember_me;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label rest_pass;
         private System.Windows.Forms.PictureBox remember;
         private System.Windows.Forms.PictureBox eye;
         private System.Windows.Forms.Panel panel_reg_code;
-        private System.Windows.Forms.TextBox reg_code;
+        private System.Windows.Forms.TextBox data_box;
         private System.Windows.Forms.PictureBox backgr_reg;
         private AltoControls.AltoButton accept_code_reg;
         private System.Windows.Forms.Label label_reg_later;
+        private System.Windows.Forms.ComboBox domen_list;
+        private System.Windows.Forms.Label label_pass_rest;
+        private System.Windows.Forms.Label label_data_rest;
+        private System.Windows.Forms.TextBox pass_rest;
+        private System.Windows.Forms.Label rest_pass_back;
+        private System.Windows.Forms.Panel panel_rest_pass;
     }
 }
 

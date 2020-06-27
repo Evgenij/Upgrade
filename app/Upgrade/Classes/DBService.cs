@@ -94,7 +94,7 @@ namespace Upgrade
                     else
                     {
                         MessageBox.Show(
-                            "Не удалось зарегистрироваться... \n\n Проверьте правильность указанной электронной почты",
+                            "Не удалось зарегистрироваться...\n\nПроверьте правильность указанной электронной почты",
                             "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         return false;

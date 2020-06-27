@@ -39,11 +39,71 @@
     <Reference Include="AltoControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\AltoControls.1.0.1\lib\AltoControls.dll</HintPath>
     </Reference>
+    <Reference Include="ComponentFactory.Krypton.Design, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Barcode, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Chart, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Diagram, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Diagram.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.GraphicsGL, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.GraphicsGL.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Grid, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Grid.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Host.WinBase, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Host.WinBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Host.WinForm, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Host.WinForm.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Host.Wpf, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Host.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Presentation, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Schedule, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Schedule.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.Text, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.WinFormControls, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.WinFormControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Nevron.Nov.WpfControls, Version=20.5.1.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\Nevron.Nov.WpfControls.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>packages\NevronOpenVision.2019.1.1\lib\net40\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -70,10 +130,10 @@
   <ItemGroup>
     <Compile Include="Classes\DBService.cs" />
     <Compile Include="Classes\GlobalData.cs" />
-    <Compile Include="Classes\MainWorkingForm.cs">
+    <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Classes\MainWorkingForm.Designer.cs">
+    <Compile Include="Forms\MainWorkingForm.Designer.cs">
       <DependentUpon>MainWorkingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Design.cs" />
@@ -87,7 +147,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\ServiceData.cs" />
-    <EmbeddedResource Include="Classes\MainWorkingForm.resx">
+    <EmbeddedResource Include="Forms\MainWorkingForm.resx">
       <DependentUpon>MainWorkingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reg_AuthForm.resx">
@@ -146,6 +206,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\reg_code.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restoring_access.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
