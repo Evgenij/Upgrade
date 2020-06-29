@@ -19,6 +19,14 @@ namespace Upgrade.Forms
         private static Timer timer;
         private static Point p;
         static public Color backColor = Color.FromArgb(248, 252, 255);
+        static public Color mainColor =  Color.FromArgb(Convert.ToInt32(Properties.Settings.Default.color[0]),
+                                                        Convert.ToInt32(Properties.Settings.Default.color[1]),
+                                                        Convert.ToInt32(Properties.Settings.Default.color[2]));
+        static public Color mainColorOpacity = Color.FromArgb(
+                                                        10,
+                                                        Convert.ToInt32(Properties.Settings.Default.color[0]),
+                                                        Convert.ToInt32(Properties.Settings.Default.color[1]),
+                                                        Convert.ToInt32(Properties.Settings.Default.color[2]));
 
         private static Control panel;
         private static int start;
@@ -31,7 +39,7 @@ namespace Upgrade.Forms
             timer = new Timer();
             timer.Enabled = false;
             timer.Interval = 1;
-            timer.Tick += Timer_Tick;
+            timer.Tick += Timer_TickMove;
 
             panel = movesPanel;
             direction = dir;
@@ -41,7 +49,33 @@ namespace Upgrade.Forms
             timer.Start();
         }
 
+        static public void HidePanel(Control movesPanel)
+        {
+            timer = new Timer();
+            timer.Enabled = false;
+            timer.Interval = 10;
+            timer.Tick += Timer_Tick;
+
+            panel = movesPanel;
+
+            timer.Start();
+        }
+
         private static void Timer_Tick(object sender, EventArgs e)
+        {
+            if (panel.Width != 0)
+            {
+                panel.Width -= 10;
+            }
+            else 
+            {
+                panel.Dispose();
+                timer.Stop();
+                timer.Dispose();
+            }
+        }
+
+        private static void Timer_TickMove(object sender, EventArgs e)
         {
             if (direction == Direction.Horizontal)
             {
@@ -55,6 +89,7 @@ namespace Upgrade.Forms
                     else
                     {
                         timer.Stop();
+                        timer.Dispose();
                     }
                 }
                 else
@@ -67,6 +102,7 @@ namespace Upgrade.Forms
                     else
                     {
                         timer.Stop();
+                        timer.Dispose();
                     }
                 }
             }
@@ -82,6 +118,7 @@ namespace Upgrade.Forms
                     else
                     {
                         timer.Stop();
+                        timer.Dispose();
                     }
                 }
                 else
@@ -94,6 +131,7 @@ namespace Upgrade.Forms
                     else
                     {
                         timer.Stop();
+                        timer.Dispose();
                     }
                 }
             }

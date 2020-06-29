@@ -50,15 +50,8 @@ namespace Upgrade
             panel_reg.BringToFront();
 
             // стилизация кнопки авторизации
-            authorization.StrokeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            authorization.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            authorization.StrokeColor = Design.mainColor;
+            authorization.ForeColor = Design.mainColor;
 
             authorization.Active1 = Color.FromArgb(10,
                 Convert.ToInt32(Properties.Settings.Default.color[0]),
@@ -71,15 +64,8 @@ namespace Upgrade
                 Convert.ToInt32(Properties.Settings.Default.color[2]));
 
             // стилизация кнопки регистрации
-            registration.StrokeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            registration.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            registration.StrokeColor = Design.mainColor;
+            registration.ForeColor = Design.mainColor;
 
             registration.Active1 = Color.FromArgb(10,
                 Convert.ToInt32(Properties.Settings.Default.color[0]),
@@ -92,81 +78,23 @@ namespace Upgrade
                 Convert.ToInt32(Properties.Settings.Default.color[2]));
 
             // стилизация кнопки подтверждения кода
-            accept_code_reg.StrokeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            accept_code_reg.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            accept_code_reg.Active1 = Color.FromArgb(10,
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            accept_code_reg.Active2 = Color.FromArgb(10,
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            accept_code_reg.StrokeColor = Design.mainColor;
+            accept_code_reg.ForeColor = Design.mainColor;
+            accept_code_reg.Active1 = Design.mainColor;
+            accept_code_reg.Active2 = Design.mainColor;
 
             // стилизация элементов формы
-            panel_chart.BackColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            panel_back.BackColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            panel_exit.BackColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_auth_login.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_auth_password.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_for_reg.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_reg_login.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_reg_password.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_reg_email.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_data_rest.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
-
-            label_pass_rest.ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            panel_chart.BackColor = Design.mainColor;
+            panel_back.BackColor = Design.mainColor;
+            panel_exit.BackColor = Design.mainColor;
+            label_auth_login.ForeColor = Design.mainColor;
+            label_auth_password.ForeColor = Design.mainColor;
+            label_for_reg.ForeColor = Design.mainColor;
+            label_reg_login.ForeColor = Design.mainColor;
+            label_reg_password.ForeColor = Design.mainColor;
+            label_reg_email.ForeColor = Design.mainColor;
+            label_data_rest.ForeColor = Design.mainColor;
+            label_pass_rest.ForeColor = Design.mainColor;
         }
 
         private void RegistrationForm_FormClosed(object sender, FormClosedEventArgs e)

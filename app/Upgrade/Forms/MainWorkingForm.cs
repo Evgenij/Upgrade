@@ -41,12 +41,25 @@ namespace Upgrade.Classes
             tab_stat.BackColor = Design.backColor;
             tab_sched.BackColor = Design.backColor;
             tab_sett.BackColor = Design.backColor;
+
+            
         }
 
         private void MainWorkingForm_Load(object sender, EventArgs e)
         {
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
+
+            TaskBlock[] taskBlock = new TaskBlock[5];
+            for (int i = 0; i < 5; i++)
+            {
+                taskBlock[i] = new TaskBlock(flowTasks);
+            }
+
+            Scroller scroller = new Scroller(tab_profile, flowTasks);
+
+            MessageBox.Show(flowTasks.VerticalScroll.Maximum.ToString());
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,30 +71,35 @@ namespace Upgrade.Classes
         {
             Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 100);
             tabs.SelectedTab = tab_profile;
+            active_item.Image = Properties.Resources.profile;
         }
 
         private void targets_Click(object sender, EventArgs e)
         {
             Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 160);
             tabs.SelectedTab = tab_targets;
+            active_item.Image = Properties.Resources.tardets;
         }
 
         private void stat_Click(object sender, EventArgs e)
         {
             Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 220);
             tabs.SelectedTab = tab_stat;
+            active_item.Image = Properties.Resources.stat;
         }
 
         private void schedule_Click(object sender, EventArgs e)
         {
             Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 280);
             tabs.SelectedTab = tab_sched;
+            active_item.Image = Properties.Resources.schedule;
         }
 
         private void settings_Click(object sender, EventArgs e)
         {
             Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 340);
             tabs.SelectedTab = tab_sett;
+            active_item.Image = Properties.Resources.settings;
         }
     }
 }

@@ -30,17 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWorkingForm));
             this.panel_menu = new System.Windows.Forms.Panel();
-            this.tabs = new System.Windows.Forms.TabControl();
-            this.tab_profile = new System.Windows.Forms.TabPage();
-            this.tab_targets = new System.Windows.Forms.TabPage();
-            this.tab_stat = new System.Windows.Forms.TabPage();
-            this.tab_sched = new System.Windows.Forms.TabPage();
-            this.tab_sett = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.active_item = new System.Windows.Forms.PictureBox();
             this.settings = new System.Windows.Forms.PictureBox();
             this.schedule = new System.Windows.Forms.PictureBox();
@@ -48,13 +37,20 @@
             this.targets = new System.Windows.Forms.PictureBox();
             this.profile = new System.Windows.Forms.PictureBox();
             this.picture_menu = new System.Windows.Forms.PictureBox();
+            this.tabs = new System.Windows.Forms.TabControl();
+            this.tab_profile = new System.Windows.Forms.TabPage();
+            this.flowTasks = new System.Windows.Forms.FlowLayoutPanel();
+            this.tab_targets = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tab_stat = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tab_sched = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tab_sett = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.nLabelControl1 = new Nevron.Nov.WinFormControls.NLabelControl();
             this.panel_menu.SuspendLayout();
-            this.tabs.SuspendLayout();
-            this.tab_targets.SuspendLayout();
-            this.tab_stat.SuspendLayout();
-            this.tab_sched.SuspendLayout();
-            this.tab_sett.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedule)).BeginInit();
@@ -62,6 +58,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.targets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).BeginInit();
+            this.tabs.SuspendLayout();
+            this.tab_profile.SuspendLayout();
+            this.tab_targets.SuspendLayout();
+            this.tab_stat.SuspendLayout();
+            this.tab_sched.SuspendLayout();
+            this.tab_sett.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_menu
@@ -79,126 +82,11 @@
             this.panel_menu.Size = new System.Drawing.Size(70, 748);
             this.panel_menu.TabIndex = 2;
             // 
-            // tabs
-            // 
-            this.tabs.Controls.Add(this.tab_profile);
-            this.tabs.Controls.Add(this.tab_targets);
-            this.tabs.Controls.Add(this.tab_stat);
-            this.tabs.Controls.Add(this.tab_sched);
-            this.tabs.Controls.Add(this.tab_sett);
-            this.tabs.ItemSize = new System.Drawing.Size(0, 1);
-            this.tabs.Location = new System.Drawing.Point(-4, -5);
-            this.tabs.Name = "tabs";
-            this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(1375, 780);
-            this.tabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabs.TabIndex = 3;
-            this.tabs.TabStop = false;
-            // 
-            // tab_profile
-            // 
-            this.tab_profile.Location = new System.Drawing.Point(4, 5);
-            this.tab_profile.Name = "tab_profile";
-            this.tab_profile.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_profile.Size = new System.Drawing.Size(1367, 771);
-            this.tab_profile.TabIndex = 0;
-            this.tab_profile.Text = "tabPage1";
-            this.tab_profile.UseVisualStyleBackColor = true;
-            // 
-            // tab_targets
-            // 
-            this.tab_targets.Controls.Add(this.label2);
-            this.tab_targets.Location = new System.Drawing.Point(4, 5);
-            this.tab_targets.Name = "tab_targets";
-            this.tab_targets.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_targets.Size = new System.Drawing.Size(1367, 797);
-            this.tab_targets.TabIndex = 1;
-            this.tab_targets.Text = "tabPage2";
-            this.tab_targets.UseVisualStyleBackColor = true;
-            // 
-            // tab_stat
-            // 
-            this.tab_stat.Controls.Add(this.label3);
-            this.tab_stat.Location = new System.Drawing.Point(4, 5);
-            this.tab_stat.Name = "tab_stat";
-            this.tab_stat.Size = new System.Drawing.Size(1367, 797);
-            this.tab_stat.TabIndex = 2;
-            this.tab_stat.Text = "tabPage1";
-            this.tab_stat.UseVisualStyleBackColor = true;
-            // 
-            // tab_sched
-            // 
-            this.tab_sched.Controls.Add(this.label4);
-            this.tab_sched.Location = new System.Drawing.Point(4, 5);
-            this.tab_sched.Name = "tab_sched";
-            this.tab_sched.Size = new System.Drawing.Size(1367, 797);
-            this.tab_sched.TabIndex = 3;
-            this.tab_sched.Text = "tabPage2";
-            this.tab_sched.UseVisualStyleBackColor = true;
-            // 
-            // tab_sett
-            // 
-            this.tab_sett.Controls.Add(this.label5);
-            this.tab_sett.Location = new System.Drawing.Point(4, 5);
-            this.tab_sett.Name = "tab_sett";
-            this.tab_sett.Size = new System.Drawing.Size(1367, 797);
-            this.tab_sett.TabIndex = 4;
-            this.tab_sett.Text = "tabPage3";
-            this.tab_sett.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "targets";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(105, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "stat";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(112, 71);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "sched";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(106, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "settings";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.AccessibleName = "profile";
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Upgrade.Properties.Resources.panel_profile;
-            this.pictureBox1.Location = new System.Drawing.Point(1006, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(348, 748);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
             // active_item
             // 
             this.active_item.AccessibleName = "profile";
             this.active_item.BackColor = System.Drawing.Color.Transparent;
-            this.active_item.Image = ((System.Drawing.Image)(resources.GetObject("active_item.Image")));
+            this.active_item.Image = global::Upgrade.Properties.Resources.profile;
             this.active_item.Location = new System.Drawing.Point(6, 100);
             this.active_item.Name = "active_item";
             this.active_item.Size = new System.Drawing.Size(90, 90);
@@ -282,6 +170,140 @@
             this.picture_menu.TabIndex = 1;
             this.picture_menu.TabStop = false;
             // 
+            // tabs
+            // 
+            this.tabs.Controls.Add(this.tab_profile);
+            this.tabs.Controls.Add(this.tab_targets);
+            this.tabs.Controls.Add(this.tab_stat);
+            this.tabs.Controls.Add(this.tab_sched);
+            this.tabs.Controls.Add(this.tab_sett);
+            this.tabs.ItemSize = new System.Drawing.Size(0, 1);
+            this.tabs.Location = new System.Drawing.Point(-4, -5);
+            this.tabs.Name = "tabs";
+            this.tabs.SelectedIndex = 0;
+            this.tabs.Size = new System.Drawing.Size(1375, 780);
+            this.tabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabs.TabIndex = 3;
+            this.tabs.TabStop = false;
+            // 
+            // tab_profile
+            // 
+            this.tab_profile.Controls.Add(this.nLabelControl1);
+            this.tab_profile.Controls.Add(this.flowTasks);
+            this.tab_profile.Location = new System.Drawing.Point(4, 5);
+            this.tab_profile.Name = "tab_profile";
+            this.tab_profile.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_profile.Size = new System.Drawing.Size(1367, 771);
+            this.tab_profile.TabIndex = 0;
+            this.tab_profile.Text = "tabPage1";
+            this.tab_profile.UseVisualStyleBackColor = true;
+            // 
+            // flowTasks
+            // 
+            this.flowTasks.AutoScroll = true;
+            this.flowTasks.Location = new System.Drawing.Point(113, 57);
+            this.flowTasks.Name = "flowTasks";
+            this.flowTasks.Size = new System.Drawing.Size(485, 249);
+            this.flowTasks.TabIndex = 0;
+            // 
+            // tab_targets
+            // 
+            this.tab_targets.Controls.Add(this.label2);
+            this.tab_targets.Location = new System.Drawing.Point(4, 5);
+            this.tab_targets.Name = "tab_targets";
+            this.tab_targets.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_targets.Size = new System.Drawing.Size(1367, 771);
+            this.tab_targets.TabIndex = 1;
+            this.tab_targets.Text = "tabPage2";
+            this.tab_targets.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(82, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "targets";
+            // 
+            // tab_stat
+            // 
+            this.tab_stat.Controls.Add(this.label3);
+            this.tab_stat.Location = new System.Drawing.Point(4, 5);
+            this.tab_stat.Name = "tab_stat";
+            this.tab_stat.Size = new System.Drawing.Size(1367, 771);
+            this.tab_stat.TabIndex = 2;
+            this.tab_stat.Text = "tabPage1";
+            this.tab_stat.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(105, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "stat";
+            // 
+            // tab_sched
+            // 
+            this.tab_sched.Controls.Add(this.label4);
+            this.tab_sched.Location = new System.Drawing.Point(4, 5);
+            this.tab_sched.Name = "tab_sched";
+            this.tab_sched.Size = new System.Drawing.Size(1367, 771);
+            this.tab_sched.TabIndex = 3;
+            this.tab_sched.Text = "tabPage2";
+            this.tab_sched.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(112, 71);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "sched";
+            // 
+            // tab_sett
+            // 
+            this.tab_sett.Controls.Add(this.label5);
+            this.tab_sett.Location = new System.Drawing.Point(4, 5);
+            this.tab_sett.Name = "tab_sett";
+            this.tab_sett.Size = new System.Drawing.Size(1367, 771);
+            this.tab_sett.TabIndex = 4;
+            this.tab_sett.Text = "tabPage3";
+            this.tab_sett.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(106, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "settings";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.AccessibleName = "profile";
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Upgrade.Properties.Resources.panel_profile;
+            this.pictureBox1.Location = new System.Drawing.Point(1006, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(348, 748);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
+            // nLabelControl1
+            // 
+            this.nLabelControl1.AutoSize = false;
+            this.nLabelControl1.DesignTimeState = resources.GetString("nLabelControl1.DesignTimeState");
+            this.nLabelControl1.Location = new System.Drawing.Point(716, 240);
+            this.nLabelControl1.Name = "nLabelControl1";
+            this.nLabelControl1.Size = new System.Drawing.Size(75, 23);
+            this.nLabelControl1.TabIndex = 1;
+            // 
             // MainWorkingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +319,15 @@
             this.Text = "MainWorkingForm";
             this.panel_menu.ResumeLayout(false);
             this.panel_menu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.active_item)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedule)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.targets)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).EndInit();
             this.tabs.ResumeLayout(false);
+            this.tab_profile.ResumeLayout(false);
             this.tab_targets.ResumeLayout(false);
             this.tab_targets.PerformLayout();
             this.tab_stat.ResumeLayout(false);
@@ -307,13 +337,6 @@
             this.tab_sett.ResumeLayout(false);
             this.tab_sett.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.active_item)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.settings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedule)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.targets)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.profile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,5 +362,7 @@
         private System.Windows.Forms.TabPage tab_sett;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowTasks;
+        private Nevron.Nov.WinFormControls.NLabelControl nLabelControl1;
     }
 }

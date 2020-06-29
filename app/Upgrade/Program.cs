@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Upgrade.Classes;
 
 namespace Upgrade
 {
@@ -17,7 +18,7 @@ namespace Upgrade
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Properties.Settings.Default.Reset();
-            Application.Run(new Reg_AuthForm());
+            Application.Run(new MainWorkingForm());
         }
     }
 }
