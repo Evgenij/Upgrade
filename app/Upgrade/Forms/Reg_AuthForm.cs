@@ -143,7 +143,7 @@ namespace Upgrade
 
         private void RegistrationForm_Shown(object sender, EventArgs e)
         {
-            DBService.ConnectToDB(@"database\2.db");
+            DBService.ConnectToDB(@"database\db_upgrade.db");
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

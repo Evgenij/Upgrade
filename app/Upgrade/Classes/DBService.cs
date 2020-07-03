@@ -15,7 +15,7 @@ namespace Upgrade
     {
         static public void ConnectToDB(string databaseName)
         {
-            if (File.Exists(databaseName)/*File.Exists(@"database\db_upgrade.db")*/)
+            if (File.Exists(databaseName))
             {
                 ServiceData.connect = new SQLiteConnection(@"Data Source="+ databaseName + "; Version=3;");
                 ServiceData.connect.Open(); // открытие соединения
@@ -26,7 +26,6 @@ namespace Upgrade
                     "Не удалось подключиться к базе данных.\nФайл базы данных отсутствует.\nДля подключения будет создан новый файл базы данных.",
                     "Ошибка подключения к базе данных", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK) 
                 {
-                    //File.Create(@"database\db_upgrade.db");
                     CreateDB(databaseName);
                 }
             }
@@ -207,20 +206,6 @@ namespace Upgrade
 
             ServiceData.command.ExecuteNonQuery();
         }
-
-        static public void ReadRecords()
-        {
-            // строка запроса, который надо будет выполнить
-
-            ServiceData.commandText = @"SELECT * FROM user WHERE login = @login AND password = @password";
-            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-           
-            ServiceData.reader = ServiceData.command.ExecuteReader();
-            while (ServiceData.reader.Read()) // считываем и вносим в лист все параметры
-            {
-                MessageBox.Show(ServiceData.reader.GetString(2));
-            }
-
-        }
+        
     }
 }

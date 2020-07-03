@@ -10,7 +10,7 @@ namespace Upgrade.Classes
 {
     class Scroller
     {
-        private const int margin = 30;
+        private const int margin = 6;
 
         private int value;
         private int currentY;
@@ -65,83 +65,8 @@ namespace Upgrade.Classes
                 scroller.Width = 7;
 
                 scroller.Height = flowPanel.Height - top_tip_scroll.Height;
-                if (panel.VerticalScroll.Maximum <= 400)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 10);
-                }
-                else if (panel.VerticalScroll.Maximum <= 450) 
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 6);
-                }
-                else if (panel.VerticalScroll.Maximum <= 500)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 4);
-                }
-                else if (panel.VerticalScroll.Maximum <= 550)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 3) + 65;
-                }
-                else if (panel.VerticalScroll.Maximum >= 550 && panel.VerticalScroll.Maximum < 800)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 4) - 20;
-                }
-                else if (panel.VerticalScroll.Maximum >= 800 && panel.VerticalScroll.Maximum < 850)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 4) - 30;
-                }
-                else if (panel.VerticalScroll.Maximum >= 850 && panel.VerticalScroll.Maximum < 900)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 4) - 40;
-                }
-                else if (panel.VerticalScroll.Maximum >= 900 && panel.VerticalScroll.Maximum < 950)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 4) - 50;
-                }
-                else if (panel.VerticalScroll.Maximum >= 950 && panel.VerticalScroll.Maximum < 1000)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 4) - 65;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1000 && panel.VerticalScroll.Maximum < 1050)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) - 20;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1050 && panel.VerticalScroll.Maximum < 1100)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) - 25;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1100 && panel.VerticalScroll.Maximum < 1150)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) - 30;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1150 && panel.VerticalScroll.Maximum < 1200)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) - 35;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1200 && panel.VerticalScroll.Maximum < 1250)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) - 40;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1250 && panel.VerticalScroll.Maximum < 1300)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) - 45;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1300 && panel.VerticalScroll.Maximum < 1500)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) + 20;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1500 && panel.VerticalScroll.Maximum < 1550)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) + 15;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1500 && panel.VerticalScroll.Maximum < 1600)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 5) + 5;
-                }
-                else if (panel.VerticalScroll.Maximum >= 1600 && panel.VerticalScroll.Maximum < 2000)
-                {
-                    scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum / 7) + 10;
-                }
-
+                scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum - scroller.Height) ;
+                
                 scroller.Cursor = Cursors.Hand;
                 scroller.MouseUp += Scroller_MouseUp;
                 scroller.MouseDown += Scroller_MouseDown;
@@ -178,26 +103,8 @@ namespace Upgrade.Classes
                     top_tip_scroll.Top = top_tip_scroll.Top + (e.Y - currentY);
                     bottom_tip_scroll.Top = bottom_tip_scroll.Top + (e.Y - currentY);
                     scroller.Top = scroller.Top + (e.Y - currentY);
-                    if (panel.VerticalScroll.Maximum >= 100 && panel.VerticalScroll.Maximum <= 550)
-                    {
-                        panel.VerticalScroll.Value = value;
-                    }
-                    else if (panel.VerticalScroll.Maximum <= 1000) 
-                    {
-                        panel.VerticalScroll.Value = value * 2;
-                    }
-                    else if (panel.VerticalScroll.Maximum <= 1300)
-                    {
-                        panel.VerticalScroll.Value = value * 3;
-                    }
-                    else if (panel.VerticalScroll.Maximum <= 1600)
-                    {
-                        panel.VerticalScroll.Value = value * 4;
-                    }
-                    else if (panel.VerticalScroll.Maximum <= 2000)
-                    {
-                        panel.VerticalScroll.Value = value * 6;
-                    }
+                    panel.VerticalScroll.Value = value;
+                    
                 }
                 else if (top_tip_scroll.Top < panel.Top)
                 {

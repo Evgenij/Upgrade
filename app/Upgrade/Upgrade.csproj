@@ -131,6 +131,7 @@
     <Compile Include="Classes\DBService.cs" />
     <Compile Include="Classes\GlobalData.cs" />
     <Compile Include="Classes\Scroller.cs" />
+    <Compile Include="Classes\SubTaskBlock.cs" />
     <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,7 +146,7 @@
     <Compile Include="Forms\Reg_AuthForm.Designer.cs">
       <DependentUpon>Reg_AuthForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TaskBlock.cs" />
+    <Compile Include="Classes\TaskBlock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\ServiceData.cs" />
@@ -276,9 +277,6 @@
     <None Include="Resources\more_on.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\task_box_center.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\task_box_top.png" />
   </ItemGroup>
   <ItemGroup>
@@ -288,7 +286,28 @@
     <None Include="Resources\check.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\done_tasks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_off.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\check_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_small_done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_small_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_small_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task_box_center.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

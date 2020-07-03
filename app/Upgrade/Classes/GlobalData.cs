@@ -58,13 +58,32 @@ namespace Upgrade.Classes
 
         static public System.Drawing.Color LightenColor(System.Drawing.Color color) 
         {
-            int[] array = { color.R, color.G, color.B};
-            array = array.Where(val => val + 100 == array.Max()).ToArray();
-            int second_max = array.Max();
+            int[] array = { color.R, color.G, color.B };
 
-            MessageBox.Show(System.Drawing.Color.FromArgb(r, g, b).ToString());
+            var valueMax = array.Where(val => val == array.Max()).ToArray();
+            var valueAverage = array.Where(val => val < array.Max() && val > array.Min()).ToArray();
 
-            return System.Drawing.Color.FromArgb(r,g,b);
+            for (int i = 0; i < array.Length; i++) 
+            {
+                if (array[i] == valueMax[0])
+                {
+                    array[i] = valueMax[0] + 100;
+                }
+                else if (array[i] == valueAverage[0]) 
+                {
+                    array[i] = valueAverage[0] + 70;
+                }
+            }
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > 255)
+                {
+                    array[i] = 255;
+                }
+            }
+
+            return System.Drawing.Color.FromArgb(array[0], array[1], array[2]);
         }
     }
 }

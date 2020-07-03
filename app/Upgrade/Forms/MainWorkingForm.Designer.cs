@@ -37,8 +37,10 @@
             this.targets = new System.Windows.Forms.PictureBox();
             this.profile = new System.Windows.Forms.PictureBox();
             this.picture_menu = new System.Windows.Forms.PictureBox();
+            this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tab_profile = new System.Windows.Forms.TabPage();
+            this.panel_hide_scroll = new System.Windows.Forms.Panel();
             this.flowTasks = new System.Windows.Forms.FlowLayoutPanel();
             this.tab_targets = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,7 +51,13 @@
             this.tab_sett = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.nLabelControl1 = new Nevron.Nov.WinFormControls.NLabelControl();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.panel_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settings)).BeginInit();
@@ -65,6 +73,7 @@
             this.tab_sched.SuspendLayout();
             this.tab_sett.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_menu
@@ -77,6 +86,7 @@
             this.panel_menu.Controls.Add(this.targets);
             this.panel_menu.Controls.Add(this.profile);
             this.panel_menu.Controls.Add(this.picture_menu);
+            this.panel_menu.Controls.Add(this.block_for_focus);
             this.panel_menu.Location = new System.Drawing.Point(10, 10);
             this.panel_menu.Name = "panel_menu";
             this.panel_menu.Size = new System.Drawing.Size(70, 748);
@@ -170,6 +180,13 @@
             this.picture_menu.TabIndex = 1;
             this.picture_menu.TabStop = false;
             // 
+            // block_for_focus
+            // 
+            this.block_for_focus.Location = new System.Drawing.Point(32, 725);
+            this.block_for_focus.Name = "block_for_focus";
+            this.block_for_focus.Size = new System.Drawing.Size(15, 20);
+            this.block_for_focus.TabIndex = 2;
+            // 
             // tabs
             // 
             this.tabs.Controls.Add(this.tab_profile);
@@ -188,7 +205,8 @@
             // 
             // tab_profile
             // 
-            this.tab_profile.Controls.Add(this.nLabelControl1);
+            this.tab_profile.Controls.Add(this.flowLayoutPanel1);
+            this.tab_profile.Controls.Add(this.panel_hide_scroll);
             this.tab_profile.Controls.Add(this.flowTasks);
             this.tab_profile.Location = new System.Drawing.Point(4, 5);
             this.tab_profile.Name = "tab_profile";
@@ -198,12 +216,19 @@
             this.tab_profile.Text = "tabPage1";
             this.tab_profile.UseVisualStyleBackColor = true;
             // 
+            // panel_hide_scroll
+            // 
+            this.panel_hide_scroll.Location = new System.Drawing.Point(550, 154);
+            this.panel_hide_scroll.Name = "panel_hide_scroll";
+            this.panel_hide_scroll.Size = new System.Drawing.Size(25, 617);
+            this.panel_hide_scroll.TabIndex = 1;
+            // 
             // flowTasks
             // 
             this.flowTasks.AutoScroll = true;
-            this.flowTasks.Location = new System.Drawing.Point(113, 57);
+            this.flowTasks.Location = new System.Drawing.Point(115, 158);
             this.flowTasks.Name = "flowTasks";
-            this.flowTasks.Size = new System.Drawing.Size(485, 249);
+            this.flowTasks.Size = new System.Drawing.Size(460, 600);
             this.flowTasks.TabIndex = 0;
             // 
             // tab_targets
@@ -295,14 +320,74 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
-            // nLabelControl1
+            // flowLayoutPanel1
             // 
-            this.nLabelControl1.AutoSize = false;
-            this.nLabelControl1.DesignTimeState = resources.GetString("nLabelControl1.DesignTimeState");
-            this.nLabelControl1.Location = new System.Drawing.Point(716, 240);
-            this.nLabelControl1.Name = "nLabelControl1";
-            this.nLabelControl1.Size = new System.Drawing.Size(75, 23);
-            this.nLabelControl1.TabIndex = 1;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.button4);
+            this.flowLayoutPanel1.Controls.Add(this.button5);
+            this.flowLayoutPanel1.Controls.Add(this.button6);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(599, 110);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(81, 174);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 32);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(3, 61);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(3, 90);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(3, 119);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(3, 148);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // MainWorkingForm
             // 
@@ -313,6 +398,7 @@
             this.Controls.Add(this.panel_menu);
             this.Controls.Add(this.tabs);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainWorkingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -328,6 +414,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).EndInit();
             this.tabs.ResumeLayout(false);
             this.tab_profile.ResumeLayout(false);
+            this.tab_profile.PerformLayout();
             this.tab_targets.ResumeLayout(false);
             this.tab_targets.PerformLayout();
             this.tab_stat.ResumeLayout(false);
@@ -337,6 +424,7 @@
             this.tab_sett.ResumeLayout(false);
             this.tab_sett.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,7 +440,6 @@
         private System.Windows.Forms.PictureBox schedule;
         private System.Windows.Forms.PictureBox settings;
         private System.Windows.Forms.TabControl tabs;
-        private System.Windows.Forms.TabPage tab_profile;
         private System.Windows.Forms.TabPage tab_targets;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tab_stat;
@@ -362,7 +449,16 @@
         private System.Windows.Forms.TabPage tab_sett;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TabPage tab_profile;
         private System.Windows.Forms.FlowLayoutPanel flowTasks;
-        private Nevron.Nov.WinFormControls.NLabelControl nLabelControl1;
+        private System.Windows.Forms.Panel panel_hide_scroll;
+        private System.Windows.Forms.TextBox block_for_focus;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

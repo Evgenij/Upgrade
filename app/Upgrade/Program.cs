@@ -18,7 +18,7 @@ namespace Upgrade
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Properties.Settings.Default.Reset();
-            Application.Run(new MainWorkingForm());
+            Application.Run(new Reg_AuthForm());
         }
     }
 }

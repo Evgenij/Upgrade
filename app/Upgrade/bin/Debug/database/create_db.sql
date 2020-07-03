@@ -19,8 +19,8 @@ CREATE TABLE "note"
 	id_user INTEGER NOT NULL,
 	text TEXT NOT NULL,
 	FOREIGN KEY
-(id_user) REFERENCES user
-(id_user)
+	(id_user) REFERENCES user
+	(id_user)
 );
 
 CREATE TABLE "password" 
@@ -81,8 +81,8 @@ CREATE TABLE "target"
 	comp_tasks INTEGER NOT NULL,
 	completed INTEGER NOT NULL,
 	FOREIGN KEY
-(id_direct) REFERENCES direction
-(id_direct)
+	(id_direct) REFERENCES direction
+	(id_direct)
 );
 
 CREATE TABLE "task" 
@@ -106,8 +106,8 @@ CREATE TABLE "subtask"
 	text TEXT NOT NULL,
 	status INTEGER NOT NULL,
 	FOREIGN KEY
-(id_task) REFERENCES task
-(id_task)
+	(id_task) REFERENCES task
+	(id_task)
 );
 
 CREATE TABLE "schedule" 
@@ -139,48 +139,22 @@ CREATE TABLE "categ_achiev"
 
 /* заполнение таблиц */
 
-INSERT INTO user
-VALUES
-	(NULL, NULL, "Ваня", "123", "email@mail.ru", "1652", 10, 45);
-INSERT INTO user
-VALUES
-	(NULL, NULL, "Олеся", "123", "email@mail.ru", "6532", 10, 45);
+INSERT INTO user VALUES (NULL, NULL, "Ваня", "123", "email@mail.ru", "1652", 10, 45);
+INSERT INTO user VALUES (NULL, NULL, "Олеся", "123", "email@mail.ru", "6532", 10, 45);
 INSERT INTO user VALUES (NULL, NULL, "Игорь", "123", "email@mail.ru", "1236", 10, 45);
 INSERT INTO user VALUES (NULL, NULL, "Наташа", "123", "email@mail.ru", "4672", 10, 45);
 
-INSERT INTO note
-VALUES
-	(NULL, 1, "Текст заметки №1");
-INSERT INTO note
-VALUES
-	(NULL, 1, "Текст заметки №2");
-INSERT INTO note
-VALUES
-	(NULL, 2, "Текст заметки №3");
-INSERT INTO note
-VALUES
-	(NULL, 2, "Текст заметки №4");
-INSERT INTO note
-VALUES
-	(NULL, 2, "Текст заметки №5");
-INSERT INTO note
-VALUES
-	(NULL, 3, "Текст заметки №6");
-INSERT INTO note
-VALUES
-	(NULL, 3, "Текст заметки №7");
-INSERT INTO note
-VALUES
-	(NULL, 4, "Текст заметки №8");
-INSERT INTO note
-VALUES
-	(NULL, 4, "Текст заметки №9");
-INSERT INTO note
-VALUES
-	(NULL, 4, "Текст заметки №10");
-INSERT INTO note
-VALUES
-	(NULL, 4, "Текст заметки №11");
+INSERT INTO note VALUES (NULL, 1, "Текст заметки №1");
+INSERT INTO note VALUES (NULL, 1, "Текст заметки №2");
+INSERT INTO note VALUES (NULL, 2, "Текст заметки №3");
+INSERT INTO note VALUES (NULL, 2, "Текст заметки №4");
+INSERT INTO note VALUES (NULL, 2, "Текст заметки №5");
+INSERT INTO note VALUES (NULL, 3, "Текст заметки №6");
+INSERT INTO note VALUES (NULL, 3, "Текст заметки №7");
+INSERT INTO note VALUES (NULL, 4, "Текст заметки №8");
+INSERT INTO note VALUES (NULL, 4, "Текст заметки №9");
+INSERT INTO note VALUES (NULL, 4, "Текст заметки №10");
+INSERT INTO note VALUES (NULL, 4, "Текст заметки №11");
 
 INSERT INTO password
 VALUES
@@ -339,34 +313,34 @@ VALUES
 
 INSERT INTO task
 VALUES
-	(NULL, 1, 1, "Задача №1", "09.06.2020", "10:40", 0, 0);
+	(NULL, 1, 1, "Задача №1", "09.06.2020", "12:40", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 1, 1, "Задача №2", "09.06.2020", "10:40", 0, 0);
+	(NULL, 1, 1, "Задача №2", "10.06.2020", "09:35", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 2, NULL, "Задача №1", "09.06.2020", "10:40", 0, 0);
+	(NULL, 2, NULL, "Задача №1", "11.06.2020", "14:20", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 2, NULL, "Задача №2", "09.06.2020", "10:40", 0, 0);
+	(NULL, 2, NULL, "Задача №2", "15.06.2020", "08:50", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 3, 2, "Задача №1", "09.06.2020", "10:40", 0, 0);
+	(NULL, 3, 2, "Задача №1", "17.06.2020", "09:00", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 3, 2, "Задача №2", "09.06.2020", "10:40", 0, 0);
+	(NULL, 3, 2, "Задача №2", "14.06.2020", "10:00", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 3, 2, "Задача №3", "09.06.2020", "10:40", 0, 0);
+	(NULL, 3, 2, "Задача №3", "22.06.2020", "11:50", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 4, 3, "Задача №1", "09.06.2020", "10:40", 0, 0);
+	(NULL, 4, 3, "Задача №1", "26.06.2020", "16:30", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 5, 4, "Задача №1", "09.06.2020", "10:40", 0, 0);
+	(NULL, 5, 4, "Задача №1", "03.06.2020", "18:30", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 5, 4, "Задача №2", "09.06.2020", "10:40", 0, 0);
+	(NULL, 5, 4, "Задача №2", "21.06.2020", "22:00", 0, 0);
 
 INSERT INTO subtask
 VALUES

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -41,8 +42,6 @@ namespace Upgrade.Classes
             tab_stat.BackColor = Design.backColor;
             tab_sched.BackColor = Design.backColor;
             tab_sett.BackColor = Design.backColor;
-
-            
         }
 
         private void MainWorkingForm_Load(object sender, EventArgs e)
@@ -50,16 +49,40 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            TaskBlock[] taskBlock = new TaskBlock[5];
-            for (int i = 0; i < 5; i++)
+            List<TaskBlock> taskBlock = new List<TaskBlock>();
+
+            ServiceData.commandText = @"SELECT 
+                task.id_task, task.date, task.time, direction.name, target.name, task.text, task.descr FROM task 
+                INNER JOIN target ON task.id_target = target.id_target 
+                INNER JOIN direction ON target.id_direct = direction.id_direct 
+                INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
+                INNER JOIN user ON user_dir.id_user = user.id_user 
+                WHERE user.id_user = 3
+                ORDER BY task.time";
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
             {
-                taskBlock[i] = new TaskBlock(flowTasks);
+                while (ServiceData.reader.Read())
+                {
+                    taskBlock.Add(new TaskBlock(
+                        flowTasks,
+                        Convert.ToInt32(ServiceData.reader.GetValue(0)),
+                        ServiceData.reader.GetString(1),
+                        ServiceData.reader.GetString(2),
+                        ServiceData.reader.GetString(3),
+                        ServiceData.reader.GetString(4),
+                        ServiceData.reader.GetString(5),
+                        ServiceData.reader.GetValue(6).ToString()));
+                }
             }
 
             Scroller scroller = new Scroller(tab_profile, flowTasks);
 
             MessageBox.Show(flowTasks.VerticalScroll.Maximum.ToString());
 
+            block_for_focus.Focus();
         }
 
         private void button1_Click(object sender, EventArgs e)

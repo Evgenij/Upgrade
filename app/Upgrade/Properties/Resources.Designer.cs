@@ -103,6 +103,16 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check_done {
+            get {
+                object obj = ResourceManager.GetObject("check_done", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap check_off {
             get {
                 object obj = ResourceManager.GetObject("check_off", resourceCulture);
@@ -116,6 +126,46 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap check_on {
             get {
                 object obj = ResourceManager.GetObject("check_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_small_done {
+            get {
+                object obj = ResourceManager.GetObject("check_small_done", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_small_off {
+            get {
+                object obj = ResourceManager.GetObject("check_small_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_small_on {
+            get {
+                object obj = ResourceManager.GetObject("check_small_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap done_tasks {
+            get {
+                object obj = ResourceManager.GetObject("done_tasks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
