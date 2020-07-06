@@ -13,26 +13,40 @@ namespace Upgrade.Classes
         private Panel panel;
         private PictureBox check;
         private TextBox textLabel;
+        private TaskBlock taskBlock;
 
-        public SubTaskBlock(Control flowPanel, string textSubTask)
+        public SubTaskBlock(TaskBlock parentTaskBlock, Control flowPanel, string textSubTask)
         {
             panel = new Panel();
             check = new PictureBox();
             textLabel = new TextBox();
+            taskBlock = parentTaskBlock;
 
             panel.Width = 265;
             panel.BackColor = Color.Transparent;
             panel.Cursor = Cursors.Hand;
-            panel.Click += Check_Click;
+            panel.Click += Click;
 
             check.AccessibleName = "undone";
-            check.Image = Properties.Resources.check_small_off;
+            MessageBox.Show(taskBlock.GetStatus().ToString());
+            if (taskBlock.GetStatus() == GlobalData.StatusTask.Done)
+            {
+                check.Image = Properties.Resources.check_small_done;
+            }
+            else if (taskBlock.GetStatus() == GlobalData.StatusTask.Failed)
+            {
+                check.Image = Properties.Resources.check_small_fail;
+            }
+            else 
+            {
+                check.Image = Properties.Resources.check_small_off;
+            }
             check.SizeMode = PictureBoxSizeMode.AutoSize;
             check.BackColor = Color.White;
             check.Cursor = Cursors.Hand;
             check.MouseHover += Check_MouseHover;
             check.MouseLeave += Check_MouseLeave;
-            check.Click += Check_Click;
+            check.Click += Click;
 
             textLabel.Left = check.Left + check.Width + 11;
             textLabel.Top = check.Top;
@@ -41,9 +55,10 @@ namespace Upgrade.Classes
             textLabel.BackColor = Color.White;
             textLabel.ForeColor = Color.Gray;
             textLabel.Cursor = Cursors.Hand;
-            textLabel.Click += Check_Click;
+            textLabel.Click += Click;
             textLabel.BorderStyle = BorderStyle.None;
             textLabel.Multiline = true;
+            textLabel.ReadOnly = true;
             textLabel.Text = textSubTask;
             if (textLabel.Text.Length >= 22)
             {
@@ -70,34 +85,43 @@ namespace Upgrade.Classes
 
         private void Check_MouseLeave(object sender, EventArgs e)
         {
-            if (check.AccessibleName != "done")
+            if (taskBlock.GetStatus() == GlobalData.StatusTask.Empty)
             {
-                check.Image = Properties.Resources.check_small_off;
+                if (check.AccessibleName != "done")
+                {
+                    check.Image = Properties.Resources.check_small_off;
+                }
             }
         }
 
         private void Check_MouseHover(object sender, EventArgs e)
         {
-            if (check.AccessibleName != "done")
+            if (taskBlock.GetStatus() == GlobalData.StatusTask.Empty)
             {
-                check.Image = Properties.Resources.check_small_on;
+                if (check.AccessibleName != "done")
+                {
+                    check.Image = Properties.Resources.check_small_on;
+                }
             }
         }
 
-        private void Check_Click(object sender, EventArgs e)
+        private void Click(object sender, EventArgs e)
         {
-            if (check.AccessibleName == "undone")
+            if (taskBlock.GetStatus() == GlobalData.StatusTask.Empty)
             {
-                check.AccessibleName = "done";
-                check.Image = Properties.Resources.check_small_done;
+                if (check.AccessibleName == "undone")
+                {
+                    check.AccessibleName = "done";
+                    check.Image = Properties.Resources.check_small_done;
+                    taskBlock.AddSuccessSubtasks();
+                }
+                else
+                {
+                    check.AccessibleName = "undone";
+                    check.Image = Properties.Resources.check_small_off;
+                    taskBlock.DeleteSuccessSubtasks();
+                }
             }
-            else 
-            {
-                check.AccessibleName = "undone";
-                check.Image = Properties.Resources.check_small_off;
-            }
-
-            // TODO: code for update data 
         }
     }
 }

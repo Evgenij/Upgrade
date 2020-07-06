@@ -147,6 +147,7 @@
       <DependentUpon>Reg_AuthForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\TaskBlock.cs" />
+    <Compile Include="Classes\WindowManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\ServiceData.cs" />
@@ -308,6 +309,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\task_box_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_fail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fail_tasks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_small_fail.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

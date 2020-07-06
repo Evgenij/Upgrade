@@ -113,6 +113,16 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check_fail {
+            get {
+                object obj = ResourceManager.GetObject("check_fail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap check_off {
             get {
                 object obj = ResourceManager.GetObject("check_off", resourceCulture);
@@ -136,6 +146,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap check_small_done {
             get {
                 object obj = ResourceManager.GetObject("check_small_done", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_small_fail {
+            get {
+                object obj = ResourceManager.GetObject("check_small_fail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +216,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap eye_on {
             get {
                 object obj = ResourceManager.GetObject("eye_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fail_tasks {
+            get {
+                object obj = ResourceManager.GetObject("fail_tasks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

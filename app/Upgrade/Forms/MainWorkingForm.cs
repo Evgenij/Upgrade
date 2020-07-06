@@ -9,7 +9,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Upgrade.Forms;
 
 namespace Upgrade.Classes
 {
@@ -25,6 +24,8 @@ namespace Upgrade.Classes
                                                        int nHeightEllipse);
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+
+        Scroller scroller;
 
         public MainWorkingForm()
         {
@@ -42,6 +43,8 @@ namespace Upgrade.Classes
             tab_stat.BackColor = Design.backColor;
             tab_sched.BackColor = Design.backColor;
             tab_sett.BackColor = Design.backColor;
+
+            label_today.ForeColor = Design.mainColor;
         }
 
         private void MainWorkingForm_Load(object sender, EventArgs e)
@@ -49,45 +52,12 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            List<TaskBlock> taskBlock = new List<TaskBlock>();
+            WindowManager.CreateMainWindow(flowTasks);
 
-            ServiceData.commandText = @"SELECT 
-                task.id_task, task.date, task.time, direction.name, target.name, task.text, task.descr FROM task 
-                INNER JOIN target ON task.id_target = target.id_target 
-                INNER JOIN direction ON target.id_direct = direction.id_direct 
-                INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
-                INNER JOIN user ON user_dir.id_user = user.id_user 
-                WHERE user.id_user = 3
-                ORDER BY task.time";
-            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-
-            ServiceData.reader = ServiceData.command.ExecuteReader();
-            if (ServiceData.reader.HasRows)
-            {
-                while (ServiceData.reader.Read())
-                {
-                    taskBlock.Add(new TaskBlock(
-                        flowTasks,
-                        Convert.ToInt32(ServiceData.reader.GetValue(0)),
-                        ServiceData.reader.GetString(1),
-                        ServiceData.reader.GetString(2),
-                        ServiceData.reader.GetString(3),
-                        ServiceData.reader.GetString(4),
-                        ServiceData.reader.GetString(5),
-                        ServiceData.reader.GetValue(6).ToString()));
-                }
-            }
-
-            Scroller scroller = new Scroller(tab_profile, flowTasks);
-
-            MessageBox.Show(flowTasks.VerticalScroll.Maximum.ToString());
-
+            scroller = new Scroller(tab_profile, flowTasks);
             block_for_focus.Focus();
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
+            MessageBox.Show(flowTasks.Controls.Count.ToString());
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -123,6 +93,11 @@ namespace Upgrade.Classes
             Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 340);
             tabs.SelectedTab = tab_sett;
             active_item.Image = Properties.Resources.settings;
+        }
+
+        private void period_SelectedIndexChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)
+        {
+            MessageBox.Show(period.SelectedIndex.ToString()); 
         }
     }
 }

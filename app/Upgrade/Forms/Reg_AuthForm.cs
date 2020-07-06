@@ -12,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Classes;
-using Upgrade.Forms;
 
 namespace Upgrade
 {

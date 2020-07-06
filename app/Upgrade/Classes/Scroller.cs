@@ -12,9 +12,9 @@ namespace Upgrade.Classes
     {
         private const int margin = 6;
 
-        private int value;
+        private int value, multiplier;
         private int currentY;
-        private bool isDragging = false;
+        private bool isDragging = false; 
 
         private FlowLayoutPanel panel;
         private PictureBox background, scroller;
@@ -52,7 +52,6 @@ namespace Upgrade.Classes
                 // -----------------
 
 
-
                 // -----------------
                 top_tip_scroll.Image = Properties.Resources.tip_scroll;
                 top_tip_scroll.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -64,8 +63,7 @@ namespace Upgrade.Classes
                 scroller.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width + margin, flowPanel.Top + top_tip_scroll.Height / 2);
                 scroller.Width = 7;
 
-                scroller.Height = flowPanel.Height - top_tip_scroll.Height;
-                scroller.Height = scroller.Height - (flowPanel.VerticalScroll.Maximum - scroller.Height) ;
+                Refresh();
                 
                 scroller.Cursor = Cursors.Hand;
                 scroller.MouseUp += Scroller_MouseUp;
@@ -77,7 +75,6 @@ namespace Upgrade.Classes
                 bottom_tip_scroll.Location = new System.Drawing.Point(scroller.Left, scroller.Top + scroller.Height - bottom_tip_scroll.Height / 2);
                 // -----------------
 
-
                 tabPage.Controls.Add(scroller);
                 tabPage.Controls.Add(top_tip_back);
                 tabPage.Controls.Add(bottom_tip_back);
@@ -85,12 +82,45 @@ namespace Upgrade.Classes
                 tabPage.Controls.Add(bottom_tip_scroll);
                 tabPage.Controls.Add(background);
 
-
                 background.BringToFront();
                 top_tip_scroll.BringToFront();
                 bottom_tip_scroll.BringToFront();
                 scroller.BringToFront();
             }
+        }
+
+        public void Refresh() 
+        {
+            panel.VerticalScroll.Value = 0;
+            value = 0;
+            
+            scroller.Height = panel.Height - top_tip_scroll.Height;
+            // вычисление множителя и длины скроллера
+            if (panel.VerticalScroll.Maximum <= scroller.Height)
+            {
+                multiplier = 1;
+                scroller.Height = scroller.Height - (panel.VerticalScroll.Maximum - scroller.Height);
+            }
+            else
+            {
+                multiplier = 2;
+                scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - scroller.Height) / 2);
+            }
+
+            // установка верхнего положения скроллера
+            top_tip_scroll.Location = new System.Drawing.Point(panel.Left + panel.Width + margin, panel.Top);
+            scroller.Location = new System.Drawing.Point(panel.Left + panel.Width + margin, panel.Top + top_tip_scroll.Height / 2);
+            bottom_tip_scroll.Location = new System.Drawing.Point(scroller.Left, scroller.Top + scroller.Height - bottom_tip_scroll.Height / 2);
+        }
+
+        private void Hide() 
+        {
+            background.Visible = false;
+            scroller.Visible = false;
+            top_tip_back.Visible = false;
+            bottom_tip_back.Visible = false;
+            top_tip_scroll.Visible = false;
+            bottom_tip_scroll.Visible = false;
         }
 
         private void Scroller_MouseMove(object sender, MouseEventArgs e)
@@ -103,8 +133,7 @@ namespace Upgrade.Classes
                     top_tip_scroll.Top = top_tip_scroll.Top + (e.Y - currentY);
                     bottom_tip_scroll.Top = bottom_tip_scroll.Top + (e.Y - currentY);
                     scroller.Top = scroller.Top + (e.Y - currentY);
-                    panel.VerticalScroll.Value = value;
-                    
+                    panel.VerticalScroll.Value = value * multiplier;
                 }
                 else if (top_tip_scroll.Top < panel.Top)
                 {

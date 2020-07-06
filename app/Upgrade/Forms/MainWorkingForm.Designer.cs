@@ -40,6 +40,10 @@
             this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tab_profile = new System.Windows.Forms.TabPage();
+            this.nComboBoxControl1 = new Nevron.Nov.WinFormControls.NComboBoxControl();
+            this.period = new Nevron.Nov.WinFormControls.NComboBoxControl();
+            this.label_today = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel_hide_scroll = new System.Windows.Forms.Panel();
             this.flowTasks = new System.Windows.Forms.FlowLayoutPanel();
             this.tab_targets = new System.Windows.Forms.TabPage();
@@ -51,13 +55,6 @@
             this.tab_sett = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.panel_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settings)).BeginInit();
@@ -73,7 +70,6 @@
             this.tab_sched.SuspendLayout();
             this.tab_sett.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_menu
@@ -205,7 +201,10 @@
             // 
             // tab_profile
             // 
-            this.tab_profile.Controls.Add(this.flowLayoutPanel1);
+            this.tab_profile.Controls.Add(this.nComboBoxControl1);
+            this.tab_profile.Controls.Add(this.period);
+            this.tab_profile.Controls.Add(this.label_today);
+            this.tab_profile.Controls.Add(this.label1);
             this.tab_profile.Controls.Add(this.panel_hide_scroll);
             this.tab_profile.Controls.Add(this.flowTasks);
             this.tab_profile.Location = new System.Drawing.Point(4, 5);
@@ -216,19 +215,59 @@
             this.tab_profile.Text = "tabPage1";
             this.tab_profile.UseVisualStyleBackColor = true;
             // 
+            // nComboBoxControl1
+            // 
+            this.nComboBoxControl1.AutoSize = false;
+            this.nComboBoxControl1.DesignTimeState = resources.GetString("nComboBoxControl1.DesignTimeState");
+            this.nComboBoxControl1.Location = new System.Drawing.Point(224, 74);
+            this.nComboBoxControl1.Name = "nComboBoxControl1";
+            this.nComboBoxControl1.Size = new System.Drawing.Size(146, 23);
+            this.nComboBoxControl1.TabIndex = 8;
+            // 
+            // period
+            // 
+            this.period.AutoSize = false;
+            this.period.DesignTimeState = resources.GetString("period.DesignTimeState");
+            this.period.Location = new System.Drawing.Point(120, 74);
+            this.period.Name = "period";
+            this.period.Size = new System.Drawing.Size(96, 23);
+            this.period.TabIndex = 7;
+            this.period.SelectedIndexChanged += new Nevron.Nov.Function<Nevron.Nov.Dom.NValueChangeEventArgs>(this.period_SelectedIndexChanged);
+            // 
+            // label_today
+            // 
+            this.label_today.AutoSize = true;
+            this.label_today.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_today.ForeColor = System.Drawing.Color.Black;
+            this.label_today.Location = new System.Drawing.Point(252, 34);
+            this.label_today.Name = "label_today";
+            this.label_today.Size = new System.Drawing.Size(117, 35);
+            this.label_today.TabIndex = 3;
+            this.label_today.Text = "сегодня";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(116, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 35);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Задачи на";
+            // 
             // panel_hide_scroll
             // 
-            this.panel_hide_scroll.Location = new System.Drawing.Point(550, 154);
+            this.panel_hide_scroll.Location = new System.Drawing.Point(550, 130);
             this.panel_hide_scroll.Name = "panel_hide_scroll";
-            this.panel_hide_scroll.Size = new System.Drawing.Size(25, 617);
+            this.panel_hide_scroll.Size = new System.Drawing.Size(25, 620);
             this.panel_hide_scroll.TabIndex = 1;
             // 
             // flowTasks
             // 
             this.flowTasks.AutoScroll = true;
-            this.flowTasks.Location = new System.Drawing.Point(115, 158);
+            this.flowTasks.Location = new System.Drawing.Point(115, 130);
             this.flowTasks.Name = "flowTasks";
-            this.flowTasks.Size = new System.Drawing.Size(460, 600);
+            this.flowTasks.Size = new System.Drawing.Size(460, 620);
             this.flowTasks.TabIndex = 0;
             // 
             // tab_targets
@@ -320,75 +359,6 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.button4);
-            this.flowLayoutPanel1.Controls.Add(this.button5);
-            this.flowLayoutPanel1.Controls.Add(this.button6);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(599, 110);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(81, 174);
-            this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(3, 32);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(3, 61);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(3, 90);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(3, 119);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(3, 148);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // MainWorkingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,7 +394,6 @@
             this.tab_sett.ResumeLayout(false);
             this.tab_sett.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,12 +422,9 @@
         private System.Windows.Forms.FlowLayoutPanel flowTasks;
         private System.Windows.Forms.Panel panel_hide_scroll;
         private System.Windows.Forms.TextBox block_for_focus;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_today;
+        private Nevron.Nov.WinFormControls.NComboBoxControl period;
+        private Nevron.Nov.WinFormControls.NComboBoxControl nComboBoxControl1;
     }
 }

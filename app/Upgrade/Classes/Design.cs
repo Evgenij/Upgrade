@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Upgrade.Forms
+namespace Upgrade.Classes
 {
     class Design
     {
@@ -29,6 +29,7 @@ namespace Upgrade.Forms
                                                         Convert.ToInt32(Properties.Settings.Default.color[2]));
 
         private static Control panel;
+        private static FlowLayoutPanel flowParent;
         private static int start;
         private static int finish;
 
@@ -42,6 +43,7 @@ namespace Upgrade.Forms
             timer.Tick += Timer_TickMove;
 
             panel = movesPanel;
+
             direction = dir;
             start = s;
             finish = f;
@@ -49,16 +51,34 @@ namespace Upgrade.Forms
             timer.Start();
         }
 
-        static public void HidePanel(Control movesPanel)
+        static public void HidePanel(Control hidingPanel, FlowLayoutPanel flowPanel)
         {
             timer = new Timer();
             timer.Enabled = false;
             timer.Interval = 10;
             timer.Tick += Timer_Tick;
 
-            panel = movesPanel;
+            panel = hidingPanel;
+            flowParent = flowPanel;
 
             timer.Start();
+        }
+
+        private static void ClearFlowPanel() 
+        {
+            //while (flowParent.Controls.Count > 0) flowParent.Controls.RemoveAt(0);
+
+            flowParent.SuspendLayout();
+            if (flowParent.Controls.Count > 0)
+            {
+                for (int i = (flowParent.Controls.Count - 1); i >= 0; i--)
+                {
+                    Control c = flowParent.Controls[i];
+                    c.Dispose();
+                }
+                GC.Collect();
+            }
+            flowParent.ResumeLayout();
         }
 
         private static void Timer_Tick(object sender, EventArgs e)
@@ -72,6 +92,9 @@ namespace Upgrade.Forms
                 panel.Dispose();
                 timer.Stop();
                 timer.Dispose();
+                ClearFlowPanel();
+
+                WindowManager.SetTaskBlock(flowParent);
             }
         }
 

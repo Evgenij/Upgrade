@@ -20,6 +20,13 @@ namespace Upgrade.Classes
             Medium
         }
 
+        public enum StatusTask
+        {
+            Empty,
+            Done,
+            Failed
+        }
+
         static public Font GetFont(TypeFont typeFont, int size) 
         {
             string font;

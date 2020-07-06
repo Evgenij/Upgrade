@@ -9,10 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Classes;
 
-namespace Upgrade.Forms
+namespace Upgrade.Classes
 {
     class TaskBlock
     {
+        private int count_subtasks = 0, success_subtasks = 0, id_task;
+
+        private GlobalData.StatusTask statusTask = GlobalData.StatusTask.Empty; 
+
+        private FlowLayoutPanel flowPanel; 
         private Panel panel;
         private PictureBox box_top;
         private PictureBox box_center;
@@ -32,15 +37,31 @@ namespace Upgrade.Forms
 
         private List<SubTaskBlock> subTaskBlocks;
 
-        public TaskBlock(FlowLayoutPanel flowPanel, 
+        private enum DayOfWeek { 
+            Понедельник = 2,
+            Вторник = 3,
+            Среда = 4,
+            Четверг = 5,
+            Пятница = 6,
+            Суббота = 7,
+            Воскресенье = 1 
+        };
+
+        public TaskBlock(FlowLayoutPanel flowPanel,
                          int id_task,
                          string date,
                          string time,
+                         string time_finish,
                          string direction,
                          string target,
                          string text, 
-                         string descr) 
+                         string descr,
+                         int failed,
+                         int status) 
         {
+            this.id_task = id_task;
+            this.flowPanel = flowPanel;
+
             panel = new Panel();
             box_top = new PictureBox();
             box_center = new PictureBox();
@@ -64,13 +85,21 @@ namespace Upgrade.Forms
             dateLabel.BackColor = Color.White;
             dateLabel.Text = date;
 
+            string[] dateValues = dateLabel.Text.Split('.');
+            DateTime dateTask = new DateTime(
+                Convert.ToInt32(dateValues[2]), 
+                Convert.ToInt32(dateValues[1]), 
+                Convert.ToInt32(dateValues[0]));
+            DayOfWeek dayOfWeek = (DayOfWeek)Enum.GetValues(typeof(DayOfWeek)).GetValue(Convert.ToInt32(dateTask.DayOfWeek));
+
+            day.Text = dayOfWeek.ToString();
             day.Left = 105;
             day.Top = 25;
-            day.Width = 105;
+            day.Width = day.Text.Length * 11;
             day.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 12);
             day.ForeColor = Color.Gray;
             day.BackColor = Color.White;
-            day.Text = "Воскресенье";
+            
 
             direct.BorderStyle = BorderStyle.None;
             direct.Left = 66;
@@ -80,6 +109,7 @@ namespace Upgrade.Forms
             direct.BackColor = Color.White;
             direct.Text = direction;
             direct.WordWrap = true;
+            direct.ReadOnly = true;
             direct.MaximumSize = new Size(142,18); 
             direct.Width = 9 * direct.Text.Length - 7;
 
@@ -92,6 +122,7 @@ namespace Upgrade.Forms
             targetLabel.BackColor = Color.White;
             targetLabel.Text = "- " + target;
             targetLabel.WordWrap = true;
+            targetLabel.ReadOnly = true;
             targetLabel.Width = 250 - direct.Width;
 
             textLabel.Left = 63;
@@ -101,6 +132,7 @@ namespace Upgrade.Forms
             textLabel.BackColor = Color.White;
             textLabel.ForeColor = Color.Black;
             textLabel.BorderStyle = BorderStyle.None;
+            textLabel.ReadOnly = true;
             textLabel.Multiline = true;
             textLabel.Text = text;
             if (textLabel.Text.Length >= 28)
@@ -119,10 +151,11 @@ namespace Upgrade.Forms
                 descrLabel.Top = textLabel.Top + textLabel.Height + 10;
                 descrLabel.Width = 255;
                 descrLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 11);
-                descrLabel.BackColor = Color.LightCyan;
+                descrLabel.BackColor = Color.White;
                 descrLabel.ForeColor = Color.Gray;
                 descrLabel.BorderStyle = BorderStyle.None;
                 descrLabel.Multiline = true;
+                descrLabel.ReadOnly = true;
                 descrLabel.Text = descr;
                 if (descrLabel.Text.Length >= 28)
                 {
@@ -134,10 +167,33 @@ namespace Upgrade.Forms
                 }
             }
 
-            string commandText = @"SELECT subtask.text, subtask.status 
+            if (failed == 1)
+            {
+                statusTask = GlobalData.StatusTask.Failed;
+                check.AccessibleName = "failed";
+                check.Image = Properties.Resources.check_fail;
+            }
+            else
+            {
+                if (status == 0)
+                {
+                    check.AccessibleName = "undone";
+                    check.Image = Properties.Resources.check_off;
+                }
+                else if (status == 1)
+                {
+                    statusTask = GlobalData.StatusTask.Done;
+                    check.AccessibleName = "done";
+                    check.Image = Properties.Resources.check_done;
+                }
+            }
+
+            string commandText = @"SELECT 
+                subtask.text, subtask.status 
                 FROM subtask 
                 INNER JOIN task ON subtask.id_task = task.id_task
                 WHERE task.id_task = @id_task";
+
             SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
             command.Parameters.AddWithValue("@id_task", id_task);
 
@@ -150,7 +206,6 @@ namespace Upgrade.Forms
                 flowPanelSubtasks.BackColor = Color.White;
                 flowPanelSubtasks.FlowDirection = FlowDirection.TopDown;
                 flowPanelSubtasks.AutoSize = true;
-                flowPanelSubtasks.Click += Click;
                 flowPanelSubtasks.Top = textLabel.Top + textLabel.Height + 5;
                 if (descrLabel != null) 
                 {
@@ -161,12 +216,11 @@ namespace Upgrade.Forms
                 subTaskBlocks = new List<SubTaskBlock>();
                 while (reader.Read())
                 {
-                    subTaskBlocks.Add(new SubTaskBlock(flowPanelSubtasks, reader.GetString(0)));
+                    count_subtasks++;
+                    subTaskBlocks.Add(new SubTaskBlock(this, flowPanelSubtasks, reader.GetString(0)));
                     flowPanelSubtasks.Height += subTaskBlocks.Last().GetHeight();
                 }
                 flowPanelSubtasks.Height += 10;
-
-                MessageBox.Show(flowPanelSubtasks.Height.ToString());
             }
 
             timeLabel.Height = 27;
@@ -182,7 +236,7 @@ namespace Upgrade.Forms
             time_range.Width = 110;
             time_range.Left = 316;
             time_range.Top = 79;
-            time_range.Text = "10:40 - 12:00";
+            time_range.Text = time + " - " + time_finish;
             time_range.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 12);
             time_range.ForeColor = Color.Gray;
             time_range.BackColor = Color.White;
@@ -230,7 +284,6 @@ namespace Upgrade.Forms
             more.MouseHover += More_MouseHover;
             more.MouseLeave += More_MouseLeave;
 
-            check.Image = Properties.Resources.check_off;
             check.SizeMode = PictureBoxSizeMode.AutoSize;
             check.BackColor = Color.White;
             check.Left = 28;
@@ -268,31 +321,70 @@ namespace Upgrade.Forms
             flowPanel.Controls.Add(panel);
         }
 
-        private void Click(object sender, EventArgs e)
+        public void AddSuccessSubtasks() 
         {
-            MessageBox.Show("!");
+            success_subtasks++;
+            if (count_subtasks == success_subtasks) 
+            {
+                ServiceData.commandText = @"UPDATE task SET status = 1 WHERE id_task = @id_task";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@id_task", this.id_task);
+                ServiceData.command.ExecuteNonQuery();
+
+                check.AccessibleName = "done";
+                check.Image = Properties.Resources.check_done;
+                Design.HidePanel(panel, flowPanel);
+            }
+        }
+
+        public void DeleteSuccessSubtasks()
+        {
+            success_subtasks--;
+        }
+
+        public GlobalData.StatusTask GetStatus() 
+        {
+            return statusTask;
         }
 
         private void Check_MouseLeave(object sender, EventArgs e)
         {
-            if (check.AccessibleName != "done")
+            if (check.AccessibleName != "failed")
             {
-                check.Image = Properties.Resources.check_off;
+                if (check.AccessibleName != "done")
+                {
+                    check.Image = Properties.Resources.check_off;
+                }
             }
         }
 
         private void Check_MouseHover(object sender, EventArgs e)
         {
-            check.Image = Properties.Resources.check_on;
+            if (check.AccessibleName != "failed")
+            {
+                if (check.AccessibleName != "done")
+                {
+                    check.Image = Properties.Resources.check_on;
+                }
+            }
         }
 
         private void Check_Click(object sender, EventArgs e)
         {
-            check.AccessibleName = "done";
-            check.Image = Properties.Resources.check_done;
-            Design.HidePanel(panel);
+            if (check.AccessibleName == "undone")
+            {
+                if (count_subtasks == 0)
+                {
+                    ServiceData.commandText = @"UPDATE task SET status = 1 WHERE id_task = @id_task";
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.Parameters.AddWithValue("@id_task", this.id_task);
+                    ServiceData.command.ExecuteNonQuery();
 
-            // TODO: code for update data
+                    check.AccessibleName = "done";
+                    check.Image = Properties.Resources.check_done;
+                    Design.HidePanel(panel, flowPanel);
+                }
+            }
         }
 
         private void More_MouseLeave(object sender, EventArgs e)

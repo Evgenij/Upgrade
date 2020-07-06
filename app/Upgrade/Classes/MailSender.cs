@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Upgrade.Classes;
 
-namespace Upgrade.Forms
+namespace Upgrade.Classes
 {
     class MailSender
     {
