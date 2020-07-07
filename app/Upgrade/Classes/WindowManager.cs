@@ -14,14 +14,21 @@ namespace Upgrade.Classes
         private static List<TaskBlock> taskBlock = new List<TaskBlock>();
         private static PictureBox[] boxStatus = new PictureBox[2];
 
-        public static void CreateMainWindow(FlowLayoutPanel flowTasks) 
+        public enum TypeBlock 
         {
-            SetTaskBlock(flowTasks);
+            Tasks
+        }
+
+        public static void CreateMainWindow(FlowLayoutPanel flowTasks, TypeBlock typeBlock) 
+        {
+            if (typeBlock == TypeBlock.Tasks)
+            {
+                SetTaskBlock(flowTasks);
+            }
         }
 
         public static void SetTaskBlock(FlowLayoutPanel flowTasks) 
         {
-            
             // вывод невыполненных задач
             {
                 ServiceData.commandText = @"SELECT 

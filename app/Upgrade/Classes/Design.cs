@@ -94,7 +94,7 @@ namespace Upgrade.Classes
                 timer.Dispose();
                 ClearFlowPanel();
 
-                WindowManager.SetTaskBlock(flowParent);
+                WindowManager.CreateMainWindow(flowParent, WindowManager.TypeBlock.Tasks);
             }
         }
 

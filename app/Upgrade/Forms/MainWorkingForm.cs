@@ -45,6 +45,8 @@ namespace Upgrade.Classes
             tab_sett.BackColor = Design.backColor;
 
             label_today.ForeColor = Design.mainColor;
+
+            kryptonMonthCalendar1.BringToFront();
         }
 
         private void MainWorkingForm_Load(object sender, EventArgs e)
@@ -52,12 +54,10 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            WindowManager.CreateMainWindow(flowTasks);
+            WindowManager.CreateMainWindow(flowTasks, WindowManager.TypeBlock.Tasks);
 
             scroller = new Scroller(tab_profile, flowTasks);
             block_for_focus.Focus();
-
-            MessageBox.Show(flowTasks.Controls.Count.ToString());
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -98,6 +98,11 @@ namespace Upgrade.Classes
         private void period_SelectedIndexChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)
         {
             MessageBox.Show(period.SelectedIndex.ToString()); 
+        }
+
+        private void flowTasks_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            scroller.Refresh();
         }
     }
 }

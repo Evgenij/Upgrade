@@ -17,6 +17,7 @@ namespace Upgrade.Classes
 
         private GlobalData.StatusTask statusTask = GlobalData.StatusTask.Empty; 
 
+        // компоненты для создания блока
         private FlowLayoutPanel flowPanel; 
         private Panel panel;
         private PictureBox box_top;
@@ -34,6 +35,11 @@ namespace Upgrade.Classes
         private Label timeLabel;
         private Label time_range;
         private FlowLayoutPanel flowPanelSubtasks;
+
+        // компоненты для создания панели действий
+        private Panel panelAction;
+        private PictureBox boxChange;
+        private PictureBox boxDelete;
 
         private List<SubTaskBlock> subTaskBlocks;
 
@@ -76,6 +82,9 @@ namespace Upgrade.Classes
             textLabel = new TextBox();
             timeLabel = new Label();
             time_range = new Label();
+            panelAction = new Panel();
+            boxChange = new PictureBox();
+            boxDelete = new PictureBox();
 
             dateLabel.Left = 24;
             dateLabel.Top = 25;
@@ -100,7 +109,6 @@ namespace Upgrade.Classes
             day.ForeColor = Color.Gray;
             day.BackColor = Color.White;
             
-
             direct.BorderStyle = BorderStyle.None;
             direct.Left = 66;
             direct.Top = 55;
@@ -273,16 +281,48 @@ namespace Upgrade.Classes
             line.Height = 1;
             line.BackColor = Color.White;
 
+            more.AccessibleName = "more";
             more.Image = Properties.Resources.more_off;
             more.SizeMode = PictureBoxSizeMode.CenterImage;
             more.Height = 20;
-            more.Width = 10;
-            more.Left = 398;
+            more.Width = 12;
+            more.Left = 396;
             more.Top = 25;
             more.BackColor = Color.White;
             more.Cursor = Cursors.Hand;
             more.MouseHover += More_MouseHover;
             more.MouseLeave += More_MouseLeave;
+            more.Click += More_Click;
+
+            // панель действий
+            panelAction.Visible = false;
+            panelAction.Left = 305;
+            panelAction.Top = 55;
+            panelAction.Width = 110;
+            panelAction.Height = 61;
+            panelAction.BackColor = Color.White;
+
+            boxChange.Image = Properties.Resources.block_change_off;
+            boxChange.SizeMode = PictureBoxSizeMode.AutoSize;
+            boxChange.Left = 5;
+            boxChange.Top = 0;
+            boxChange.BackColor = Color.White;
+            boxChange.Cursor = Cursors.Hand;
+            boxChange.MouseHover += BoxChange_MouseHover;
+            boxChange.MouseLeave += BoxChange_MouseLeave;
+            panelAction.Controls.Add(boxChange);
+
+            boxDelete.Image = Properties.Resources.block_delete_off;
+            boxDelete.SizeMode = PictureBoxSizeMode.AutoSize;
+            boxDelete.Left = 5;
+            boxDelete.Top = 31;
+            boxDelete.BackColor = Color.White;
+            boxDelete.Cursor = Cursors.Hand;
+            boxDelete.MouseHover += BoxDelete_MouseHover;
+            boxDelete.MouseLeave += BoxDelete_MouseLeave;
+            boxDelete.Click += BoxDelete_Click;
+            panelAction.Controls.Add(boxDelete);
+            //
 
             check.SizeMode = PictureBoxSizeMode.AutoSize;
             check.BackColor = Color.White;
@@ -318,7 +358,44 @@ namespace Upgrade.Classes
             panel.Controls.Add(box_top);
             panel.Controls.Add(box_center);
             panel.Controls.Add(box_bottom);
+            panel.Controls.Add(panelAction);
+
+            panelAction.BringToFront();
             flowPanel.Controls.Add(panel);
+        }
+
+        private void BoxDelete_Click(object sender, EventArgs e)
+        {
+            ServiceData.commandText = @"DELETE FROM task WHERE id_task = @id_task";
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.Parameters.AddWithValue("@id_task", this.id_task);
+            ServiceData.command.ExecuteNonQuery();
+
+            Design.HidePanel(panel, flowPanel);
+        }
+
+        private void BoxDelete_MouseLeave(object sender, EventArgs e)
+        {
+            boxDelete.Left = 5;
+            boxDelete.Image = Properties.Resources.block_delete_off;
+        }
+
+        private void BoxDelete_MouseHover(object sender, EventArgs e)
+        {
+            boxDelete.Left = 0;
+            boxDelete.Image = Properties.Resources.block_delete_on;
+        }
+
+        private void BoxChange_MouseLeave(object sender, EventArgs e)
+        {
+            boxChange.Left = 5;
+            boxChange.Image = Properties.Resources.block_change_off;
+        }
+
+        private void BoxChange_MouseHover(object sender, EventArgs e)
+        {
+            boxChange.Left = 0;
+            boxChange.Image = Properties.Resources.block_change_on;
         }
 
         public void AddSuccessSubtasks() 
@@ -387,14 +464,44 @@ namespace Upgrade.Classes
             }
         }
 
+        private void More_Click(object sender, EventArgs e)
+        {
+            if (more.AccessibleName == "more")
+            {
+                more.AccessibleName = "close";
+                more.Image = Properties.Resources.close_off;
+                panelAction.Visible = true;
+            }
+            else 
+            {
+                more.AccessibleName = "more";
+                more.Image = Properties.Resources.more_off;
+                panelAction.Visible = false;
+            }
+        }
+
         private void More_MouseLeave(object sender, EventArgs e)
         {
-            more.Image = Properties.Resources.more_off;
+            if (more.AccessibleName == "close")
+            {
+                more.Image = Properties.Resources.close_off;
+            }
+            else
+            {
+                more.Image = Properties.Resources.more_off;
+            }
         }
 
         private void More_MouseHover(object sender, EventArgs e)
         {
-            more.Image = Properties.Resources.more_on;
+            if (more.AccessibleName == "close")
+            {
+                more.Image = Properties.Resources.close_on;
+            }
+            else
+            {
+                more.Image = Properties.Resources.more_on;
+            }
         }
     }
 }

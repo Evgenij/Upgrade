@@ -28,7 +28,6 @@ namespace Upgrade.Classes
             panel.Click += Click;
 
             check.AccessibleName = "undone";
-            MessageBox.Show(taskBlock.GetStatus().ToString());
             if (taskBlock.GetStatus() == GlobalData.StatusTask.Done)
             {
                 check.Image = Properties.Resources.check_small_done;
