@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="Classes\TaskBlock.cs" />
     <Compile Include="Classes\WindowManager.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\ServiceData.cs" />
@@ -335,7 +336,13 @@
     <None Include="Resources\close_on.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\photo_border.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\panel_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\default_user_photo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

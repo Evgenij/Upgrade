@@ -366,12 +366,21 @@ namespace Upgrade.Classes
 
         private void BoxDelete_Click(object sender, EventArgs e)
         {
-            ServiceData.commandText = @"DELETE FROM task WHERE id_task = @id_task";
-            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-            ServiceData.command.Parameters.AddWithValue("@id_task", this.id_task);
-            ServiceData.command.ExecuteNonQuery();
+            if (MessageBox.Show("Вы действительно хотите удалить задачу - \"" + textLabel.Text + "\"?",
+                                "Сообщение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                ServiceData.commandText = @"DELETE FROM task WHERE id_task = @id_task";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@id_task", this.id_task);
+                ServiceData.command.ExecuteNonQuery();
 
-            Design.HidePanel(panel, flowPanel);
+                Design.HidePanel(panel, flowPanel);
+            }
+            else 
+            {
+                panelAction.Visible = false;
+            }
         }
 
         private void BoxDelete_MouseLeave(object sender, EventArgs e)

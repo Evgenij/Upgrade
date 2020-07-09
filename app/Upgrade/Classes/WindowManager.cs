@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using Upgrade.Forms;
 
 namespace Upgrade.Classes
 {
@@ -19,15 +20,15 @@ namespace Upgrade.Classes
             Tasks
         }
 
-        public static void CreateMainWindow(FlowLayoutPanel flowTasks, TypeBlock typeBlock) 
+        public static async Task CreateMainWindowAsync(FlowLayoutPanel flowTasks, TypeBlock typeBlock) 
         {
             if (typeBlock == TypeBlock.Tasks)
             {
-                SetTaskBlock(flowTasks);
+                await SetTaskBlockAsync(flowTasks);
             }
         }
 
-        public static void SetTaskBlock(FlowLayoutPanel flowTasks) 
+        public static async Task SetTaskBlockAsync(FlowLayoutPanel flowTasks) 
         {
             // вывод невыполненных задач
             {
@@ -37,14 +38,15 @@ namespace Upgrade.Classes
                 INNER JOIN direction ON target.id_direct = direction.id_direct 
                 INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
                 INNER JOIN user ON user_dir.id_user = user.id_user 
-                WHERE user.id_user = 1 AND task.status = 0 AND task.failed = 0
+                WHERE user.id_user = @user_id AND task.status = 0 AND task.failed = 0
                 ORDER BY task.time";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
 
                 ServiceData.reader = ServiceData.command.ExecuteReader();
                 if (ServiceData.reader.HasRows)
                 {
-                    while (ServiceData.reader.Read())
+                    while (await ServiceData.reader.ReadAsync())
                     {
                         taskBlock.Add(new TaskBlock(
                             flowTasks,
@@ -64,27 +66,28 @@ namespace Upgrade.Classes
 
             // вывод выполненных задач
             {
-                boxStatus[0] = new PictureBox();
-                boxStatus[0].SizeMode = PictureBoxSizeMode.CenterImage;
-                boxStatus[0].Width = 430;
-                boxStatus[0].Height = 35;
-                boxStatus[0].Image = Properties.Resources.done_tasks;
-                flowTasks.Controls.Add(boxStatus[0]);
-
                 ServiceData.commandText = @"SELECT 
                 task.id_task, task.date, task.time,task.time_finish, direction.name, target.name, task.text, task.descr, task.failed, task.status FROM task 
                 INNER JOIN target ON task.id_target = target.id_target 
                 INNER JOIN direction ON target.id_direct = direction.id_direct 
                 INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
                 INNER JOIN user ON user_dir.id_user = user.id_user 
-                WHERE user.id_user = 1 AND task.status = 1 AND task.failed = 0
+                WHERE user.id_user = @user_id AND task.status = 1 AND task.failed = 0
                 ORDER BY task.time";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
 
                 ServiceData.reader = ServiceData.command.ExecuteReader();
                 if (ServiceData.reader.HasRows)
                 {
-                    while (ServiceData.reader.Read())
+                    boxStatus[0] = new PictureBox();
+                    boxStatus[0].SizeMode = PictureBoxSizeMode.CenterImage;
+                    boxStatus[0].Width = 430;
+                    boxStatus[0].Height = 35;
+                    boxStatus[0].Image = Properties.Resources.done_tasks;
+                    flowTasks.Controls.Add(boxStatus[0]);
+
+                    while (await ServiceData.reader.ReadAsync())
                     {
                         taskBlock.Add(new TaskBlock(
                             flowTasks,
@@ -104,27 +107,28 @@ namespace Upgrade.Classes
 
             // вывод проваленных задач
             {
-                boxStatus[1] = new PictureBox();
-                boxStatus[1].SizeMode = PictureBoxSizeMode.CenterImage;
-                boxStatus[1].Width = 430;
-                boxStatus[1].Height = 35;
-                boxStatus[1].Image = Properties.Resources.fail_tasks;
-                flowTasks.Controls.Add(boxStatus[1]);
-
                 ServiceData.commandText = @"SELECT 
                 task.id_task, task.date, task.time, task.time_finish, direction.name, target.name, task.text, task.descr, task.failed, task.status FROM task 
                 INNER JOIN target ON task.id_target = target.id_target 
                 INNER JOIN direction ON target.id_direct = direction.id_direct 
                 INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
                 INNER JOIN user ON user_dir.id_user = user.id_user 
-                WHERE user.id_user = 1 AND task.failed = 1
+                WHERE user.id_user = @user_id AND task.failed = 1
                 ORDER BY task.time";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
 
                 ServiceData.reader = ServiceData.command.ExecuteReader();
                 if (ServiceData.reader.HasRows)
                 {
-                    while (ServiceData.reader.Read())
+                    boxStatus[1] = new PictureBox();
+                    boxStatus[1].SizeMode = PictureBoxSizeMode.CenterImage;
+                    boxStatus[1].Width = 430;
+                    boxStatus[1].Height = 35;
+                    boxStatus[1].Image = Properties.Resources.fail_tasks;
+                    flowTasks.Controls.Add(boxStatus[1]);
+
+                    while (await ServiceData.reader.ReadAsync())
                     {
                         taskBlock.Add(new TaskBlock(
                             flowTasks,

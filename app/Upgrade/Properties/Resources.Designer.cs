@@ -243,6 +243,16 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap default_user_photo {
+            get {
+                object obj = ResourceManager.GetObject("default_user_photo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap done_tasks {
             get {
                 object obj = ResourceManager.GetObject("done_tasks", resourceCulture);
@@ -336,6 +346,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap panel_profile {
             get {
                 object obj = ResourceManager.GetObject("panel_profile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photo_border {
+            get {
+                object obj = ResourceManager.GetObject("photo_border", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

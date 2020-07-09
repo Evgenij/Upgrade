@@ -10,7 +10,7 @@ namespace Upgrade.Classes
 {
     class Scroller
     {
-        private const int margin = 6;
+        private const int margin = 0;
 
         private int value, multiplier;
         private int currentY;

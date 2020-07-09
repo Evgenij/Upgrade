@@ -81,7 +81,7 @@ namespace Upgrade.Classes
             flowParent.ResumeLayout();
         }
 
-        private static void Timer_Tick(object sender, EventArgs e)
+        private static async void Timer_Tick(object sender, EventArgs e)
         {
             if (panel.Width != 0)
             {
@@ -94,7 +94,7 @@ namespace Upgrade.Classes
                 timer.Dispose();
                 ClearFlowPanel();
 
-                WindowManager.CreateMainWindow(flowParent, WindowManager.TypeBlock.Tasks);
+                await WindowManager.CreateMainWindowAsync(flowParent, WindowManager.TypeBlock.Tasks);
             }
         }
 
