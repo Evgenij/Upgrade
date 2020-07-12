@@ -350,25 +350,34 @@ namespace Upgrade.Classes
             panel.Controls.Add(panelAction);
 
             box_bottom.BringToFront();
+            textLabel.BringToFront();
+            if (descr != "")
+            {
+                descrLabel.BringToFront();
+            }
+            timeLabel.BringToFront();
+            time_range.BringToFront();
             panelAction.BringToFront();
             flowPanel.Controls.Add(panel);
         }
 
         private void BoxDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите удалить задачу - \"" + textLabel.Text + "\"?",
+            if (MessageBox.Show("Вы действительно хотите удалить задачу?\n\n\"" + textLabel.Text + "\"",
                                 "Сообщение", MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question) == DialogResult.OK)
+                                MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ServiceData.commandText = @"DELETE FROM task WHERE id_task = @id_task";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.Parameters.AddWithValue("@id_task", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
-                Design.HidePanel(panel, flowPanel);
+                Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Tasks);
             }
             else 
             {
+                more.AccessibleName = "more";
+                more.Image = Properties.Resources.more_off;
                 panelAction.Visible = false;
             }
         }
@@ -409,7 +418,7 @@ namespace Upgrade.Classes
 
                 check.AccessibleName = "done";
                 check.Image = Properties.Resources.check_done;
-                Design.HidePanel(panel, flowPanel);
+                Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Tasks);
             }
         }
 
@@ -458,7 +467,7 @@ namespace Upgrade.Classes
 
                     check.AccessibleName = "done";
                     check.Image = Properties.Resources.check_done;
-                    Design.HidePanel(panel, flowPanel);
+                    Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Tasks);
                 }
             }
         }

@@ -157,7 +157,7 @@ namespace Upgrade.Classes
         {
             // вывод невыполненных задач
             {
-                ServiceData.commandText = @"SELECT text FROM note WHERE id_user = @user_id";
+                ServiceData.commandText = @"SELECT id_note, text FROM note WHERE id_user = @user_id";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
 
@@ -168,7 +168,8 @@ namespace Upgrade.Classes
                     {
                         noteBlock.Add(new NoteBlock(
                             flowPanel,
-                            ServiceData.reader.GetString(0)));
+                            Convert.ToInt32(ServiceData.reader.GetValue(0)),
+                            ServiceData.reader.GetString(1)));
                     }
                 }
             }

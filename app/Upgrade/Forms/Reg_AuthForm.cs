@@ -245,7 +245,7 @@ namespace Upgrade
                 {
                     if (DBService.Registration(login_reg.Text, pass_reg.Text, ""))
                     {
-                        MessageBox.Show("Зарегались, трали-вали");
+                        DBService.Authorization(login_reg.Text, pass_reg.Text);
                     }
                 }
             }

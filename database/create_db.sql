@@ -91,8 +91,10 @@ CREATE TABLE "task"
 	id_target INTEGER NOT NUll,
 	id_sched INTEGER NULL,
 	text TEXT NOT NULL,
+	descr TEXT NULL,
 	date TEXT NOT NULL,
 	time TEXT NULL,
+	time_finish TEXT NULL,
 	failed INTEGER NOT NULL,
 	status INTEGER NOT NULL,
 	FOREIGN KEY (id_target) REFERENCES target(id_target),
@@ -313,34 +315,34 @@ VALUES
 
 INSERT INTO task
 VALUES
-	(NULL, 1, 1, "Задача №1", "09.06.2020", "12:40", 0, 0);
+	(NULL, 1, 1, "Задача №1", "Описание", "08.07.2020", "12:40", "13:30", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 1, 1, "Задача №2", "10.06.2020", "09:35", 0, 0);
+	(NULL, 1, 1, "Задача №2", "Описание", "08.07.2020", "09:35", "11:30", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 2, NULL, "Задача №1", "11.06.2020", "14:20", 0, 0);
+	(NULL, 2, NULL, "Задача №1", "Описание", "08.07.2020", "14:20", "15:30", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 2, NULL, "Задача №2", "15.06.2020", "08:50", 0, 0);
+	(NULL, 2, NULL, "Задача №2", NULL, "15.06.2020", "08:50", "09:20", 0, 1);
 INSERT INTO task
 VALUES
-	(NULL, 3, 2, "Задача №1", "17.06.2020", "09:00", 0, 0);
+	(NULL, 3, 2, "Задача №1", "Описание", "17.06.2020", "09:00", "10:30", 1, 0);
 INSERT INTO task
 VALUES
-	(NULL, 3, 2, "Задача №2", "14.06.2020", "10:00", 0, 0);
+	(NULL, 3, 2, "Задача №2", "Описание", "14.06.2020", "10:00", "13:30", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 3, 2, "Задача №3", "22.06.2020", "11:50", 0, 0);
+	(NULL, 3, 2, "Задача №3", NULL, "22.06.2020", "11:50", "14:30", 1, 0);
 INSERT INTO task
 VALUES
-	(NULL, 4, 3, "Задача №1", "26.06.2020", "16:30", 0, 0);
+	(NULL, 4, 3, "Задача №1", "Описание", "26.06.2020", "16:30", "17:30", 0, 1);
 INSERT INTO task
 VALUES
-	(NULL, 5, 4, "Задача №1", "03.06.2020", "18:30", 0, 0);
+	(NULL, 5, 4, "Задача №1", "Описание", "03.06.2020", "18:30", "19:30", 0, 0);
 INSERT INTO task
 VALUES
-	(NULL, 5, 4, "Задача №2", "21.06.2020", "22:00", 0, 0);
+	(NULL, 5, 4, "Задача №2", NULL, "21.06.2020", "22:00", "24:00", 0, 0);
 
 INSERT INTO subtask
 VALUES

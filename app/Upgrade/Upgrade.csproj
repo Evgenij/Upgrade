@@ -378,6 +378,12 @@
   <ItemGroup>
     <None Include="Resources\note_box_top.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_on.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

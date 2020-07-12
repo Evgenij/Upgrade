@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,23 +13,26 @@ namespace Upgrade.Classes
     {
         private PictureBox buttonDelete;
 
-        public NoteBlock(FlowLayoutPanel flowPanel, string textNote) 
+        public NoteBlock(FlowLayoutPanel flowPanel, int id_note, string textNote) 
         {
+            this.id_record = id_note;
+            this.flowPanel = flowPanel;
+
             buttonDelete = new PictureBox();
-            buttonDelete.Image = Properties.Resources.block_delete_off;
+            buttonDelete.Image = Properties.Resources.delete_off;
             buttonDelete.SizeMode = PictureBoxSizeMode.AutoSize;
-            buttonDelete.Left = 5;
-            buttonDelete.Top = 31;
+            buttonDelete.Left = 260;
+            buttonDelete.Top = 22;
             buttonDelete.BackColor = Color.White;
             buttonDelete.Cursor = Cursors.Hand;
-            //buttonDelete.MouseHover += BoxDelete_MouseHover;
-            //buttonDelete.MouseLeave += BoxDelete_MouseLeave;
-            //buttonDelete.Click += BoxDelete_Click;
-            //buttonDelete.Controls.Add(boxDelete);
+            buttonDelete.MouseHover += ButtonDelete_MouseHover;
+            buttonDelete.MouseLeave += ButtonDelete_MouseLeave;
+            buttonDelete.Click += ButtonDelete_Click;
+            panel.Controls.Add(buttonDelete);
 
-            textLabel.Left = 17;
+            textLabel.Left = 20;
             textLabel.Top = 20;
-            textLabel.Width = 255;
+            textLabel.Width = 225;
             textLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Medium, 12);
             textLabel.BackColor = Color.White;
             textLabel.ForeColor = Color.Black;
@@ -36,9 +40,9 @@ namespace Upgrade.Classes
             textLabel.ReadOnly = true;
             textLabel.Multiline = true;
             textLabel.Text = textNote;
-            if (textLabel.Text.Length >= 28)
+            if (textLabel.Text.Length >= 26)
             {
-                textLabel.Height = 21 * (textLabel.Text.Length / 28);
+                textLabel.Height = 42 * (textLabel.Text.Length / 26);
             }
             else
             {
@@ -55,7 +59,7 @@ namespace Upgrade.Classes
             box_center.BackColor = Color.Transparent;
             box_center.Top = box_top.Height;
             box_center.Width = 295;
-            box_center.Height = textLabel.Height + 10;
+            box_center.Height = textLabel.Height + 5;
 
             box_bottom.Image = Properties.Resources.note_box_bottom;
             box_bottom.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -71,6 +75,31 @@ namespace Upgrade.Classes
             panel.Controls.Add(box_bottom);
             box_bottom.BringToFront();
             flowPanel.Controls.Add(panel);
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить заметку?\n\n\"" + textLabel.Text + "\"",
+                                "Сообщение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ServiceData.commandText = @"DELETE FROM note WHERE id_note = @id_note";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@id_note", this.id_record);
+                ServiceData.command.ExecuteNonQuery();
+
+                Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Notes);
+            }
+        }
+
+        private void ButtonDelete_MouseLeave(object sender, EventArgs e)
+        {
+            buttonDelete.Image = Properties.Resources.delete_off;
+        }
+
+        private void ButtonDelete_MouseHover(object sender, EventArgs e)
+        {
+            buttonDelete.Image = Properties.Resources.delete_on;
         }
     }
 }

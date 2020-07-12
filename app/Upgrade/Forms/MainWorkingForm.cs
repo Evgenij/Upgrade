@@ -226,5 +226,10 @@ namespace Upgrade.Classes
             tabs.SelectedTab = tab_sched;
             active_item.Image = Properties.Resources.schedule;
         }
+
+        private void flowNotes_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            scroller_note.Refresh();
+        }
     }
 }

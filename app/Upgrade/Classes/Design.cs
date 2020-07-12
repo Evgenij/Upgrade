@@ -28,6 +28,7 @@ namespace Upgrade.Classes
         private static int finish;
 
         private static Direction direction;
+        private static WindowManager.TypeBlock typeBlock;
 
         static public void MovePanel(Control movesPanel, Direction dir, int s, int f) 
         {
@@ -45,7 +46,7 @@ namespace Upgrade.Classes
             timer.Start();
         }
 
-        static public void HidePanel(Control hidingPanel, FlowLayoutPanel flowPanel)
+        static public void HidePanel(Control hidingPanel, FlowLayoutPanel flowPanel, WindowManager.TypeBlock type)
         {
             timer = new Timer();
             timer.Enabled = false;
@@ -54,6 +55,7 @@ namespace Upgrade.Classes
 
             panel = hidingPanel;
             flowParent = flowPanel;
+            typeBlock = type;
 
             timer.Start();
         }
@@ -88,7 +90,7 @@ namespace Upgrade.Classes
                 timer.Dispose();
                 ClearFlowPanel();
 
-                await WindowManager.CreateMainWindow(flowParent, WindowManager.TypeBlock.Tasks);
+                await WindowManager.CreateMainWindow(flowParent, typeBlock);
             }
         }
 

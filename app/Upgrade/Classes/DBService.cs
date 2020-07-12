@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,6 +48,25 @@ namespace Upgrade
             ServiceData.command.ExecuteNonQuery();
         }
 
+        static private string GetMD5Hash(string text)
+        {
+            using (var hashAlg = MD5.Create()) // Создаем экземпляр класса реализующего алгоритм MD5
+            {
+                byte[] hash = hashAlg.ComputeHash(Encoding.UTF8.GetBytes(text)); // Хешируем байты строки text
+                var builder = new StringBuilder(hash.Length * 2); // Создаем экземпляр StringBuilder. Этот класс предназначен для эффективного конструирования строк
+                for (int i = 0; i < hash.Length; i++)
+                {
+                    builder.Append(hash[i].ToString("X2")); // Добавляем к строке очередной байт в виде строки в 16-й системе счисления
+                }
+                return builder.ToString(); // Возвращаем значение хеша
+            }
+        }
+
+        private bool EquatePasswords(string password1, string password2)
+        {
+            return GetMD5Hash(password1) == password2;
+        }
+
         static public bool Registration(string login,
                                  string password,
                                  string email)
@@ -54,7 +74,7 @@ namespace Upgrade
             ServiceData.commandText = @"SELECT * FROM user WHERE login = @login AND password = @password";
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
             ServiceData.command.Parameters.AddWithValue("@login", login);
-            ServiceData.command.Parameters.AddWithValue("@password", password);
+            ServiceData.command.Parameters.AddWithValue("@password", GetMD5Hash(password));
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (!ServiceData.reader.HasRows)
@@ -74,7 +94,7 @@ namespace Upgrade
                                             "подтверждения вашей электронной почты и восстановления данных аккаунта", 
                                             GlobalData.RegistrationCode))
                     {
-                        string[] values = { "NULL", "NULL", login, password, email, GlobalData.RegistrationCode, "0", "0" };
+                        string[] values = { "NULL", "NULL", login, GetMD5Hash(password), email, GlobalData.RegistrationCode, "0", "0" };
                             ServiceData.DataType[] datas = {
                             ServiceData.DataType.NULL,
                             ServiceData.DataType.NULL,
@@ -87,10 +107,6 @@ namespace Upgrade
                         };
 
                         InsertDataToTable(ServiceData.Tables.user, values, datas);
-
-                        //MessageBox.Show(
-                        //    "Регистрация прошла успешно!",
-                        //    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         return true;
                     }
@@ -105,7 +121,7 @@ namespace Upgrade
                 }
                 else 
                 {
-                    string[] values = { "NULL", "NULL", login, password, "отсутствует", GlobalData.RegistrationCode, "0", "0" };
+                    string[] values = { "NULL", "NULL", login, GetMD5Hash(password), "отсутствует", GlobalData.RegistrationCode, "0", "0" };
                     ServiceData.DataType[] datas = {
                             ServiceData.DataType.NULL,
                             ServiceData.DataType.NULL,
@@ -145,7 +161,7 @@ namespace Upgrade
             ServiceData.commandText = @"SELECT * FROM user WHERE login = @login AND password = @password";
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
             ServiceData.command.Parameters.AddWithValue("@login", login);
-            ServiceData.command.Parameters.AddWithValue("@password", password);
+            ServiceData.command.Parameters.AddWithValue("@password", GetMD5Hash(password));
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)
