@@ -86,15 +86,13 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            await WindowManager.CreateMainWindowAsync(flowTasks, WindowManager.TypeBlock.Tasks);
+            await WindowManager.CreateMainWindow(flowTasks, WindowManager.TypeBlock.Tasks);
+            await WindowManager.CreateMainWindow(flowNotes, WindowManager.TypeBlock.Notes);
 
             scroller_task = new Scroller(tab_profile, flowTasks);
             scroller_note = new Scroller(tab_profile, flowNotes);
 
-            panel_menu.BackColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            panel_menu.BackColor = Design.mainColor;
 
             tab_profile.BackColor = Design.backColor;
             tab_targets.BackColor = Design.backColor;

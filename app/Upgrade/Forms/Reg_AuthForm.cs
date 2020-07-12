@@ -27,13 +27,36 @@ namespace Upgrade
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
+        private INIManager iniManager;
+
         public Reg_AuthForm()
         {
             InitializeComponent();
             this.Load += RegistrationForm_Load;
             this.FormClosed += RegistrationForm_FormClosed;
-
             this.BackColor = Design.backColor;
+
+            iniManager = new INIManager("settings.ini");
+        }
+
+        private void RegistrationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DBService.CloseConnectionWithDB();
+        }
+
+        private void RegistrationForm_Load(object sender, EventArgs e)
+        {
+            IntPtr hRgn = CreateRoundRectRgn(-1, -1, 370, 565, 80, 80);
+            SetWindowRgn(this.Handle, hRgn, true);
+
+            Design.mainColor = Color.FromArgb(Convert.ToInt32(iniManager.Read("Design", "Red")),
+                                              Convert.ToInt32(iniManager.Read("Design", "Green")),
+                                              Convert.ToInt32(iniManager.Read("Design", "blue")));
+
+            Design.mainColorOpacity = Color.FromArgb(10,
+                                                     Convert.ToInt32(iniManager.Read("Design", "Red")),
+                                                     Convert.ToInt32(iniManager.Read("Design", "Green")),
+                                                     Convert.ToInt32(iniManager.Read("Design", "blue")));
 
             login_auth.BackColor = Design.backColor;
             pass_auth.BackColor = Design.backColor;
@@ -53,28 +76,28 @@ namespace Upgrade
             authorization.ForeColor = Design.mainColor;
 
             authorization.Active1 = Color.FromArgb(10,
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+                Convert.ToInt32(iniManager.Read("Design", "Red")),
+                Convert.ToInt32(iniManager.Read("Design", "Green")),
+                Convert.ToInt32(iniManager.Read("Design", "Blue")));
 
             authorization.Active2 = Color.FromArgb(10,
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+                Convert.ToInt32(iniManager.Read("Design", "Red")),
+                Convert.ToInt32(iniManager.Read("Design", "Green")),
+                Convert.ToInt32(iniManager.Read("Design", "Blue")));
 
             // стилизация кнопки регистрации
             registration.StrokeColor = Design.mainColor;
             registration.ForeColor = Design.mainColor;
 
             registration.Active1 = Color.FromArgb(10,
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+                Convert.ToInt32(iniManager.Read("Design", "Red")),
+                Convert.ToInt32(iniManager.Read("Design", "Green")),
+                Convert.ToInt32(iniManager.Read("Design", "Blue")));
 
             registration.Active2 = Color.FromArgb(10,
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+                Convert.ToInt32(iniManager.Read("Design", "Red")),
+                Convert.ToInt32(iniManager.Read("Design", "Green")),
+                Convert.ToInt32(iniManager.Read("Design", "Blue")));
 
             // стилизация кнопки подтверждения кода
             accept_code_reg.StrokeColor = Design.mainColor;
@@ -94,30 +117,6 @@ namespace Upgrade
             label_reg_email.ForeColor = Design.mainColor;
             label_data_rest.ForeColor = Design.mainColor;
             label_pass_rest.ForeColor = Design.mainColor;
-        }
-
-        private void RegistrationForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            DBService.CloseConnectionWithDB();
-        }
-
-        private void RegistrationForm_Load(object sender, EventArgs e)
-        {
-            IntPtr hRgn = CreateRoundRectRgn(-1, -1, 370, 565, 80, 80);
-            SetWindowRgn(this.Handle, hRgn, true);
-
-            if (Properties.Settings.Default.remember_me == true)
-            {
-                remember.AccessibleName = "on";
-                remember.Image = Properties.Resources.rem_1;
-                login_auth.Text = Properties.Settings.Default.login;
-                pass_auth.Text = Properties.Settings.Default.password;
-            }
-            else 
-            {
-                remember.AccessibleName = "off";
-                remember.Image = Properties.Resources.rem_0;
-            }
         }
 
         private void back_Click(object sender, EventArgs e)
@@ -143,6 +142,24 @@ namespace Upgrade
         private void RegistrationForm_Shown(object sender, EventArgs e)
         {
             DBService.ConnectToDB(@"database\db_upgrade.db");
+
+            if (iniManager.Read("Settings", "remember_me") == "on")
+            {
+                login_auth.Font = new Font("PF DinDisplay Pro Medium", 12);
+                login_auth.ForeColor = Color.Black;
+
+                remember.AccessibleName = "on";
+                remember.Image = Properties.Resources.rem_1;
+                login_auth.Text = iniManager.Read("Settings", "login");
+                pass_auth.Text = iniManager.Read("Settings", "password");
+            }
+            else
+            {
+                remember.AccessibleName = "off";
+                remember.Image = Properties.Resources.rem_0;
+                login_auth.Text = "введите ваш псевдоним";
+                pass_auth.Text = "введите пароль";
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -164,43 +181,40 @@ namespace Upgrade
             {
                 remember.AccessibleName = "on";
                 remember.Image = Properties.Resources.rem_1;
-                Properties.Settings.Default.remember_me = true;
+                iniManager.WriteString("Settings", "remember_me", "on");
             }
             else
             {
                 remember.AccessibleName = "off";
                 remember.Image = Properties.Resources.rem_0;
-                Properties.Settings.Default.remember_me = false;
+                iniManager.WriteString("Settings", "remember_me", "off");
             }
-            Properties.Settings.Default.Save();
         }
 
-        private void label9_Click(object sender, EventArgs e)
+        private void label_remember_me_Click(object sender, EventArgs e)
         {
             if (remember.AccessibleName == "off")
             {
                 remember.AccessibleName = "on";
                 remember.Image = Properties.Resources.rem_1;
-                Properties.Settings.Default.remember_me = true;
+                iniManager.WriteString("Settings", "remember_me", "on");
             }
             else
             {
                 remember.AccessibleName = "off";
                 remember.Image = Properties.Resources.rem_0;
-                Properties.Settings.Default.remember_me = false;
+                iniManager.WriteString("Settings", "remember_me", "off");
             }
-            Properties.Settings.Default.Save();
         }
 
         private void authorization_Click(object sender, EventArgs e)
         {
             if (DBService.Authorization(login_auth.Text, pass_auth.Text)) 
             {
-                if (Properties.Settings.Default.remember_me == true)
+                if (iniManager.Read("Settings","remember_me") == "on")
                 {
-                    Properties.Settings.Default.login = login_auth.Text;
-                    Properties.Settings.Default.password = pass_auth.Text;
-                    Properties.Settings.Default.Save();
+                    iniManager.WriteString("Settings", "login", login_auth.Text);
+                    iniManager.WriteString("Settings", "password", pass_auth.Text);
                 }
                 this.Hide();
             }
@@ -246,10 +260,7 @@ namespace Upgrade
 
         private void label10_MouseHover(object sender, EventArgs e)
         {
-            ((Label)sender).ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            ((Label)sender).ForeColor = Design.mainColor;
         }
 
         private void label10_MouseLeave(object sender, EventArgs e)
@@ -259,10 +270,7 @@ namespace Upgrade
 
         private void label_remember_me_MouseHover(object sender, EventArgs e)
         {
-            ((Label)sender).ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            ((Label)sender).ForeColor = Design.mainColor;
         }
 
         private void label_remember_me_MouseLeave(object sender, EventArgs e)
@@ -272,10 +280,7 @@ namespace Upgrade
 
         private void label_empty_email_MouseHover(object sender, EventArgs e)
         {
-            ((Label)sender).ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            ((Label)sender).ForeColor = Design.mainColor;
         }
 
         private void label_empty_email_MouseLeave(object sender, EventArgs e)
@@ -290,7 +295,7 @@ namespace Upgrade
                 eye.AccessibleName = "on";
                 eye.Image = Properties.Resources.eye_on;
                 pass_auth.Top += 1;
-                pass_auth.ForeColor = Color.Gray;
+                pass_auth.ForeColor = Color.DarkGray;
                 pass_auth.PasswordChar = '●';
             }
             else
@@ -300,10 +305,11 @@ namespace Upgrade
                 pass_auth.Top -= 1;
                 if (pass_auth.Text == "введите пароль")
                 {
-                    pass_auth.ForeColor = Color.Gray;
+                    pass_auth.ForeColor = Color.DarkGray;
                 }
                 else
                 {
+                    pass_auth.Font = new Font("PF DinDisplay Pro Medium", 12);
                     pass_auth.ForeColor = Color.Black;
                 }
 
@@ -330,7 +336,7 @@ namespace Upgrade
             if (((TextBox)sender).Text == "")
             {
                 ((TextBox)sender).PasswordChar = '\0';
-                ((TextBox)sender).ForeColor = Color.Gray;
+                ((TextBox)sender).ForeColor = Color.DarkGray;
                 ((TextBox)sender).Font = new Font("PF DinDisplay Pro", 12);
                 if (((TextBox)sender).Name == "login_auth" || ((TextBox)sender).Name == "login_reg")
                 {
@@ -369,10 +375,7 @@ namespace Upgrade
 
         private void label_reg_later_MouseHover(object sender, EventArgs e)
         {
-            ((Label)sender).ForeColor = Color.FromArgb(
-                Convert.ToInt32(Properties.Settings.Default.color[0]),
-                Convert.ToInt32(Properties.Settings.Default.color[1]),
-                Convert.ToInt32(Properties.Settings.Default.color[2]));
+            ((Label)sender).ForeColor = Design.mainColor;
         }
 
         private void label_reg_later_MouseLeave(object sender, EventArgs e)

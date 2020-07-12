@@ -19,14 +19,8 @@ namespace Upgrade.Classes
         private static Timer timer;
         private static Point p;
         static public Color backColor = Color.FromArgb(248, 252, 255);
-        static public Color mainColor =  Color.FromArgb(Convert.ToInt32(Properties.Settings.Default.color[0]),
-                                                        Convert.ToInt32(Properties.Settings.Default.color[1]),
-                                                        Convert.ToInt32(Properties.Settings.Default.color[2]));
-        static public Color mainColorOpacity = Color.FromArgb(
-                                                        10,
-                                                        Convert.ToInt32(Properties.Settings.Default.color[0]),
-                                                        Convert.ToInt32(Properties.Settings.Default.color[1]),
-                                                        Convert.ToInt32(Properties.Settings.Default.color[2]));
+        static public Color mainColor;
+        static public Color mainColorOpacity;
 
         private static Control panel;
         private static FlowLayoutPanel flowParent;
@@ -94,7 +88,7 @@ namespace Upgrade.Classes
                 timer.Dispose();
                 ClearFlowPanel();
 
-                await WindowManager.CreateMainWindowAsync(flowParent, WindowManager.TypeBlock.Tasks);
+                await WindowManager.CreateMainWindow(flowParent, WindowManager.TypeBlock.Tasks);
             }
         }
 

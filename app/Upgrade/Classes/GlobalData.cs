@@ -12,6 +12,9 @@ namespace Upgrade.Classes
 {
     class GlobalData
     {
+        static public MainWorkingForm mainWorkingForm = new MainWorkingForm();
+        static public Reg_AuthForm reg_authForm = new Reg_AuthForm();
+
         public enum TypeFont 
         {
             ExtraThin,
@@ -50,7 +53,7 @@ namespace Upgrade.Classes
             return new Font(font, size);
         }
 
-        static public MainWorkingForm mainWorkingForm = new MainWorkingForm();
+        
         static public string RegistrationCode;
 
         static public string GererateCode() 

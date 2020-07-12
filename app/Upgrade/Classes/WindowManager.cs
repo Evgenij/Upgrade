@@ -13,22 +13,28 @@ namespace Upgrade.Classes
     class WindowManager
     {
         private static List<TaskBlock> taskBlock = new List<TaskBlock>();
+        private static List<NoteBlock> noteBlock = new List<NoteBlock>();
         private static PictureBox[] boxStatus = new PictureBox[2];
 
         public enum TypeBlock 
         {
-            Tasks
+            Tasks,
+            Notes
         }
 
-        public static async Task CreateMainWindowAsync(FlowLayoutPanel flowTasks, TypeBlock typeBlock) 
+        public static async Task CreateMainWindow(FlowLayoutPanel flowPanel, TypeBlock typeBlock) 
         {
             if (typeBlock == TypeBlock.Tasks)
             {
-                await SetTaskBlockAsync(flowTasks);
+                await SetTaskBlock(flowPanel);
+            }
+            else if (typeBlock == TypeBlock.Notes) 
+            {
+                await SetNoteBlock(flowPanel);
             }
         }
 
-        public static async Task SetTaskBlockAsync(FlowLayoutPanel flowTasks) 
+        public static async Task SetTaskBlock(FlowLayoutPanel flowPanel) 
         {
             // вывод невыполненных задач
             {
@@ -49,7 +55,7 @@ namespace Upgrade.Classes
                     while (await ServiceData.reader.ReadAsync())
                     {
                         taskBlock.Add(new TaskBlock(
-                            flowTasks,
+                            flowPanel,
                             Convert.ToInt32(ServiceData.reader.GetValue(0)),
                             ServiceData.reader.GetString(1),
                             ServiceData.reader.GetString(2),
@@ -85,12 +91,12 @@ namespace Upgrade.Classes
                     boxStatus[0].Width = 430;
                     boxStatus[0].Height = 35;
                     boxStatus[0].Image = Properties.Resources.done_tasks;
-                    flowTasks.Controls.Add(boxStatus[0]);
+                    flowPanel.Controls.Add(boxStatus[0]);
 
                     while (await ServiceData.reader.ReadAsync())
                     {
                         taskBlock.Add(new TaskBlock(
-                            flowTasks,
+                            flowPanel,
                             Convert.ToInt32(ServiceData.reader.GetValue(0)),
                             ServiceData.reader.GetString(1),
                             ServiceData.reader.GetString(2),
@@ -126,12 +132,12 @@ namespace Upgrade.Classes
                     boxStatus[1].Width = 430;
                     boxStatus[1].Height = 35;
                     boxStatus[1].Image = Properties.Resources.fail_tasks;
-                    flowTasks.Controls.Add(boxStatus[1]);
+                    flowPanel.Controls.Add(boxStatus[1]);
 
                     while (await ServiceData.reader.ReadAsync())
                     {
                         taskBlock.Add(new TaskBlock(
-                            flowTasks,
+                            flowPanel,
                             Convert.ToInt32(ServiceData.reader.GetValue(0)),
                             ServiceData.reader.GetString(1),
                             ServiceData.reader.GetString(2),
@@ -146,5 +152,26 @@ namespace Upgrade.Classes
                 }
             }
         }
-    }
+
+        public static async Task SetNoteBlock(FlowLayoutPanel flowPanel)
+        {
+            // вывод невыполненных задач
+            {
+                ServiceData.commandText = @"SELECT text FROM note WHERE id_user = @user_id";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    while (await ServiceData.reader.ReadAsync())
+                    {
+                        noteBlock.Add(new NoteBlock(
+                            flowPanel,
+                            ServiceData.reader.GetString(0)));
+                    }
+                }
+            }
+        }
+        }
 }

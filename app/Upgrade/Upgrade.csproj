@@ -35,6 +35,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AltoControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\AltoControls.1.0.1\lib\AltoControls.dll</HintPath>
@@ -128,30 +150,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Blocks\Block.cs" />
+    <Compile Include="Classes\Blocks\NoteBlock.cs" />
+    <Compile Include="Classes\Blocks\SubTaskBlock.cs" />
+    <Compile Include="Classes\Blocks\TaskBlock.cs" />
     <Compile Include="Classes\DBService.cs" />
+    <Compile Include="Classes\Design.cs" />
     <Compile Include="Classes\GlobalData.cs" />
+    <Compile Include="Classes\IniManager.cs" />
+    <Compile Include="Classes\MailSender.cs" />
     <Compile Include="Classes\Scroller.cs" />
-    <Compile Include="Classes\SubTaskBlock.cs" />
+    <Compile Include="Classes\ServiceData.cs" />
+    <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\WindowManager.cs" />
     <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainWorkingForm.Designer.cs">
       <DependentUpon>MainWorkingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Design.cs" />
-    <Compile Include="Classes\MailSender.cs" />
     <Compile Include="Forms\Reg_AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Reg_AuthForm.Designer.cs">
       <DependentUpon>Reg_AuthForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\TaskBlock.cs" />
-    <Compile Include="Classes\WindowManager.cs" />
-    <Compile Include="Classes\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\ServiceData.cs" />
     <EmbeddedResource Include="Forms\MainWorkingForm.resx">
       <DependentUpon>MainWorkingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -343,6 +368,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default_user_photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_box_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_box_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_box_top.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -164,9 +164,10 @@
             // 
             this.pass_auth.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pass_auth.Font = new System.Drawing.Font("PF DinDisplay Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pass_auth.ForeColor = System.Drawing.Color.Gray;
-            this.pass_auth.Location = new System.Drawing.Point(65, 284);
+            this.pass_auth.ForeColor = System.Drawing.Color.DarkGray;
+            this.pass_auth.Location = new System.Drawing.Point(65, 285);
             this.pass_auth.Name = "pass_auth";
+            this.pass_auth.PasswordChar = '●';
             this.pass_auth.Size = new System.Drawing.Size(215, 20);
             this.pass_auth.TabIndex = 18;
             this.pass_auth.Text = "123";
@@ -229,7 +230,7 @@
             this.label_remember_me.Size = new System.Drawing.Size(106, 16);
             this.label_remember_me.TabIndex = 21;
             this.label_remember_me.Text = "Запомнить меня";
-            this.label_remember_me.Click += new System.EventHandler(this.label9_Click);
+            this.label_remember_me.Click += new System.EventHandler(this.label_remember_me_Click);
             this.label_remember_me.MouseLeave += new System.EventHandler(this.label_remember_me_MouseLeave);
             this.label_remember_me.MouseHover += new System.EventHandler(this.label_remember_me_MouseHover);
             // 
@@ -379,9 +380,9 @@
             // 
             // eye
             // 
-            this.eye.AccessibleName = "off";
+            this.eye.AccessibleName = "on";
             this.eye.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.eye.Image = global::Upgrade.Properties.Resources.eye_off;
+            this.eye.Image = global::Upgrade.Properties.Resources.eye_on;
             this.eye.Location = new System.Drawing.Point(286, 285);
             this.eye.Name = "eye";
             this.eye.Size = new System.Drawing.Size(20, 18);
