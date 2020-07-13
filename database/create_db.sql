@@ -19,8 +19,7 @@ CREATE TABLE "note"
 	id_user INTEGER NOT NULL,
 	text TEXT NOT NULL,
 	FOREIGN KEY
-	(id_user) REFERENCES user
-	(id_user)
+	(id_user) REFERENCES user (id_user)
 );
 
 CREATE TABLE "password" 
@@ -107,9 +106,7 @@ CREATE TABLE "subtask"
 	id_task INTEGER NOT NUll,
 	text TEXT NOT NULL,
 	status INTEGER NOT NULL,
-	FOREIGN KEY
-	(id_task) REFERENCES task
-	(id_task)
+	FOREIGN KEY (id_task) REFERENCES task (id_task) ON DELETE CASCADE
 );
 
 CREATE TABLE "schedule" 
@@ -141,10 +138,11 @@ CREATE TABLE "categ_achiev"
 
 /* заполнение таблиц */
 
-INSERT INTO user VALUES (NULL, NULL, "Ваня", "123", "email@mail.ru", "1652", 10, 45);
-INSERT INTO user VALUES (NULL, NULL, "Олеся", "123", "email@mail.ru", "6532", 10, 45);
-INSERT INTO user VALUES (NULL, NULL, "Игорь", "123", "email@mail.ru", "1236", 10, 45);
-INSERT INTO user VALUES (NULL, NULL, "Наташа", "123", "email@mail.ru", "4672", 10, 45);
+INSERT INTO user VALUES (NULL, NULL, "Rampad", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1652", 9, 85);
+INSERT INTO user VALUES (NULL, NULL, "Spike", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "6532", 3, 55);
+INSERT INTO user VALUES (NULL, NULL, "Igenaric", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1236", 11, 25);
+INSERT INTO user VALUES (NULL, NULL, "Netris", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "4672", 12, 35);
+INSERT INTO user VALUES (NULL, NULL, "_coffeiok_", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "4672", 13, 55);
 
 INSERT INTO note VALUES (NULL, 1, "Текст заметки №1");
 INSERT INTO note VALUES (NULL, 1, "Текст заметки №2");
@@ -223,19 +221,19 @@ VALUES
 
 INSERT INTO achievement
 VALUES
-	(NULL, "Первый шаг1", "Описание", 20, 13, 0);
+	(NULL, "Энтузиаст", "Описание", 20, 13, 0);
 INSERT INTO achievement
 VALUES
-	(NULL, "Первый шаг2", "Описание", 1, 0, 0);
+	(NULL, "Триумфатор", "Описание", 1, 0, 0);
 INSERT INTO achievement
 VALUES
-	(NULL, "Первый шаг3", "Описание", 10, 10, 1);
+	(NULL, "Покоритель", "Описание", 10, 10, 1);
 INSERT INTO achievement
 VALUES
-	(NULL, "Первый шаг4", "Описание", 20, 10, 0);
+	(NULL, "Душа компании", "Описание", 20, 10, 0);
 INSERT INTO achievement
 VALUES
-	(NULL, "Первый шаг5", "Описание", 3, 3, 1);
+	(NULL, "Воин выходного дня", "Описание", 3, 3, 1);
 INSERT INTO achievement
 VALUES
 	(NULL, "Первый шаг6", "Описание", 10, 7, 0);
@@ -295,10 +293,10 @@ VALUES
 	(NULL, 2, "Перевыполнить план", 20, 13, 65);
 INSERT INTO target
 VALUES
-	(NULL, 3, "Повысить охват рекламы", 10, 4, 40);
+	(NULL, 2, "Повысить охват рекламы", 10, 4, 40);
 INSERT INTO target
 VALUES
-	(NULL, 3, "Разработать систему скидок", 3, 2, 66);
+	(NULL, 2, "Разработать систему скидок", 3, 2, 66);
 
 INSERT INTO schedule
 VALUES
@@ -313,52 +311,7 @@ INSERT INTO schedule
 VALUES
 	(NULL, "Расписание №4", 2);
 
-INSERT INTO task
-VALUES
-	(NULL, 1, 1, "Задача №1", "Описание", "08.07.2020", "12:40", "13:30", 0, 0);
-INSERT INTO task
-VALUES
-	(NULL, 1, 1, "Задача №2", "Описание", "08.07.2020", "09:35", "11:30", 0, 0);
-INSERT INTO task
-VALUES
-	(NULL, 2, NULL, "Задача №1", "Описание", "08.07.2020", "14:20", "15:30", 0, 0);
-INSERT INTO task
-VALUES
-	(NULL, 2, NULL, "Задача №2", NULL, "15.06.2020", "08:50", "09:20", 0, 1);
-INSERT INTO task
-VALUES
-	(NULL, 3, 2, "Задача №1", "Описание", "17.06.2020", "09:00", "10:30", 1, 0);
-INSERT INTO task
-VALUES
-	(NULL, 3, 2, "Задача №2", "Описание", "14.06.2020", "10:00", "13:30", 0, 0);
-INSERT INTO task
-VALUES
-	(NULL, 3, 2, "Задача №3", NULL, "22.06.2020", "11:50", "14:30", 1, 0);
-INSERT INTO task
-VALUES
-	(NULL, 4, 3, "Задача №1", "Описание", "26.06.2020", "16:30", "17:30", 0, 1);
-INSERT INTO task
-VALUES
-	(NULL, 5, 4, "Задача №1", "Описание", "03.06.2020", "18:30", "19:30", 0, 0);
-INSERT INTO task
-VALUES
-	(NULL, 5, 4, "Задача №2", NULL, "21.06.2020", "22:00", "24:00", 0, 0);
-
-INSERT INTO subtask
-VALUES
-	(NULL, 1, "Подзадача №1", 1);
-INSERT INTO subtask
-VALUES
-	(NULL, 1, "Подзадача №2", 0);
-INSERT INTO subtask
-VALUES
-	(NULL, 2, "Подзадача №1", 1);
-INSERT INTO subtask
-VALUES
-	(NULL, 2, "Подзадача №2", 0);
-INSERT INTO subtask
-VALUES
-	(NULL, 3, "Подзадача №1", 1);
+	
 
 
 
