@@ -90,7 +90,7 @@ namespace Upgrade.Classes
                 timer.Dispose();
                 ClearFlowPanel();
 
-                await WindowManager.CreateMainWindow(flowParent, typeBlock);
+                await WindowManager.CreatePanelMainWindow(flowParent, typeBlock);
             }
         }
 

@@ -93,6 +93,16 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bad {
+            get {
+                object obj = ResourceManager.GetObject("bad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap block_change_off {
             get {
                 object obj = ResourceManager.GetObject("block_change_off", resourceCulture);
@@ -323,6 +333,16 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap happy {
+            get {
+                object obj = ResourceManager.GetObject("happy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_profile {
             get {
                 object obj = ResourceManager.GetObject("icon_profile", resourceCulture);
@@ -333,9 +353,29 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap label_type_task {
+            get {
+                object obj = ResourceManager.GetObject("label_type_task", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap menu_panel {
             get {
                 object obj = ResourceManager.GetObject("menu_panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap middle {
+            get {
+                object obj = ResourceManager.GetObject("middle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -396,6 +436,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap panel_profile {
             get {
                 object obj = ResourceManager.GetObject("panel_profile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap panel_week_stat {
+            get {
+                object obj = ResourceManager.GetObject("panel_week_stat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

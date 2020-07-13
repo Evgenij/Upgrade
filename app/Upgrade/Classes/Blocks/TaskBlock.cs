@@ -286,7 +286,7 @@ namespace Upgrade.Classes
             // панель действий
             panelAction.Visible = false;
             panelAction.Left = 305;
-            panelAction.Top = 55;
+            panelAction.Top = 50;
             panelAction.Width = 110;
             panelAction.Height = 61;
             panelAction.BackColor = Color.White;

@@ -22,7 +22,7 @@ namespace Upgrade.Classes
             Notes
         }
 
-        public static async Task CreateMainWindow(FlowLayoutPanel flowPanel, TypeBlock typeBlock) 
+        public static async Task CreatePanelMainWindow(FlowLayoutPanel flowPanel, TypeBlock typeBlock) 
         {
             if (typeBlock == TypeBlock.Tasks)
             {
@@ -44,7 +44,7 @@ namespace Upgrade.Classes
                 INNER JOIN direction ON target.id_direct = direction.id_direct 
                 INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
                 INNER JOIN user ON user_dir.id_user = user.id_user 
-                WHERE user.id_user = @user_id AND task.status = 0 AND task.failed = 0
+                WHERE user.id_user = @user_id AND task.status = 0 AND task.failed = 0 AND task.date = '12.07.2020'
                 ORDER BY task.time";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
@@ -78,7 +78,7 @@ namespace Upgrade.Classes
                 INNER JOIN direction ON target.id_direct = direction.id_direct 
                 INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
                 INNER JOIN user ON user_dir.id_user = user.id_user 
-                WHERE user.id_user = @user_id AND task.status = 1 AND task.failed = 0
+                WHERE user.id_user = @user_id AND task.status = 1 AND task.failed = 0 AND task.date = '12.07.2020'
                 ORDER BY task.time";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
@@ -119,7 +119,7 @@ namespace Upgrade.Classes
                 INNER JOIN direction ON target.id_direct = direction.id_direct 
                 INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct
                 INNER JOIN user ON user_dir.id_user = user.id_user 
-                WHERE user.id_user = @user_id AND task.failed = 1
+                WHERE user.id_user = @user_id AND task.failed = 1  AND task.date = '12.07.2020'
                 ORDER BY task.time";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);

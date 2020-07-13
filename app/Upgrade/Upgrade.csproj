@@ -162,6 +162,7 @@
     <Compile Include="Classes\Scroller.cs" />
     <Compile Include="Classes\ServiceData.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\WeeklyStatistic.cs" />
     <Compile Include="Classes\WindowManager.cs" />
     <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
@@ -383,6 +384,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label_type_task.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\middle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panel_week_stat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

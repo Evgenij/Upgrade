@@ -1,5 +1,6 @@
 ﻿using Nevron.Nov.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,7 @@ namespace Upgrade.Classes
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
+        WeeklyStatistic weeklyStatistic;
         Scroller scroller_task;
         Scroller scroller_note;
         Timer timerTime;
@@ -86,8 +88,9 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            await WindowManager.CreateMainWindow(flowTasks, WindowManager.TypeBlock.Tasks);
-            await WindowManager.CreateMainWindow(flowNotes, WindowManager.TypeBlock.Notes);
+            await WindowManager.SetTaskBlock(flowTasks);
+            await WindowManager.SetNoteBlock(flowNotes);
+            weeklyStatistic = new WeeklyStatistic(tab_profile, panel_week_stat);
 
             scroller_task = new Scroller(tab_profile, flowTasks);
             scroller_note = new Scroller(tab_profile, flowNotes);
@@ -202,7 +205,7 @@ namespace Upgrade.Classes
 
         private void period_SelectedIndexChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)
         {
-            MessageBox.Show(period.SelectedIndex.ToString()); 
+            MessageBox.Show(period.SelectedIndex.ToString());
         }
 
         private void flowTasks_ControlRemoved(object sender, ControlEventArgs e)
@@ -231,5 +234,11 @@ namespace Upgrade.Classes
         {
             scroller_note.Refresh();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }
