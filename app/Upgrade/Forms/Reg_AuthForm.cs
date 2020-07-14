@@ -27,8 +27,6 @@ namespace Upgrade
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        private INIManager iniManager;
-
         public Reg_AuthForm()
         {
             InitializeComponent();
@@ -36,7 +34,7 @@ namespace Upgrade
             this.FormClosed += RegistrationForm_FormClosed;
             this.BackColor = Design.backColor;
 
-            iniManager = new INIManager("settings.ini");
+            INIManager.SetFile("settings.ini");
         }
 
         private void RegistrationForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -49,14 +47,14 @@ namespace Upgrade
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 370, 565, 80, 80);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            Design.mainColor = Color.FromArgb(Convert.ToInt32(iniManager.Read("Design", "Red")),
-                                              Convert.ToInt32(iniManager.Read("Design", "Green")),
-                                              Convert.ToInt32(iniManager.Read("Design", "blue")));
+            Design.mainColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                              Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                              Convert.ToInt32(INIManager.Read("Design", "blue")));
 
             Design.mainColorOpacity = Color.FromArgb(10,
-                                                     Convert.ToInt32(iniManager.Read("Design", "Red")),
-                                                     Convert.ToInt32(iniManager.Read("Design", "Green")),
-                                                     Convert.ToInt32(iniManager.Read("Design", "blue")));
+                                                     Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                                     Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                                     Convert.ToInt32(INIManager.Read("Design", "blue")));
 
             login_auth.BackColor = Design.backColor;
             pass_auth.BackColor = Design.backColor;
@@ -76,28 +74,28 @@ namespace Upgrade
             authorization.ForeColor = Design.mainColor;
 
             authorization.Active1 = Color.FromArgb(10,
-                Convert.ToInt32(iniManager.Read("Design", "Red")),
-                Convert.ToInt32(iniManager.Read("Design", "Green")),
-                Convert.ToInt32(iniManager.Read("Design", "Blue")));
+                Convert.ToInt32(INIManager.Read("Design", "Red")),
+                Convert.ToInt32(INIManager.Read("Design", "Green")),
+                Convert.ToInt32(INIManager.Read("Design", "Blue")));
 
             authorization.Active2 = Color.FromArgb(10,
-                Convert.ToInt32(iniManager.Read("Design", "Red")),
-                Convert.ToInt32(iniManager.Read("Design", "Green")),
-                Convert.ToInt32(iniManager.Read("Design", "Blue")));
+                Convert.ToInt32(INIManager.Read("Design", "Red")),
+                Convert.ToInt32(INIManager.Read("Design", "Green")),
+                Convert.ToInt32(INIManager.Read("Design", "Blue")));
 
             // стилизация кнопки регистрации
             registration.StrokeColor = Design.mainColor;
             registration.ForeColor = Design.mainColor;
 
             registration.Active1 = Color.FromArgb(10,
-                Convert.ToInt32(iniManager.Read("Design", "Red")),
-                Convert.ToInt32(iniManager.Read("Design", "Green")),
-                Convert.ToInt32(iniManager.Read("Design", "Blue")));
+                Convert.ToInt32(INIManager.Read("Design", "Red")),
+                Convert.ToInt32(INIManager.Read("Design", "Green")),
+                Convert.ToInt32(INIManager.Read("Design", "Blue")));
 
             registration.Active2 = Color.FromArgb(10,
-                Convert.ToInt32(iniManager.Read("Design", "Red")),
-                Convert.ToInt32(iniManager.Read("Design", "Green")),
-                Convert.ToInt32(iniManager.Read("Design", "Blue")));
+                Convert.ToInt32(INIManager.Read("Design", "Red")),
+                Convert.ToInt32(INIManager.Read("Design", "Green")),
+                Convert.ToInt32(INIManager.Read("Design", "Blue")));
 
             // стилизация кнопки подтверждения кода
             accept_code_reg.StrokeColor = Design.mainColor;
@@ -143,15 +141,15 @@ namespace Upgrade
         {
             DBService.ConnectToDB(@"database\db_upgrade.db");
 
-            if (iniManager.Read("Settings", "remember_me") == "on")
+            if (INIManager.Read("Settings", "remember_me") == "on")
             {
                 login_auth.Font = new Font("PF DinDisplay Pro Medium", 12);
                 login_auth.ForeColor = Color.Black;
 
                 remember.AccessibleName = "on";
                 remember.Image = Properties.Resources.rem_1;
-                login_auth.Text = iniManager.Read("Settings", "login");
-                pass_auth.Text = iniManager.Read("Settings", "password");
+                login_auth.Text = INIManager.Read("Settings", "login");
+                pass_auth.Text = INIManager.Read("Settings", "password");
             }
             else
             {
@@ -181,13 +179,13 @@ namespace Upgrade
             {
                 remember.AccessibleName = "on";
                 remember.Image = Properties.Resources.rem_1;
-                iniManager.WriteString("Settings", "remember_me", "on");
+                INIManager.WriteString("Settings", "remember_me", "on");
             }
             else
             {
                 remember.AccessibleName = "off";
                 remember.Image = Properties.Resources.rem_0;
-                iniManager.WriteString("Settings", "remember_me", "off");
+                INIManager.WriteString("Settings", "remember_me", "off");
             }
         }
 
@@ -197,13 +195,13 @@ namespace Upgrade
             {
                 remember.AccessibleName = "on";
                 remember.Image = Properties.Resources.rem_1;
-                iniManager.WriteString("Settings", "remember_me", "on");
+                INIManager.WriteString("Settings", "remember_me", "on");
             }
             else
             {
                 remember.AccessibleName = "off";
                 remember.Image = Properties.Resources.rem_0;
-                iniManager.WriteString("Settings", "remember_me", "off");
+                INIManager.WriteString("Settings", "remember_me", "off");
             }
         }
 
@@ -211,10 +209,10 @@ namespace Upgrade
         {
             if (DBService.Authorization(login_auth.Text, pass_auth.Text)) 
             {
-                if (iniManager.Read("Settings","remember_me") == "on")
+                if (INIManager.Read("Settings","remember_me") == "on")
                 {
-                    iniManager.WriteString("Settings", "login", login_auth.Text);
-                    iniManager.WriteString("Settings", "password", pass_auth.Text);
+                    INIManager.WriteString("Settings", "login", login_auth.Text);
+                    INIManager.WriteString("Settings", "password", pass_auth.Text);
                 }
                 this.Hide();
             }
@@ -380,7 +378,7 @@ namespace Upgrade
 
         private void label_reg_later_MouseLeave(object sender, EventArgs e)
         {
-            ((Label)sender).ForeColor = Color.Gray;
+            ((Label)sender).ForeColor = Color.DarkGray;
         }
 
         private void label_reg_later_Click(object sender, EventArgs e)

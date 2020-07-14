@@ -28,11 +28,11 @@ namespace Upgrade.Classes
             panel.Click += Click;
 
             check.AccessibleName = "undone";
-            if (taskBlock.GetStatus() == GlobalData.StatusTask.Done)
+            if (taskBlock.GetStatus() == Enums.StatusTask.Done)
             {
                 check.Image = Properties.Resources.check_small_done;
             }
-            else if (taskBlock.GetStatus() == GlobalData.StatusTask.Failed)
+            else if (taskBlock.GetStatus() == Enums.StatusTask.Failed)
             {
                 check.Image = Properties.Resources.check_small_fail;
             }
@@ -50,7 +50,7 @@ namespace Upgrade.Classes
             textLabel.Left = check.Left + check.Width + 11;
             textLabel.Top = check.Top;
             textLabel.Width = 240;
-            textLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 11);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
             textLabel.BackColor = Color.White;
             textLabel.ForeColor = Color.Gray;
             textLabel.Cursor = Cursors.Hand;
@@ -84,7 +84,7 @@ namespace Upgrade.Classes
 
         private void Check_MouseLeave(object sender, EventArgs e)
         {
-            if (taskBlock.GetStatus() == GlobalData.StatusTask.Empty)
+            if (taskBlock.GetStatus() == Enums.StatusTask.Empty)
             {
                 if (check.AccessibleName != "done")
                 {
@@ -95,7 +95,7 @@ namespace Upgrade.Classes
 
         private void Check_MouseHover(object sender, EventArgs e)
         {
-            if (taskBlock.GetStatus() == GlobalData.StatusTask.Empty)
+            if (taskBlock.GetStatus() == Enums.StatusTask.Empty)
             {
                 if (check.AccessibleName != "done")
                 {
@@ -106,7 +106,7 @@ namespace Upgrade.Classes
 
         private void Click(object sender, EventArgs e)
         {
-            if (taskBlock.GetStatus() == GlobalData.StatusTask.Empty)
+            if (taskBlock.GetStatus() == Enums.StatusTask.Empty)
             {
                 if (check.AccessibleName == "undone")
                 {

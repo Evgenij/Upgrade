@@ -15,7 +15,7 @@ namespace Upgrade.Classes
     {
         private int count_subtasks = 0, success_subtasks = 0;
 
-        private GlobalData.StatusTask statusTask = GlobalData.StatusTask.Empty; 
+        private Enums.StatusTask statusTask = Enums.StatusTask.Empty; 
 
         // компоненты для создания блока
         private PictureBox line;
@@ -36,16 +36,6 @@ namespace Upgrade.Classes
         private PictureBox boxDelete;
 
         private List<SubTaskBlock> subTaskBlocks;
-
-        private enum DayOfWeek { 
-            Понедельник = 2,
-            Вторник = 3,
-            Среда = 4,
-            Четверг = 5,
-            Пятница = 6,
-            Суббота = 7,
-            Воскресенье = 1 
-        };
 
         public TaskBlock(FlowLayoutPanel flowPanel,
                          int id_task,
@@ -78,7 +68,7 @@ namespace Upgrade.Classes
             dateLabel.Left = 24;
             dateLabel.Top = 25;
             dateLabel.Width = 80;
-            dateLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 12);
+            dateLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
             dateLabel.ForeColor = Design.mainColor;
             dateLabel.BackColor = Color.White;
             dateLabel.Text = date;
@@ -88,20 +78,20 @@ namespace Upgrade.Classes
                 Convert.ToInt32(dateValues[2]), 
                 Convert.ToInt32(dateValues[1]), 
                 Convert.ToInt32(dateValues[0]));
-            DayOfWeek dayOfWeek = (DayOfWeek)Enum.GetValues(typeof(DayOfWeek)).GetValue(Convert.ToInt32(dateTask.DayOfWeek));
+            Enums.DayOfWeek dayOfWeek = (Enums.DayOfWeek)Enum.GetValues(typeof(DayOfWeek)).GetValue(Convert.ToInt32(dateTask.DayOfWeek));
 
             day.Text = dayOfWeek.ToString();
             day.Left = 105;
             day.Top = 25;
             day.Width = day.Text.Length * 11;
-            day.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 12);
+            day.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
             day.ForeColor = Color.Gray;
             day.BackColor = Color.White;
             
             direct.BorderStyle = BorderStyle.None;
             direct.Left = 66;
             direct.Top = 55;
-            direct.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 11);
+            direct.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
             direct.ForeColor = Design.mainColor;
             direct.BackColor = Color.White;
             direct.Text = direction;
@@ -114,7 +104,7 @@ namespace Upgrade.Classes
             targetLabel.Left = direct.Left + direct.Width;
             targetLabel.Top = direct.Top;
             targetLabel.Width = 120;
-            targetLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 11);
+            targetLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
             targetLabel.ForeColor = Color.Gray;
             targetLabel.BackColor = Color.White;
             targetLabel.Text = "- " + target;
@@ -125,7 +115,7 @@ namespace Upgrade.Classes
             textLabel.Left = 63;
             textLabel.Top = direct.Top + 20;
             textLabel.Width = 255;
-            textLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Medium, 14);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 14);
             textLabel.BackColor = Color.White;
             textLabel.ForeColor = Color.Black;
             textLabel.BorderStyle = BorderStyle.None;
@@ -147,7 +137,7 @@ namespace Upgrade.Classes
                 descrLabel.Left = 62;
                 descrLabel.Top = textLabel.Top + textLabel.Height + 10;
                 descrLabel.Width = 255;
-                descrLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 11);
+                descrLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
                 descrLabel.BackColor = Color.White;
                 descrLabel.ForeColor = Color.Gray;
                 descrLabel.BorderStyle = BorderStyle.None;
@@ -166,7 +156,7 @@ namespace Upgrade.Classes
 
             if (failed == 1)
             {
-                statusTask = GlobalData.StatusTask.Failed;
+                statusTask = Enums.StatusTask.Failed;
                 check.AccessibleName = "failed";
                 check.Image = Properties.Resources.check_fail;
             }
@@ -179,7 +169,7 @@ namespace Upgrade.Classes
                 }
                 else if (status == 1)
                 {
-                    statusTask = GlobalData.StatusTask.Done;
+                    statusTask = Enums.StatusTask.Done;
                     check.AccessibleName = "done";
                     check.Image = Properties.Resources.check_done;
                 }
@@ -225,7 +215,7 @@ namespace Upgrade.Classes
             timeLabel.Left = 346;
             timeLabel.Top = 52;
             timeLabel.Text = time;
-            timeLabel.Font = GlobalData.GetFont(GlobalData.TypeFont.Medium, 18);
+            timeLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 18);
             timeLabel.ForeColor = Design.mainColor;
             timeLabel.BackColor = Color.White;
 
@@ -234,7 +224,7 @@ namespace Upgrade.Classes
             time_range.Left = 316;
             time_range.Top = 79;
             time_range.Text = time + " - " + time_finish;
-            time_range.Font = GlobalData.GetFont(GlobalData.TypeFont.Standart, 12);
+            time_range.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
             time_range.ForeColor = Color.Gray;
             time_range.BackColor = Color.White;
 
@@ -427,7 +417,7 @@ namespace Upgrade.Classes
             success_subtasks--;
         }
 
-        public GlobalData.StatusTask GetStatus() 
+        public Enums.StatusTask GetStatus() 
         {
             return statusTask;
         }

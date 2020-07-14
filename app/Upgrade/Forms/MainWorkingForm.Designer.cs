@@ -40,14 +40,11 @@
             this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tab_profile = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.altoButton2 = new AltoControls.AltoButton();
-            this.altoButton1 = new AltoControls.AltoButton();
+            this.addNote = new AltoControls.AltoButton();
+            this.addTask = new AltoControls.AltoButton();
+            this.faceIndicator = new System.Windows.Forms.PictureBox();
+            this.performCurrentWeek = new System.Windows.Forms.TextBox();
+            this.performLastWeek = new System.Windows.Forms.TextBox();
             this.day_mark = new AltoControls.AltoButton();
             this.sublabel_week_stat = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -91,7 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).BeginInit();
             this.tabs.SuspendLayout();
             this.tab_profile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faceIndicator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_week_stat)).BeginInit();
             this.tab_targets.SuspendLayout();
             this.tab_stat.SuspendLayout();
@@ -230,14 +227,11 @@
             // 
             // tab_profile
             // 
-            this.tab_profile.Controls.Add(this.button1);
-            this.tab_profile.Controls.Add(this.pictureBox1);
-            this.tab_profile.Controls.Add(this.textBox4);
-            this.tab_profile.Controls.Add(this.textBox3);
-            this.tab_profile.Controls.Add(this.textBox2);
-            this.tab_profile.Controls.Add(this.textBox1);
-            this.tab_profile.Controls.Add(this.altoButton2);
-            this.tab_profile.Controls.Add(this.altoButton1);
+            this.tab_profile.Controls.Add(this.addNote);
+            this.tab_profile.Controls.Add(this.addTask);
+            this.tab_profile.Controls.Add(this.faceIndicator);
+            this.tab_profile.Controls.Add(this.performCurrentWeek);
+            this.tab_profile.Controls.Add(this.performLastWeek);
             this.tab_profile.Controls.Add(this.day_mark);
             this.tab_profile.Controls.Add(this.sublabel_week_stat);
             this.tab_profile.Controls.Add(this.label7);
@@ -260,126 +254,88 @@
             this.tab_profile.Text = "tabPage1";
             this.tab_profile.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // addNote
             // 
-            this.button1.Location = new System.Drawing.Point(501, 52);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 33);
-            this.button1.TabIndex = 121;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.addNote.Active1 = System.Drawing.Color.AliceBlue;
+            this.addNote.Active2 = System.Drawing.Color.AliceBlue;
+            this.addNote.BackColor = System.Drawing.Color.Transparent;
+            this.addNote.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addNote.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.addNote.Font = new System.Drawing.Font("Calibri", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.addNote.ForeColor = System.Drawing.Color.BlueViolet;
+            this.addNote.Inactive1 = System.Drawing.Color.Thistle;
+            this.addNote.Inactive2 = System.Drawing.Color.Thistle;
+            this.addNote.Location = new System.Drawing.Point(914, 449);
+            this.addNote.Name = "addNote";
+            this.addNote.Radius = 20;
+            this.addNote.Size = new System.Drawing.Size(40, 40);
+            this.addNote.Stroke = true;
+            this.addNote.StrokeColor = System.Drawing.Color.Thistle;
+            this.addNote.TabIndex = 122;
+            this.addNote.Text = "+";
+            this.addNote.Transparency = false;
             // 
-            // pictureBox1
+            // addTask
             // 
-            this.pictureBox1.AccessibleName = "profile";
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Upgrade.Properties.Resources.happy;
-            this.pictureBox1.Location = new System.Drawing.Point(899, 138);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(38, 38);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 120;
-            this.pictureBox1.TabStop = false;
+            this.addTask.Active1 = System.Drawing.Color.AliceBlue;
+            this.addTask.Active2 = System.Drawing.Color.AliceBlue;
+            this.addTask.BackColor = System.Drawing.Color.Transparent;
+            this.addTask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addTask.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.addTask.Font = new System.Drawing.Font("Calibri", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.addTask.ForeColor = System.Drawing.Color.BlueViolet;
+            this.addTask.Inactive1 = System.Drawing.Color.Thistle;
+            this.addTask.Inactive2 = System.Drawing.Color.Thistle;
+            this.addTask.Location = new System.Drawing.Point(535, 43);
+            this.addTask.Name = "addTask";
+            this.addTask.Radius = 20;
+            this.addTask.Size = new System.Drawing.Size(40, 40);
+            this.addTask.Stroke = true;
+            this.addTask.StrokeColor = System.Drawing.Color.Thistle;
+            this.addTask.TabIndex = 121;
+            this.addTask.Text = "+";
+            this.addTask.Transparency = false;
+            this.addTask.Click += new System.EventHandler(this.addTask_Click);
             // 
-            // textBox4
+            // faceIndicator
             // 
-            this.textBox4.BackColor = System.Drawing.Color.White;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.textBox4.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox4.ForeColor = System.Drawing.Color.Gray;
-            this.textBox4.Location = new System.Drawing.Point(584, 180);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(22, 20);
-            this.textBox4.TabIndex = 119;
-            this.textBox4.Text = "50";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.faceIndicator.AccessibleName = "profile";
+            this.faceIndicator.BackColor = System.Drawing.Color.White;
+            this.faceIndicator.Image = global::Upgrade.Properties.Resources.faceIndicatorHappy;
+            this.faceIndicator.Location = new System.Drawing.Point(899, 138);
+            this.faceIndicator.Name = "faceIndicator";
+            this.faceIndicator.Size = new System.Drawing.Size(38, 38);
+            this.faceIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.faceIndicator.TabIndex = 120;
+            this.faceIndicator.TabStop = false;
             // 
-            // textBox3
+            // performCurrentWeek
             // 
-            this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.textBox3.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox3.ForeColor = System.Drawing.Color.Gray;
-            this.textBox3.Location = new System.Drawing.Point(584, 382);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(22, 20);
-            this.textBox3.TabIndex = 118;
-            this.textBox3.Text = "2";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.performCurrentWeek.BackColor = System.Drawing.Color.White;
+            this.performCurrentWeek.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.performCurrentWeek.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.performCurrentWeek.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.performCurrentWeek.ForeColor = System.Drawing.Color.Indigo;
+            this.performCurrentWeek.Location = new System.Drawing.Point(827, 151);
+            this.performCurrentWeek.Name = "performCurrentWeek";
+            this.performCurrentWeek.ReadOnly = true;
+            this.performCurrentWeek.Size = new System.Drawing.Size(64, 27);
+            this.performCurrentWeek.TabIndex = 117;
+            this.performCurrentWeek.Text = "55%";
             // 
-            // textBox2
+            // performLastWeek
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.textBox2.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox2.ForeColor = System.Drawing.Color.Indigo;
-            this.textBox2.Location = new System.Drawing.Point(827, 151);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(64, 27);
-            this.textBox2.TabIndex = 117;
-            this.textBox2.Text = "55%";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.textBox1.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.Color.Gray;
-            this.textBox1.Location = new System.Drawing.Point(766, 137);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(39, 20);
-            this.textBox1.TabIndex = 116;
-            this.textBox1.Text = "34%";
-            // 
-            // altoButton2
-            // 
-            this.altoButton2.Active1 = System.Drawing.Color.Black;
-            this.altoButton2.Active2 = System.Drawing.Color.Black;
-            this.altoButton2.BackColor = System.Drawing.Color.Transparent;
-            this.altoButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.altoButton2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.altoButton2.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.altoButton2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.altoButton2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.altoButton2.Inactive1 = System.Drawing.Color.LightGray;
-            this.altoButton2.Inactive2 = System.Drawing.Color.LightGray;
-            this.altoButton2.Location = new System.Drawing.Point(600, 226);
-            this.altoButton2.Name = "altoButton2";
-            this.altoButton2.Radius = 2;
-            this.altoButton2.Size = new System.Drawing.Size(6, 37);
-            this.altoButton2.Stroke = true;
-            this.altoButton2.StrokeColor = System.Drawing.Color.LightGray;
-            this.altoButton2.TabIndex = 115;
-            this.altoButton2.Transparency = false;
-            // 
-            // altoButton1
-            // 
-            this.altoButton1.Active1 = System.Drawing.Color.Green;
-            this.altoButton1.Active2 = System.Drawing.Color.Green;
-            this.altoButton1.BackColor = System.Drawing.Color.Transparent;
-            this.altoButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.altoButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.altoButton1.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.altoButton1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.altoButton1.Inactive1 = System.Drawing.Color.Indigo;
-            this.altoButton1.Inactive2 = System.Drawing.Color.Indigo;
-            this.altoButton1.Location = new System.Drawing.Point(600, 269);
-            this.altoButton1.Name = "altoButton1";
-            this.altoButton1.Radius = 2;
-            this.altoButton1.Size = new System.Drawing.Size(6, 95);
-            this.altoButton1.Stroke = true;
-            this.altoButton1.StrokeColor = System.Drawing.Color.Indigo;
-            this.altoButton1.TabIndex = 114;
-            this.altoButton1.Transparency = false;
+            this.performLastWeek.BackColor = System.Drawing.Color.White;
+            this.performLastWeek.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.performLastWeek.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.performLastWeek.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.performLastWeek.ForeColor = System.Drawing.Color.Gray;
+            this.performLastWeek.Location = new System.Drawing.Point(766, 137);
+            this.performLastWeek.Name = "performLastWeek";
+            this.performLastWeek.ReadOnly = true;
+            this.performLastWeek.Size = new System.Drawing.Size(39, 20);
+            this.performLastWeek.TabIndex = 116;
+            this.performLastWeek.Text = "34%";
             // 
             // day_mark
             // 
@@ -392,7 +348,7 @@
             this.day_mark.ForeColor = System.Drawing.Color.DarkBlue;
             this.day_mark.Inactive1 = System.Drawing.Color.Indigo;
             this.day_mark.Inactive2 = System.Drawing.Color.Indigo;
-            this.day_mark.Location = new System.Drawing.Point(913, 388);
+            this.day_mark.Location = new System.Drawing.Point(913, 389);
             this.day_mark.Name = "day_mark";
             this.day_mark.Radius = 2;
             this.day_mark.Size = new System.Drawing.Size(6, 6);
@@ -409,7 +365,7 @@
             this.sublabel_week_stat.Name = "sublabel_week_stat";
             this.sublabel_week_stat.Size = new System.Drawing.Size(230, 24);
             this.sublabel_week_stat.TabIndex = 112;
-            this.sublabel_week_stat.Text = "с 07.06.2020 по 13.06.2020";
+            this.sublabel_week_stat.Text = "с 06.06.2020 по 12.06.2020";
             // 
             // label7
             // 
@@ -613,6 +569,7 @@
             this.exit_from_profile.Size = new System.Drawing.Size(118, 16);
             this.exit_from_profile.TabIndex = 115;
             this.exit_from_profile.Text = "выйти из аккаунта";
+            this.exit_from_profile.Click += new System.EventHandler(this.exit_from_profile_Click);
             this.exit_from_profile.MouseLeave += new System.EventHandler(this.exit_from_profile_MouseLeave);
             this.exit_from_profile.MouseHover += new System.EventHandler(this.exit_from_profile_MouseHover);
             // 
@@ -816,7 +773,7 @@
             this.tabs.ResumeLayout(false);
             this.tab_profile.ResumeLayout(false);
             this.tab_profile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faceIndicator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_week_stat)).EndInit();
             this.tab_targets.ResumeLayout(false);
             this.tab_targets.PerformLayout();
@@ -878,13 +835,10 @@
         private System.Windows.Forms.Label exit_from_profile;
         private System.Windows.Forms.Panel hide_border_tabs;
         private AltoControls.AltoButton day_mark;
-        private AltoControls.AltoButton altoButton2;
-        private AltoControls.AltoButton altoButton1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox performCurrentWeek;
+        private System.Windows.Forms.TextBox performLastWeek;
+        private System.Windows.Forms.PictureBox faceIndicator;
+        private AltoControls.AltoButton addTask;
+        private AltoControls.AltoButton addNote;
     }
 }

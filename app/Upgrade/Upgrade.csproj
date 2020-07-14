@@ -156,6 +156,7 @@
     <Compile Include="Classes\Blocks\TaskBlock.cs" />
     <Compile Include="Classes\DBService.cs" />
     <Compile Include="Classes\Design.cs" />
+    <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\GlobalData.cs" />
     <Compile Include="Classes\IniManager.cs" />
     <Compile Include="Classes\MailSender.cs" />

@@ -12,19 +12,27 @@ namespace Upgrade.Classes
 {
     class WeeklyStatistic
     {
-        private int[] countFailded = new int[7];
-        private int[] countDone = new int[7];
-        private AltoControls.AltoButton[] failded = new AltoControls.AltoButton[7];
-        private AltoControls.AltoButton[] done = new AltoControls.AltoButton[7];
-        private TextBox[] labelFailed = new TextBox[7];
-        private TextBox[] labelDone = new TextBox[7];
+        private static int[] countFailded = new int[7];
+        private static int[] countDone = new int[7];
+        private static AltoControls.AltoButton[] failded = new AltoControls.AltoButton[7];
+        private static AltoControls.AltoButton[] done = new AltoControls.AltoButton[7];
+        private static TextBox[] labelFailed = new TextBox[7];
+        private static TextBox[] labelDone = new TextBox[7];
+        private static string[] daysLastWeek;
+        private static string[] daysCurrentWeek;
 
-        public WeeklyStatistic(TabPage tab, PictureBox box) 
+
+        public static void SetStatistic(TabPage tab, 
+                               PictureBox box, 
+                               TextBox performLastWeek, 
+                               TextBox performCurrentWeek, 
+                               PictureBox faceIndicator,
+                               Label periodWeek) 
         {
-            int padding = 0;
-
-            string[] daysLastWeek = GetDaysLastWeek();
-            string[] daysCurrentWeek = GetDaysCurrentWeek();
+            int paddingIndicator = 0;
+            int paddingLabel = 0;
+            daysLastWeek = GetDaysLastWeek();
+            daysCurrentWeek = GetDaysCurrentWeek();
 
             for (int i = 0; i < failded.Length; i++)
             {
@@ -33,16 +41,18 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.07.2020' AND task.status = 0", User.user_id, daysCurrentWeek[i]);
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0",
+                    User.user_id,
+                    daysCurrentWeek[i],
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
                 ServiceData.reader = ServiceData.command.ExecuteReader();
                 if (ServiceData.reader.HasRows)
                 {
-                    while (ServiceData.reader.Read())
-                    {
-                        countFailded[i] = ServiceData.reader.GetInt32(0);
-                    }
+                    ServiceData.reader.Read();
+                    countFailded[i] = ServiceData.reader.GetInt32(0);
                 }
             }
 
@@ -53,28 +63,29 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.07.2020' AND task.status = 1", User.user_id, daysCurrentWeek[i]);
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
+                    User.user_id,
+                    daysCurrentWeek[i],
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
                 ServiceData.reader = ServiceData.command.ExecuteReader();
                 if (ServiceData.reader.HasRows)
                 {
-                    while (ServiceData.reader.Read())
-                    {
-                        countDone[i] = ServiceData.reader.GetInt32(0);
-                    }
+                    ServiceData.reader.Read();
+                    countDone[i] = ServiceData.reader.GetInt32(0);
                 }
             }
 
-            int paddingLabel = 0;
             for (int i = 0; i < labelFailed.Length; i++) 
             {
                 labelFailed[i] = new TextBox();
                 labelFailed[i].Left = (box.Left + 53) + paddingLabel;
-                labelFailed[i].Top = box.Top + 62;
+                labelFailed[i].Top = box.Top + 64;
                 labelFailed[i].Width = 20;
                 labelFailed[i].Height = 20;
-                labelFailed[i].Font = GlobalData.GetFont(GlobalData.TypeFont.Medium, 12);
+                labelFailed[i].Font = GlobalData.GetFont(Enums.TypeFont.Medium, 11);
                 labelFailed[i].BackColor = System.Drawing.Color.White;
                 labelFailed[i].ForeColor = System.Drawing.Color.DarkGray;
                 labelFailed[i].BorderStyle = BorderStyle.None;
@@ -92,10 +103,10 @@ namespace Upgrade.Classes
             {
                 labelDone[i] = new TextBox();
                 labelDone[i].Left = (box.Left + 53) + paddingLabel;
-                labelDone[i].Top = box.Top + 220;
+                labelDone[i].Top = box.Top + 219;
                 labelDone[i].Width = 20;
                 labelDone[i].Height = 20;
-                labelDone[i].Font = GlobalData.GetFont(GlobalData.TypeFont.Medium, 12);
+                labelDone[i].Font = GlobalData.GetFont(Enums.TypeFont.Medium, 11);
                 labelDone[i].BackColor = System.Drawing.Color.White;
                 labelDone[i].ForeColor = System.Drawing.Color.DarkGray;
                 labelDone[i].BorderStyle = BorderStyle.None;
@@ -110,12 +121,20 @@ namespace Upgrade.Classes
 
             for (int i = 0; i < failded.Length; i++) 
             {
+                int stepHeight;
                 int totalIssues = countFailded[i] + countDone[i];
-                int stepHeight = 130 / totalIssues;
+                if (totalIssues != 0)
+                {
+                    stepHeight = 130 / totalIssues;
+                }
+                else 
+                {
+                    stepHeight = 130;
+                }
 
                 failded[i] = new AltoControls.AltoButton();
                 failded[i].Top = box.Top + 85;
-                failded[i].Left = (box.Left + 60) + padding;
+                failded[i].Left = (box.Left + 60) + paddingIndicator;
                 failded[i].Inactive1 = System.Drawing.Color.LightGray;
                 failded[i].Inactive2 = System.Drawing.Color.LightGray;
                 failded[i].Active1 = System.Drawing.Color.FromArgb(System.Drawing.Color.LightGray.R - 10, System.Drawing.Color.LightGray.G - 10, System.Drawing.Color.LightGray.B - 10);
@@ -125,7 +144,14 @@ namespace Upgrade.Classes
                 failded[i].Radius = 2;
                 failded[i].Width = 6;
                 failded[i].Cursor = Cursors.Hand;
-                failded[i].Height = countFailded[i] * stepHeight;
+                if (countFailded[i] != 0)
+                {
+                    failded[i].Height = countFailded[i] * stepHeight;
+                }
+                else 
+                {
+                    failded[i].Height = stepHeight;
+                }
 
                 tab.Controls.Add(failded[i]);
                 failded[i].BringToFront();
@@ -147,24 +173,152 @@ namespace Upgrade.Classes
                 tab.Controls.Add(done[i]);
                 done[i].BringToFront();
 
-                padding += 37;
-            }    
+                paddingIndicator += 37;
+            }
+
+            periodWeek.Text = "c " + daysCurrentWeek.First() + "." + DateTime.Now.ToString("MM") + "." + DateTime.Now.ToString("yyyy") +
+                              " по " + daysCurrentWeek.Last() + "." + DateTime.Now.ToString("MM") + "." + DateTime.Now.ToString("yyyy");
+            performLastWeek.Text = Math.Ceiling(CalculatePerformLastWeek()).ToString() + "%";
+            performCurrentWeek.Text = Math.Ceiling(CalculatePerformCurrentWeek()).ToString() + "%";
+            if (CalculatePerformCurrentWeek() >= 0 && CalculatePerformCurrentWeek() < 40)
+            {
+                faceIndicator.Image = Properties.Resources.faceIndicatorBad;
+            }
+            else if (CalculatePerformCurrentWeek() >= 40 && CalculatePerformCurrentWeek() < 65)
+            {
+                faceIndicator.Image = Properties.Resources.faceIndicatorMiddle;
+            }
+            else 
+            {
+                faceIndicator.Image = Properties.Resources.faceIndicatorHappy;
+            }
         }
 
-        //string[] days = GetDaysLastWeek();
-        //for (int i = 0; i<days.Length; i++)
-        //{
-        //    MessageBox.Show(days[i]);
-        //}
-        //days = GetDaysCurrentWeek();
-        //for (int i = 0; i<days.Length; i++)
-        //{
-        //    MessageBox.Show(days[i]);
-        //}
-
-        private string[] GetDaysLastWeek()
+        private static double CalculatePerformLastWeek() 
         {
-            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            double perform = 0.0;
+
+            for (int i = 0; i < failded.Length; i++)
+            {
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON target.id_target = task.id_target " +
+                    "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                    "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                    "INNER JOIN user ON user.id_user = user_dir.id_user " +
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0", 
+                    User.user_id, 
+                    daysLastWeek[i], 
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    ServiceData.reader.Read();
+                    countFailded[i] = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            for (int i = 0; i < done.Length; i++)
+            {
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON target.id_target = task.id_target " +
+                    "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                    "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                    "INNER JOIN user ON user.id_user = user_dir.id_user " +
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1", 
+                    User.user_id, 
+                    daysLastWeek[i], 
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    ServiceData.reader.Read();
+                    countDone[i] = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            int[] daysPerform = new int[7];
+
+            for (int i = 0; i < countFailded.Length; i++)
+            {
+                if (countFailded[i] != 0 || countDone[i] != 0)
+                {
+                    perform += daysPerform[i] = (countDone[i] * 100) / (countFailded[i] + countDone[i]);
+                }
+            }
+
+            return perform / 7;
+        }
+
+        private static double CalculatePerformCurrentWeek()
+        {
+            double perform = 0.0;
+
+            for (int i = 0; i < failded.Length; i++)
+            {
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON target.id_target = task.id_target " +
+                    "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                    "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                    "INNER JOIN user ON user.id_user = user_dir.id_user " +
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0",
+                    User.user_id,
+                    daysCurrentWeek[i],
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    ServiceData.reader.Read();
+                    countFailded[i] = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            for (int i = 0; i < done.Length; i++)
+            {
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON target.id_target = task.id_target " +
+                    "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                    "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                    "INNER JOIN user ON user.id_user = user_dir.id_user " +
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
+                    User.user_id,
+                    daysCurrentWeek[i],
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    ServiceData.reader.Read();
+                    countDone[i] = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            int[] daysPerform = new int[7];
+
+            for (int i = 0; i < countFailded.Length; i++)
+            {
+                if (countFailded[i] != 0 || countDone[i] != 0)
+                {
+                    perform += daysPerform[i] = (countDone[i] * 100) / (countFailded[i] + countDone[i]);
+                }
+            }
+
+            return perform / 7;
+        }
+
+        private static string[] GetDaysLastWeek()
+        {
+            DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             List<string> days = new List<string>();
 
             // определение первого понедельника текущего месяца
@@ -175,22 +329,15 @@ namespace Upgrade.Classes
 
             for (int i = 0; i < 7; i++)
             {
-                if (date.AddDays(i).Day.ToString().Length == 1)
-                {
-                    days.Add("0" + date.AddDays(i).Day.ToString());
-                }
-                else
-                {
-                    days.Add(date.AddDays(i).Day.ToString());
-                }
+                days.Add(date.AddDays(i).ToString("dd"));
             }
 
             return days.ToArray();
         }
 
-        private string[] GetDaysCurrentWeek()
+        private static string[] GetDaysCurrentWeek()
         {
-            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             List<string> days = new List<string>();
 
             while (date.DayOfWeek != DayOfWeek.Monday)
@@ -200,14 +347,7 @@ namespace Upgrade.Classes
 
             for (int i = 0; i < 7; i++)
             {
-                if (date.AddDays(i).Day.ToString().Length == 1)
-                {
-                    days.Add("0" + date.AddDays(i).Day.ToString());
-                }
-                else
-                {
-                    days.Add(date.AddDays(i).Day.ToString());
-                }
+                days.Add(date.AddDays(i).ToString("dd"));
             }
 
             return days.ToArray();

@@ -93,16 +93,6 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bad {
-            get {
-                object obj = ResourceManager.GetObject("bad", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap block_change_off {
             get {
                 object obj = ResourceManager.GetObject("block_change_off", resourceCulture);
@@ -323,9 +313,9 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fail_tasks {
+        internal static System.Drawing.Bitmap faceIndicatorBad {
             get {
-                object obj = ResourceManager.GetObject("fail_tasks", resourceCulture);
+                object obj = ResourceManager.GetObject("faceIndicatorBad", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +323,29 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap happy {
+        internal static System.Drawing.Bitmap faceIndicatorHappy {
             get {
-                object obj = ResourceManager.GetObject("happy", resourceCulture);
+                object obj = ResourceManager.GetObject("faceIndicatorHappy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap faceIndicatorMiddle {
+            get {
+                object obj = ResourceManager.GetObject("faceIndicatorMiddle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fail_tasks {
+            get {
+                object obj = ResourceManager.GetObject("fail_tasks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -366,16 +376,6 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap menu_panel {
             get {
                 object obj = ResourceManager.GetObject("menu_panel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap middle {
-            get {
-                object obj = ResourceManager.GetObject("middle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

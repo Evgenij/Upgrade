@@ -15,33 +15,18 @@ namespace Upgrade.Classes
         static public MainWorkingForm mainWorkingForm = new MainWorkingForm();
         static public Reg_AuthForm reg_authForm = new Reg_AuthForm();
 
-        public enum TypeFont 
-        {
-            ExtraThin,
-            Light,
-            Standart,
-            Medium
-        }
-
-        public enum StatusTask
-        {
-            Empty,
-            Done,
-            Failed
-        }
-
-        static public Font GetFont(TypeFont typeFont, int size) 
+        static public Font GetFont(Enums.TypeFont typeFont, int size) 
         {
             string font;
-            if (typeFont == TypeFont.ExtraThin)
+            if (typeFont == Enums.TypeFont.ExtraThin)
             {
                 font = "PF DinDisplay Pro ExtraThin";
             }
-            else if (typeFont == TypeFont.Light) 
+            else if (typeFont == Enums.TypeFont.Light) 
             {
                 font = "PF DinDisplay Pro Light";
             }
-            else if (typeFont == TypeFont.Standart)
+            else if (typeFont == Enums.TypeFont.Standart)
             {
                 font = "PF DinDisplay Pro";
             }

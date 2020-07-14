@@ -62,8 +62,6 @@ namespace Upgrade.Classes
 
         private static void ClearFlowPanel() 
         {
-            //while (flowParent.Controls.Count > 0) flowParent.Controls.RemoveAt(0);
-
             flowParent.SuspendLayout();
             if (flowParent.Controls.Count > 0)
             {
@@ -75,6 +73,38 @@ namespace Upgrade.Classes
                 GC.Collect();
             }
             flowParent.ResumeLayout();
+        }
+
+        public static void SetMarkCurrentDay(AltoControls.AltoButton mark) 
+        {
+            if(DateTime.Now.DayOfWeek == DayOfWeek.Monday) 
+            {
+                mark.Left = 690;
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Tuesday)
+            {
+                mark.Left = 728;
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Wednesday)
+            {
+                mark.Left = 765;
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Thursday)
+            {
+                mark.Left = 801;
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
+            {
+                mark.Left = 838;
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+            {
+                mark.Left = 875;
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+            {
+                mark.Left = 913;
+            }
         }
 
         private static async void Timer_Tick(object sender, EventArgs e)

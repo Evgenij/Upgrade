@@ -28,7 +28,6 @@ namespace Upgrade.Classes
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        WeeklyStatistic weeklyStatistic;
         Scroller scroller_task;
         Scroller scroller_note;
         Timer timerTime;
@@ -90,7 +89,8 @@ namespace Upgrade.Classes
 
             await WindowManager.SetTaskBlock(flowTasks);
             await WindowManager.SetNoteBlock(flowNotes);
-            weeklyStatistic = new WeeklyStatistic(tab_profile, panel_week_stat);
+            WeeklyStatistic.SetStatistic(tab_profile, panel_week_stat, performLastWeek, performCurrentWeek, faceIndicator, sublabel_week_stat);
+            Design.SetMarkCurrentDay(day_mark);
 
             scroller_task = new Scroller(tab_profile, flowTasks);
             scroller_note = new Scroller(tab_profile, flowNotes);
@@ -148,6 +148,50 @@ namespace Upgrade.Classes
                                                                     Design.mainColorOpacity.R - 5,
                                                                     Design.mainColorOpacity.G - 5,
                                                                     Design.mainColorOpacity.B - 5);
+
+            addTask.ForeColor = Design.mainColor;
+            addTask.Inactive1 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTask.Inactive2 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTask.Active1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTask.Active2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTask.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+
+            addNote.ForeColor = Design.mainColor;
+            addNote.Inactive1 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.Inactive2 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.Active1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.Active2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
 
             timerTime = new Timer();
             timerTime.Interval = 1000;
@@ -235,10 +279,22 @@ namespace Upgrade.Classes
             scroller_note.Refresh();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addTask_Click(object sender, EventArgs e)
         {
-            
+            //
         }
 
+        private void exit_from_profile_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите выйти из аккаунта?",
+                               "Сообщение",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+                INIManager.WriteString("Settings", "remember_me", "off");
+                GlobalData.reg_authForm.Show();
+            }
+        }
     }
 }
