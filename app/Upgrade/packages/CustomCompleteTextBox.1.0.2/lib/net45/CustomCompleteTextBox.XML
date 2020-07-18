@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CustomCompleteTextBox</name>
+    </assembly>
+    <members>
+        <member name="T:ExtLibrary.AppClickFilter">
+            <summary>
+            在当前程序界面内点击鼠标左,中,右键时过滤
+            </summary>
+        </member>
+        <member name="F:ExtLibrary.AppClickFilter.ExcludeControls">
+            <summary>
+            在这些控件上不执行 ProcessFun 方法
+            </summary>
+        </member>
+        <member name="F:ExtLibrary.AppClickFilter.ProcessFun">
+            <summary>
+            符合过滤条件时执行的方法
+            </summary>
+        </member>
+        <member name="M:ExtLibrary.AppClickFilter.#ctor(System.Action)">
+            <summary>
+            默认构造函数
+            </summary>
+            <param name="processFun">符合条件时执行的方法</param>
+        </member>
+        <member name="M:ExtLibrary.AppClickFilter.#ctor(System.Action,System.Windows.Forms.Control[])">
+            <summary>
+            使用参数初始化过滤器
+            </summary>
+            <param name="processFun">符合条件时执行的方法</param>
+            <param name="controlAndChildControls">在这些控件及其子控件上不执行 processFun 方法</param>
+        </member>
+        <member name="T:ExtLibrary.MessageFilterEventArgs">
+            <summary>
+            消息过滤事件数据
+            </summary>
+        </member>
+        <member name="P:ExtLibrary.MessageFilterEventArgs.StopMessage">
+            <summary>
+            获取或设置是否停止处理当前消息
+            </summary>
+        </member>
+        <member name="P:ExtLibrary.MessageFilterEventArgs.CurrentMessage">
+            <summary>
+            获取当前消息
+            </summary>
+        </member>
+        <member name="M:ExtLibrary.MessageFilterEventArgs.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="T:ExtLibrary.MessageFilter">
+            <summary>
+            Windows 消息过滤类, 可过滤指定控件和消息.
+            </summary>
+        </member>
+        <member name="P:ExtLibrary.MessageFilter.Enable">
+            <summary>
+            获取或设置过滤器的启用状态, 默认为 true.
+            </summary>
+        </member>
+        <member name="P:ExtLibrary.MessageFilter.FilterMessages">
+            <summary>
+            获取或设置需要过滤的消息集合, 如果不指定, 将过滤所有消息.
+            </summary>
+        </member>
+        <member name="P:ExtLibrary.MessageFilter.TargetHandles">
+            <summary>
+            获取或设置过滤句柄的集合, 如果不指定, 将过滤所有句柄.
+            </summary>
+        </member>
+        <member name="E:ExtLibrary.MessageFilter.FilterMessageEvent">
+            <summary>
+            当匹配到 FilterMessages 中的任意一条消息时引发此事件
+            </summary>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.#ctor(System.Windows.Forms.Control,System.Int32[])">
+            <summary>
+            使用目标控件与需要过滤的消息初始化过滤器
+            </summary>
+            <param name="controlWithChildren">只过滤发给此控件与其所有子控件的消息</param>
+            <param name="filterMessages">只过滤给定的消息</param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.#ctor(System.Int32[])">
+            <summary>
+            使用给定的消息初始化过滤器
+            </summary>
+            <param name="filterMessages">只过滤给定的消息</param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.#ctor">
+            <summary>
+            默认构造函数, 过滤所有消息
+            </summary>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.PreFilterMessage(System.Windows.Forms.Message@)">
+            <summary>
+            实现 IMessageFilter 接口, 当匹配到消息时引发 FilterMessageEvent 事件.
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.AddFilterMessage(System.Int32[])">
+            <summary>
+            添加需要过滤的消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.RemoveFilterMessage(System.Int32[])">
+            <summary>
+            移除不需要过滤的消息
+            </summary>
+            <param name="msg">消息集合</param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.AddTargetHandle(System.IntPtr[])">
+            <summary>
+            添加需要过滤的句柄
+            </summary>
+            <param name="handle">句柄集合</param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.AddTargetHandle(System.Windows.Forms.Control[])">
+            <summary>
+            添加需要过滤的句柄
+            </summary>
+            <param name="controlWithChildren">添加控件及其所有子控件的句柄</param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.RemoveTargetHandle(System.IntPtr[])">
+            <summary>
+            移除不需要过滤的句柄
+            </summary>
+            <param name="handle">句柄集合</param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.RemoveTargetHandle(System.Windows.Forms.Control[])">
+            <summary>
+            移除不需要过滤的句柄
+            </summary>
+            <param name="controlWithChildren">移除控件及其所有子控件的句柄</param>
+        </member>
+        <member name="M:ExtLibrary.MessageFilter.OnFilterMessage(ExtLibrary.MessageFilterEventArgs)">
+            <summary>
+            引发 FilterMessageEvent 事件
+            </summary>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="T:ExtLibrary.MouseWheelFilter">
+            <summary>
+            过滤鼠标滚轮消息
+            </summary>
+        </member>
+        <member name="F:ExtLibrary.MouseWheelFilter.SendToControls">
+            <summary>
+            获取或设置将滚轮消息发送到这些控件上
+            </summary>
+        </member>
+        <member name="M:ExtLibrary.MouseWheelFilter.#ctor(System.Windows.Forms.Control[])">
+            <summary>
+            默认构造函数
+            </summary>
+            <param name="control">将鼠标滚轮消息发送到指定的控件</param>
+        </member>
+        <member name="T:ExtLibrary.WindowsAPI.EnumWindownCallback">
+            <summary>
+            枚举指定窗口的子窗口时的数据
+            </summary>
+            <param name="hwnd">子窗口句柄</param>
+            <param name="lParam">自定义参数</param>
+            <returns>返回true,继续枚举;返回false,停止枚举.</returns>
+        </member>
+        <member name="M:ExtLibrary.WindowsAPI.GetChildrenWindowns(System.IntPtr)">
+            <summary>
+            返回指定句柄的所有子句柄
+            </summary>
+            <param name="windown">父窗口句柄</param>
+            <returns>所有子窗口</returns>
+        </member>
+        <member name="M:ExtLibrary.WindowsAPI.GetWindows(System.Windows.Forms.Control[])">
+            <summary>
+            返回指定控件的所有句柄
+            </summary>
+            <param name="control">控件集合</param>
+            <returns>所有句柄,包括自身的.</returns>
+        </member>
+        <member name="M:ExtLibrary.WindowsAPI.SendMessage(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            调用 windows api 发送消息到指定的窗口句柄
+            </summary>
+            <param name="hWnd">目标窗口句柄</param>
+            <param name="msg">windows消息</param>
+            <param name="wParam">通常是一个与消息有关的常量值，也可能是窗口或控件的句柄</param>
+            <param name="lParam">通常是一个指向内存中数据的指针</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtLibrary.WindowsAPI.EnumWindows(ExtLibrary.WindowsAPI.EnumWindownCallback,System.IntPtr)">
+            <summary>
+            枚举所有顶级窗口
+            </summary>
+            <param name="lpEnumFunc">找到顶级窗口后调用的函数</param>
+            <param name="lParam">自定义参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtLibrary.WindowsAPI.EnumChildWindows(System.IntPtr,ExtLibrary.WindowsAPI.EnumWindownCallback,System.IntPtr)">
+            <summary>
+            从给定的父窗口枚举所有子窗口
+            </summary>
+            <param name="hwndParent">父窗口句柄</param>
+            <param name="lpEnumFunc">找到子窗口后调用的函数</param>
+            <param name="lParam">自定义参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:CustomCompleteTextBox.CustomCompleteTextBox">
+            <summary>
+            带下拉列表的自定义搜索文本框
+            </summary>
+        </member>
+        <member name="F:CustomCompleteTextBox.CustomCompleteTextBox.mouseWheel">
+            <summary>
+            监视鼠标滚轮事件
+            </summary>
+        </member>
+        <member name="F:CustomCompleteTextBox.CustomCompleteTextBox.appClick">
+            <summary>
+            监视鼠标左,中,右键点击事件
+            </summary>
+        </member>
+        <member name="F:CustomCompleteTextBox.CustomCompleteTextBox.innerListBox">
+            <summary>
+            内部使用,用于存储listBox数据
+            </summary>
+        </member>
+        <member name="F:CustomCompleteTextBox.CustomCompleteTextBox.box">
+            <summary>
+            显示候选列表
+            </summary>
+        </member>
+        <member name="F:CustomCompleteTextBox.CustomCompleteTextBox.host">
+            <summary>
+            下拉内容宿主窗体
+            </summary>
+        </member>
+        <member name="F:CustomCompleteTextBox.CustomCompleteTextBox.drop">
+            <summary>
+            下拉控件
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.Multiline">
+            <summary>
+            禁止多行模式
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.DropDownOnEnter">
+            <summary>
+            获取或设置当文本框获得焦点时是否显示下拉列表
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.DropDownMinCharLength">
+            <summary>
+            获取或设置显示下拉列表所需最短字符数, 默认为 1.
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.AutoDropWidth">
+            <summary>
+            获取或设置是否自适应下拉列表的宽度, 默认为 true.
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.DropHeight">
+            <summary>
+            获取或设置下拉列表高度, 默认100.
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.ItemFont">
+            <summary>
+            获取或设置下拉项目的字体
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.ItemForeColor">
+            <summary>
+            获取或设置下拉项目的前景颜色
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.Items">
+            <summary>
+            获取或设置下拉列表的数据集合
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.SelectedItem">
+            <summary>
+            获取或设置选择的项目
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.SelectedValue">
+            <summary>
+            获取或设置选择的值
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.DisplayMember">
+            <summary>
+            获取或设置显示的属性
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.CustomCompleteTextBox.ValueMember">
+            <summary>
+            获取或设置值的属性
+            </summary>
+        </member>
+        <member name="E:CustomCompleteTextBox.CustomCompleteTextBox.Match">
+            <summary>
+            当项目进行搜索匹配时引发此事件, 可在此定义匹配规则.
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.DropList">
+            <summary>
+            显示下拉列表
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.CloseList">
+            <summary>
+            关闭下拉列表
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.InitLayout">
+            <summary>
+            初始化布局
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.OnClick(System.EventArgs)">
+            <summary>
+            单击文本框时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.OnEnter(System.EventArgs)">
+            <summary>
+            文本框获得焦点时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.OnLeave(System.EventArgs)">
+            <summary>
+            文本框失去焦点时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.OnTextChanged(System.EventArgs)">
+            <summary>
+            文本框内容改变时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            在文本框按下并释放按键时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            在文本框按下按键时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            处理针对文本框的系统消息
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.OnMatch(CustomCompleteTextBox.MatchEventArgs)">
+            <summary>
+            项目匹配事件
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.InitControl">
+            <summary>
+            初始化各参数
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.SetText">
+            <summary>
+            设置文本框文本
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.MatchAndSetListItems">
+            <summary>
+            根据匹配规则,绑定下拉列表, 返回完全匹配项
+            </summary>
+            <returns>完全匹配项</returns>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.FilterItemOnProperty(System.Object,System.String)">
+            <summary>
+            返回指定绑定的属性的值
+            </summary>
+            <param name="item">绑定项目</param>
+            <param name="field">指定属性</param>
+            <returns>属性的值</returns>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.Drop_Closed(System.Object,System.Windows.Forms.ToolStripDropDownClosedEventArgs)">
+            <summary>
+            关闭下拉列表时
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.Drop_ActiveChange(System.Object,CustomCompleteTextBox.ActiveChangeEventArgs)">
+            <summary>
+            下拉列表激活或失去激活状态时引发的事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.Box_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            在 listbox 上按下按键时
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.Box_Click(System.Object,System.EventArgs)">
+            <summary>
+            单击下拉选项
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:CustomCompleteTextBox.CustomCompleteTextBox.Box_MouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            鼠标在选项间移动时
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:CustomCompleteTextBox.MatchEventArgs">
+            <summary>
+            匹配事件数据
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.MatchEventArgs.Item">
+            <summary>
+            获取当前需判断的数据项
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.MatchEventArgs.MatchText">
+            <summary>
+            获取判断的文本
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.MatchEventArgs.MatchResult">
+            <summary>
+            获取或设置 MatchText 与 Item 中的属性是否部分匹配
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.MatchEventArgs.EqualResult">
+            <summary>
+            获取或设置 MatchText 与 Item 中的属性是否完全相等 
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.MatchEventArgs.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="T:CustomCompleteTextBox.ToolStripDropDownExt">
+            <summary>
+            继承自 ToolStripDropDown 的类
+            </summary>
+        </member>
+        <member name="E:CustomCompleteTextBox.ToolStripDropDownExt.ActiveChange">
+            <summary>
+            当控件激活或失去激活状态时发生, 发生于所有事件之前.
+            </summary>
+        </member>
+        <member name="M:CustomCompleteTextBox.ToolStripDropDownExt.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            处理 windows 消息
+            </summary>
+            <param name="m">windows 消息</param>
+        </member>
+        <member name="M:CustomCompleteTextBox.ToolStripDropDownExt.OnActiveChange(CustomCompleteTextBox.ActiveChangeEventArgs)">
+            <summary>
+            引发 ActiveChange 事件
+            </summary>
+            <param name="e">包含激活状态的 ActiveChangeEventArgs 参数</param>
+        </member>
+        <member name="T:CustomCompleteTextBox.ActiveChangeEventArgs">
+            <summary>
+            为 ActiveChange 事件提供数据
+            </summary>
+        </member>
+        <member name="P:CustomCompleteTextBox.ActiveChangeEventArgs.Active">
+            <summary>
+            获取激活状态
+            </summary>
+        </member>
+    </members>
+</doc>

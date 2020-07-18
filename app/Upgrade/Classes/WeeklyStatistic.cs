@@ -150,7 +150,7 @@ namespace Upgrade.Classes
                 }
                 else 
                 {
-                    failded[i].Height = stepHeight;
+                    failded[i].Height = 0;
                 }
 
                 tab.Controls.Add(failded[i]);
@@ -316,7 +316,7 @@ namespace Upgrade.Classes
             return perform / 7;
         }
 
-        private static string[] GetDaysLastWeek()
+        public static string[] GetDaysLastWeek()
         {
             DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             List<string> days = new List<string>();
@@ -335,7 +335,7 @@ namespace Upgrade.Classes
             return days.ToArray();
         }
 
-        private static string[] GetDaysCurrentWeek()
+        public static string[] GetDaysCurrentWeek()
         {
             DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             List<string> days = new List<string>();

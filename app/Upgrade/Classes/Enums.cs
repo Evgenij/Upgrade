@@ -33,5 +33,14 @@ namespace Upgrade.Classes
             Суббота = 6,
             Воскресенье = 0
         };
+
+        public enum Period 
+        {
+            LastWeek,
+            Yesterday,
+            Today,
+            Tomorrow,
+            CurrentWeek
+        }
     }
 }

@@ -80,7 +80,6 @@ namespace Upgrade
             if (!ServiceData.reader.HasRows)
             {
                 // регистрация 
-
                 if (GlobalData.RegistrationCode == null)
                 {
                     GlobalData.RegistrationCode = GlobalData.GererateCode();
@@ -141,17 +140,7 @@ namespace Upgrade
             else
             {
                 // Данные уже есть 
-                if (MessageBox.Show(
-                    "Эти данные уже существуют.\nВойти под этими данными?\n",
-                    "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                {
-                    Authorization(login, password);
-                    return false;
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
         }
 

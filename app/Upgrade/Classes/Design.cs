@@ -18,9 +18,12 @@ namespace Upgrade.Classes
 
         private static Timer timer;
         private static Point p;
-        static public Color backColor = Color.FromArgb(248, 252, 255);
-        static public Color mainColor;
-        static public Color mainColorOpacity;
+        public static Color backColor = Color.FromArgb(248, 252, 255);
+        public static Color mainColor;
+        public static Color mainColorOpacity;
+
+        public static int heightContentTasks = 0;
+        public static int heightContentNotes = 0;
 
         private static Control panel;
         private static FlowLayoutPanel flowParent;
@@ -58,6 +61,12 @@ namespace Upgrade.Classes
             typeBlock = type;
 
             timer.Start();
+        }
+
+        static public void RefreshPanel(FlowLayoutPanel flowPanel)
+        {
+            flowParent = flowPanel;
+            ClearFlowPanel();
         }
 
         private static void ClearFlowPanel() 
@@ -113,14 +122,14 @@ namespace Upgrade.Classes
             {
                 panel.Width -= 10;
             }
-            else 
+            else
             {
                 panel.Dispose();
                 timer.Stop();
                 timer.Dispose();
                 ClearFlowPanel();
 
-                await WindowManager.CreatePanelMainWindow(flowParent, typeBlock);
+                await WindowManager.CreatePanelMainWindow(typeBlock);
             }
         }
 

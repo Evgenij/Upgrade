@@ -1,4 +1,5 @@
-﻿using Nevron.Nov.UI;
+﻿using Nevron.Nov.Graphics;
+using Nevron.Nov.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,8 +29,7 @@ namespace Upgrade.Classes
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        Scroller scroller_task;
-        Scroller scroller_note;
+        UIComboBox[] uiComboBox = new UIComboBox[2];
         Timer timerTime;
 
         public MainWorkingForm()
@@ -40,7 +40,7 @@ namespace Upgrade.Classes
             hide_border_tabs.BackColor = Design.backColor;
         }
 
-        private void TimerTime_Tick(object sender, EventArgs e)
+        private void TimerTime_Tick(object sender, EventArgs e) 
         {
             int h = DateTime.Now.Hour;
             int m = DateTime.Now.Minute;
@@ -87,14 +87,122 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            await WindowManager.SetTaskBlock(flowTasks);
-            await WindowManager.SetNoteBlock(flowNotes);
+            string[] labelsPeriod = { "Прошлая неделя",
+                                      "Вчера",
+                                      "Сегодня",
+                                      "Завтра",
+                                      "Текущая неделя"};
+
+            string[] labelsStatus = { "Все задачи",
+                                      "Выполненные",
+                                      "Невыполненные"};
+
+            uiComboBox[1] = new UIComboBox(tab_profile, panel_period, "status", labelsStatus, null, null);
+            uiComboBox[0] = new UIComboBox(tab_profile, panel_status_task, "period", labelsPeriod, label_today, uiComboBox[1].GetPanel());
+
+            WindowManager.SetFlowPanelTask(flowTasks);
+            WindowManager.SetFlowPanelNote(flowNotes);
+            await WindowManager.SetTaskBlock();
+            await WindowManager.SetNoteBlock();
             WeeklyStatistic.SetStatistic(tab_profile, panel_week_stat, performLastWeek, performCurrentWeek, faceIndicator, sublabel_week_stat);
             Design.SetMarkCurrentDay(day_mark);
 
-            scroller_task = new Scroller(tab_profile, flowTasks);
-            scroller_note = new Scroller(tab_profile, flowNotes);
+            GlobalData.scroller_task = new Scroller(tab_profile, flowTasks, Design.heightContentTasks);
+            GlobalData.scroller_note = new Scroller(tab_profile, flowNotes, Design.heightContentNotes);
 
+            timerTime = new Timer();
+            timerTime.Interval = 1000;
+            timerTime.Tick += TimerTime_Tick;
+            timerTime.Start();
+        }
+
+        public void SetPeriod(int index) 
+        {
+            WindowManager.period = (Enums.Period)index;
+        }
+
+        private void profile_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 100);
+            tabs.SelectedTab = tab_profile;
+            active_item.Image = Properties.Resources.profile;
+        }
+
+        private void targets_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 160);
+            tabs.SelectedTab = tab_targets;
+            active_item.Image = Properties.Resources.tardets;
+        }
+
+        private void stat_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 220);
+            tabs.SelectedTab = tab_stat;
+            active_item.Image = Properties.Resources.stat;
+        }
+
+        private void schedule_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 280);
+            tabs.SelectedTab = tab_sched;
+            active_item.Image = Properties.Resources.schedule;
+        }
+
+        private void settings_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 340);
+            tabs.SelectedTab = tab_sett;
+            active_item.Image = Properties.Resources.settings;
+        }
+
+        private void flowTasks_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            GlobalData.scroller_task.Refresh(Design.heightContentNotes);
+        }
+
+        private void exit_from_profile_MouseHover(object sender, EventArgs e)
+        {
+            exit_from_profile.ForeColor = Design.mainColor;
+        }
+
+        private void exit_from_profile_MouseLeave(object sender, EventArgs e)
+        {
+            exit_from_profile.ForeColor = Color.DimGray;
+        }
+
+        private void label_my_passwords_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 280);
+            tabs.SelectedTab = tab_sched;
+            active_item.Image = Properties.Resources.schedule;
+        }
+
+        private void flowNotes_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            GlobalData.scroller_note.Refresh(Design.heightContentNotes);
+        }
+
+        private void addTask_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void exit_from_profile_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите выйти из аккаунта?",
+                               "Сообщение",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+                INIManager.WriteString("Settings", "remember_me", "off");
+                GlobalData.reg_authForm.Show();
+            }
+        }
+
+        private void MainWorkingForm_Shown(object sender, EventArgs e)
+        {
             panel_menu.BackColor = Design.mainColor;
 
             tab_profile.BackColor = Design.backColor;
@@ -193,11 +301,6 @@ namespace Upgrade.Classes
                                                  Design.mainColor.G,
                                                  Design.mainColor.B);
 
-            timerTime = new Timer();
-            timerTime.Interval = 1000;
-            timerTime.Tick += TimerTime_Tick;
-            timerTime.Start();
-
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             path.AddEllipse(0, 0, 110, 110);
             Region rgn = new Region(path);
@@ -210,91 +313,6 @@ namespace Upgrade.Classes
             user_photo.Image = User.user_photo.Image;
 
             block_for_focus.Focus();
-        }
-
-        private void profile_Click(object sender, EventArgs e)
-        {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 100);
-            tabs.SelectedTab = tab_profile;
-            active_item.Image = Properties.Resources.profile;
-        }
-
-        private void targets_Click(object sender, EventArgs e)
-        {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 160);
-            tabs.SelectedTab = tab_targets;
-            active_item.Image = Properties.Resources.tardets;
-        }
-
-        private void stat_Click(object sender, EventArgs e)
-        {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 220);
-            tabs.SelectedTab = tab_stat;
-            active_item.Image = Properties.Resources.stat;
-        }
-
-        private void schedule_Click(object sender, EventArgs e)
-        {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 280);
-            tabs.SelectedTab = tab_sched;
-            active_item.Image = Properties.Resources.schedule;
-        }
-
-        private void settings_Click(object sender, EventArgs e)
-        {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 340);
-            tabs.SelectedTab = tab_sett;
-            active_item.Image = Properties.Resources.settings;
-        }
-
-        private void period_SelectedIndexChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)
-        {
-            MessageBox.Show(period.SelectedIndex.ToString());
-        }
-
-        private void flowTasks_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            scroller_task.Refresh();
-        }
-
-        private void exit_from_profile_MouseHover(object sender, EventArgs e)
-        {
-            exit_from_profile.ForeColor = Design.mainColor;
-        }
-
-        private void exit_from_profile_MouseLeave(object sender, EventArgs e)
-        {
-            exit_from_profile.ForeColor = Color.DimGray;
-        }
-
-        private void label_my_passwords_Click(object sender, EventArgs e)
-        {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 280);
-            tabs.SelectedTab = tab_sched;
-            active_item.Image = Properties.Resources.schedule;
-        }
-
-        private void flowNotes_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            scroller_note.Refresh();
-        }
-
-        private void addTask_Click(object sender, EventArgs e)
-        {
-            //
-        }
-
-        private void exit_from_profile_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Вы действительно хотите выйти из аккаунта?",
-                               "Сообщение",
-                               MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Hide();
-                INIManager.WriteString("Settings", "remember_me", "off");
-                GlobalData.reg_authForm.Show();
-            }
         }
     }
 }

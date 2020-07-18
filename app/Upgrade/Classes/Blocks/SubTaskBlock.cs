@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,14 @@ using System.Windows.Forms;
 
 namespace Upgrade.Classes
 {
-    class SubTaskBlock
+    class SubTaskBlock : Block
     {
-        private Panel panel;
         private PictureBox check;
-        private TextBox textLabel;
         private TaskBlock taskBlock;
 
-        public SubTaskBlock(TaskBlock parentTaskBlock, Control flowPanel, string textSubTask)
+        public SubTaskBlock(TaskBlock parentTaskBlock, Control flowPanel, int id_subtask, string textSubTask, int status)
         {
+            this.id_record = id_subtask;
             panel = new Panel();
             check = new PictureBox();
             textLabel = new TextBox();
@@ -38,7 +38,15 @@ namespace Upgrade.Classes
             }
             else 
             {
-                check.Image = Properties.Resources.check_small_off;
+                if (status == 1)
+                {
+                    check.AccessibleName = "done";
+                    check.Image = Properties.Resources.check_small_done;
+                }
+                else 
+                {
+                    check.Image = Properties.Resources.check_small_off;
+                }
             }
             check.SizeMode = PictureBoxSizeMode.AutoSize;
             check.BackColor = Color.White;
@@ -112,7 +120,13 @@ namespace Upgrade.Classes
                 {
                     check.AccessibleName = "done";
                     check.Image = Properties.Resources.check_small_done;
-                    taskBlock.AddSuccessSubtasks();
+
+                    ServiceData.commandText = @"UPDATE subtask SET status = 1 WHERE id_subtask = @id_subtask";
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.Parameters.AddWithValue("@id_subtask", this.id_record);
+                    ServiceData.command.ExecuteNonQuery();
+
+                    taskBlock.AddSuccessSubtask();
                 }
                 else
                 {

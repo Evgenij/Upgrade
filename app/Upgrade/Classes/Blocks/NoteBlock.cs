@@ -75,6 +75,8 @@ namespace Upgrade.Classes
             panel.Controls.Add(box_bottom);
             box_bottom.BringToFront();
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentNotes += panel.Height;
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)

@@ -40,6 +40,8 @@
             this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tab_profile = new System.Windows.Forms.TabPage();
+            this.panel_period = new System.Windows.Forms.Panel();
+            this.panel_status_task = new System.Windows.Forms.Panel();
             this.addNote = new AltoControls.AltoButton();
             this.addTask = new AltoControls.AltoButton();
             this.faceIndicator = new System.Windows.Forms.PictureBox();
@@ -53,8 +55,6 @@
             this.sublabel_note = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.flowNotes = new System.Windows.Forms.FlowLayoutPanel();
-            this.status_task = new Nevron.Nov.WinFormControls.NComboBoxControl();
-            this.period = new Nevron.Nov.WinFormControls.NComboBoxControl();
             this.label_today = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel_hide_scroll_1 = new System.Windows.Forms.Panel();
@@ -227,6 +227,8 @@
             // 
             // tab_profile
             // 
+            this.tab_profile.Controls.Add(this.panel_period);
+            this.tab_profile.Controls.Add(this.panel_status_task);
             this.tab_profile.Controls.Add(this.addNote);
             this.tab_profile.Controls.Add(this.addTask);
             this.tab_profile.Controls.Add(this.faceIndicator);
@@ -240,8 +242,6 @@
             this.tab_profile.Controls.Add(this.sublabel_note);
             this.tab_profile.Controls.Add(this.label6);
             this.tab_profile.Controls.Add(this.flowNotes);
-            this.tab_profile.Controls.Add(this.status_task);
-            this.tab_profile.Controls.Add(this.period);
             this.tab_profile.Controls.Add(this.label_today);
             this.tab_profile.Controls.Add(this.label1);
             this.tab_profile.Controls.Add(this.panel_hide_scroll_1);
@@ -253,6 +253,22 @@
             this.tab_profile.TabIndex = 0;
             this.tab_profile.Text = "tabPage1";
             this.tab_profile.UseVisualStyleBackColor = true;
+            // 
+            // panel_period
+            // 
+            this.panel_period.BackColor = System.Drawing.Color.Transparent;
+            this.panel_period.Location = new System.Drawing.Point(223, 72);
+            this.panel_period.Name = "panel_period";
+            this.panel_period.Size = new System.Drawing.Size(128, 26);
+            this.panel_period.TabIndex = 125;
+            // 
+            // panel_status_task
+            // 
+            this.panel_status_task.BackColor = System.Drawing.Color.Transparent;
+            this.panel_status_task.Location = new System.Drawing.Point(117, 72);
+            this.panel_status_task.Name = "panel_status_task";
+            this.panel_status_task.Size = new System.Drawing.Size(100, 26);
+            this.panel_status_task.TabIndex = 124;
             // 
             // addNote
             // 
@@ -353,7 +369,7 @@
             this.day_mark.Radius = 2;
             this.day_mark.Size = new System.Drawing.Size(6, 6);
             this.day_mark.Stroke = true;
-            this.day_mark.StrokeColor = System.Drawing.Color.Gray;
+            this.day_mark.StrokeColor = System.Drawing.Color.Indigo;
             this.day_mark.TabIndex = 113;
             this.day_mark.Transparency = false;
             // 
@@ -418,6 +434,7 @@
             // 
             // flowNotes
             // 
+            this.flowNotes.AccessibleName = "notes";
             this.flowNotes.AutoScroll = true;
             this.flowNotes.Location = new System.Drawing.Point(629, 518);
             this.flowNotes.Name = "flowNotes";
@@ -425,31 +442,12 @@
             this.flowNotes.TabIndex = 1;
             this.flowNotes.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.flowNotes_ControlRemoved);
             // 
-            // status_task
-            // 
-            this.status_task.AutoSize = false;
-            this.status_task.DesignTimeState = resources.GetString("status_task.DesignTimeState");
-            this.status_task.Location = new System.Drawing.Point(224, 74);
-            this.status_task.Name = "status_task";
-            this.status_task.Size = new System.Drawing.Size(146, 23);
-            this.status_task.TabIndex = 8;
-            // 
-            // period
-            // 
-            this.period.AutoSize = false;
-            this.period.DesignTimeState = resources.GetString("period.DesignTimeState");
-            this.period.Location = new System.Drawing.Point(120, 74);
-            this.period.Name = "period";
-            this.period.Size = new System.Drawing.Size(96, 23);
-            this.period.TabIndex = 7;
-            this.period.SelectedIndexChanged += new Nevron.Nov.Function<Nevron.Nov.Dom.NValueChangeEventArgs>(this.period_SelectedIndexChanged);
-            // 
             // label_today
             // 
             this.label_today.AutoSize = true;
             this.label_today.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_today.ForeColor = System.Drawing.Color.Black;
-            this.label_today.Location = new System.Drawing.Point(252, 34);
+            this.label_today.Location = new System.Drawing.Point(254, 34);
             this.label_today.Name = "label_today";
             this.label_today.Size = new System.Drawing.Size(117, 35);
             this.label_today.TabIndex = 3;
@@ -474,6 +472,7 @@
             // 
             // flowTasks
             // 
+            this.flowTasks.AccessibleName = "tasks";
             this.flowTasks.AutoScroll = true;
             this.flowTasks.Location = new System.Drawing.Point(115, 123);
             this.flowTasks.Name = "flowTasks";
@@ -761,6 +760,7 @@
             this.Name = "MainWorkingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainWorkingForm";
+            this.Shown += new System.EventHandler(this.MainWorkingForm_Shown);
             this.panel_menu.ResumeLayout(false);
             this.panel_menu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).EndInit();
@@ -815,8 +815,6 @@
         private System.Windows.Forms.TextBox block_for_focus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_today;
-        private Nevron.Nov.WinFormControls.NComboBoxControl period;
-        private Nevron.Nov.WinFormControls.NComboBoxControl status_task;
         private ComponentFactory.Krypton.Toolkit.KryptonMonthCalendar calendar;
         private System.Windows.Forms.TextBox perform;
         private System.Windows.Forms.TextBox achieves;
@@ -840,5 +838,7 @@
         private System.Windows.Forms.PictureBox faceIndicator;
         private AltoControls.AltoButton addTask;
         private AltoControls.AltoButton addNote;
+        private System.Windows.Forms.Panel panel_period;
+        private System.Windows.Forms.Panel panel_status_task;
     }
 }

@@ -222,7 +222,7 @@ namespace Upgrade
         {
             if (!login_reg.Text.Contains('@'))
             {
-                if (label_reg_email.Text == "электронная почта")
+                if (label_reg_email.Text == "электронная почта" && email_reg.Text != "введите email")
                 {
                     if (DBService.Registration(login_reg.Text, pass_reg.Text, email_reg.Text + domen_list.Text))
                     {
@@ -244,6 +244,17 @@ namespace Upgrade
                     if (DBService.Registration(login_reg.Text, pass_reg.Text, ""))
                     {
                         DBService.Authorization(login_reg.Text, pass_reg.Text);
+                    }
+                    else 
+                    {
+                        if (MessageBox.Show(
+                                "Эти данные уже существуют.\nИспользовать эти данные для входа?\n",
+                                "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            Design.MovePanel(panel_reg, Design.Direction.Horizontal, 0, 370);
+                            login_auth.Text = login_reg.Text;
+                            login_auth.Text = pass_reg.Text;
+                        }
                     }
                 }
             }

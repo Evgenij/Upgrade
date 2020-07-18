@@ -13,7 +13,7 @@ namespace Upgrade.Classes
 {
     class TaskBlock : Block
     {
-        private int count_subtasks = 0, success_subtasks = 0;
+        private int count_subtasks = 0, success_subtask = 0;
 
         private Enums.StatusTask statusTask = Enums.StatusTask.Empty; 
 
@@ -124,7 +124,7 @@ namespace Upgrade.Classes
             textLabel.Text = text;
             if (textLabel.Text.Length >= 28)
             {
-                textLabel.Height = 21 * (textLabel.Text.Length / 28);
+                textLabel.Height = 42 * (textLabel.Text.Length / 28);
             }
             else 
             {
@@ -176,7 +176,7 @@ namespace Upgrade.Classes
             }
 
             string commandText = @"SELECT 
-                subtask.text, subtask.status 
+                subtask.id_subtask, subtask.text, subtask.status 
                 FROM subtask 
                 INNER JOIN task ON subtask.id_task = task.id_task
                 WHERE task.id_task = @id_task";
@@ -204,10 +204,15 @@ namespace Upgrade.Classes
                 while (reader.Read())
                 {
                     count_subtasks++;
-                    subTaskBlocks.Add(new SubTaskBlock(this, flowPanelSubtasks, reader.GetString(0)));
+                    subTaskBlocks.Add(new SubTaskBlock(this, flowPanelSubtasks, reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2)));
+                    if (reader.GetInt32(2) == 1) 
+                    {
+                        success_subtask++;
+                    }
                     flowPanelSubtasks.Height += subTaskBlocks.Last().GetHeight();
                 }
-                flowPanelSubtasks.Height += 10;
+                //MessageBox.Show(count_subtasks.ToString() + "- всего и выполнено - " + success_subtasks.ToString());
+                flowPanelSubtasks.Height += 15;
             }
 
             timeLabel.Height = 27;
@@ -349,6 +354,8 @@ namespace Upgrade.Classes
             time_range.BringToFront();
             panelAction.BringToFront();
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentTasks += panel.Height;
         }
 
         private void BoxDelete_Click(object sender, EventArgs e)
@@ -396,10 +403,10 @@ namespace Upgrade.Classes
             boxChange.Image = Properties.Resources.block_change_on;
         }
 
-        public void AddSuccessSubtasks() 
+        public void AddSuccessSubtask() 
         {
-            success_subtasks++;
-            if (count_subtasks == success_subtasks) 
+            success_subtask++;
+            if (count_subtasks == success_subtask) 
             {
                 ServiceData.commandText = @"UPDATE task SET status = 1 WHERE id_task = @id_task";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
@@ -414,7 +421,7 @@ namespace Upgrade.Classes
 
         public void DeleteSuccessSubtasks()
         {
-            success_subtasks--;
+            success_subtask--;
         }
 
         public Enums.StatusTask GetStatus() 

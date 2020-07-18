@@ -63,6 +63,26 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_down {
+            get {
+                object obj = ResourceManager.GetObject("arrow_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_up {
+            get {
+                object obj = ResourceManager.GetObject("arrow_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AutorizationForm {
             get {
                 object obj = ResourceManager.GetObject("AutorizationForm", resourceCulture);
@@ -243,6 +263,16 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap comboBox_panel {
+            get {
+                object obj = ResourceManager.GetObject("comboBox_panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap default_user_photo {
             get {
                 object obj = ResourceManager.GetObject("default_user_photo", resourceCulture);
@@ -366,6 +396,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap label_type_task {
             get {
                 object obj = ResourceManager.GetObject("label_type_task", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mark_item {
+            get {
+                object obj = ResourceManager.GetObject("mark_item", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -556,6 +596,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap scroller {
             get {
                 object obj = ResourceManager.GetObject("scroller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap separator {
+            get {
+                object obj = ResourceManager.GetObject("separator", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

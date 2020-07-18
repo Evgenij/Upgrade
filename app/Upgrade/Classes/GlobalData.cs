@@ -15,6 +15,9 @@ namespace Upgrade.Classes
         static public MainWorkingForm mainWorkingForm = new MainWorkingForm();
         static public Reg_AuthForm reg_authForm = new Reg_AuthForm();
 
+        static public Scroller scroller_task;
+        static public Scroller scroller_note;
+
         static public Font GetFont(Enums.TypeFont typeFont, int size) 
         {
             string font;

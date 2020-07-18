@@ -10,22 +10,20 @@ namespace Upgrade.Classes
 {
     class Scroller
     {
-        private const int margin = 0;
-
         private int value, multiplier;
         private int currentY;
-        private bool isDragging = false; 
+        private bool isDragging = false;
 
         private FlowLayoutPanel panel;
         private PictureBox background, scroller;
         private PictureBox top_tip_back, bottom_tip_back;
         private PictureBox top_tip_scroll, bottom_tip_scroll;
 
-        public Scroller(TabPage tabPage, FlowLayoutPanel flowPanel) 
+        public Scroller(TabPage tabPage, FlowLayoutPanel flowPanel, int heightContent)
         {
             panel = flowPanel;
 
-            if (panel.VerticalScroll.Maximum > 100)
+            if (heightContent >= panel.Height)
             {
                 background = new PictureBox();
                 scroller = new PictureBox();
@@ -37,16 +35,16 @@ namespace Upgrade.Classes
                 // -----------------
                 top_tip_back.Image = Properties.Resources.tip_back_scroll;
                 top_tip_back.SizeMode = PictureBoxSizeMode.AutoSize;
-                top_tip_back.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width + margin, flowPanel.Top);
+                top_tip_back.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width, flowPanel.Top);
                 // ---
                 bottom_tip_back.Image = Properties.Resources.tip_back_scroll;
                 bottom_tip_back.SizeMode = PictureBoxSizeMode.AutoSize;
-                bottom_tip_back.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width + margin, flowPanel.Height + flowPanel.Top - bottom_tip_back.Height);
+                bottom_tip_back.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width, flowPanel.Height + flowPanel.Top - bottom_tip_back.Height);
 
                 background.Image = Properties.Resources.back_scroll;
                 background.SizeMode = PictureBoxSizeMode.StretchImage;
                 background.BackColor = Color.FromArgb(234, 234, 234);
-                background.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width + margin, flowPanel.Top + top_tip_back.Height / 2);
+                background.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width, flowPanel.Top + top_tip_back.Height / 2);
                 background.Width = 7;
                 background.Height = flowPanel.Height - bottom_tip_back.Height;
                 // -----------------
@@ -55,16 +53,23 @@ namespace Upgrade.Classes
                 // -----------------
                 top_tip_scroll.Image = Properties.Resources.tip_scroll;
                 top_tip_scroll.SizeMode = PictureBoxSizeMode.AutoSize;
-                top_tip_scroll.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width + margin, flowPanel.Top);
+                top_tip_scroll.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width, flowPanel.Top);
 
                 scroller.Image = Properties.Resources.scroller;
                 scroller.SizeMode = PictureBoxSizeMode.StretchImage;
                 scroller.BackColor = Color.FromArgb(189, 189, 189);
-                scroller.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width + margin, flowPanel.Top + top_tip_scroll.Height / 2);
+                scroller.Location = new System.Drawing.Point(flowPanel.Left + flowPanel.Width, flowPanel.Top + top_tip_scroll.Height / 2);
                 scroller.Width = 7;
 
-                Refresh();
-                
+                if (panel.AccessibleName == "tasks")
+                {
+                    Refresh(Design.heightContentTasks);
+                } 
+                else if (panel.AccessibleName == "notes")
+                {
+                    Refresh(Design.heightContentNotes);
+                }
+
                 scroller.Cursor = Cursors.Hand;
                 scroller.MouseUp += Scroller_MouseUp;
                 scroller.MouseDown += Scroller_MouseDown;
@@ -89,31 +94,40 @@ namespace Upgrade.Classes
             }
         }
 
-        public void Refresh() 
+        public void Refresh(int heightContent)
         {
             panel.VerticalScroll.Value = 0;
             value = 0;
-            
-            scroller.Height = panel.Height - top_tip_scroll.Height;
-            // вычисление множителя и длины скроллера
-            if (panel.VerticalScroll.Maximum <= scroller.Height)
-            {
-                multiplier = 1;
-                scroller.Height = scroller.Height - (panel.VerticalScroll.Maximum - scroller.Height);
-            }
-            else
-            {
-                multiplier = 2;
-                scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - scroller.Height) / 2);
-            }
 
-            // установка верхнего положения скроллера
-            top_tip_scroll.Location = new System.Drawing.Point(panel.Left + panel.Width + margin, panel.Top);
-            scroller.Location = new System.Drawing.Point(panel.Left + panel.Width + margin, panel.Top + top_tip_scroll.Height / 2);
-            bottom_tip_scroll.Location = new System.Drawing.Point(scroller.Left, scroller.Top + scroller.Height - bottom_tip_scroll.Height / 2);
+            if (heightContent >= panel.Height)
+            {
+                scroller.Height = panel.Height - top_tip_scroll.Height;
+                // вычисление множителя и длины скроллера
+                if (panel.VerticalScroll.Maximum <= scroller.Height)
+                {
+                    multiplier = 1;
+                    scroller.Height = scroller.Height - (panel.VerticalScroll.Maximum - scroller.Height);
+                }
+                else
+                {
+                    multiplier = 2;
+                    scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - scroller.Height) / 2);
+                }
+
+                // установка верхнего положения скроллера
+                top_tip_scroll.Location = new System.Drawing.Point(panel.Left + panel.Width, panel.Top);
+                scroller.Location = new System.Drawing.Point(panel.Left + panel.Width, panel.Top + top_tip_scroll.Height / 2);
+                bottom_tip_scroll.Location = new System.Drawing.Point(scroller.Left, scroller.Top + scroller.Height - bottom_tip_scroll.Height / 2);
+
+                Show();
+            }
+            else 
+            {
+                Hide();
+            }
         }
 
-        private void Hide() 
+        private void Hide()
         {
             background.Visible = false;
             scroller.Visible = false;
@@ -121,6 +135,15 @@ namespace Upgrade.Classes
             bottom_tip_back.Visible = false;
             top_tip_scroll.Visible = false;
             bottom_tip_scroll.Visible = false;
+        }
+        private void Show()
+        {
+            background.Visible = true;
+            scroller.Visible = true;
+            top_tip_back.Visible = true;
+            bottom_tip_back.Visible = true;
+            top_tip_scroll.Visible = true;
+            bottom_tip_scroll.Visible = true;
         }
 
         private void Scroller_MouseMove(object sender, MouseEventArgs e)
