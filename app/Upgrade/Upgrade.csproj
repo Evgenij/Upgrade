@@ -127,18 +127,19 @@
     <Compile Include="Classes\Blocks\NoteBlock.cs" />
     <Compile Include="Classes\Blocks\SubTaskBlock.cs" />
     <Compile Include="Classes\Blocks\TaskBlock.cs" />
-    <Compile Include="Classes\DBService.cs" />
-    <Compile Include="Classes\Design.cs" />
-    <Compile Include="Classes\Enums.cs" />
-    <Compile Include="Classes\GlobalData.cs" />
-    <Compile Include="Classes\IniManager.cs" />
+    <Compile Include="Classes\Database\DBService.cs" />
+    <Compile Include="Classes\GeneralClasses\Design.cs" />
+    <Compile Include="Classes\GeneralClasses\Enums.cs" />
+    <Compile Include="Classes\Components\Filter.cs" />
+    <Compile Include="Classes\GeneralClasses\GlobalData.cs" />
+    <Compile Include="Classes\GeneralClasses\IniManager.cs" />
     <Compile Include="Classes\MailSender.cs" />
-    <Compile Include="Classes\Scroller.cs" />
-    <Compile Include="Classes\ServiceData.cs" />
-    <Compile Include="Classes\User.cs" />
-    <Compile Include="Classes\WeeklyStatistic.cs" />
+    <Compile Include="Classes\Components\Scroller.cs" />
+    <Compile Include="Classes\Database\ServiceData.cs" />
+    <Compile Include="Classes\Database\User.cs" />
+    <Compile Include="Classes\Components\WeeklyStatistic.cs" />
     <Compile Include="Classes\WindowManager.cs" />
-    <Compile Include="Classes\UIComboBox.cs" />
+    <Compile Include="Classes\Components\UIComboBox.cs" />
     <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -389,6 +390,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_filter_added.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_filter_none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter_added.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panel_filter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

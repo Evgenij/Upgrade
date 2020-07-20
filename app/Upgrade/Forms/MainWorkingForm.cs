@@ -30,6 +30,7 @@ namespace Upgrade.Classes
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
         UIComboBox[] uiComboBox = new UIComboBox[2];
+        Filter filter;
         Timer timerTime;
 
         public MainWorkingForm()
@@ -99,6 +100,7 @@ namespace Upgrade.Classes
 
             uiComboBox[1] = new UIComboBox(tab_profile, panel_period, "status", labelsStatus, null, null);
             uiComboBox[0] = new UIComboBox(tab_profile, panel_status_task, "period", labelsPeriod, label_today, uiComboBox[1].GetPanel());
+            
 
             WindowManager.SetFlowPanelTask(flowTasks);
             WindowManager.SetFlowPanelNote(flowNotes);
@@ -109,6 +111,7 @@ namespace Upgrade.Classes
 
             GlobalData.scroller_task = new Scroller(tab_profile, flowTasks, Design.heightContentTasks);
             GlobalData.scroller_note = new Scroller(tab_profile, flowNotes, Design.heightContentNotes);
+            filter = new Filter(tab_profile, panel_filter);
 
             timerTime = new Timer();
             timerTime.Interval = 1000;
@@ -158,7 +161,7 @@ namespace Upgrade.Classes
 
         private void flowTasks_ControlRemoved(object sender, ControlEventArgs e)
         {
-            GlobalData.scroller_task.Refresh(Design.heightContentNotes);
+            GlobalData.scroller_task.Refresh(Design.heightContentTasks);
         }
 
         private void exit_from_profile_MouseHover(object sender, EventArgs e)

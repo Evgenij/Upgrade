@@ -383,6 +383,36 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap filter_added {
+            get {
+                object obj = ResourceManager.GetObject("filter_added", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap filter_off {
+            get {
+                object obj = ResourceManager.GetObject("filter_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap filter_on {
+            get {
+                object obj = ResourceManager.GetObject("filter_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_profile {
             get {
                 object obj = ResourceManager.GetObject("icon_profile", resourceCulture);
@@ -466,6 +496,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap note_box_top {
             get {
                 object obj = ResourceManager.GetObject("note_box_top", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap panel_filter {
+            get {
+                object obj = ResourceManager.GetObject("panel_filter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
