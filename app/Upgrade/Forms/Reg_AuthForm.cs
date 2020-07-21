@@ -51,10 +51,10 @@ namespace Upgrade
                                               Convert.ToInt32(INIManager.Read("Design", "Green")),
                                               Convert.ToInt32(INIManager.Read("Design", "blue")));
 
-            Design.mainColorOpacity = Color.FromArgb(10,
-                                                     Convert.ToInt32(INIManager.Read("Design", "Red")),
-                                                     Convert.ToInt32(INIManager.Read("Design", "Green")),
-                                                     Convert.ToInt32(INIManager.Read("Design", "blue")));
+            Design.mainColorOpacity = Color.FromArgb(40,
+                                                     Design.mainColor.R,
+                                                     Design.mainColor.G,
+                                                     Design.mainColor.B);
 
             login_auth.BackColor = Design.backColor;
             pass_auth.BackColor = Design.backColor;
@@ -73,35 +73,21 @@ namespace Upgrade
             authorization.StrokeColor = Design.mainColor;
             authorization.ForeColor = Design.mainColor;
 
-            authorization.Active1 = Color.FromArgb(10,
-                Convert.ToInt32(INIManager.Read("Design", "Red")),
-                Convert.ToInt32(INIManager.Read("Design", "Green")),
-                Convert.ToInt32(INIManager.Read("Design", "Blue")));
-
-            authorization.Active2 = Color.FromArgb(10,
-                Convert.ToInt32(INIManager.Read("Design", "Red")),
-                Convert.ToInt32(INIManager.Read("Design", "Green")),
-                Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            authorization.Active1 = Design.mainColorOpacity;
+            authorization.Active2 = Design.mainColorOpacity;
 
             // стилизация кнопки регистрации
             registration.StrokeColor = Design.mainColor;
             registration.ForeColor = Design.mainColor;
 
-            registration.Active1 = Color.FromArgb(10,
-                Convert.ToInt32(INIManager.Read("Design", "Red")),
-                Convert.ToInt32(INIManager.Read("Design", "Green")),
-                Convert.ToInt32(INIManager.Read("Design", "Blue")));
-
-            registration.Active2 = Color.FromArgb(10,
-                Convert.ToInt32(INIManager.Read("Design", "Red")),
-                Convert.ToInt32(INIManager.Read("Design", "Green")),
-                Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            registration.Active1 = Design.mainColorOpacity;
+            registration.Active2 = Design.mainColorOpacity;
 
             // стилизация кнопки подтверждения кода
             accept_code_reg.StrokeColor = Design.mainColor;
             accept_code_reg.ForeColor = Design.mainColor;
-            accept_code_reg.Active1 = Design.mainColor;
-            accept_code_reg.Active2 = Design.mainColor;
+            accept_code_reg.Active1 = Design.mainColorOpacity;
+            accept_code_reg.Active2 = Design.mainColorOpacity;
 
             // стилизация элементов формы
             panel_chart.BackColor = Design.mainColor;
@@ -119,7 +105,7 @@ namespace Upgrade
 
         private void back_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(panel_reg, Design.Direction.Horizontal, 0, 370);
+            Design.MovePanel(panel_reg, Enums.Direction.Horizontal, 0, 370);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -170,7 +156,7 @@ namespace Upgrade
 
         private void label8_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(panel_reg, Design.Direction.Horizontal, 370, 0);
+            Design.MovePanel(panel_reg, Enums.Direction.Horizontal, 370, 0);
         }
 
         private void remember_Click(object sender, EventArgs e)
@@ -251,7 +237,7 @@ namespace Upgrade
                                 "Эти данные уже существуют.\nИспользовать эти данные для входа?\n",
                                 "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            Design.MovePanel(panel_reg, Design.Direction.Horizontal, 0, 370);
+                            Design.MovePanel(panel_reg, Enums.Direction.Horizontal, 0, 370);
                             login_auth.Text = login_reg.Text;
                             login_auth.Text = pass_reg.Text;
                         }

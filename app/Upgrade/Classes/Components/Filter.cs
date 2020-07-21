@@ -19,8 +19,10 @@ namespace Upgrade.Classes
         private List<Direction> directions = new List<Direction>();
         private List<Target> targets = new List<Target>();
         private Enums.TypeAction typeAction;
-        private PictureBox buttonPrevDir, buttonNextDir;
-        private PictureBox buttonPrevTarget, buttonNextTarget;
+        private PictureBox[] buttonsPrev = new PictureBox[2];
+        private PictureBox[] buttonsNext = new PictureBox[2];
+        private static AltoControls.AltoButton button;
+        private int indexDir = 0, indexTar = 0;
 
         struct Direction 
         {
@@ -33,6 +35,11 @@ namespace Upgrade.Classes
                 this.name = name;
             }
 
+            public int GetId()
+            {
+                return id_direction;
+            }
+
             public string GetName() 
             {
                 return name;
@@ -41,13 +48,18 @@ namespace Upgrade.Classes
 
         struct Target
         {
-            int id_direction;
+            int id_target;
             string name;
 
             public Target(int id, string name)
             {
-                this.id_direction = id;
+                this.id_target = id;
                 this.name = name;
+            }
+
+            public int GetId()
+            {
+                return id_target;
             }
 
             public string GetName()
@@ -60,6 +72,7 @@ namespace Upgrade.Classes
         {
             pictureButton = new PictureBox();
             box = new PictureBox();
+            button = new AltoControls.AltoButton();
 
             panelMain = panel;
 
@@ -87,11 +100,41 @@ namespace Upgrade.Classes
             {
                 labels[i] = new Label();
                 labels[i].Width = 195;
-                labels[i].Font = GlobalData.GetFont(Enums.TypeFont.Standart, 14);
+                labels[i].Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
                 labels[i].BackColor = Color.Transparent;
-                labels[i].ForeColor = Color.Gray;
-                labels[i].Left = 33;
+                labels[i].ForeColor = Color.DimGray;
+                labels[i].Left = 35;
                 labels[i].Top = (64 * i) + 49;
+            }
+
+            for (int i = 0; i < buttonsPrev.Length; i++)
+            {
+                buttonsPrev[i] = new PictureBox();
+                buttonsPrev[i].AccessibleName = "index_" + (i+1).ToString();
+                buttonsPrev[i].Image = Properties.Resources.prev_off;
+                buttonsPrev[i].SizeMode = PictureBoxSizeMode.AutoSize;
+                buttonsPrev[i].BackColor = Color.Transparent;
+                buttonsPrev[i].Left = labels[i].Left + labels[i].Width + 17;
+                buttonsPrev[i].Top = labels[i].Top + (2 * i) - 2;
+                buttonsPrev[i].Cursor = Cursors.Hand;
+                buttonsPrev[i].MouseHover += ButtonPrev_MouseHover;
+                buttonsPrev[i].MouseLeave += ButtonPrev_MouseLeave;
+                buttonsPrev[i].Click += ButtonPrev_Click;
+            }
+
+            for (int i = 0; i < buttonsNext.Length; i++)
+            {
+                buttonsNext[i] = new PictureBox();
+                buttonsNext[i].AccessibleName = "index_" + (i + 1).ToString();
+                buttonsNext[i].Image = Properties.Resources.next_off;
+                buttonsNext[i].SizeMode = PictureBoxSizeMode.AutoSize;
+                buttonsNext[i].BackColor = Color.Transparent;
+                buttonsNext[i].Left = buttonsPrev[i].Left + buttonsPrev[i].Width;
+                buttonsNext[i].Top = buttonsPrev[i].Top;
+                buttonsNext[i].Cursor = Cursors.Hand;
+                buttonsNext[i].MouseHover += ButtonNext_MouseHover;
+                buttonsNext[i].MouseLeave += ButtonNext_MouseLeave;
+                buttonsNext[i].Click += ButtonNext_Click;
             }
 
             ServiceData.commandText = string.Format("SELECT direction.id_direct, direction.name FROM direction " +
@@ -112,31 +155,157 @@ namespace Upgrade.Classes
             }
             targets.Add(new Target(-1, "нет цели"));
 
-
-            //ServiceData.commandText = string.Format("SELECT target.id_target, target.name FROM target " +
-            //    "INNER JOIN direction ON direction.id_direct = target.id_direct " +
-            //    "WHERE direction.id_direct = {0}", User.user_id);
-
-            //ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-
-            //ServiceData.reader = ServiceData.command.ExecuteReader();
-            //if (ServiceData.reader.HasRows)
-            //{
-            //    while (ServiceData.reader.Read())
-            //    {
-            //        targets.Add(new Target(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
-            //    }
-            //}
+            button.Top = box.Top + 57;
+            button.Left = 163;
+            button.Inactive1 = System.Drawing.Color.Transparent;
+            button.Inactive2 = System.Drawing.Color.Transparent;
+            button.Active1 = Design.mainColorOpacity;
+            button.Active2 = Design.mainColorOpacity;
+            button.Stroke = true;
+            button.StrokeColor = Design.mainColor;
+            button.ForeColor = Design.mainColor;
+            button.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
+            button.Text = "применить";
+            button.Radius = 17;
+            button.Width = 115;
+            button.Height = 35;
+            button.Cursor = Cursors.Hand;
+            button.Click += Button_Click;
 
             labels[0].Text = directions.ElementAt(0).GetName();
+            labels[1].Text = targets.ElementAt(0).GetName();
 
             box.Controls.Add(labels[0]);
             box.Controls.Add(labels[1]);
+            box.Controls.Add(buttonsPrev[0]);
+            box.Controls.Add(buttonsPrev[1]);
+            box.Controls.Add(buttonsNext[0]);
+            box.Controls.Add(buttonsNext[1]);
+            box.Controls.Add(button);
             tabPage.Controls.Add(box);
             panel.Controls.Add(pictureButton);
 
             box.BringToFront();
             this.typeAction = Enums.TypeAction.hide;
+        }
+
+        private async void Button_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("direct: " + WindowManager.id_direct.ToString() + " target: " + WindowManager.id_target.ToString());
+            pictureButton.Image = Properties.Resources.filter_added;
+            Design.RefreshPanel(WindowManager.flowPanelTasks);
+            await WindowManager.SetTaskBlock();
+            GlobalData.scroller_task.Refresh(Design.heightContentTasks);
+        }
+
+        private void ButtonNext_Click(object sender, EventArgs e)
+        {
+            if (((PictureBox)sender).AccessibleName == "index_1")
+            {
+                if (indexDir < (directions.Count - 1) && indexDir >= 0)
+                {
+                    indexDir++;
+                    labels[0].Text = directions.ElementAt(indexDir).GetName();
+                    WindowManager.id_direct = directions.ElementAt(indexDir).GetId();
+
+                    ServiceData.commandText = string.Format("SELECT target.id_target, target.name FROM target " +
+                        "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                        "WHERE direction.id_direct = {0}", directions.ElementAt(indexDir).GetId());
+
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                    ServiceData.reader = ServiceData.command.ExecuteReader();
+                    if (ServiceData.reader.HasRows)
+                    {
+                        targets.RemoveAt(0);
+                        while (ServiceData.reader.Read())
+                        {
+                            targets.Add(new Target(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                        }
+                    }
+                    else
+                    {
+                        targets.Clear();
+                        targets.Add(new Target(-1, "нет цели"));
+                        indexTar = 0;
+                    }
+                    labels[1].Text = targets.ElementAt(0).GetName();
+                }
+            }
+            else if (((PictureBox)sender).AccessibleName == "index_2")
+            {
+                if (indexTar < (targets.Count - 1) && indexTar >= 0)
+                {
+                    indexTar++;
+                    labels[1].Text = targets.ElementAt(indexTar).GetName();
+                    WindowManager.id_target = directions.ElementAt(indexTar).GetId();
+                }
+            }
+        }
+
+        private void ButtonPrev_Click(object sender, EventArgs e)
+        {
+            if (((PictureBox)sender).AccessibleName == "index_1")
+            {
+                if (indexDir >= 1)
+                {
+                    indexDir--;
+                    labels[0].Text = directions.ElementAt(indexDir).GetName();
+                    WindowManager.id_direct = directions.ElementAt(indexDir).GetId();
+
+                    ServiceData.commandText = string.Format("SELECT target.id_target, target.name FROM target " +
+                        "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                        "WHERE direction.id_direct = {0}", directions.ElementAt(indexDir).GetId());
+
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                    ServiceData.reader = ServiceData.command.ExecuteReader();
+                    if (ServiceData.reader.HasRows)
+                    {
+                        targets.RemoveAt(0);
+                        while (ServiceData.reader.Read())
+                        {
+                            targets.Add(new Target(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                        }
+                    }
+                    else
+                    {
+                        targets.Clear();
+                        targets.Add(new Target(-1, "нет цели"));
+                        indexTar = 0;
+                    }
+                    labels[1].Text = targets.ElementAt(0).GetName();
+                }
+            }
+            else if (((PictureBox)sender).AccessibleName == "index_2")
+            {
+                if (indexTar >= 1)
+                {
+                    indexTar--;
+                    labels[1].Text = targets.ElementAt(indexTar).GetName();
+                    WindowManager.id_target = directions.ElementAt(indexTar).GetId();
+                }
+            }
+        }
+
+        private void ButtonNext_MouseLeave(object sender, EventArgs e)
+        {
+            ((PictureBox)sender).Image = Properties.Resources.next_off;
+        }
+
+        private void ButtonNext_MouseHover(object sender, EventArgs e)
+        {
+            ((PictureBox)sender).Image = Properties.Resources.next_on;
+        }
+
+        private void ButtonPrev_MouseLeave(object sender, EventArgs e)
+        {
+            ((PictureBox)sender).Image = Properties.Resources.prev_off;
+        }
+
+        private void ButtonPrev_MouseHover(object sender, EventArgs e)
+        {
+            ((PictureBox)sender).Image = Properties.Resources.prev_on;
         }
 
         private void PictureButton_Click(object sender, EventArgs e)

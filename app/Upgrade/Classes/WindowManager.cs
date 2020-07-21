@@ -24,6 +24,7 @@ namespace Upgrade.Classes
         }
         public static Enums.Period period;
         public static Enums.StatusTask status;
+        public static int id_direct, id_target;
 
         public static FlowLayoutPanel flowPanelTasks;
         public static FlowLayoutPanel flowPanelNotes;
@@ -53,7 +54,7 @@ namespace Upgrade.Classes
         {
             Design.heightContentTasks = 0;
 
-            string[] sql_command = new string[5]; 
+            string[] sql_command = new string[6]; 
             string[] date = new string[7];
 
             sql_command[0] = "SELECT " +
@@ -70,6 +71,24 @@ namespace Upgrade.Classes
             sql_command[2] = "AND task.status = 1 AND task.failed = 0 ";
             // проваленные задачи
             sql_command[3] = "AND task.failed = 1 ";
+
+            if (id_direct != 0)
+            {
+                sql_command[4] = string.Format("AND direction.id_direct = {0} ", id_direct);
+            }
+            else 
+            {
+                sql_command[4] = "";
+            }
+            if (id_target != 0) 
+            {
+                sql_command[5] = string.Format("AND target.id_target = {0} ", id_target);
+            }
+            else
+            {
+                sql_command[5] = "";
+            }
+
 
             if (period == Enums.Period.LastWeek)
             {
@@ -96,7 +115,6 @@ namespace Upgrade.Classes
             }
 
 
-
             if (period == Enums.Period.Today || period == Enums.Period.Tomorrow || period == Enums.Period.Yesterday)
             {
                 if (status == Enums.StatusTask.Empty)
@@ -104,7 +122,8 @@ namespace Upgrade.Classes
                     for (int i = 1; i < 4; i++)
                     {
                         //MessageBox.Show(sql_command[0] + sql_command[i]);
-                        ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] + "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
+                        ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] + sql_command[4] + sql_command[5] + 
+                                                                "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
                                                                 User.user_id,
                                                                 date.First(),
                                                                 DateTime.Now.ToString("MM"),
@@ -156,11 +175,12 @@ namespace Upgrade.Classes
                 }
                 else if (status == Enums.StatusTask.Done)
                 {
-                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[2] + "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
-                                                               User.user_id,
-                                                               date.First(),
-                                                               DateTime.Now.ToString("MM"),
-                                                               DateTime.Now.ToString("yyyy"));
+                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[2] + sql_command[4] + sql_command[5] + 
+                                                            "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
+                                                            User.user_id,
+                                                            date.First(),
+                                                            DateTime.Now.ToString("MM"),
+                                                            DateTime.Now.ToString("yyyy"));
 
                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -194,11 +214,12 @@ namespace Upgrade.Classes
                 }
                 else if (status == Enums.StatusTask.Failed)
                 {
-                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[3] + "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
-                                                               User.user_id,
-                                                               date.First(),
-                                                               DateTime.Now.ToString("MM"),
-                                                               DateTime.Now.ToString("yyyy"));
+                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[3] + sql_command[4] + sql_command[5] + 
+                                                            "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
+                                                            User.user_id,
+                                                            date.First(),
+                                                            DateTime.Now.ToString("MM"),
+                                                            DateTime.Now.ToString("yyyy"));
 
                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -237,7 +258,7 @@ namespace Upgrade.Classes
                 {
                     for (int i = 1; i < 4; i++)
                     {
-                        ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] +
+                        ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] + sql_command[4] + sql_command[5] +
                                                                 "AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ORDER BY task.date",
                                                                 User.user_id,
                                                                 date.First(), date.Last(),
@@ -290,7 +311,7 @@ namespace Upgrade.Classes
                 }
                 else if (status == Enums.StatusTask.Done)
                 {
-                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[2] +
+                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[2] + sql_command[4] + sql_command[5] +
                                                             "AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ORDER BY task.date",
                                                             User.user_id,
                                                             date.First(), date.Last(),
@@ -329,7 +350,7 @@ namespace Upgrade.Classes
                 }
                 else if (status == Enums.StatusTask.Failed)
                 {
-                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[3] +
+                    ServiceData.commandText = string.Format(sql_command[0] + sql_command[3] + sql_command[4] + sql_command[5] +
                                                             "AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ORDER BY task.date",
                                                             User.user_id,
                                                             date.First(), date.Last(),

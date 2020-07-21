@@ -126,35 +126,35 @@ namespace Upgrade.Classes
 
         private void profile_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 100);
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 100);
             tabs.SelectedTab = tab_profile;
             active_item.Image = Properties.Resources.profile;
         }
 
         private void targets_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 160);
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 160);
             tabs.SelectedTab = tab_targets;
             active_item.Image = Properties.Resources.tardets;
         }
 
         private void stat_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 220);
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 220);
             tabs.SelectedTab = tab_stat;
             active_item.Image = Properties.Resources.stat;
         }
 
         private void schedule_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 280);
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 280);
             tabs.SelectedTab = tab_sched;
             active_item.Image = Properties.Resources.schedule;
         }
 
         private void settings_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 340);
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 340);
             tabs.SelectedTab = tab_sett;
             active_item.Image = Properties.Resources.settings;
         }
@@ -176,7 +176,7 @@ namespace Upgrade.Classes
 
         private void label_my_passwords_Click(object sender, EventArgs e)
         {
-            Design.MovePanel(active_item, Design.Direction.Vertical, active_item.Top, 280);
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 280);
             tabs.SelectedTab = tab_sched;
             active_item.Image = Properties.Resources.schedule;
         }

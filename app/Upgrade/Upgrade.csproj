@@ -407,6 +407,18 @@
     <None Include="Resources\filter_on.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\next_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prev_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prev_on.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\panel_filter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

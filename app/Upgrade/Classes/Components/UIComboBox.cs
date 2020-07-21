@@ -225,7 +225,6 @@ namespace Upgrade.Forms
 
             Design.RefreshPanel(WindowManager.flowPanelTasks);
             await WindowManager.SetTaskBlock();
-            //MessageBox.Show(Design.heightContentTasks.ToString());
             GlobalData.scroller_task.Refresh(Design.heightContentTasks);
 
             arrow.Left = panelMain.Width - arrow.Width;

@@ -10,12 +10,6 @@ namespace Upgrade.Classes
 {
     class Design
     {
-        public enum Direction
-        {
-            Horizontal,
-            Vertical
-        }
-
         private static Timer timer;
         private static Point p;
         public static Color backColor = Color.FromArgb(248, 252, 255);
@@ -30,10 +24,10 @@ namespace Upgrade.Classes
         private static int start;
         private static int finish;
 
-        private static Direction direction;
+        private static Enums.Direction direction;
         private static WindowManager.TypeBlock typeBlock;
 
-        static public void MovePanel(Control movesPanel, Direction dir, int s, int f) 
+        static public void MovePanel(Control movesPanel, Enums.Direction dir, int s, int f) 
         {
             timer = new Timer();
             timer.Enabled = false;
@@ -135,7 +129,7 @@ namespace Upgrade.Classes
 
         private static void Timer_TickMove(object sender, EventArgs e)
         {
-            if (direction == Direction.Horizontal)
+            if (direction == Enums.Direction.Horizontal)
             {
                 if (start > finish)
                 {
