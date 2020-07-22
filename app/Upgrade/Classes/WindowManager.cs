@@ -96,6 +96,10 @@ namespace Upgrade.Classes
                 {
                     date[i] = WeeklyStatistic.GetDaysLastWeek().ElementAt(6-i);
                 }
+                //for (int i = 0; i < date.Length; i++) 
+                //{
+                //    MessageBox.Show(date[i]);
+                //}
             }
             else if (period == Enums.Period.Yesterday)
             {
@@ -112,6 +116,10 @@ namespace Upgrade.Classes
             else if (period == Enums.Period.CurrentWeek)
             {
                 date = WeeklyStatistic.GetDaysCurrentWeek();
+                //for (int i = 0; i < date.Length; i++)
+                //{
+                //    MessageBox.Show(date[i]);
+                //}
             }
 
 

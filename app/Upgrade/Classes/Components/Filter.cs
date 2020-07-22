@@ -23,6 +23,7 @@ namespace Upgrade.Classes
         private PictureBox[] buttonsNext = new PictureBox[2];
         private static AltoControls.AltoButton button;
         private int indexDir = 0, indexTar = 0;
+        private Timer timer;
 
         struct Direction 
         {
@@ -73,9 +74,11 @@ namespace Upgrade.Classes
             pictureButton = new PictureBox();
             box = new PictureBox();
             button = new AltoControls.AltoButton();
+            timer = new Timer();
 
             panelMain = panel;
 
+            pictureButton.AccessibleName = "empty";
             pictureButton.Image = Properties.Resources.filter_off;
             pictureButton.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureButton.Height = 22;
@@ -87,14 +90,14 @@ namespace Upgrade.Classes
             pictureButton.MouseLeave += PictureButton_MouseLeave;
             pictureButton.Click += PictureButton_Click;
 
-            box.Visible = false;
+            box.Visible = true;
             box.AccessibleName = "hide";
             box.Left = panel.Left - 20;
             box.Top = panel.Top + panel.Height + 10;
             box.Image = Properties.Resources.panel_filter;
             box.SizeMode = PictureBoxSizeMode.Normal;
             box.Width = 300;
-            box.Height = 220;
+            box.Height = 0;
 
             for (int i = 0; i < labels.Length; i++) 
             {
@@ -186,13 +189,56 @@ namespace Upgrade.Classes
             panel.Controls.Add(pictureButton);
 
             box.BringToFront();
-            this.typeAction = Enums.TypeAction.hide;
+
+            timer.Interval = 1;
+            timer.Enabled = false;
+            timer.Tick += Timer_Tick;
+            typeAction = Enums.TypeAction.hide;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (typeAction == Enums.TypeAction.show)
+            {
+                if (box.Height != 220)
+                {
+                    box.Height += 10;
+                }
+                else
+                {
+                    timer.Stop();
+                }
+            }
+            else if (typeAction == Enums.TypeAction.hide)
+            {
+                if (box.Height != 0)
+                {
+                    box.Height -= 10;
+                }
+                else
+                {
+                    timer.Stop();
+                }
+            }
         }
 
         private async void Button_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("direct: " + WindowManager.id_direct.ToString() + " target: " + WindowManager.id_target.ToString());
-            pictureButton.Image = Properties.Resources.filter_added;
+            if (indexDir != 0)
+            {
+                pictureButton.AccessibleName = "added";
+                pictureButton.Image = Properties.Resources.filter_added;
+                WindowManager.id_direct = directions.ElementAt(indexDir).GetId();
+                WindowManager.id_target = targets.ElementAt(indexTar).GetId();
+            }
+            else 
+            {
+                pictureButton.AccessibleName = "empty";
+                pictureButton.Image = Properties.Resources.filter_off;
+                WindowManager.id_direct = 0;
+                WindowManager.id_target = 0;
+            }
+
             Design.RefreshPanel(WindowManager.flowPanelTasks);
             await WindowManager.SetTaskBlock();
             GlobalData.scroller_task.Refresh(Design.heightContentTasks);
@@ -206,7 +252,6 @@ namespace Upgrade.Classes
                 {
                     indexDir++;
                     labels[0].Text = directions.ElementAt(indexDir).GetName();
-                    WindowManager.id_direct = directions.ElementAt(indexDir).GetId();
 
                     ServiceData.commandText = string.Format("SELECT target.id_target, target.name FROM target " +
                         "INNER JOIN direction ON direction.id_direct = target.id_direct " +
@@ -222,6 +267,7 @@ namespace Upgrade.Classes
                         {
                             targets.Add(new Target(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                         }
+                        WindowManager.id_target = targets.ElementAt(indexTar).GetId();
                     }
                     else
                     {
@@ -238,7 +284,6 @@ namespace Upgrade.Classes
                 {
                     indexTar++;
                     labels[1].Text = targets.ElementAt(indexTar).GetName();
-                    WindowManager.id_target = directions.ElementAt(indexTar).GetId();
                 }
             }
         }
@@ -251,7 +296,6 @@ namespace Upgrade.Classes
                 {
                     indexDir--;
                     labels[0].Text = directions.ElementAt(indexDir).GetName();
-                    WindowManager.id_direct = directions.ElementAt(indexDir).GetId();
 
                     ServiceData.commandText = string.Format("SELECT target.id_target, target.name FROM target " +
                         "INNER JOIN direction ON direction.id_direct = target.id_direct " +
@@ -283,7 +327,6 @@ namespace Upgrade.Classes
                 {
                     indexTar--;
                     labels[1].Text = targets.ElementAt(indexTar).GetName();
-                    WindowManager.id_target = directions.ElementAt(indexTar).GetId();
                 }
             }
         }
@@ -310,29 +353,34 @@ namespace Upgrade.Classes
 
         private void PictureButton_Click(object sender, EventArgs e)
         {
+            timer.Start();
             box.Left = panelMain.Left - 20;
             if (box.AccessibleName == "hide")
             {
                 typeAction = Enums.TypeAction.show;
                 box.AccessibleName = "show";
-                box.Visible = true;
             }
             else
             {
                 typeAction = Enums.TypeAction.hide;
                 box.AccessibleName = "hide";
-                box.Visible = false;
             }
         }
 
         private void PictureButton_MouseLeave(object sender, EventArgs e)
         {
-            pictureButton.Image = Properties.Resources.filter_off;
+            if (pictureButton.AccessibleName != "added")
+            {
+                pictureButton.Image = Properties.Resources.filter_off;
+            }
         }
 
         private void PictureButton_MouseHover(object sender, EventArgs e)
         {
-            pictureButton.Image = Properties.Resources.filter_on;
+            if (pictureButton.AccessibleName != "added")
+            {
+                pictureButton.Image = Properties.Resources.filter_on;
+            }
         }
     }
 }

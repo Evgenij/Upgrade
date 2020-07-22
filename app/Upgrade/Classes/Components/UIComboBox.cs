@@ -15,6 +15,7 @@ namespace Upgrade.Forms
 
         private Timer timer;
         private Panel secondPanel;
+        private Panel filterPanel;
         private Panel panelMain;
         private Label textLabel;
         private Label labelPeriod;
@@ -24,7 +25,7 @@ namespace Upgrade.Forms
         private Label[] items;
         private Enums.TypeAction typeAction;
 
-        public UIComboBox(TabPage tabPage, Panel panel, string AccessimbleName, string[] labels, Label label = null, Panel addPanel = null)
+        public UIComboBox(TabPage tabPage, Panel panel, string AccessimbleName, string[] labels, Label label = null, Panel addPanel = null, Panel panelFilter = null)
         {
             panel.AccessibleName = AccessimbleName;
 
@@ -32,6 +33,7 @@ namespace Upgrade.Forms
             labelPeriod = label;
             panelMain = panel;
             secondPanel = addPanel;
+            filterPanel = panelFilter;
             box = new PictureBox();
             arrow = new PictureBox();
             flowPanel = new FlowLayoutPanel();
@@ -231,7 +233,13 @@ namespace Upgrade.Forms
             if (secondPanel != null)
             {
                 secondPanel.Left = panelMain.Left + panelMain.Width + 10;
+                filterPanel.Left = secondPanel.Left + secondPanel.Width + 10;
             }
+            else 
+            {
+                filterPanel.Left = panelMain.Left + panelMain.Width + 10;
+            }
+            
 
             typeAction = Enums.TypeAction.hide;
             box.AccessibleName = "hide";

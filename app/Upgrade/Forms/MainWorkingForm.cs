@@ -98,8 +98,8 @@ namespace Upgrade.Classes
                                       "Выполненные",
                                       "Невыполненные"};
 
-            uiComboBox[1] = new UIComboBox(tab_profile, panel_period, "status", labelsStatus, null, null);
-            uiComboBox[0] = new UIComboBox(tab_profile, panel_status_task, "period", labelsPeriod, label_today, uiComboBox[1].GetPanel());
+            uiComboBox[1] = new UIComboBox(tab_profile, panel_period, "status", labelsStatus, null, null, panel_filter);
+            uiComboBox[0] = new UIComboBox(tab_profile, panel_status_task, "period", labelsPeriod, label_today, uiComboBox[1].GetPanel(), panel_filter);
             
 
             WindowManager.SetFlowPanelTask(flowTasks);

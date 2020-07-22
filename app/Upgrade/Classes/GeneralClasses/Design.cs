@@ -124,6 +124,7 @@ namespace Upgrade.Classes
                 ClearFlowPanel();
 
                 await WindowManager.CreatePanelMainWindow(typeBlock);
+                WeeklyStatistic.Refresh();
             }
         }
 

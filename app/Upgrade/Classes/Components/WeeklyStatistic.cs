@@ -21,6 +21,12 @@ namespace Upgrade.Classes
         private static string[] daysLastWeek;
         private static string[] daysCurrentWeek;
 
+        private static TabPage tabPage;
+        private static PictureBox mainBox;
+        private static TextBox textBoxPerformLastWeek;
+        private static TextBox textBoxPerformCurrentWeek;
+        private static PictureBox face;
+        private static Label labelPeriod;
 
         public static void SetStatistic(TabPage tab, 
                                PictureBox box, 
@@ -29,6 +35,13 @@ namespace Upgrade.Classes
                                PictureBox faceIndicator,
                                Label periodWeek) 
         {
+            tabPage = tab;
+            mainBox = box;
+            textBoxPerformLastWeek = performLastWeek;
+            textBoxPerformCurrentWeek = performCurrentWeek;
+            face = faceIndicator;
+            labelPeriod = periodWeek;
+
             int paddingIndicator = 0;
             int paddingLabel = 0;
             daysLastWeek = GetDaysLastWeek();
@@ -199,6 +212,11 @@ namespace Upgrade.Classes
             }
         }
 
+        public static void Refresh() 
+        {
+            SetStatistic(tabPage, mainBox, textBoxPerformLastWeek, textBoxPerformCurrentWeek, face, labelPeriod);
+        }
+
         private static double CalculatePerformLastWeek() 
         {
             double perform = 0.0;
@@ -326,7 +344,12 @@ namespace Upgrade.Classes
             DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             List<string> days = new List<string>();
 
-            while (date.DayOfWeek == DayOfWeek.Monday)
+            while (date.DayOfWeek != DayOfWeek.Monday)
+            {
+                date = date.AddDays(-1);
+            }
+
+            if (date.DayOfWeek == DayOfWeek.Monday)
             {
                 date = date.AddDays(-1);
             }
