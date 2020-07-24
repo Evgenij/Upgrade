@@ -1,4 +1,5 @@
-﻿using Nevron.Nov.Graphics;
+﻿using ComponentFactory.Krypton.Toolkit;
+using Nevron.Nov.Graphics;
 using Nevron.Nov.UI;
 using System;
 using System.Collections;
@@ -10,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Forms;
@@ -31,7 +33,8 @@ namespace Upgrade.Classes
 
         UIComboBox[] uiComboBox = new UIComboBox[2];
         Filter filter;
-        Timer timerTime;
+        private static List<int> failedTasks = new List<int>();
+        System.Windows.Forms.Timer timerTime;
 
         public MainWorkingForm()
         {
@@ -79,6 +82,11 @@ namespace Upgrade.Classes
             {
                 seconds += s;
             }
+            if (s == 30)
+            {
+                InstallFailedTask();
+            }
+
             label_time.Text = hours_minutes;
             label_seconds.Text = seconds;
         }
@@ -113,15 +121,14 @@ namespace Upgrade.Classes
             GlobalData.scroller_note = new Scroller(tab_profile, flowNotes, Design.heightContentNotes);
             filter = new Filter(tab_profile, panel_filter);
 
-            timerTime = new Timer();
+            timerTime = new System.Windows.Forms.Timer();
             timerTime.Interval = 1000;
             timerTime.Tick += TimerTime_Tick;
             timerTime.Start();
-        }
 
-        public void SetPeriod(int index) 
-        {
-            WindowManager.period = (Enums.Period)index;
+            // установка и запуск таймера в новом потоке 
+            TimerCallback funcCallback = new TimerCallback(Callback);
+            System.Threading.Timer timer = new System.Threading.Timer(funcCallback, 0, 0, 60000);  // 1 минута
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -316,6 +323,82 @@ namespace Upgrade.Classes
             user_photo.Image = User.user_photo.Image;
 
             block_for_focus.Focus();
+        }
+
+        public static void Callback(object obj)
+        {
+            ServiceData.commandText = string.Format("SELECT task.id_task FROM task " +
+                "INNER JOIN target ON target.id_target = task.id_target " +
+                "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                "WHERE user_dir.id_user = {0} AND task.status = 0 AND task.failed = 0 AND task.date = '{1}.{2}.{3}' AND task.time_finish < '{4}:{5}'", 
+                    User.user_id, 
+                    DateTime.Now.ToString("dd"), 
+                    DateTime.Now.ToString("MM"), 
+                    DateTime.Now.ToString("yyyy"),
+                    DateTime.Now.ToString("HH"),
+                    DateTime.Now.ToString("mm"));
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (ServiceData.reader.Read())
+                {
+                    failedTasks.Add(ServiceData.reader.GetInt32(0));
+                }
+            }
+        }
+
+        private static async void InstallFailedTask() 
+        {
+            if (failedTasks.Count != 0)
+            {
+                for (int i = 0; i < failedTasks.Count; i++)
+                {
+                    ServiceData.commandText = string.Format("SELECT task.id_task, direction.name, target.name, task.text FROM task " +
+                       "INNER JOIN target ON target.id_target = task.id_target " +
+                       "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                       "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                       "WHERE task.id_task = {0}", failedTasks[i]);
+
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                    ServiceData.reader = ServiceData.command.ExecuteReader();
+                    if (ServiceData.reader.HasRows)
+                    {
+                        ServiceData.reader.Read();
+                        if (MessageBox.Show("Вышло время выполнения задачи:\n\n" +
+                                            "Направление: " + ServiceData.reader.GetString(1) + "\n" +
+                                            "Цель: " + ServiceData.reader.GetString(2) + "\n" +
+                                            "Задача: " + ServiceData.reader.GetString(3) + "\n\n" +
+                                            "Вы выполнили эту задачу?", "Сообщение",
+                                            MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            string commandText = @"UPDATE task SET failed = 0, status = 1 WHERE id_task = @id_task";
+                            SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
+                            command.Parameters.AddWithValue("@id_task", failedTasks[i]);
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            string commandText = @"UPDATE task SET failed = 1, status = 0 WHERE id_task = @id_task";
+                            SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
+                            command.Parameters.AddWithValue("@id_task", failedTasks[i]);
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                Design.RefreshPanel(WindowManager.flowPanelTasks);
+                await WindowManager.SetTaskBlock();
+                GlobalData.scroller_task.Refresh(Design.heightContentTasks);
+                WeeklyStatistic.Refresh();
+
+                failedTasks.Clear();
+            }
         }
     }
 }
