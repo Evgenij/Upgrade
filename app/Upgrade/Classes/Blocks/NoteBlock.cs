@@ -90,7 +90,7 @@ namespace Upgrade.Classes
                 ServiceData.command.Parameters.AddWithValue("@id_note", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
-                Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Notes);
+                Design.HidePanel(panel, flowPanel);
             }
         }
 

@@ -33,7 +33,7 @@ namespace Upgrade.Classes
 
         UIComboBox[] uiComboBox = new UIComboBox[2];
         Filter filter;
-        private static List<int> failedTasks = new List<int>();
+        private static List<int> idFailedTasks = new List<int>();
         System.Windows.Forms.Timer timerTime;
 
         public MainWorkingForm()
@@ -91,11 +91,29 @@ namespace Upgrade.Classes
             label_seconds.Text = seconds;
         }
 
-        private async void MainWorkingForm_Load(object sender, EventArgs e)
+        private void MainWorkingForm_Load(object sender, EventArgs e)
         {
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
+            // создание компонентов главного пункта меню
+            SetTabProfile();
+
+            // создание компонентов пункта меню с направлениями и целями
+            SetTabDirection_Target();
+
+            timerTime = new System.Windows.Forms.Timer();
+            timerTime.Interval = 1000;
+            timerTime.Tick += TimerTime_Tick;
+            timerTime.Start();
+
+            // установка и запуск таймера в новом потоке 
+            TimerCallback funcCallback = new TimerCallback(Callback);
+            System.Threading.Timer timer = new System.Threading.Timer(funcCallback, 0, 0, 60000);  // 1 минута
+        }
+
+        private async void SetTabProfile() 
+        {
             string[] labelsPeriod = { "Прошлая неделя",
                                       "Вчера",
                                       "Сегодня",
@@ -108,27 +126,24 @@ namespace Upgrade.Classes
 
             uiComboBox[1] = new UIComboBox(tab_profile, panel_period, "status", labelsStatus, null, null, panel_filter);
             uiComboBox[0] = new UIComboBox(tab_profile, panel_status_task, "period", labelsPeriod, label_today, uiComboBox[1].GetPanel(), panel_filter);
-            
 
             WindowManager.SetFlowPanelTask(flowTasks);
             WindowManager.SetFlowPanelNote(flowNotes);
             await WindowManager.SetTaskBlock();
             await WindowManager.SetNoteBlock();
             WeeklyStatistic.SetStatistic(tab_profile, panel_week_stat, performLastWeek, performCurrentWeek, faceIndicator, sublabel_week_stat);
-            Design.SetMarkCurrentDay(day_mark);
 
+            Design.SetMarkCurrentDay(day_mark);
             GlobalData.scroller_task = new Scroller(tab_profile, flowTasks, Design.heightContentTasks);
             GlobalData.scroller_note = new Scroller(tab_profile, flowNotes, Design.heightContentNotes);
             filter = new Filter(tab_profile, panel_filter);
+        }
 
-            timerTime = new System.Windows.Forms.Timer();
-            timerTime.Interval = 1000;
-            timerTime.Tick += TimerTime_Tick;
-            timerTime.Start();
-
-            // установка и запуск таймера в новом потоке 
-            TimerCallback funcCallback = new TimerCallback(Callback);
-            System.Threading.Timer timer = new System.Threading.Timer(funcCallback, 0, 0, 60000);  // 1 минута
+        private async void SetTabDirection_Target()
+        {
+            WindowManager.SetFlowPanelDirect(flowDirect);
+            WindowManager.SetFlowPanelTarget(flowTarget);
+            await WindowManager.SetDirectBlock();
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -224,6 +239,7 @@ namespace Upgrade.Classes
             label_today.ForeColor = Design.mainColor;
             sublabel_note.ForeColor = Design.mainColor;
             sublabel_week_stat.ForeColor = Design.mainColor;
+            sublabel_direct.ForeColor = Design.mainColor;
 
             exit_from_profile.BackColor = Color.FromArgb(234, 235, 240);
 
@@ -267,6 +283,24 @@ namespace Upgrade.Classes
                                                                     Design.mainColorOpacity.G - 5,
                                                                     Design.mainColorOpacity.B - 5);
 
+            SetStyleButtons();
+
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddEllipse(0, 0, 110, 110);
+            Region rgn = new Region(path);
+            user_photo.Region = rgn;
+            user_photo.BackColor = Color.White;
+
+            user_login.Text = User.user_login;
+            achieves.Text = User.user_achieves.ToString();
+            perform.Text = User.user_perform + "%";
+            user_photo.Image = User.user_photo.Image;
+
+            block_for_focus.Focus();
+        }
+
+        private void SetStyleButtons() 
+        {
             addTask.ForeColor = Design.mainColor;
             addTask.Inactive1 = Color.FromArgb(50,
                                                Design.mainColor.R,
@@ -288,6 +322,8 @@ namespace Upgrade.Classes
                                                  Design.mainColor.R,
                                                  Design.mainColor.G,
                                                  Design.mainColor.B);
+            addTask.MouseDown += button_MouseDown;
+            addTask.MouseUp += button_MouseUp;
 
             addNote.ForeColor = Design.mainColor;
             addNote.Inactive1 = Color.FromArgb(50,
@@ -310,19 +346,66 @@ namespace Upgrade.Classes
                                                  Design.mainColor.R,
                                                  Design.mainColor.G,
                                                  Design.mainColor.B);
+            addNote.MouseDown += button_MouseDown;
+            addNote.MouseUp += button_MouseUp;
 
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(0, 0, 110, 110);
-            Region rgn = new Region(path);
-            user_photo.Region = rgn;
-            user_photo.BackColor = Color.White;
+            addDirect.ForeColor = Design.mainColor;
+            addDirect.Inactive1 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirect.Inactive2 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirect.Active1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirect.Active2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirect.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            addDirect.MouseDown += button_MouseDown;
+            addDirect.MouseUp += button_MouseUp;
 
-            user_login.Text = User.user_login;
-            achieves.Text = User.user_achieves.ToString();
-            perform.Text = User.user_perform + "%";
-            user_photo.Image = User.user_photo.Image;
+            addTarget.ForeColor = Design.mainColor;
+            addTarget.Inactive1 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.Inactive2 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.Active1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.Active2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            addTarget.MouseDown += button_MouseDown;
+            addTarget.MouseUp += button_MouseUp;
+        }
 
-            block_for_focus.Focus();
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Design.mainColor;
+        }
+
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Color.White;
         }
 
         public static void Callback(object obj)
@@ -346,22 +429,22 @@ namespace Upgrade.Classes
             {
                 while (ServiceData.reader.Read())
                 {
-                    failedTasks.Add(ServiceData.reader.GetInt32(0));
+                    idFailedTasks.Add(ServiceData.reader.GetInt32(0));
                 }
             }
         }
 
         private static async void InstallFailedTask() 
         {
-            if (failedTasks.Count != 0)
+            if (idFailedTasks.Count != 0)
             {
-                for (int i = 0; i < failedTasks.Count; i++)
+                for (int i = 0; i < idFailedTasks.Count; i++)
                 {
                     ServiceData.commandText = string.Format("SELECT task.id_task, direction.name, target.name, task.text FROM task " +
                        "INNER JOIN target ON target.id_target = task.id_target " +
                        "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                        "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
-                       "WHERE task.id_task = {0}", failedTasks[i]);
+                       "WHERE task.id_task = {0}", idFailedTasks[i]);
 
                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -369,6 +452,9 @@ namespace Upgrade.Classes
                     if (ServiceData.reader.HasRows)
                     {
                         ServiceData.reader.Read();
+                        string commandText;
+                        SQLiteCommand command;
+
                         if (MessageBox.Show("Вышло время выполнения задачи:\n\n" +
                                             "Направление: " + ServiceData.reader.GetString(1) + "\n" +
                                             "Цель: " + ServiceData.reader.GetString(2) + "\n" +
@@ -377,18 +463,16 @@ namespace Upgrade.Classes
                                             MessageBoxButtons.YesNo,
                                             MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            string commandText = @"UPDATE task SET failed = 0, status = 1 WHERE id_task = @id_task";
-                            SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
-                            command.Parameters.AddWithValue("@id_task", failedTasks[i]);
-                            command.ExecuteNonQuery();
+                            commandText = @"UPDATE task SET failed = 0, status = 1 WHERE id_task = @id_task";
                         }
                         else
                         {
-                            string commandText = @"UPDATE task SET failed = 1, status = 0 WHERE id_task = @id_task";
-                            SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
-                            command.Parameters.AddWithValue("@id_task", failedTasks[i]);
-                            command.ExecuteNonQuery();
+                            commandText = @"UPDATE task SET failed = 1, status = 0 WHERE id_task = @id_task";
                         }
+
+                        command = new SQLiteCommand(commandText, ServiceData.connect);
+                        command.Parameters.AddWithValue("@id_task", idFailedTasks[i]);
+                        command.ExecuteNonQuery();
                     }
                 }
 
@@ -397,7 +481,7 @@ namespace Upgrade.Classes
                 GlobalData.scroller_task.Refresh(Design.heightContentTasks);
                 WeeklyStatistic.Refresh();
 
-                failedTasks.Clear();
+                idFailedTasks.Clear();
             }
         }
     }

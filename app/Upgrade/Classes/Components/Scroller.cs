@@ -107,12 +107,12 @@ namespace Upgrade.Classes
                 //    multiplier = 2;
                 //    scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - scroller.Height) / 2);
                 //}
-                if ((panel.VerticalScroll.Maximum / panel.Height) <= 3)
+                if ((heightContent / panel.Height) <= 1)
                 {
-                    multiplier = panel.VerticalScroll.Maximum / panel.Height;
-                    scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - panel.Height) / multiplier);
+                    multiplier = (heightContent / panel.Height) + 1;
+                    scroller.Height = panel.Height - ((heightContent - panel.Height) / 1);
                 }
-                else if ((panel.VerticalScroll.Maximum / panel.Height) >= 4)
+                else if ((panel.VerticalScroll.Maximum / panel.Height) >= 2)
                 {
                     multiplier = (panel.VerticalScroll.Maximum / panel.Height) + 1;
                     scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - panel.Height) / multiplier);

@@ -132,10 +132,29 @@
   <metadata name="targets.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="profile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAYAAAAV1F8QAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAAWBJREFUSEu1lYFxgzAMRRkhI2SEjJARskGzQbJBM0I3aDfoCIySEToC+c/494xj
+        gy+Bf/cPC2R9ScjQgWEYLuKfuDbu4qdFzuHWtrgi1I9rGSuDmGPoocegPLCPD3cirbwVeAgRImQfs+eQ
+        vY61F8F9IhRpu4ZjDDLXcmKQcFWIDAH38kzd4lsU+hnN4VdM/RyPWItCPcFS6B5BQC7Ee2Cv6YRWE7Jd
+        g4XBbOt4BylpEbAQ74Cq8M0ZJljXqhCblw7uB0FaIN+yUPLwS/wucCIimw7klZ/E+fEOuxshf4LWQMz6
+        eMcAHLhSNZBKd9HPU8eUpT5ufdPUzSEf7zO2IbtpvCnXdglke4oBXxeKvk2Q/3tCulIVTiX+J6P1W62D
+        TedIVwu99K07jMtZXKLQ0ng7cVBsHQHSDFMGEUM2WT/5iD4CEyH3dIs/LKIg/GH9u90S46dLC0p2C9cE
+        g6VOdd0DT3DXlp1et0gAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="picture_menu.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="tabs.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="panel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="flowDirect.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="faceIndicator.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -196,37 +215,6 @@
     <value>True</value>
   </metadata>
   <metadata name="hide_border_tabs.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="active_item.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="settings.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="schedule.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="stat.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="targets.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="profile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAYAAAAV1F8QAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAWBJREFUSEu1lYFxgzAMRRkhI2SEjJARskGzQbJBM0I3aDfoCIySEToC+c/494xj
-        gy+Bf/cPC2R9ScjQgWEYLuKfuDbu4qdFzuHWtrgi1I9rGSuDmGPoocegPLCPD3cirbwVeAgRImQfs+eQ
-        vY61F8F9IhRpu4ZjDDLXcmKQcFWIDAH38kzd4lsU+hnN4VdM/RyPWItCPcFS6B5BQC7Ee2Cv6YRWE7Jd
-        g4XBbOt4BylpEbAQ74Cq8M0ZJljXqhCblw7uB0FaIN+yUPLwS/wucCIimw7klZ/E+fEOuxshf4LWQMz6
-        eMcAHLhSNZBKd9HPU8eUpT5ufdPUzSEf7zO2IbtpvCnXdglke4oBXxeKvk2Q/3tCulIVTiX+J6P1W62D
-        TedIVwu99K07jMtZXKLQ0ng7cVBsHQHSDFMGEUM2WT/5iD4CEyH3dIs/LKIg/GH9u90S46dLC0p2C9cE
-        g6VOdd0DT3DXlp1et0gAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="picture_menu.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="user_photo.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

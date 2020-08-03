@@ -30,19 +30,46 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWorkingForm));
             this.panel_menu = new System.Windows.Forms.Panel();
+            this.active_item = new System.Windows.Forms.PictureBox();
+            this.settings = new System.Windows.Forms.PictureBox();
+            this.schedule = new System.Windows.Forms.PictureBox();
+            this.stat = new System.Windows.Forms.PictureBox();
+            this.targets = new System.Windows.Forms.PictureBox();
+            this.profile = new System.Windows.Forms.PictureBox();
+            this.picture_menu = new System.Windows.Forms.PictureBox();
             this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
+            this.tab_targets = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.flowTasksTarget = new System.Windows.Forms.FlowLayoutPanel();
+            this.addTarget = new AltoControls.AltoButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label_name_direct = new System.Windows.Forms.Label();
+            this.flowTarget = new System.Windows.Forms.FlowLayoutPanel();
+            this.sublabel_target = new System.Windows.Forms.Label();
+            this.label_target = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.flowDirect = new System.Windows.Forms.FlowLayoutPanel();
+            this.addDirect = new AltoControls.AltoButton();
+            this.sublabel_direct = new System.Windows.Forms.Label();
+            this.label_direct = new System.Windows.Forms.Label();
             this.tab_profile = new System.Windows.Forms.TabPage();
+            this.panel_filter = new System.Windows.Forms.Panel();
             this.panel_period = new System.Windows.Forms.Panel();
             this.panel_status_task = new System.Windows.Forms.Panel();
             this.addNote = new AltoControls.AltoButton();
             this.addTask = new AltoControls.AltoButton();
+            this.faceIndicator = new System.Windows.Forms.PictureBox();
             this.performCurrentWeek = new System.Windows.Forms.TextBox();
             this.performLastWeek = new System.Windows.Forms.TextBox();
             this.day_mark = new AltoControls.AltoButton();
             this.sublabel_week_stat = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel_hide_scroll_2 = new System.Windows.Forms.Panel();
+            this.panel_week_stat = new System.Windows.Forms.PictureBox();
             this.sublabel_note = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.flowNotes = new System.Windows.Forms.FlowLayoutPanel();
@@ -50,8 +77,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel_hide_scroll_1 = new System.Windows.Forms.Panel();
             this.flowTasks = new System.Windows.Forms.FlowLayoutPanel();
-            this.tab_targets = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
             this.tab_stat = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.tab_sched = new System.Windows.Forms.TabPage();
@@ -67,25 +92,9 @@
             this.label_time = new System.Windows.Forms.TextBox();
             this.calendar = new ComponentFactory.Krypton.Toolkit.KryptonMonthCalendar();
             this.hide_border_tabs = new System.Windows.Forms.Panel();
-            this.panel_filter = new System.Windows.Forms.Panel();
-            this.active_item = new System.Windows.Forms.PictureBox();
-            this.settings = new System.Windows.Forms.PictureBox();
-            this.schedule = new System.Windows.Forms.PictureBox();
-            this.stat = new System.Windows.Forms.PictureBox();
-            this.targets = new System.Windows.Forms.PictureBox();
-            this.profile = new System.Windows.Forms.PictureBox();
-            this.picture_menu = new System.Windows.Forms.PictureBox();
-            this.faceIndicator = new System.Windows.Forms.PictureBox();
-            this.panel_week_stat = new System.Windows.Forms.PictureBox();
             this.user_photo = new System.Windows.Forms.PictureBox();
             this.panel_profile = new System.Windows.Forms.PictureBox();
             this.panel_menu.SuspendLayout();
-            this.tabs.SuspendLayout();
-            this.tab_profile.SuspendLayout();
-            this.tab_targets.SuspendLayout();
-            this.tab_stat.SuspendLayout();
-            this.tab_sched.SuspendLayout();
-            this.tab_sett.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedule)).BeginInit();
@@ -93,8 +102,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.targets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).BeginInit();
+            this.tabs.SuspendLayout();
+            this.tab_targets.SuspendLayout();
+            this.tab_profile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.faceIndicator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_week_stat)).BeginInit();
+            this.tab_stat.SuspendLayout();
+            this.tab_sched.SuspendLayout();
+            this.tab_sett.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.user_photo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_profile)).BeginInit();
             this.SuspendLayout();
@@ -115,6 +130,94 @@
             this.panel_menu.Size = new System.Drawing.Size(70, 748);
             this.panel_menu.TabIndex = 2;
             // 
+            // active_item
+            // 
+            this.active_item.AccessibleName = "profile";
+            this.active_item.BackColor = System.Drawing.Color.Transparent;
+            this.active_item.Image = global::Upgrade.Properties.Resources.profile;
+            this.active_item.Location = new System.Drawing.Point(6, 100);
+            this.active_item.Name = "active_item";
+            this.active_item.Size = new System.Drawing.Size(90, 90);
+            this.active_item.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.active_item.TabIndex = 8;
+            this.active_item.TabStop = false;
+            // 
+            // settings
+            // 
+            this.settings.BackColor = System.Drawing.Color.Transparent;
+            this.settings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.settings.Image = global::Upgrade.Properties.Resources.settings_icon;
+            this.settings.Location = new System.Drawing.Point(20, 372);
+            this.settings.Name = "settings";
+            this.settings.Size = new System.Drawing.Size(28, 28);
+            this.settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.settings.TabIndex = 12;
+            this.settings.TabStop = false;
+            this.settings.Click += new System.EventHandler(this.settings_Click);
+            // 
+            // schedule
+            // 
+            this.schedule.BackColor = System.Drawing.Color.Transparent;
+            this.schedule.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.schedule.Image = global::Upgrade.Properties.Resources.schedule_icon;
+            this.schedule.Location = new System.Drawing.Point(21, 314);
+            this.schedule.Name = "schedule";
+            this.schedule.Size = new System.Drawing.Size(26, 22);
+            this.schedule.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.schedule.TabIndex = 11;
+            this.schedule.TabStop = false;
+            this.schedule.Click += new System.EventHandler(this.schedule_Click);
+            // 
+            // stat
+            // 
+            this.stat.BackColor = System.Drawing.Color.Transparent;
+            this.stat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.stat.Image = global::Upgrade.Properties.Resources.stat_icon;
+            this.stat.Location = new System.Drawing.Point(21, 253);
+            this.stat.Name = "stat";
+            this.stat.Size = new System.Drawing.Size(26, 23);
+            this.stat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.stat.TabIndex = 10;
+            this.stat.TabStop = false;
+            this.stat.Click += new System.EventHandler(this.stat_Click);
+            // 
+            // targets
+            // 
+            this.targets.BackColor = System.Drawing.Color.Transparent;
+            this.targets.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.targets.Image = global::Upgrade.Properties.Resources.tardets_icon;
+            this.targets.Location = new System.Drawing.Point(21, 192);
+            this.targets.Name = "targets";
+            this.targets.Size = new System.Drawing.Size(26, 26);
+            this.targets.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.targets.TabIndex = 9;
+            this.targets.TabStop = false;
+            this.targets.Click += new System.EventHandler(this.targets_Click);
+            // 
+            // profile
+            // 
+            this.profile.BackColor = System.Drawing.Color.Transparent;
+            this.profile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.profile.Image = ((System.Drawing.Image)(resources.GetObject("profile.Image")));
+            this.profile.Location = new System.Drawing.Point(22, 133);
+            this.profile.Name = "profile";
+            this.profile.Size = new System.Drawing.Size(26, 23);
+            this.profile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.profile.TabIndex = 6;
+            this.profile.TabStop = false;
+            this.profile.Click += new System.EventHandler(this.profile_Click);
+            // 
+            // picture_menu
+            // 
+            this.picture_menu.BackColor = System.Drawing.Color.Transparent;
+            this.picture_menu.Image = global::Upgrade.Properties.Resources.menu_panel;
+            this.picture_menu.Location = new System.Drawing.Point(0, 0);
+            this.picture_menu.Name = "picture_menu";
+            this.picture_menu.Size = new System.Drawing.Size(70, 748);
+            this.picture_menu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picture_menu.TabIndex = 1;
+            this.picture_menu.TabStop = false;
+            // 
             // block_for_focus
             // 
             this.block_for_focus.Location = new System.Drawing.Point(32, 725);
@@ -124,8 +227,8 @@
             // 
             // tabs
             // 
-            this.tabs.Controls.Add(this.tab_profile);
             this.tabs.Controls.Add(this.tab_targets);
+            this.tabs.Controls.Add(this.tab_profile);
             this.tabs.Controls.Add(this.tab_stat);
             this.tabs.Controls.Add(this.tab_sched);
             this.tabs.Controls.Add(this.tab_sett);
@@ -137,6 +240,206 @@
             this.tabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabs.TabIndex = 3;
             this.tabs.TabStop = false;
+            // 
+            // tab_targets
+            // 
+            this.tab_targets.Controls.Add(this.label9);
+            this.tab_targets.Controls.Add(this.label10);
+            this.tab_targets.Controls.Add(this.panel3);
+            this.tab_targets.Controls.Add(this.label2);
+            this.tab_targets.Controls.Add(this.flowTasksTarget);
+            this.tab_targets.Controls.Add(this.addTarget);
+            this.tab_targets.Controls.Add(this.panel2);
+            this.tab_targets.Controls.Add(this.label_name_direct);
+            this.tab_targets.Controls.Add(this.flowTarget);
+            this.tab_targets.Controls.Add(this.sublabel_target);
+            this.tab_targets.Controls.Add(this.label_target);
+            this.tab_targets.Controls.Add(this.panel1);
+            this.tab_targets.Controls.Add(this.flowDirect);
+            this.tab_targets.Controls.Add(this.addDirect);
+            this.tab_targets.Controls.Add(this.sublabel_direct);
+            this.tab_targets.Controls.Add(this.label_direct);
+            this.tab_targets.Location = new System.Drawing.Point(4, 5);
+            this.tab_targets.Name = "tab_targets";
+            this.tab_targets.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_targets.Size = new System.Drawing.Size(1002, 771);
+            this.tab_targets.TabIndex = 1;
+            this.tab_targets.Text = "tabPage2";
+            this.tab_targets.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("PF DinDisplay Pro", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.Color.DarkGray;
+            this.label9.Location = new System.Drawing.Point(573, 70);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(183, 24);
+            this.label9.TabIndex = 132;
+            this.label9.Text = "Повседневные дела";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("PF DinDisplay Pro", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label10.ForeColor = System.Drawing.Color.DarkGray;
+            this.label10.Location = new System.Drawing.Point(518, 70);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(58, 24);
+            this.label10.TabIndex = 131;
+            this.label10.Text = "Цель:";
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(948, 110);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(25, 637);
+            this.panel3.TabIndex = 128;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(516, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(177, 35);
+            this.label2.TabIndex = 129;
+            this.label2.Text = "Задачи цели";
+            // 
+            // flowTasksTarget
+            // 
+            this.flowTasksTarget.AccessibleName = "tasks";
+            this.flowTasksTarget.AutoScroll = true;
+            this.flowTasksTarget.Location = new System.Drawing.Point(513, 110);
+            this.flowTasksTarget.Name = "flowTasksTarget";
+            this.flowTasksTarget.Size = new System.Drawing.Size(460, 637);
+            this.flowTasksTarget.TabIndex = 127;
+            // 
+            // addTarget
+            // 
+            this.addTarget.Active1 = System.Drawing.Color.AliceBlue;
+            this.addTarget.Active2 = System.Drawing.Color.AliceBlue;
+            this.addTarget.BackColor = System.Drawing.Color.Transparent;
+            this.addTarget.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addTarget.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.addTarget.Font = new System.Drawing.Font("Calibri", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.addTarget.ForeColor = System.Drawing.Color.BlueViolet;
+            this.addTarget.Inactive1 = System.Drawing.Color.Thistle;
+            this.addTarget.Inactive2 = System.Drawing.Color.Thistle;
+            this.addTarget.Location = new System.Drawing.Point(442, 391);
+            this.addTarget.Name = "addTarget";
+            this.addTarget.Radius = 20;
+            this.addTarget.Size = new System.Drawing.Size(40, 40);
+            this.addTarget.Stroke = true;
+            this.addTarget.StrokeColor = System.Drawing.Color.Thistle;
+            this.addTarget.TabIndex = 128;
+            this.addTarget.Text = "+";
+            this.addTarget.Transparency = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(457, 467);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(25, 280);
+            this.panel2.TabIndex = 126;
+            // 
+            // label_name_direct
+            // 
+            this.label_name_direct.AutoSize = true;
+            this.label_name_direct.Font = new System.Drawing.Font("PF DinDisplay Pro", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_name_direct.ForeColor = System.Drawing.Color.DarkGray;
+            this.label_name_direct.Location = new System.Drawing.Point(241, 420);
+            this.label_name_direct.Name = "label_name_direct";
+            this.label_name_direct.Size = new System.Drawing.Size(183, 24);
+            this.label_name_direct.TabIndex = 127;
+            this.label_name_direct.Text = "Повседневные дела";
+            // 
+            // flowTarget
+            // 
+            this.flowTarget.AccessibleName = "tasks";
+            this.flowTarget.AutoScroll = true;
+            this.flowTarget.Location = new System.Drawing.Point(112, 467);
+            this.flowTarget.Name = "flowTarget";
+            this.flowTarget.Size = new System.Drawing.Size(370, 280);
+            this.flowTarget.TabIndex = 125;
+            // 
+            // sublabel_target
+            // 
+            this.sublabel_target.AutoSize = true;
+            this.sublabel_target.Font = new System.Drawing.Font("PF DinDisplay Pro", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.sublabel_target.ForeColor = System.Drawing.Color.DarkGray;
+            this.sublabel_target.Location = new System.Drawing.Point(117, 420);
+            this.sublabel_target.Name = "sublabel_target";
+            this.sublabel_target.Size = new System.Drawing.Size(127, 24);
+            this.sublabel_target.TabIndex = 126;
+            this.sublabel_target.Text = "Направление:";
+            // 
+            // label_target
+            // 
+            this.label_target.AutoSize = true;
+            this.label_target.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_target.Location = new System.Drawing.Point(115, 382);
+            this.label_target.Name = "label_target";
+            this.label_target.Size = new System.Drawing.Size(82, 35);
+            this.label_target.TabIndex = 125;
+            this.label_target.Text = "Цели";
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(457, 110);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(25, 250);
+            this.panel1.TabIndex = 124;
+            // 
+            // flowDirect
+            // 
+            this.flowDirect.AccessibleName = "tasks";
+            this.flowDirect.AutoScroll = true;
+            this.flowDirect.Location = new System.Drawing.Point(112, 110);
+            this.flowDirect.Name = "flowDirect";
+            this.flowDirect.Size = new System.Drawing.Size(370, 250);
+            this.flowDirect.TabIndex = 123;
+            // 
+            // addDirect
+            // 
+            this.addDirect.Active1 = System.Drawing.Color.AliceBlue;
+            this.addDirect.Active2 = System.Drawing.Color.AliceBlue;
+            this.addDirect.BackColor = System.Drawing.Color.Transparent;
+            this.addDirect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addDirect.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.addDirect.Font = new System.Drawing.Font("Calibri", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.addDirect.ForeColor = System.Drawing.Color.BlueViolet;
+            this.addDirect.Inactive1 = System.Drawing.Color.Thistle;
+            this.addDirect.Inactive2 = System.Drawing.Color.Thistle;
+            this.addDirect.Location = new System.Drawing.Point(442, 39);
+            this.addDirect.Name = "addDirect";
+            this.addDirect.Radius = 20;
+            this.addDirect.Size = new System.Drawing.Size(40, 40);
+            this.addDirect.Stroke = true;
+            this.addDirect.StrokeColor = System.Drawing.Color.Thistle;
+            this.addDirect.TabIndex = 122;
+            this.addDirect.Text = "+";
+            this.addDirect.Transparency = false;
+            // 
+            // sublabel_direct
+            // 
+            this.sublabel_direct.AutoSize = true;
+            this.sublabel_direct.Font = new System.Drawing.Font("PF DinDisplay Pro", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.sublabel_direct.Location = new System.Drawing.Point(117, 70);
+            this.sublabel_direct.Name = "sublabel_direct";
+            this.sublabel_direct.Size = new System.Drawing.Size(218, 24);
+            this.sublabel_direct.TabIndex = 110;
+            this.sublabel_direct.Text = "Фокус вашего внимания";
+            // 
+            // label_direct
+            // 
+            this.label_direct.AutoSize = true;
+            this.label_direct.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_direct.Location = new System.Drawing.Point(115, 34);
+            this.label_direct.Name = "label_direct";
+            this.label_direct.Size = new System.Drawing.Size(186, 35);
+            this.label_direct.TabIndex = 3;
+            this.label_direct.Text = "Направления";
             // 
             // tab_profile
             // 
@@ -167,6 +470,14 @@
             this.tab_profile.TabIndex = 0;
             this.tab_profile.Text = "tabPage1";
             this.tab_profile.UseVisualStyleBackColor = true;
+            // 
+            // panel_filter
+            // 
+            this.panel_filter.BackColor = System.Drawing.Color.Transparent;
+            this.panel_filter.Location = new System.Drawing.Point(357, 75);
+            this.panel_filter.Name = "panel_filter";
+            this.panel_filter.Size = new System.Drawing.Size(22, 22);
+            this.panel_filter.TabIndex = 126;
             // 
             // panel_period
             // 
@@ -226,6 +537,18 @@
             this.addTask.Text = "+";
             this.addTask.Transparency = false;
             this.addTask.Click += new System.EventHandler(this.addTask_Click);
+            // 
+            // faceIndicator
+            // 
+            this.faceIndicator.AccessibleName = "profile";
+            this.faceIndicator.BackColor = System.Drawing.Color.White;
+            this.faceIndicator.Image = global::Upgrade.Properties.Resources.faceIndicatorHappy;
+            this.faceIndicator.Location = new System.Drawing.Point(899, 138);
+            this.faceIndicator.Name = "faceIndicator";
+            this.faceIndicator.Size = new System.Drawing.Size(38, 38);
+            this.faceIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.faceIndicator.TabIndex = 120;
+            this.faceIndicator.TabStop = false;
             // 
             // performCurrentWeek
             // 
@@ -302,6 +625,18 @@
             this.panel_hide_scroll_2.Size = new System.Drawing.Size(25, 225);
             this.panel_hide_scroll_2.TabIndex = 2;
             // 
+            // panel_week_stat
+            // 
+            this.panel_week_stat.AccessibleName = "profile";
+            this.panel_week_stat.BackColor = System.Drawing.Color.Transparent;
+            this.panel_week_stat.Image = global::Upgrade.Properties.Resources.panel_week_stat;
+            this.panel_week_stat.Location = new System.Drawing.Point(629, 123);
+            this.panel_week_stat.Name = "panel_week_stat";
+            this.panel_week_stat.Size = new System.Drawing.Size(325, 290);
+            this.panel_week_stat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.panel_week_stat.TabIndex = 110;
+            this.panel_week_stat.TabStop = false;
+            // 
             // sublabel_note
             // 
             this.sublabel_note.AutoSize = true;
@@ -369,26 +704,6 @@
             this.flowTasks.Size = new System.Drawing.Size(460, 620);
             this.flowTasks.TabIndex = 0;
             this.flowTasks.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.flowTasks_ControlRemoved);
-            // 
-            // tab_targets
-            // 
-            this.tab_targets.Controls.Add(this.label2);
-            this.tab_targets.Location = new System.Drawing.Point(4, 5);
-            this.tab_targets.Name = "tab_targets";
-            this.tab_targets.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_targets.Size = new System.Drawing.Size(1002, 771);
-            this.tab_targets.TabIndex = 1;
-            this.tab_targets.Text = "tabPage2";
-            this.tab_targets.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "targets";
             // 
             // tab_stat
             // 
@@ -602,126 +917,6 @@
             this.hide_border_tabs.Size = new System.Drawing.Size(14, 779);
             this.hide_border_tabs.TabIndex = 3;
             // 
-            // panel_filter
-            // 
-            this.panel_filter.BackColor = System.Drawing.Color.Transparent;
-            this.panel_filter.Location = new System.Drawing.Point(357, 75);
-            this.panel_filter.Name = "panel_filter";
-            this.panel_filter.Size = new System.Drawing.Size(22, 22);
-            this.panel_filter.TabIndex = 126;
-            // 
-            // active_item
-            // 
-            this.active_item.AccessibleName = "profile";
-            this.active_item.BackColor = System.Drawing.Color.Transparent;
-            this.active_item.Image = global::Upgrade.Properties.Resources.profile;
-            this.active_item.Location = new System.Drawing.Point(6, 100);
-            this.active_item.Name = "active_item";
-            this.active_item.Size = new System.Drawing.Size(90, 90);
-            this.active_item.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.active_item.TabIndex = 8;
-            this.active_item.TabStop = false;
-            // 
-            // settings
-            // 
-            this.settings.BackColor = System.Drawing.Color.Transparent;
-            this.settings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.settings.Image = global::Upgrade.Properties.Resources.settings_icon;
-            this.settings.Location = new System.Drawing.Point(20, 372);
-            this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(28, 28);
-            this.settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.settings.TabIndex = 12;
-            this.settings.TabStop = false;
-            this.settings.Click += new System.EventHandler(this.settings_Click);
-            // 
-            // schedule
-            // 
-            this.schedule.BackColor = System.Drawing.Color.Transparent;
-            this.schedule.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.schedule.Image = global::Upgrade.Properties.Resources.schedule_icon;
-            this.schedule.Location = new System.Drawing.Point(21, 314);
-            this.schedule.Name = "schedule";
-            this.schedule.Size = new System.Drawing.Size(26, 22);
-            this.schedule.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.schedule.TabIndex = 11;
-            this.schedule.TabStop = false;
-            this.schedule.Click += new System.EventHandler(this.schedule_Click);
-            // 
-            // stat
-            // 
-            this.stat.BackColor = System.Drawing.Color.Transparent;
-            this.stat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.stat.Image = global::Upgrade.Properties.Resources.stat_icon;
-            this.stat.Location = new System.Drawing.Point(21, 253);
-            this.stat.Name = "stat";
-            this.stat.Size = new System.Drawing.Size(26, 23);
-            this.stat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.stat.TabIndex = 10;
-            this.stat.TabStop = false;
-            this.stat.Click += new System.EventHandler(this.stat_Click);
-            // 
-            // targets
-            // 
-            this.targets.BackColor = System.Drawing.Color.Transparent;
-            this.targets.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.targets.Image = global::Upgrade.Properties.Resources.tardets_icon;
-            this.targets.Location = new System.Drawing.Point(21, 192);
-            this.targets.Name = "targets";
-            this.targets.Size = new System.Drawing.Size(26, 26);
-            this.targets.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.targets.TabIndex = 9;
-            this.targets.TabStop = false;
-            this.targets.Click += new System.EventHandler(this.targets_Click);
-            // 
-            // profile
-            // 
-            this.profile.BackColor = System.Drawing.Color.Transparent;
-            this.profile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.profile.Image = ((System.Drawing.Image)(resources.GetObject("profile.Image")));
-            this.profile.Location = new System.Drawing.Point(22, 133);
-            this.profile.Name = "profile";
-            this.profile.Size = new System.Drawing.Size(26, 23);
-            this.profile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.profile.TabIndex = 6;
-            this.profile.TabStop = false;
-            this.profile.Click += new System.EventHandler(this.profile_Click);
-            // 
-            // picture_menu
-            // 
-            this.picture_menu.BackColor = System.Drawing.Color.Transparent;
-            this.picture_menu.Image = global::Upgrade.Properties.Resources.menu_panel;
-            this.picture_menu.Location = new System.Drawing.Point(0, 0);
-            this.picture_menu.Name = "picture_menu";
-            this.picture_menu.Size = new System.Drawing.Size(70, 748);
-            this.picture_menu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picture_menu.TabIndex = 1;
-            this.picture_menu.TabStop = false;
-            // 
-            // faceIndicator
-            // 
-            this.faceIndicator.AccessibleName = "profile";
-            this.faceIndicator.BackColor = System.Drawing.Color.White;
-            this.faceIndicator.Image = global::Upgrade.Properties.Resources.faceIndicatorHappy;
-            this.faceIndicator.Location = new System.Drawing.Point(899, 138);
-            this.faceIndicator.Name = "faceIndicator";
-            this.faceIndicator.Size = new System.Drawing.Size(38, 38);
-            this.faceIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.faceIndicator.TabIndex = 120;
-            this.faceIndicator.TabStop = false;
-            // 
-            // panel_week_stat
-            // 
-            this.panel_week_stat.AccessibleName = "profile";
-            this.panel_week_stat.BackColor = System.Drawing.Color.Transparent;
-            this.panel_week_stat.Image = global::Upgrade.Properties.Resources.panel_week_stat;
-            this.panel_week_stat.Location = new System.Drawing.Point(629, 123);
-            this.panel_week_stat.Name = "panel_week_stat";
-            this.panel_week_stat.Size = new System.Drawing.Size(325, 290);
-            this.panel_week_stat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.panel_week_stat.TabIndex = 110;
-            this.panel_week_stat.TabStop = false;
-            // 
             // user_photo
             // 
             this.user_photo.AccessibleName = "profile";
@@ -773,17 +968,6 @@
             this.Shown += new System.EventHandler(this.MainWorkingForm_Shown);
             this.panel_menu.ResumeLayout(false);
             this.panel_menu.PerformLayout();
-            this.tabs.ResumeLayout(false);
-            this.tab_profile.ResumeLayout(false);
-            this.tab_profile.PerformLayout();
-            this.tab_targets.ResumeLayout(false);
-            this.tab_targets.PerformLayout();
-            this.tab_stat.ResumeLayout(false);
-            this.tab_stat.PerformLayout();
-            this.tab_sched.ResumeLayout(false);
-            this.tab_sched.PerformLayout();
-            this.tab_sett.ResumeLayout(false);
-            this.tab_sett.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedule)).EndInit();
@@ -791,8 +975,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.targets)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).EndInit();
+            this.tabs.ResumeLayout(false);
+            this.tab_targets.ResumeLayout(false);
+            this.tab_targets.PerformLayout();
+            this.tab_profile.ResumeLayout(false);
+            this.tab_profile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.faceIndicator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_week_stat)).EndInit();
+            this.tab_stat.ResumeLayout(false);
+            this.tab_stat.PerformLayout();
+            this.tab_sched.ResumeLayout(false);
+            this.tab_sched.PerformLayout();
+            this.tab_sett.ResumeLayout(false);
+            this.tab_sett.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.user_photo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_profile)).EndInit();
             this.ResumeLayout(false);
@@ -811,7 +1006,6 @@
         private System.Windows.Forms.PictureBox settings;
         private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage tab_targets;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tab_stat;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tab_sched;
@@ -851,5 +1045,21 @@
         private System.Windows.Forms.Panel panel_period;
         private System.Windows.Forms.Panel panel_status_task;
         private System.Windows.Forms.Panel panel_filter;
+        private System.Windows.Forms.Label label_direct;
+        private System.Windows.Forms.Label sublabel_direct;
+        private AltoControls.AltoButton addDirect;
+        private System.Windows.Forms.Label sublabel_target;
+        private System.Windows.Forms.Label label_target;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.FlowLayoutPanel flowDirect;
+        private System.Windows.Forms.Label label_name_direct;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel flowTasksTarget;
+        private AltoControls.AltoButton addTarget;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flowTarget;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

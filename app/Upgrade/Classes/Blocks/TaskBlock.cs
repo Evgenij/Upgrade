@@ -369,7 +369,7 @@ namespace Upgrade.Classes
                 ServiceData.command.Parameters.AddWithValue("@id_task", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
-                Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Tasks);
+                Design.HidePanel(panel, flowPanel);
             }
             else 
             {
@@ -415,7 +415,7 @@ namespace Upgrade.Classes
 
                 check.AccessibleName = "done";
                 check.Image = Properties.Resources.check_done;
-                Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Tasks);
+                Design.HidePanel(panel, flowPanel);
             }
         }
 
@@ -464,7 +464,7 @@ namespace Upgrade.Classes
 
                     check.AccessibleName = "done";
                     check.Image = Properties.Resources.check_done;
-                    Design.HidePanel(panel, flowPanel, WindowManager.TypeBlock.Tasks);
+                    Design.HidePanel(panel, flowPanel);
                 }
             }
         }

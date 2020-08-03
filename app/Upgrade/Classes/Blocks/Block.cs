@@ -25,8 +25,6 @@ namespace Upgrade.Classes
             box_center = new PictureBox();
             box_bottom = new PictureBox();
             textLabel = new TextBox();
-
-
         }
     }
 }

@@ -8,15 +8,17 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using Upgrade.Forms;
 using System.Security.Cryptography;
+using Upgrade.Classes.Blocks;
 
 namespace Upgrade.Classes
 {
     class WindowManager
     {
         private static List<TaskBlock> taskBlock = new List<TaskBlock>();
-        private static List<NoteBlock> noteBlock = new List<NoteBlock>();
         private static PictureBox[] boxStatus = new PictureBox[2];
-
+        private static List<NoteBlock> noteBlock = new List<NoteBlock>();
+        private static List<DirectionBlock> directionBlock = new List<DirectionBlock>();
+        
         public enum TypeBlock
         {
             Tasks,
@@ -28,17 +30,13 @@ namespace Upgrade.Classes
 
         public static FlowLayoutPanel flowPanelTasks;
         public static FlowLayoutPanel flowPanelNotes;
+        public static FlowLayoutPanel flowPanelDirect;
+        public static FlowLayoutPanel flowPanelTarget;
 
-        public static async Task CreatePanelMainWindow(TypeBlock typeBlock)
+        public static async Task SetPanelsMainWindow()
         {
-            if (typeBlock == TypeBlock.Tasks)
-            {
-                await SetTaskBlock();
-            }
-            else if (typeBlock == TypeBlock.Notes)
-            {
-                await SetNoteBlock();
-            }
+            await SetTaskBlock();
+            await SetNoteBlock();
         }
 
         public static void SetFlowPanelTask(FlowLayoutPanel flow)
@@ -48,6 +46,14 @@ namespace Upgrade.Classes
         public static void SetFlowPanelNote(FlowLayoutPanel flow)
         {
             flowPanelNotes = flow;
+        }
+        public static void SetFlowPanelDirect(FlowLayoutPanel flow)
+        {
+            flowPanelDirect = flow;
+        }
+        public static void SetFlowPanelTarget(FlowLayoutPanel flow)
+        {
+            flowPanelTarget = flow;
         }
 
         public static async Task SetTaskBlock()
@@ -415,6 +421,30 @@ namespace Upgrade.Classes
                         flowPanelNotes,
                         Convert.ToInt32(ServiceData.reader.GetValue(0)),
                         ServiceData.reader.GetString(1)));
+                }
+            }
+        }
+
+        public static async Task SetDirectBlock()
+        {
+            Design.heightContentDirection = 0;
+
+            ServiceData.commandText = string.Format("SELECT direction.id_direct, direction.name, direction.color_mark FROM direction " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE user.id_user = {0}", User.user_id);
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (await ServiceData.reader.ReadAsync())
+                {
+                    directionBlock.Add(new DirectionBlock(flowPanelDirect, flowPanelTarget, flowPanelTasks, 
+                        ServiceData.reader.GetInt32(0), 
+                        ServiceData.reader.GetString(1), 
+                        ServiceData.reader.GetString(2)));
                 }
             }
         }

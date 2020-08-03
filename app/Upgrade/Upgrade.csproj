@@ -124,8 +124,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Blocks\Block.cs" />
+    <Compile Include="Classes\Blocks\DirectionBlock.cs" />
     <Compile Include="Classes\Blocks\NoteBlock.cs" />
     <Compile Include="Classes\Blocks\SubTaskBlock.cs" />
+    <Compile Include="Classes\Blocks\TargetBlock.cs" />
     <Compile Include="Classes\Blocks\TaskBlock.cs" />
     <Compile Include="Classes\Database\DBService.cs" />
     <Compile Include="Classes\GeneralClasses\Design.cs" />
@@ -420,6 +422,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\panel_filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direct_box_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direct_box_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direct_box_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dir_find_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dir_sett_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dir_sett_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dir_target_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dir_target_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dir_find_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dir_find_set.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
