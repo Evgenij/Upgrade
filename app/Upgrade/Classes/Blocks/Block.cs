@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,13 @@ namespace Upgrade.Classes
             box_center = new PictureBox();
             box_bottom = new PictureBox();
             textLabel = new TextBox();
+
+            textLabel.BackColor = Color.White;
+            textLabel.ForeColor = Color.Black;
+            textLabel.BorderStyle = BorderStyle.None;
+            textLabel.ReadOnly = true;
+            textLabel.Multiline = true;
+            textLabel.WordWrap = true;
         }
     }
 }

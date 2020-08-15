@@ -48,3 +48,5 @@ C:\Users\Evgenij\Desktop\Upgrade\obj\Debug\Upgrade.csproj.CopyComplete
 C:\Users\Evgenij\Desktop\Upgrade\obj\Debug\Upgrade.exe
 C:\Users\Evgenij\Desktop\Upgrade\obj\Debug\Upgrade.pdb
 C:\Users\Evgenij\Desktop\Upgrade\obj\Debug\Upgrade.csprojAssemblyReference.cache
+C:\Users\Evgenij\Desktop\Upgrade\obj\Debug\Upgrade.Forms.AddNoteForm.resources
+C:\Users\Evgenij\Desktop\Upgrade\obj\Debug\Upgrade.Classes.Blocks.AddDirectionForm.resources

@@ -123,6 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Blocks\AddDirectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Blocks\AddDirectionForm.Designer.cs">
+      <DependentUpon>AddDirectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Blocks\Block.cs" />
     <Compile Include="Classes\Blocks\DirectionBlock.cs" />
     <Compile Include="Classes\Blocks\NoteBlock.cs" />
@@ -135,6 +141,7 @@
     <Compile Include="Classes\Components\Filter.cs" />
     <Compile Include="Classes\GeneralClasses\GlobalData.cs" />
     <Compile Include="Classes\GeneralClasses\IniManager.cs" />
+    <Compile Include="Classes\GeneralClasses\GlobalComponents.cs" />
     <Compile Include="Classes\MailSender.cs" />
     <Compile Include="Classes\Components\Scroller.cs" />
     <Compile Include="Classes\Database\ServiceData.cs" />
@@ -142,6 +149,12 @@
     <Compile Include="Classes\Components\WeeklyStatistic.cs" />
     <Compile Include="Classes\WindowManager.cs" />
     <Compile Include="Classes\Components\UIComboBox.cs" />
+    <Compile Include="Forms\AddNoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddNoteForm.Designer.cs">
+      <DependentUpon>AddNoteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +169,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Classes\Blocks\AddDirectionForm.resx">
+      <DependentUpon>AddDirectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddNoteForm.resx">
+      <DependentUpon>AddNoteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWorkingForm.resx">
       <DependentUpon>MainWorkingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -452,6 +471,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dir_find_set.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tar_task_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tar_task_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\result_not_found.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_not_found.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_not_found1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task_not_found.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\target_not_found.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status_check_done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status_check_fail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status_check_none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status_check_fail1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddNote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddDirection.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

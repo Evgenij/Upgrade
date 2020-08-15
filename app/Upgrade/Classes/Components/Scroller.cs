@@ -107,15 +107,15 @@ namespace Upgrade.Classes
                 //    multiplier = 2;
                 //    scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - scroller.Height) / 2);
                 //}
-                if ((heightContent / panel.Height) <= 1)
+                if ((heightContent / panel.Height) == 1)
                 {
-                    multiplier = (heightContent / panel.Height) + 1;
-                    scroller.Height = panel.Height - ((heightContent - panel.Height) / 1);
+                    multiplier = 1;
+                    scroller.Height = scroller.Height - (heightContent - panel.Height + (top_tip_scroll.Height * 2 + 10 * multiplier));
                 }
                 else if ((panel.VerticalScroll.Maximum / panel.Height) >= 2)
                 {
                     multiplier = (panel.VerticalScroll.Maximum / panel.Height) + 1;
-                    scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - panel.Height) / multiplier);
+                    scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - panel.Height - 5 * multiplier) / multiplier);
                 }
 
                 // установка верхнего положения скроллера

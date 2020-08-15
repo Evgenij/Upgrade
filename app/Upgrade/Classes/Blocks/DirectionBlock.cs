@@ -15,12 +15,8 @@ namespace Upgrade.Classes.Blocks
         private Label labelStat;
         private static AltoControls.AltoButton colorMark;
         private PictureBox[] buttons = new PictureBox[3];
-        private FlowLayoutPanel flowTargets;
-        private FlowLayoutPanel flowTasks;
 
-        public DirectionBlock(FlowLayoutPanel flowPanel, 
-                              FlowLayoutPanel targetFlowPanel, 
-                              FlowLayoutPanel taskFlowPanel, 
+        public DirectionBlock(FlowLayoutPanel flowPanel,
                               int id_direct, 
                               string nameDirect, 
                               string mark) 
@@ -28,26 +24,20 @@ namespace Upgrade.Classes.Blocks
             this.id_record = id_direct;
             labelPerform = new Label();
             labelStat = new Label();
-            flowTargets = targetFlowPanel;
-            flowTasks = taskFlowPanel;
 
-            textLabel.Left = 20;
-            textLabel.Top = 17;
+            textLabel.Left = 22;
+            textLabel.Top = 20;
             textLabel.Width = 255;
+            textLabel.Height = 21;
             textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 14);
-            textLabel.BackColor = Color.White;
-            textLabel.ForeColor = Color.Black;
-            textLabel.BorderStyle = BorderStyle.None;
-            textLabel.ReadOnly = true;
-            textLabel.Multiline = true;
-            textLabel.Text = nameDirect;
-            if (textLabel.Text.Length >= 28)
+            for (int i = 0; i < nameDirect.Length; i++)
             {
-                textLabel.Height = 42 * (textLabel.Text.Length / 28);
-            }
-            else
-            {
-                textLabel.Height = 21;
+                if (i == 19)
+                {
+                    textLabel.Text += Environment.NewLine;
+                    textLabel.Height = 45 * (textLabel.Text.Length / 19);
+                }
+                textLabel.Text += nameDirect[i];
             }
 
             box_top.Image = Properties.Resources.direct_box_top;
@@ -152,12 +142,12 @@ namespace Upgrade.Classes.Blocks
                 else if (i == 1)
                 {
                     buttons[i].Image = Properties.Resources.dir_find_off;
-                    buttons[i].Left = box_center.Width - buttons[i].Width - 47;
+                    buttons[i].Left = box_center.Width - buttons[i].Width - 45;
                 }
                 else if (i == 2)
                 {
                     buttons[i].Image = Properties.Resources.dir_target_off;
-                    buttons[i].Left = box_center.Width - buttons[i].Width - 73;
+                    buttons[i].Left = box_center.Width - buttons[i].Width - 69;
                 }
 
                 buttons[i].MouseHover += button_MouseHover;
@@ -201,6 +191,8 @@ namespace Upgrade.Classes.Blocks
                 buttons[i].BringToFront();
             }
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentDirection += panel.Height;
         }
 
         private void button_MouseLeave(object sender, EventArgs e)
@@ -243,6 +235,10 @@ namespace Upgrade.Classes.Blocks
             }
             else if (((PictureBox)sender).AccessibleName == "2")
             {
+                Design.heightContentTarget = 0;
+                Design.RefreshPanel(WindowManager.flowPanelTarget);
+                GlobalComponents.labelDirect.Text = this.textLabel.Text;
+
                 ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
                 string commandText = string.Format("SELECT target.id_target, target.name FROM target " +
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
@@ -256,8 +252,18 @@ namespace Upgrade.Classes.Blocks
                     List<TargetBlock> targets = new List<TargetBlock>();
                     while (reader.Read())
                     {
-                        targets.Add(new TargetBlock(flowTargets, flowTasks, reader.GetInt32(0), reader.GetString(1)));   
+                        targets.Add(new TargetBlock(WindowManager.flowPanelTarget, reader.GetInt32(0), reader.GetString(1)));   
                     }
+                }
+                GlobalData.scroller_target.Refresh(Design.heightContentTarget);
+
+                if (Design.heightContentTarget == 0)
+                {
+                    GlobalComponents.notFoundTarget.Visible = true;
+                }
+                else
+                {
+                    GlobalComponents.notFoundTarget.Visible = false;
                 }
             }
             else if (((PictureBox)sender).AccessibleName == "3")

@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Upgrade.Classes.Blocks;
 using Upgrade.Forms;
 
 namespace Upgrade.Classes
@@ -96,6 +97,8 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
+            WindowManager.SetFlowPanelTask(flowTasks, flowNotes, flowDirect, flowTarget, flowTaskTarget);
+
             // создание компонентов главного пункта меню
             SetTabProfile();
 
@@ -124,14 +127,15 @@ namespace Upgrade.Classes
                                       "Выполненные",
                                       "Невыполненные"};
 
+            GlobalComponents.notFoundTask = not_found_task;
+            GlobalComponents.notFoundNote = not_found_note;
+
             uiComboBox[1] = new UIComboBox(tab_profile, panel_period, "status", labelsStatus, null, null, panel_filter);
             uiComboBox[0] = new UIComboBox(tab_profile, panel_status_task, "period", labelsPeriod, label_today, uiComboBox[1].GetPanel(), panel_filter);
 
-            WindowManager.SetFlowPanelTask(flowTasks);
-            WindowManager.SetFlowPanelNote(flowNotes);
-            await WindowManager.SetTaskBlock();
-            await WindowManager.SetNoteBlock();
-            WeeklyStatistic.SetStatistic(tab_profile, panel_week_stat, performLastWeek, performCurrentWeek, faceIndicator, sublabel_week_stat);
+            await WindowManager.SetPanelsMainWindow();
+            GlobalComponents.labelPeriod = sublabel_week_stat;
+            WeeklyStatistic.SetStatistic(tab_profile, panel_week_stat, performLastWeek, performCurrentWeek, faceIndicator);
 
             Design.SetMarkCurrentDay(day_mark);
             GlobalData.scroller_task = new Scroller(tab_profile, flowTasks, Design.heightContentTasks);
@@ -141,9 +145,16 @@ namespace Upgrade.Classes
 
         private async void SetTabDirection_Target()
         {
-            WindowManager.SetFlowPanelDirect(flowDirect);
-            WindowManager.SetFlowPanelTarget(flowTarget);
+            GlobalComponents.labelDirect = label_name_direct;
+            GlobalComponents.labelTarget = label_name_target;
+            GlobalComponents.notFoundTarget = not_found_target;
+            GlobalComponents.notFoundTaskTarget = not_found_task_target;
+            GlobalComponents.status_mark = status_mark;
+
             await WindowManager.SetDirectBlock();
+            GlobalData.scroller_direct = new Scroller(tab_targets, flowDirect, Design.heightContentDirection);
+            GlobalData.scroller_target = new Scroller(tab_targets, flowTarget, Design.heightContentTarget);
+            GlobalData.scroller_task_target = new Scroller(tab_targets, flowTaskTarget, Design.heightContentTaskTarget);
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -240,8 +251,22 @@ namespace Upgrade.Classes
             sublabel_note.ForeColor = Design.mainColor;
             sublabel_week_stat.ForeColor = Design.mainColor;
             sublabel_direct.ForeColor = Design.mainColor;
+            label_name_direct.ForeColor = Design.mainColor;
+            label_name_target.ForeColor = Design.mainColor;
 
             exit_from_profile.BackColor = Color.FromArgb(234, 235, 240);
+
+            day_mark.Inactive1 = Design.mainColor;
+            day_mark.Inactive2 = Design.mainColor;
+            day_mark.Active1 = Design.mainColor;
+            day_mark.Active2 = Design.mainColor;
+            day_mark.StrokeColor = Design.mainColor;
+
+            status_mark.Inactive1 = Design.mainColor;
+            status_mark.Inactive2 = Design.mainColor;
+            status_mark.Active1 = Design.mainColor;
+            status_mark.Active2 = Design.mainColor;
+            status_mark.StrokeColor = Design.mainColor;
 
             calendar.BringToFront();
             calendar.StateCheckedNormal.Day.Back.Color1 = Color.FromArgb(
@@ -482,6 +507,200 @@ namespace Upgrade.Classes
                 WeeklyStatistic.Refresh();
 
                 idFailedTasks.Clear();
+            }
+        }
+
+        private void status_task_none_Click(object sender, EventArgs e)
+        {
+            GlobalComponents.status_mark.Left = 900;
+            Design.heightContentTaskTarget = 0;
+            Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
+
+            ServiceData.commandText = string.Format("SELECT " +
+                "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                "target.name, task.text, task.descr, task.failed, task.status FROM task " +
+                "INNER JOIN target ON task.id_target = target.id_target " +
+                "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0", GlobalData.id_target);
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                List<TaskBlock> tasks = new List<TaskBlock>();
+
+                while (ServiceData.reader.Read())
+                {
+                    tasks.Add(new TaskBlock(
+                        WindowManager.flowPanelTaskTarget,
+                        Convert.ToInt32(ServiceData.reader.GetValue(0)),
+                        ServiceData.reader.GetString(1),
+                        ServiceData.reader.GetString(2),
+                        ServiceData.reader.GetString(3),
+                        ServiceData.reader.GetString(4),
+                        ServiceData.reader.GetString(5),
+                        ServiceData.reader.GetString(6),
+                        ServiceData.reader.GetValue(7).ToString(),
+                        Convert.ToInt32(ServiceData.reader.GetValue(8)),
+                        Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                }
+            }
+            GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
+
+            if (Design.heightContentTaskTarget == 0)
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = true;
+            }
+            else
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = false;
+            }
+        }
+
+        private void status_task_done_Click(object sender, EventArgs e)
+        {
+            GlobalComponents.status_mark.Left = 923;
+            Design.heightContentTaskTarget = 0;
+            Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
+
+            ServiceData.commandText = string.Format("SELECT " +
+                "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                "target.name, task.text, task.descr, task.failed, task.status FROM task " +
+                "INNER JOIN target ON task.id_target = target.id_target " +
+                "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE target.id_target = {0} AND task.status = 1 AND task.failed = 0", GlobalData.id_target);
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                List<TaskBlock> tasks = new List<TaskBlock>();
+                PictureBox boxStatus = new PictureBox();
+
+                boxStatus = new PictureBox();
+                boxStatus.SizeMode = PictureBoxSizeMode.CenterImage;
+                boxStatus.Width = 430;
+                boxStatus.Height = 35;
+                boxStatus.Image = Properties.Resources.done_tasks;
+                WindowManager.flowPanelTaskTarget.Controls.Add(boxStatus);
+                Design.heightContentTasks += boxStatus.Height;
+
+                while (ServiceData.reader.Read())
+                {
+                    tasks.Add(new TaskBlock(
+                        WindowManager.flowPanelTaskTarget,
+                        Convert.ToInt32(ServiceData.reader.GetValue(0)),
+                        ServiceData.reader.GetString(1),
+                        ServiceData.reader.GetString(2),
+                        ServiceData.reader.GetString(3),
+                        ServiceData.reader.GetString(4),
+                        ServiceData.reader.GetString(5),
+                        ServiceData.reader.GetString(6),
+                        ServiceData.reader.GetValue(7).ToString(),
+                        Convert.ToInt32(ServiceData.reader.GetValue(8)),
+                        Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                }
+            }
+            GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
+
+            if (Design.heightContentTaskTarget == 0)
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = true;
+            }
+            else
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = false;
+            }
+        }
+
+        private void status_task_fail_Click(object sender, EventArgs e)
+        {
+            GlobalComponents.status_mark.Left = 947;
+            Design.heightContentTaskTarget = 0;
+            Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
+
+            ServiceData.commandText = string.Format("SELECT " +
+                "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                "target.name, task.text, task.descr, task.failed, task.status FROM task " +
+                "INNER JOIN target ON task.id_target = target.id_target " +
+                "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 1", GlobalData.id_target);
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                List<TaskBlock> tasks = new List<TaskBlock>();
+                PictureBox boxStatus = new PictureBox();
+
+                boxStatus = new PictureBox();
+                boxStatus.SizeMode = PictureBoxSizeMode.CenterImage;
+                boxStatus.Width = 430;
+                boxStatus.Height = 35;
+                boxStatus.Image = Properties.Resources.fail_tasks;
+                WindowManager.flowPanelTaskTarget.Controls.Add(boxStatus);
+                Design.heightContentTasks += boxStatus.Height;
+
+                while (ServiceData.reader.Read())
+                {
+                    tasks.Add(new TaskBlock(
+                        WindowManager.flowPanelTaskTarget,
+                        Convert.ToInt32(ServiceData.reader.GetValue(0)),
+                        ServiceData.reader.GetString(1),
+                        ServiceData.reader.GetString(2),
+                        ServiceData.reader.GetString(3),
+                        ServiceData.reader.GetString(4),
+                        ServiceData.reader.GetString(5),
+                        ServiceData.reader.GetString(6),
+                        ServiceData.reader.GetValue(7).ToString(),
+                        Convert.ToInt32(ServiceData.reader.GetValue(8)),
+                        Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                }
+            }
+            GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
+
+            if (Design.heightContentTaskTarget == 0)
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = true;
+            }
+            else
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = false;
+            }
+        }
+
+        private void addNote_Click(object sender, EventArgs e)
+        {
+            if (GlobalData.addNoteForm == null)
+            {
+                GlobalData.addNoteForm = new AddNoteForm();
+                GlobalData.addNoteForm.ShowDialog();
+            }
+            else 
+            {
+                GlobalData.addNoteForm.ShowDialog();
+            }
+        }
+
+        private void addDirect_Click(object sender, EventArgs e)
+        {
+            if (GlobalData.addDirectionForm == null)
+            {
+                GlobalData.addDirectionForm = new AddDirectionForm();
+                GlobalData.addDirectionForm.ShowDialog();
+            }
+            else
+            {
+                GlobalData.addDirectionForm.ShowDialog();
             }
         }
     }

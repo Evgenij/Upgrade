@@ -90,7 +90,9 @@ namespace Upgrade.Classes
                 ServiceData.command.Parameters.AddWithValue("@id_note", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
+                Design.heightContentNotes -= panel.Height;
                 Design.HidePanel(panel, flowPanel);
+                GlobalData.scroller_note.Refresh(Design.heightContentNotes);
             }
         }
 

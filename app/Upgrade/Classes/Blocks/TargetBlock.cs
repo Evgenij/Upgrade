@@ -14,33 +14,26 @@ namespace Upgrade.Classes.Blocks
         private Label labelPerform;
         private Label labelStat;
         private PictureBox[] buttons = new PictureBox[3];
-        private FlowLayoutPanel flowTasks;
-        private PictureBox[] boxStatus = new PictureBox[2];
 
-        public TargetBlock(FlowLayoutPanel flowPanel, FlowLayoutPanel taskFlowPanel, int id_target, string nameTarget) 
+        public TargetBlock(FlowLayoutPanel flowPanel, int id_target, string nameTarget) 
         {
             this.id_record = id_target;
             labelPerform = new Label();
             labelStat = new Label();
-            flowTasks = taskFlowPanel;
 
-            textLabel.Left = 20;
-            textLabel.Top = 17;
+            textLabel.Left = 22;
+            textLabel.Top = 20;
             textLabel.Width = 255;
+            textLabel.Height = 21;
             textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 14);
-            textLabel.BackColor = Color.White;
-            textLabel.ForeColor = Color.Black;
-            textLabel.BorderStyle = BorderStyle.None;
-            textLabel.ReadOnly = true;
-            textLabel.Multiline = true;
-            textLabel.Text = nameTarget;
-            if (textLabel.Text.Length >= 28)
+            for (int i = 0; i < nameTarget.Length; i++) 
             {
-                textLabel.Height = 42 * (textLabel.Text.Length / 28);
-            }
-            else
-            {
-                textLabel.Height = 21;
+                if (i == 19) 
+                {
+                    textLabel.Text += Environment.NewLine;
+                    textLabel.Height = 45 * (textLabel.Text.Length / 19);
+                }
+                textLabel.Text += nameTarget[i];
             }
 
             box_top.Image = Properties.Resources.direct_box_top;
@@ -66,7 +59,7 @@ namespace Upgrade.Classes.Blocks
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE target.id_target = {0}", id_record);
+                "WHERE target.id_target = {0} ", id_record);
 
             SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
 
@@ -139,17 +132,17 @@ namespace Upgrade.Classes.Blocks
                 if (i == 0)
                 {
                     buttons[i].Image = Properties.Resources.dir_sett_off;
-                    buttons[i].Left = 22;
+                    buttons[i].Left = textLabel.Left;
                 }
                 else if (i == 1)
                 {
                     buttons[i].Image = Properties.Resources.dir_find_off;
-                    buttons[i].Left = 47;
+                    buttons[i].Left = 44;
                 }
                 else if (i == 2)
                 {
-                    buttons[i].Image = Properties.Resources.dir_target_off;
-                    buttons[i].Left = 73;
+                    buttons[i].Image = Properties.Resources.tar_task_off;
+                    buttons[i].Left = 67;
                 }
 
                 buttons[i].MouseHover += button_MouseHover;
@@ -177,6 +170,8 @@ namespace Upgrade.Classes.Blocks
                 buttons[i].BringToFront();
             }
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentTarget += panel.Height;
         }
 
         private void button_MouseLeave(object sender, EventArgs e)
@@ -191,7 +186,7 @@ namespace Upgrade.Classes.Blocks
             }
             else if (((PictureBox)sender).AccessibleName == "3")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_target_off;
+                ((PictureBox)sender).Image = Properties.Resources.tar_task_off;
             }
         }
 
@@ -207,7 +202,7 @@ namespace Upgrade.Classes.Blocks
             }
             else if (((PictureBox)sender).AccessibleName == "3")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_target_on;
+                ((PictureBox)sender).Image = Properties.Resources.tar_task_on;
             }
         }
 
@@ -219,74 +214,59 @@ namespace Upgrade.Classes.Blocks
             }
             else if (((PictureBox)sender).AccessibleName == "2")
             {
-                string[] sql_command = new string[3];
-                // все задачи
-                sql_command[0] = "AND task.status = 0 AND task.failed = 0 ";
-                // выполненные задачи
-                sql_command[1] = "AND task.status = 1 AND task.failed = 0 ";
-                // проваленные задачи
-                sql_command[2] = "AND task.failed = 1 ";
+                GlobalComponents.status_mark.Left = 900;
+                GlobalData.id_target = id_record;
+                Design.heightContentTaskTarget = 0;
+                Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
+                GlobalComponents.labelTarget.Text = textLabel.Text;
 
-                for (int i = 0; i < sql_command.Length; i++)
+                ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
+                string commandText = string.Format("SELECT " +
+                    "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                    "target.name, task.text, task.descr, task.failed, task.status FROM task " +
+                    "INNER JOIN target ON task.id_target = target.id_target " +
+                    "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                    "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                    "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                    "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0", this.id_record);
+
+                SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
+
+                SQLiteDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
-                    string commandText = string.Format("SELECT " +
-                        "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
-                        "target.name, task.text, task.descr, task.failed, task.status FROM task " +
-                        "INNER JOIN target ON task.id_target = target.id_target " +
-                        "INNER JOIN direction ON target.id_direct = direction.id_direct " +
-                        "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
-                        "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                        "WHERE target.id_target = {0}" + sql_command[i], this.id_record);
+                    List<TaskBlock> tasks = new List<TaskBlock>();
 
-                    SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
-
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    if (reader.HasRows)
+                    while (reader.Read())
                     {
-                        List<TaskBlock> tasks = new List<TaskBlock>();
-                        if (i == 1)
-                        {
-                            boxStatus[0] = new PictureBox();
-                            boxStatus[0].SizeMode = PictureBoxSizeMode.CenterImage;
-                            boxStatus[0].Width = 430;
-                            boxStatus[0].Height = 35;
-                            boxStatus[0].Image = Properties.Resources.done_tasks;
-                            flowTasks.Controls.Add(boxStatus[0]);
-                            Design.heightContentTasks += boxStatus[0].Height;
-                        }
-                        else if (i == 2)
-                        {
-                            boxStatus[1] = new PictureBox();
-                            boxStatus[1].SizeMode = PictureBoxSizeMode.CenterImage;
-                            boxStatus[1].Width = 430;
-                            boxStatus[1].Height = 35;
-                            boxStatus[1].Image = Properties.Resources.fail_tasks;
-                            flowTasks.Controls.Add(boxStatus[1]);
-                            Design.heightContentTasks += boxStatus[1].Height;
-                        }
-
-                        while (reader.Read())
-                        {
-                            tasks.Add(new TaskBlock(
-                                        flowTasks,
-                                        Convert.ToInt32(ServiceData.reader.GetValue(0)),
-                                        ServiceData.reader.GetString(1),
-                                        ServiceData.reader.GetString(2),
-                                        ServiceData.reader.GetString(3),
-                                        ServiceData.reader.GetString(4),
-                                        ServiceData.reader.GetString(5),
-                                        ServiceData.reader.GetString(6),
-                                        ServiceData.reader.GetValue(7).ToString(),
-                                        Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                                        Convert.ToInt32(ServiceData.reader.GetValue(9))));
-                        }
+                        tasks.Add(new TaskBlock(
+                            WindowManager.flowPanelTaskTarget,
+                            Convert.ToInt32(reader.GetValue(0)),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetString(3),
+                            reader.GetString(4),
+                            reader.GetString(5),
+                            reader.GetString(6),
+                            reader.GetValue(7).ToString(),
+                            Convert.ToInt32(reader.GetValue(8)),
+                            Convert.ToInt32(reader.GetValue(9))));
                     }
+                }
+                GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
+
+                if (Design.heightContentTaskTarget == 0)
+                {
+                    GlobalComponents.notFoundTaskTarget.Visible = true;
+                }
+                else
+                {
+                    GlobalComponents.notFoundTaskTarget.Visible = false;
                 }
             }
             else if (((PictureBox)sender).AccessibleName == "3")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_target_on;
+                //((PictureBox)sender).Image = Properties.Resources.tar_task_on;
             }
         }
     }

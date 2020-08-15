@@ -63,6 +63,26 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddDirection {
+            get {
+                object obj = ResourceManager.GetObject("AddDirection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AddNote {
+            get {
+                object obj = ResourceManager.GetObject("AddNote", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_down {
             get {
                 object obj = ResourceManager.GetObject("arrow_down", resourceCulture);
@@ -146,6 +166,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap block_delete_on {
             get {
                 object obj = ResourceManager.GetObject("block_delete_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_back {
+            get {
+                object obj = ResourceManager.GetObject("button_back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -623,6 +653,26 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap note_not_found {
+            get {
+                object obj = ResourceManager.GetObject("note_not_found", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap note_not_found1 {
+            get {
+                object obj = ResourceManager.GetObject("note_not_found1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap panel_filter {
             get {
                 object obj = ResourceManager.GetObject("panel_filter", resourceCulture);
@@ -833,6 +883,56 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap status_check_done {
+            get {
+                object obj = ResourceManager.GetObject("status_check_done", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap status_check_fail {
+            get {
+                object obj = ResourceManager.GetObject("status_check_fail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap status_check_none {
+            get {
+                object obj = ResourceManager.GetObject("status_check_none", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tar_task_off {
+            get {
+                object obj = ResourceManager.GetObject("tar_task_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tar_task_on {
+            get {
+                object obj = ResourceManager.GetObject("tar_task_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tardets {
             get {
                 object obj = ResourceManager.GetObject("tardets", resourceCulture);
@@ -846,6 +946,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap tardets_icon {
             get {
                 object obj = ResourceManager.GetObject("tardets_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap target_not_found {
+            get {
+                object obj = ResourceManager.GetObject("target_not_found", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -886,6 +996,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap task_line {
             get {
                 object obj = ResourceManager.GetObject("task_line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap task_not_found {
+            get {
+                object obj = ResourceManager.GetObject("task_not_found", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

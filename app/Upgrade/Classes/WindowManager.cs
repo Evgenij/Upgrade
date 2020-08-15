@@ -32,6 +32,7 @@ namespace Upgrade.Classes
         public static FlowLayoutPanel flowPanelNotes;
         public static FlowLayoutPanel flowPanelDirect;
         public static FlowLayoutPanel flowPanelTarget;
+        public static FlowLayoutPanel flowPanelTaskTarget;
 
         public static async Task SetPanelsMainWindow()
         {
@@ -39,21 +40,17 @@ namespace Upgrade.Classes
             await SetNoteBlock();
         }
 
-        public static void SetFlowPanelTask(FlowLayoutPanel flow)
+        public static void SetFlowPanelTask(FlowLayoutPanel flowTask, 
+                                            FlowLayoutPanel flowNotes, 
+                                            FlowLayoutPanel flowDirect, 
+                                            FlowLayoutPanel flowTarget,
+                                            FlowLayoutPanel flowTaskTarget)
         {
-            flowPanelTasks = flow;
-        }
-        public static void SetFlowPanelNote(FlowLayoutPanel flow)
-        {
-            flowPanelNotes = flow;
-        }
-        public static void SetFlowPanelDirect(FlowLayoutPanel flow)
-        {
-            flowPanelDirect = flow;
-        }
-        public static void SetFlowPanelTarget(FlowLayoutPanel flow)
-        {
-            flowPanelTarget = flow;
+            flowPanelTasks = flowTask;
+            flowPanelNotes = flowNotes;
+            flowPanelDirect = flowDirect;
+            flowPanelTarget = flowTarget;
+            flowPanelTaskTarget = flowTaskTarget;
         }
 
         public static async Task SetTaskBlock()
@@ -135,7 +132,6 @@ namespace Upgrade.Classes
                 {
                     for (int i = 1; i < 4; i++)
                     {
-                        //MessageBox.Show(sql_command[0] + sql_command[i]);
                         ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] + sql_command[4] + sql_command[5] + 
                                                                 "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
                                                                 User.user_id,
@@ -402,6 +398,15 @@ namespace Upgrade.Classes
                     }
                 }
             }
+
+            if (Design.heightContentTasks == 0) 
+            {
+                GlobalComponents.notFoundTask.Visible = true;
+            }
+            else
+            {
+                GlobalComponents.notFoundTask.Visible = false;
+            }
         }
 
         public static async Task SetNoteBlock()
@@ -423,6 +428,15 @@ namespace Upgrade.Classes
                         ServiceData.reader.GetString(1)));
                 }
             }
+
+            if (Design.heightContentNotes == 0)
+            {
+                GlobalComponents.notFoundNote.Visible = true;
+            }
+            else 
+            {
+                GlobalComponents.notFoundNote.Visible = false;
+            }
         }
 
         public static async Task SetDirectBlock()
@@ -441,7 +455,7 @@ namespace Upgrade.Classes
             {
                 while (await ServiceData.reader.ReadAsync())
                 {
-                    directionBlock.Add(new DirectionBlock(flowPanelDirect, flowPanelTarget, flowPanelTasks, 
+                    directionBlock.Add(new DirectionBlock(flowPanelDirect,
                         ServiceData.reader.GetInt32(0), 
                         ServiceData.reader.GetString(1), 
                         ServiceData.reader.GetString(2)));

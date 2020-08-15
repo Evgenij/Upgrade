@@ -26,21 +26,18 @@ namespace Upgrade.Classes
         private static TextBox textBoxPerformLastWeek;
         private static TextBox textBoxPerformCurrentWeek;
         private static PictureBox face;
-        private static Label labelPeriod;
 
         public static void SetStatistic(TabPage tab, 
                                PictureBox box, 
                                TextBox performLastWeek, 
                                TextBox performCurrentWeek, 
-                               PictureBox faceIndicator,
-                               Label periodWeek) 
+                               PictureBox faceIndicator) 
         {
             tabPage = tab;
             mainBox = box;
             textBoxPerformLastWeek = performLastWeek;
             textBoxPerformCurrentWeek = performCurrentWeek;
             face = faceIndicator;
-            labelPeriod = periodWeek;
 
             int paddingIndicator = 0;
             int paddingLabel = 0;
@@ -194,7 +191,7 @@ namespace Upgrade.Classes
                 paddingIndicator += 37;
             }
 
-            periodWeek.Text = "c " + daysCurrentWeek.First() + "." + DateTime.Now.ToString("MM") + "." + DateTime.Now.ToString("yyyy") +
+            GlobalComponents.labelPeriod.Text = "c " + daysCurrentWeek.First() + "." + DateTime.Now.ToString("MM") + "." + DateTime.Now.ToString("yyyy") +
                               " по " + daysCurrentWeek.Last() + "." + DateTime.Now.ToString("MM") + "." + DateTime.Now.ToString("yyyy");
             performLastWeek.Text = Math.Ceiling(CalculatePerformLastWeek()).ToString() + "%";
             performCurrentWeek.Text = Math.Ceiling(CalculatePerformCurrentWeek()).ToString() + "%";
@@ -214,7 +211,7 @@ namespace Upgrade.Classes
 
         public static void Refresh() 
         {
-            SetStatistic(tabPage, mainBox, textBoxPerformLastWeek, textBoxPerformCurrentWeek, face, labelPeriod);
+            SetStatistic(tabPage, mainBox, textBoxPerformLastWeek, textBoxPerformCurrentWeek, face);
         }
 
         private static double CalculatePerformLastWeek() 

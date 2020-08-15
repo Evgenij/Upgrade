@@ -116,11 +116,6 @@ namespace Upgrade.Classes
             textLabel.Top = direct.Top + 20;
             textLabel.Width = 255;
             textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 14);
-            textLabel.BackColor = Color.White;
-            textLabel.ForeColor = Color.Black;
-            textLabel.BorderStyle = BorderStyle.None;
-            textLabel.ReadOnly = true;
-            textLabel.Multiline = true;
             textLabel.Text = text;
             if (textLabel.Text.Length >= 28)
             {
@@ -356,6 +351,7 @@ namespace Upgrade.Classes
             flowPanel.Controls.Add(panel);
 
             Design.heightContentTasks += panel.Height;
+            Design.heightContentTaskTarget += panel.Height;
         }
 
         private void BoxDelete_Click(object sender, EventArgs e)
@@ -369,7 +365,9 @@ namespace Upgrade.Classes
                 ServiceData.command.Parameters.AddWithValue("@id_task", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
+                Design.heightContentTasks -= panel.Height;
                 Design.HidePanel(panel, flowPanel);
+                GlobalData.scroller_task.Refresh(Design.heightContentTasks);
             }
             else 
             {

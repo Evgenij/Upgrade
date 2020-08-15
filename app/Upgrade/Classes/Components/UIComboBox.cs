@@ -25,7 +25,13 @@ namespace Upgrade.Forms
         private Label[] items;
         private Enums.TypeAction typeAction;
 
-        public UIComboBox(TabPage tabPage, Panel panel, string AccessimbleName, string[] labels, Label label = null, Panel addPanel = null, Panel panelFilter = null)
+        public UIComboBox(TabPage tabPage, 
+                          Panel panel, 
+                          string AccessimbleName, 
+                          string[] labels, 
+                          Label label = null,
+                          Panel addPanel = null, 
+                          Panel panelFilter = null)
         {
             panel.AccessibleName = AccessimbleName;
 
