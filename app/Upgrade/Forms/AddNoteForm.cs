@@ -74,7 +74,7 @@ namespace Upgrade.Forms
                 catch (Exception ex) 
                 {
                     MessageBox.Show(
-                        "Не удалось создать заметку...\n\nОшибка: " + ex.Message,
+                        "Не удалось создать заметку...\n-\nОшибка: " + ex.Message,
                         "Ошибка создания заметки", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

@@ -159,12 +159,12 @@ namespace Upgrade.Classes.Blocks
             colorMark = new AltoControls.AltoButton();
             colorMark.Top = box_bottom.Top - 10;
             colorMark.Left = textLabel.Left + 2;
-            colorMark.Inactive1 = System.Drawing.ColorTranslator.FromHtml("#" + mark);
-            colorMark.Inactive2 = System.Drawing.ColorTranslator.FromHtml("#" + mark);
-            colorMark.Active1 = System.Drawing.ColorTranslator.FromHtml("#" + mark);
-            colorMark.Active2 = System.Drawing.ColorTranslator.FromHtml("#" + mark);
+            colorMark.Inactive1 = System.Drawing.ColorTranslator.FromHtml(mark);
+            colorMark.Inactive2 = System.Drawing.ColorTranslator.FromHtml( mark);
+            colorMark.Active1 = System.Drawing.ColorTranslator.FromHtml(mark);
+            colorMark.Active2 = System.Drawing.ColorTranslator.FromHtml(mark);
             colorMark.Stroke = true;
-            colorMark.StrokeColor = System.Drawing.ColorTranslator.FromHtml("#" + mark);
+            colorMark.StrokeColor = System.Drawing.ColorTranslator.FromHtml(mark);
             colorMark.Radius = 4;
             colorMark.Width = 60;
             colorMark.Height = 10;
