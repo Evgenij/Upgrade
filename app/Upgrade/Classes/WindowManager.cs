@@ -61,7 +61,8 @@ namespace Upgrade.Classes
             string[] date = new string[7];
 
             sql_command[0] = "SELECT " +
-                "task.id_task, task.date, task.time, task.time_finish, direction.name, target.name, task.text, task.descr, task.failed, task.status FROM task " +
+                "task.id_task, task.date, task.time, task.time_finish, direction.name, direction.color_mark, " +
+                "target.name, task.text, task.descr, task.failed, task.status FROM task " +
                 "INNER JOIN target ON task.id_target = target.id_target " +
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
@@ -176,9 +177,10 @@ namespace Upgrade.Classes
                                     ServiceData.reader.GetString(4),
                                     ServiceData.reader.GetString(5),
                                     ServiceData.reader.GetString(6),
-                                    ServiceData.reader.GetValue(7).ToString(),
-                                    Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                                    Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                                    ServiceData.reader.GetString(7),
+                                    ServiceData.reader.GetValue(8).ToString(),
+                                    Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                                    Convert.ToInt32(ServiceData.reader.GetValue(10))));
                             }
                         }
                     }
@@ -216,9 +218,10 @@ namespace Upgrade.Classes
                                 ServiceData.reader.GetString(4),
                                 ServiceData.reader.GetString(5),
                                 ServiceData.reader.GetString(6),
-                                ServiceData.reader.GetValue(7).ToString(),
-                                Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                                Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                                ServiceData.reader.GetString(7),
+                                ServiceData.reader.GetValue(8).ToString(),
+                                Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                                Convert.ToInt32(ServiceData.reader.GetValue(10))));
                         }
                     }
                 }
@@ -255,9 +258,10 @@ namespace Upgrade.Classes
                                 ServiceData.reader.GetString(4),
                                 ServiceData.reader.GetString(5),
                                 ServiceData.reader.GetString(6),
-                                ServiceData.reader.GetValue(7).ToString(),
-                                Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                                Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                                ServiceData.reader.GetString(7),
+                                ServiceData.reader.GetValue(8).ToString(),
+                                Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                                Convert.ToInt32(ServiceData.reader.GetValue(10))));
                         }
                     }
                 }
@@ -312,9 +316,10 @@ namespace Upgrade.Classes
                                     ServiceData.reader.GetString(4),
                                     ServiceData.reader.GetString(5),
                                     ServiceData.reader.GetString(6),
-                                    ServiceData.reader.GetValue(7).ToString(),
-                                    Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                                    Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                                    ServiceData.reader.GetString(7),
+                                    ServiceData.reader.GetValue(8).ToString(),
+                                    Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                                    Convert.ToInt32(ServiceData.reader.GetValue(10))));
                             }
                         }
                     }
@@ -352,9 +357,10 @@ namespace Upgrade.Classes
                                 ServiceData.reader.GetString(4),
                                 ServiceData.reader.GetString(5),
                                 ServiceData.reader.GetString(6),
-                                ServiceData.reader.GetValue(7).ToString(),
-                                Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                                Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                                ServiceData.reader.GetString(7),
+                                ServiceData.reader.GetValue(8).ToString(),
+                                Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                                Convert.ToInt32(ServiceData.reader.GetValue(10))));
                         }
                     }
                 }
@@ -391,15 +397,16 @@ namespace Upgrade.Classes
                                 ServiceData.reader.GetString(4),
                                 ServiceData.reader.GetString(5),
                                 ServiceData.reader.GetString(6),
-                                ServiceData.reader.GetValue(7).ToString(),
-                                Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                                Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                                ServiceData.reader.GetString(7),
+                                ServiceData.reader.GetValue(8).ToString(),
+                                Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                                Convert.ToInt32(ServiceData.reader.GetValue(10))));
                         }
                     }
                 }
             }
 
-            if (Design.heightContentTasks == 0) 
+            if (Design.heightContentTasks == 0)
             {
                 GlobalComponents.notFoundTask.Visible = true;
             }

@@ -49,7 +49,7 @@ namespace Upgrade.Forms
             textLabel.Left = 0;
             textLabel.Top = 0;
             textLabel.Width = 180;
-            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 16);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 22);
             textLabel.BackColor = Design.backColor;
             textLabel.ForeColor = System.Drawing.Color.DarkGray;
             textLabel.Cursor = Cursors.Hand;
@@ -77,7 +77,7 @@ namespace Upgrade.Forms
             {
                 items[i] = new Label();
                 items[i].AccessibleName = i.ToString();
-                items[i].Font = GlobalData.GetFont(Enums.TypeFont.Standart, 14);
+                items[i].Font = GlobalData.GetFont(Enums.TypeFont.Regular, 18);
                 items[i].BackColor = Color.White;
                 items[i].ForeColor = System.Drawing.Color.DarkGray;
                 items[i].Width = 160;

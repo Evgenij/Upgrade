@@ -16,10 +16,8 @@ namespace Upgrade.Classes
 
         public enum TypeFont
         {
-            ExtraThin,
-            Light,
-            Standart,
-            Medium
+            Regular,
+            Bold
         }
 
         public enum StatusTask

@@ -25,7 +25,7 @@ namespace Upgrade.Classes.Blocks
             textLabel.Top = 20;
             textLabel.Width = 255;
             textLabel.Height = 21;
-            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 14);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 20);
             for (int i = 0; i < nameTarget.Length; i++) 
             {
                 if (i == 19) 
@@ -100,7 +100,7 @@ namespace Upgrade.Classes.Blocks
             labelPerform.Top = textLabel.Top - 3;
             labelPerform.TextAlign = ContentAlignment.MiddleRight;
             labelPerform.Text = (Math.Ceiling((countDoneTasks * 100) / countTasks)).ToString() + "%";
-            labelPerform.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 25);
+            labelPerform.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 33);
             labelPerform.ForeColor = Design.mainColor;
             labelPerform.BackColor = Color.White;
 
@@ -117,7 +117,7 @@ namespace Upgrade.Classes.Blocks
             {
                 labelStat.Text = countDoneTasks.ToString() + " из " + countTasks.ToString();
             }
-            labelStat.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
+            labelStat.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
             labelStat.ForeColor = Color.DarkGray;
             labelStat.BackColor = Color.White;
 
@@ -222,7 +222,7 @@ namespace Upgrade.Classes.Blocks
 
                 ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
                 string commandText = string.Format("SELECT " +
-                    "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                    "task.id_task, task.date, task.time, task.time_finish, direction.name, direction.color_mark, " +
                     "target.name, task.text, task.descr, task.failed, task.status FROM task " +
                     "INNER JOIN target ON task.id_target = target.id_target " +
                     "INNER JOIN direction ON target.id_direct = direction.id_direct " +
@@ -241,16 +241,17 @@ namespace Upgrade.Classes.Blocks
                     {
                         tasks.Add(new TaskBlock(
                             WindowManager.flowPanelTaskTarget,
-                            Convert.ToInt32(reader.GetValue(0)),
-                            reader.GetString(1),
-                            reader.GetString(2),
-                            reader.GetString(3),
-                            reader.GetString(4),
-                            reader.GetString(5),
-                            reader.GetString(6),
-                            reader.GetValue(7).ToString(),
-                            Convert.ToInt32(reader.GetValue(8)),
-                            Convert.ToInt32(reader.GetValue(9))));
+                            Convert.ToInt32(ServiceData.reader.GetValue(0)),
+                            ServiceData.reader.GetString(1),
+                            ServiceData.reader.GetString(2),
+                            ServiceData.reader.GetString(3),
+                            ServiceData.reader.GetString(4),
+                            ServiceData.reader.GetString(5),
+                            ServiceData.reader.GetString(6),
+                            ServiceData.reader.GetString(7),
+                            ServiceData.reader.GetValue(8).ToString(),
+                            Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                            Convert.ToInt32(ServiceData.reader.GetValue(10))));
                     }
                 }
                 GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);

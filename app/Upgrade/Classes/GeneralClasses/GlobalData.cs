@@ -22,6 +22,7 @@ namespace Upgrade.Classes
         static public Reg_AuthForm reg_authForm = new Reg_AuthForm();
         static public AddNoteForm addNoteForm;
         static public AddDirectionForm addDirectionForm;
+        static public AddTargetForm addTargetForm;
 
         // scrollers
         static public Scroller scroller_task;
@@ -32,27 +33,20 @@ namespace Upgrade.Classes
 
         static public Font GetFont(Enums.TypeFont typeFont, int size) 
         {
-            string font;
-            if (typeFont == Enums.TypeFont.ExtraThin)
+            Font font;
+
+            if (typeFont == Enums.TypeFont.Regular)
             {
-                font = "PF DinDisplay Pro ExtraThin";
-            }
-            else if (typeFont == Enums.TypeFont.Light) 
-            {
-                font = "PF DinDisplay Pro Light";
-            }
-            else if (typeFont == Enums.TypeFont.Standart)
-            {
-                font = "PF DinDisplay Pro";
+                font = new Font("Calibri", size, FontStyle.Regular, GraphicsUnit.Pixel);
             }
             else
             {
-                font = "PF DinDisplay Pro Medium";
+                font = new Font("Calibri", size, FontStyle.Bold, GraphicsUnit.Pixel);
             }
 
-            return new Font(font, size);
+            return font;
         }
-        
+
         static public string GererateCode() 
         {
             Random random = new Random();

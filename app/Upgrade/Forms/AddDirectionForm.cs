@@ -52,10 +52,10 @@ namespace Upgrade.Classes.Blocks
         public AddDirectionForm()
         {
             InitializeComponent();
-            this.Load += MainWorkingForm_Load;
+            this.Load += Form_Load;
         }
 
-        private void MainWorkingForm_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             IntPtr hRgn = CreateRoundRectRgn(0, 0, this.Width, this.Height, 55, 55);
             SetWindowRgn(this.Handle, hRgn, true);

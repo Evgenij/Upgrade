@@ -33,7 +33,7 @@ namespace Upgrade.Classes
             textLabel.Left = 20;
             textLabel.Top = 20;
             textLabel.Width = 225;
-            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 12);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
             textLabel.BackColor = Color.White;
             textLabel.ForeColor = Color.Black;
             textLabel.BorderStyle = BorderStyle.None;

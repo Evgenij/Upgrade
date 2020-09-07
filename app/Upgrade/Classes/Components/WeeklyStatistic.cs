@@ -95,7 +95,7 @@ namespace Upgrade.Classes
                 labelFailed[i].Top = box.Top + 64;
                 labelFailed[i].Width = 20;
                 labelFailed[i].Height = 20;
-                labelFailed[i].Font = GlobalData.GetFont(Enums.TypeFont.Medium, 11);
+                labelFailed[i].Font = GlobalData.GetFont(Enums.TypeFont.Regular, 11);
                 labelFailed[i].BackColor = System.Drawing.Color.White;
                 labelFailed[i].ForeColor = System.Drawing.Color.DarkGray;
                 labelFailed[i].BorderStyle = BorderStyle.None;
@@ -116,7 +116,7 @@ namespace Upgrade.Classes
                 labelDone[i].Top = box.Top + 219;
                 labelDone[i].Width = 20;
                 labelDone[i].Height = 20;
-                labelDone[i].Font = GlobalData.GetFont(Enums.TypeFont.Medium, 11);
+                labelDone[i].Font = GlobalData.GetFont(Enums.TypeFont.Regular, 11);
                 labelDone[i].BackColor = System.Drawing.Color.White;
                 labelDone[i].ForeColor = System.Drawing.Color.DarkGray;
                 labelDone[i].BorderStyle = BorderStyle.None;

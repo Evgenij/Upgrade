@@ -29,7 +29,7 @@ namespace Upgrade.Classes.Blocks
             textLabel.Top = 20;
             textLabel.Width = 255;
             textLabel.Height = 21;
-            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 14);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 20);
             for (int i = 0; i < nameDirect.Length; i++)
             {
                 if (i == 19)
@@ -105,7 +105,7 @@ namespace Upgrade.Classes.Blocks
             labelPerform.Top = textLabel.Top - 3;
             labelPerform.TextAlign = ContentAlignment.MiddleRight;
             labelPerform.Text = (Math.Ceiling((countDoneTasks * 100) / countTasks)).ToString() + "%";
-            labelPerform.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 25);
+            labelPerform.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 33);
             labelPerform.ForeColor = Design.mainColor;
             labelPerform.BackColor = Color.White;
 
@@ -122,7 +122,7 @@ namespace Upgrade.Classes.Blocks
             {
                 labelStat.Text = countDoneTasks.ToString() + " из " + countTasks.ToString();
             }
-            labelStat.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
+            labelStat.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
             labelStat.ForeColor = Color.DarkGray;
             labelStat.BackColor = Color.White;
 
@@ -158,7 +158,7 @@ namespace Upgrade.Classes.Blocks
 
             colorMark = new AltoControls.AltoButton();
             colorMark.Top = box_bottom.Top - 10;
-            colorMark.Left = textLabel.Left + 2;
+            colorMark.Left = textLabel.Left + 4;
             colorMark.Inactive1 = System.Drawing.ColorTranslator.FromHtml(mark);
             colorMark.Inactive2 = System.Drawing.ColorTranslator.FromHtml( mark);
             colorMark.Active1 = System.Drawing.ColorTranslator.FromHtml(mark);

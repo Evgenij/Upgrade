@@ -43,6 +43,7 @@ namespace Upgrade.Classes
                          string time,
                          string time_finish,
                          string direction,
+                         string directMark,
                          string target,
                          string text, 
                          string descr,
@@ -67,8 +68,8 @@ namespace Upgrade.Classes
 
             dateLabel.Left = 24;
             dateLabel.Top = 25;
-            dateLabel.Width = 80;
-            dateLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
+            dateLabel.Width = 95;
+            dateLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 18);
             dateLabel.ForeColor = Design.mainColor;
             dateLabel.BackColor = Color.White;
             dateLabel.Text = date;
@@ -81,30 +82,30 @@ namespace Upgrade.Classes
             Enums.DayOfWeek dayOfWeek = (Enums.DayOfWeek)Enum.GetValues(typeof(DayOfWeek)).GetValue(Convert.ToInt32(dateTask.DayOfWeek));
 
             day.Text = dayOfWeek.ToString();
-            day.Left = 105;
-            day.Top = 25;
+            day.Left = dateLabel.Left + dateLabel.Width;
+            day.Top = 27;
             day.Width = day.Text.Length * 11;
-            day.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
+            day.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
             day.ForeColor = Color.Gray;
             day.BackColor = Color.White;
             
             direct.BorderStyle = BorderStyle.None;
             direct.Left = 66;
             direct.Top = 55;
-            direct.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
-            direct.ForeColor = Design.mainColor;
+            direct.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
+            direct.ForeColor = System.Drawing.ColorTranslator.FromHtml(directMark);
             direct.BackColor = Color.White;
             direct.Text = direction;
             direct.WordWrap = true;
             direct.ReadOnly = true;
             direct.MaximumSize = new Size(142,18); 
-            direct.Width = 9 * direct.Text.Length - 7;
+            direct.Width = 7 * direct.Text.Length + 5;
 
             targetLabel.BorderStyle = BorderStyle.None;
             targetLabel.Left = direct.Left + direct.Width;
             targetLabel.Top = direct.Top;
             targetLabel.Width = 120;
-            targetLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
+            targetLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
             targetLabel.ForeColor = Color.Gray;
             targetLabel.BackColor = Color.White;
             targetLabel.Text = "- " + target;
@@ -115,7 +116,7 @@ namespace Upgrade.Classes
             textLabel.Left = 63;
             textLabel.Top = direct.Top + 20;
             textLabel.Width = 255;
-            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 14);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 18);
             textLabel.Text = text;
             if (textLabel.Text.Length >= 28)
             {
@@ -132,7 +133,7 @@ namespace Upgrade.Classes
                 descrLabel.Left = 62;
                 descrLabel.Top = textLabel.Top + textLabel.Height + 10;
                 descrLabel.Width = 255;
-                descrLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
+                descrLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
                 descrLabel.BackColor = Color.White;
                 descrLabel.ForeColor = Color.Gray;
                 descrLabel.BorderStyle = BorderStyle.None;
@@ -206,25 +207,26 @@ namespace Upgrade.Classes
                     }
                     flowPanelSubtasks.Height += subTaskBlocks.Last().GetHeight();
                 }
-                //MessageBox.Show(count_subtasks.ToString() + "- всего и выполнено - " + success_subtasks.ToString());
                 flowPanelSubtasks.Height += 15;
             }
 
             timeLabel.Height = 27;
             timeLabel.Width = 74;
-            timeLabel.Left = 346;
+            timeLabel.Left = 340;
             timeLabel.Top = 52;
             timeLabel.Text = time;
-            timeLabel.Font = GlobalData.GetFont(Enums.TypeFont.Medium, 18);
+            timeLabel.TextAlign = ContentAlignment.MiddleRight;
+            timeLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 26);
             timeLabel.ForeColor = Design.mainColor;
             timeLabel.BackColor = Color.White;
 
             time_range.Height = 27;
             time_range.Width = 110;
-            time_range.Left = 316;
-            time_range.Top = 79;
+            time_range.Left = 300;
+            time_range.Top = 78;
             time_range.Text = time + " - " + time_finish;
-            time_range.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
+            time_range.TextAlign = ContentAlignment.MiddleRight;
+            time_range.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 15);
             time_range.ForeColor = Color.Gray;
             time_range.BackColor = Color.White;
 

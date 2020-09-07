@@ -93,30 +93,19 @@ namespace Upgrade.Classes
 
             if (heightContent >= panel.Height)
             {
-                //MessageBox.Show((panel.VerticalScroll.Maximum / panel.Height).ToString());
                 scroller.Height = panel.Height - top_tip_scroll.Height;
 
                 // вычисление множителя и длины скроллера
-                //if (panel.VerticalScroll.Maximum <= panel.Height)
-                //{
-                //    multiplier = 1;
-                //    scroller.Height = scroller.Height - (panel.VerticalScroll.Maximum - scroller.Height);
-                //}
-                //else if (panel.VerticalScroll.Maximum > panel.Height)
-                //{
-                //    multiplier = 2;
-                //    scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - scroller.Height) / 2);
-                //}
-                if (Math.Ceiling(Convert.ToDouble(heightContent / (panel.Height - 25))) == 1)
+                if (heightContent / panel.Height == 1)
                 {
                     multiplier = 1;
-                    MessageBox.Show("1");
-                    scroller.Height = scroller.Height - (heightContent - (panel.Height + (top_tip_scroll.Height * 2)));
+                    //MessageBox.Show("1");
+                    scroller.Height = scroller.Height - ((heightContent - (panel.Height + (top_tip_scroll.Height * 2))) * 2);
                 }
-                else if ((panel.VerticalScroll.Maximum / panel.Height) >= 2)
+                else if ((heightContent / panel.Height) >= 2)
                 {
                     multiplier = (panel.VerticalScroll.Maximum / panel.Height) + 1;
-                    MessageBox.Show("2");
+                    //MessageBox.Show("2");
                     scroller.Height = scroller.Height - ((panel.VerticalScroll.Maximum - panel.Height) / multiplier);
                 }
 

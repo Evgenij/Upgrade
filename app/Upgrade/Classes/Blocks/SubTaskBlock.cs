@@ -58,7 +58,7 @@ namespace Upgrade.Classes
             textLabel.Left = check.Left + check.Width + 11;
             textLabel.Top = check.Top;
             textLabel.Width = 240;
-            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
+            textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
             textLabel.BackColor = Color.White;
             textLabel.ForeColor = Color.Gray;
             textLabel.Cursor = Cursors.Hand;

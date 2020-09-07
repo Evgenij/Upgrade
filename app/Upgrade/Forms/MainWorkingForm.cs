@@ -268,6 +268,11 @@ namespace Upgrade.Classes
             status_mark.Active2 = Design.mainColor;
             status_mark.StrokeColor = Design.mainColor;
 
+            not_found_note.BringToFront();
+            not_found_target.BringToFront();
+            not_found_task.BringToFront();
+            not_found_task_target.BringToFront();
+
             calendar.BringToFront();
             calendar.StateCheckedNormal.Day.Back.Color1 = Color.FromArgb(
                                                                     Design.mainColorOpacity.A + 40,
@@ -517,7 +522,7 @@ namespace Upgrade.Classes
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
 
             ServiceData.commandText = string.Format("SELECT " +
-                "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                "task.id_task, task.date, task.time, task.time_finish, direction.name, direction.color_mark, " +
                 "target.name, task.text, task.descr, task.failed, task.status FROM task " +
                 "INNER JOIN target ON task.id_target = target.id_target " +
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
@@ -543,9 +548,10 @@ namespace Upgrade.Classes
                         ServiceData.reader.GetString(4),
                         ServiceData.reader.GetString(5),
                         ServiceData.reader.GetString(6),
-                        ServiceData.reader.GetValue(7).ToString(),
-                        Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                        Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                        ServiceData.reader.GetString(7),
+                        ServiceData.reader.GetValue(8).ToString(),
+                        Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                        Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
             }
             GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
@@ -567,7 +573,7 @@ namespace Upgrade.Classes
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
 
             ServiceData.commandText = string.Format("SELECT " +
-                "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                "task.id_task, task.date, task.time, task.time_finish, direction.name,  direction.color_mark, " +
                 "target.name, task.text, task.descr, task.failed, task.status FROM task " +
                 "INNER JOIN target ON task.id_target = target.id_target " +
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
@@ -602,9 +608,10 @@ namespace Upgrade.Classes
                         ServiceData.reader.GetString(4),
                         ServiceData.reader.GetString(5),
                         ServiceData.reader.GetString(6),
-                        ServiceData.reader.GetValue(7).ToString(),
-                        Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                        Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                        ServiceData.reader.GetString(7),
+                        ServiceData.reader.GetValue(8).ToString(),
+                        Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                        Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
             }
             GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
@@ -626,7 +633,7 @@ namespace Upgrade.Classes
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
 
             ServiceData.commandText = string.Format("SELECT " +
-                "task.id_task, task.date, task.time, task.time_finish, direction.name, " +
+                "task.id_task, task.date, task.time, task.time_finish, direction.name,  direction.color_mark, " +
                 "target.name, task.text, task.descr, task.failed, task.status FROM task " +
                 "INNER JOIN target ON task.id_target = target.id_target " +
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
@@ -661,9 +668,10 @@ namespace Upgrade.Classes
                         ServiceData.reader.GetString(4),
                         ServiceData.reader.GetString(5),
                         ServiceData.reader.GetString(6),
-                        ServiceData.reader.GetValue(7).ToString(),
-                        Convert.ToInt32(ServiceData.reader.GetValue(8)),
-                        Convert.ToInt32(ServiceData.reader.GetValue(9))));
+                        ServiceData.reader.GetString(7),
+                        ServiceData.reader.GetValue(8).ToString(),
+                        Convert.ToInt32(ServiceData.reader.GetValue(9)),
+                        Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
             }
             GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
@@ -701,6 +709,19 @@ namespace Upgrade.Classes
             else
             {
                 GlobalData.addDirectionForm.ShowDialog();
+            }
+        }
+
+        private void addTarget_Click(object sender, EventArgs e)
+        {
+            if (GlobalData.addTargetForm == null)
+            {
+                GlobalData.addTargetForm = new AddTargetForm();
+                GlobalData.addTargetForm.ShowDialog();
+            }
+            else
+            {
+                GlobalData.addTargetForm.ShowDialog();
             }
         }
     }

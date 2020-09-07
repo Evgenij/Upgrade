@@ -155,6 +155,12 @@
     <Compile Include="Forms\AddNoteForm.Designer.cs">
       <DependentUpon>AddNoteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddTargetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddTargetForm.Designer.cs">
+      <DependentUpon>AddTargetForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddNoteForm.resx">
       <DependentUpon>AddNoteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddTargetForm.resx">
+      <DependentUpon>AddTargetForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWorkingForm.resx">
       <DependentUpon>MainWorkingForm.cs</DependentUpon>
@@ -362,9 +371,6 @@
     <None Include="Resources\photo_border.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\panel_profile.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\default_user_photo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -513,6 +519,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddDirection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panel_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add target.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -103,7 +103,7 @@ namespace Upgrade.Classes
             {
                 labels[i] = new Label();
                 labels[i].Width = 195;
-                labels[i].Font = GlobalData.GetFont(Enums.TypeFont.Standart, 12);
+                labels[i].Font = GlobalData.GetFont(Enums.TypeFont.Regular, 15);
                 labels[i].BackColor = Color.Transparent;
                 labels[i].ForeColor = Color.DimGray;
                 labels[i].Left = 35;
@@ -167,7 +167,7 @@ namespace Upgrade.Classes
             button.Stroke = true;
             button.StrokeColor = Design.mainColor;
             button.ForeColor = Design.mainColor;
-            button.Font = GlobalData.GetFont(Enums.TypeFont.Standart, 11);
+            button.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
             button.Text = "применить";
             button.Radius = 17;
             button.Width = 115;
