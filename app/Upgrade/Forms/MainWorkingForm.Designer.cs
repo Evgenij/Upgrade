@@ -33,6 +33,7 @@
             this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tab_targets = new System.Windows.Forms.TabPage();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.status_mark = new AltoControls.AltoButton();
             this.label8 = new System.Windows.Forms.Label();
             this.label_name_target = new System.Windows.Forms.Label();
@@ -155,8 +156,8 @@
             // 
             // tabs
             // 
-            this.tabs.Controls.Add(this.tab_targets);
             this.tabs.Controls.Add(this.tab_profile);
+            this.tabs.Controls.Add(this.tab_targets);
             this.tabs.Controls.Add(this.tab_stat);
             this.tabs.Controls.Add(this.tab_sched);
             this.tabs.Controls.Add(this.tab_sett);
@@ -171,6 +172,7 @@
             // 
             // tab_targets
             // 
+            this.tab_targets.Controls.Add(this.dateTimePicker1);
             this.tab_targets.Controls.Add(this.not_found_target);
             this.tab_targets.Controls.Add(this.not_found_task_target);
             this.tab_targets.Controls.Add(this.status_mark);
@@ -202,6 +204,20 @@
             this.tab_targets.TabIndex = 1;
             this.tab_targets.Text = "tabPage2";
             this.tab_targets.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy dddd";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf;
+            this.dateTimePicker1.Location = new System.Drawing.Point(679, 20);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(185, 25);
+            this.dateTimePicker1.TabIndex = 140;
             // 
             // status_mark
             // 
@@ -789,7 +805,7 @@
             this.label_seconds.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label_seconds.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_seconds.ForeColor = System.Drawing.Color.DarkGray;
-            this.label_seconds.Location = new System.Drawing.Point(1218, 406);
+            this.label_seconds.Location = new System.Drawing.Point(1215, 406);
             this.label_seconds.Name = "label_seconds";
             this.label_seconds.ReadOnly = true;
             this.label_seconds.Size = new System.Drawing.Size(54, 49);
@@ -1218,5 +1234,6 @@
         private System.Windows.Forms.PictureBox status_task_none;
         private System.Windows.Forms.PictureBox status_task_done;
         private AltoControls.AltoButton status_mark;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

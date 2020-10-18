@@ -23,6 +23,7 @@ namespace Upgrade.Classes
         static public AddNoteForm addNoteForm;
         static public AddDirectionForm addDirectionForm;
         static public AddTargetForm addTargetForm;
+        static public AddTaskForm addTaskForm;
 
         // scrollers
         static public Scroller scroller_task;
@@ -30,6 +31,28 @@ namespace Upgrade.Classes
         static public Scroller scroller_direct;
         static public Scroller scroller_target;
         static public Scroller scroller_task_target;
+
+        public struct DataContainer
+        {
+            int id_target;
+            string name;
+
+            public DataContainer(int id, string name)
+            {
+                this.id_target = id;
+                this.name = name;
+            }
+
+            public int GetId()
+            {
+                return id_target;
+            }
+
+            public string GetName()
+            {
+                return name;
+            }
+        }
 
         static public Font GetFont(Enums.TypeFont typeFont, int size) 
         {

@@ -469,5 +469,28 @@ namespace Upgrade.Classes
                 }
             }
         }
+
+        public static async Task SetTargetBlock()
+        {
+            Design.heightContentTarget = 0;
+
+            ServiceData.commandText = string.Format("SELECT target.id_target, target.name FROM target " +
+                "INNER JOIN direction ON direction.id_direct = target.id_direct " +
+                "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                "INNER JOIN user ON user.id_user = user_dir.id_user " +
+                "WHERE user.id_user = {0}", User.user_id);
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                List<TargetBlock> targets = new List<TargetBlock>();
+                while (await ServiceData.reader.ReadAsync())
+                {
+                    targets.Add(new TargetBlock(flowPanelTarget, ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                }
+            }
+        }
     }
 }

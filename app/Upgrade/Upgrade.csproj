@@ -161,6 +161,12 @@
     <Compile Include="Forms\AddTargetForm.Designer.cs">
       <DependentUpon>AddTargetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddTaskForm.Designer.cs">
+      <DependentUpon>AddTaskForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainWorkingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddTargetForm.resx">
       <DependentUpon>AddTargetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddTaskForm.resx">
+      <DependentUpon>AddTaskForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWorkingForm.resx">
       <DependentUpon>MainWorkingForm.cs</DependentUpon>
@@ -525,6 +534,54 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add target.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddTask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label_schedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_friday_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_friday_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_monday_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_monday_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_saturday_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_saturday_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_sunday_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_sunday_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_thursday_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_thursday_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_tuesday_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_tuesday_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_wednesday_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_wednesday_on.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -16,58 +16,14 @@ namespace Upgrade.Classes
         private PictureBox pictureButton;
         private PictureBox box;
         private Label[] labels = new Label[2];
-        private List<Direction> directions = new List<Direction>();
-        private List<Target> targets = new List<Target>();
+        private List<GlobalData.DataContainer> directions = new List<GlobalData.DataContainer>();
+        private List<GlobalData.DataContainer> targets = new List<GlobalData.DataContainer>();
         private Enums.TypeAction typeAction;
         private PictureBox[] buttonsPrev = new PictureBox[2];
         private PictureBox[] buttonsNext = new PictureBox[2];
         private static AltoControls.AltoButton button;
         private int indexDir = 0, indexTar = 0;
         private Timer timer;
-
-        struct Direction 
-        {
-            int id_direction;
-            string name;
-
-            public Direction(int id, string name) 
-            {
-                this.id_direction = id;
-                this.name = name;
-            }
-
-            public int GetId()
-            {
-                return id_direction;
-            }
-
-            public string GetName() 
-            {
-                return name;
-            }
-        }
-
-        struct Target
-        {
-            int id_target;
-            string name;
-
-            public Target(int id, string name)
-            {
-                this.id_target = id;
-                this.name = name;
-            }
-
-            public int GetId()
-            {
-                return id_target;
-            }
-
-            public string GetName()
-            {
-                return name;
-            }
-        }
 
         public Filter(TabPage tabPage, Panel panel) 
         {
@@ -150,13 +106,13 @@ namespace Upgrade.Classes
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)
             {
-                directions.Add(new Direction(-1, "пусто"));
+                directions.Add(new GlobalData.DataContainer(-1, "пусто"));
                 while (ServiceData.reader.Read())
                 {
-                    directions.Add(new Direction(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));    
+                    directions.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));    
                 }
             }
-            targets.Add(new Target(-1, "нет цели"));
+            targets.Add(new GlobalData.DataContainer(-1, "нет цели"));
 
             button.Top = box.Top + 57;
             button.Left = 163;
@@ -265,14 +221,14 @@ namespace Upgrade.Classes
                         targets.RemoveAt(0);
                         while (ServiceData.reader.Read())
                         {
-                            targets.Add(new Target(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                            targets.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                         }
                         WindowManager.id_target = targets.ElementAt(indexTar).GetId();
                     }
                     else
                     {
                         targets.Clear();
-                        targets.Add(new Target(-1, "нет цели"));
+                        targets.Add(new GlobalData.DataContainer(-1, "нет цели"));
                         indexTar = 0;
                     }
                     labels[1].Text = targets.ElementAt(0).GetName();
@@ -309,13 +265,13 @@ namespace Upgrade.Classes
                         targets.RemoveAt(0);
                         while (ServiceData.reader.Read())
                         {
-                            targets.Add(new Target(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                            targets.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                         }
                     }
                     else
                     {
                         targets.Clear();
-                        targets.Add(new Target(-1, "нет цели"));
+                        targets.Add(new GlobalData.DataContainer(-1, "нет цели"));
                         indexTar = 0;
                     }
                     labels[1].Text = targets.ElementAt(0).GetName();

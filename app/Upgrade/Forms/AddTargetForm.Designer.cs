@@ -30,7 +30,7 @@
         {
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.categeory = new System.Windows.Forms.TextBox();
+            this.direction = new System.Windows.Forms.TextBox();
             this.textBox = new System.Windows.Forms.TextBox();
             this.addTarget = new AltoControls.AltoButton();
             this.prev = new System.Windows.Forms.PictureBox();
@@ -67,17 +67,16 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "название";
             // 
-            // categeory
+            // direction
             // 
-            this.categeory.BackColor = System.Drawing.Color.White;
-            this.categeory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.categeory.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.categeory.Location = new System.Drawing.Point(239, 103);
-            this.categeory.Name = "categeory";
-            this.categeory.ReadOnly = true;
-            this.categeory.Size = new System.Drawing.Size(144, 20);
-            this.categeory.TabIndex = 14;
-            this.categeory.Text = "Без категории";
+            this.direction.BackColor = System.Drawing.Color.White;
+            this.direction.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.direction.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.direction.Location = new System.Drawing.Point(239, 103);
+            this.direction.Name = "direction";
+            this.direction.ReadOnly = true;
+            this.direction.Size = new System.Drawing.Size(144, 20);
+            this.direction.TabIndex = 14;
             // 
             // textBox
             // 
@@ -121,6 +120,7 @@
             this.prev.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.prev.TabIndex = 16;
             this.prev.TabStop = false;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
             this.prev.MouseLeave += new System.EventHandler(this.pictureBox4_MouseLeave);
             this.prev.MouseHover += new System.EventHandler(this.pictureBox4_MouseHover);
             // 
@@ -135,6 +135,7 @@
             this.next.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.next.TabIndex = 15;
             this.next.TabStop = false;
+            this.next.Click += new System.EventHandler(this.next_Click);
             this.next.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
             this.next.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
             // 
@@ -169,7 +170,7 @@
             this.Controls.Add(this.addTarget);
             this.Controls.Add(this.prev);
             this.Controls.Add(this.next);
-            this.Controls.Add(this.categeory);
+            this.Controls.Add(this.direction);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -196,7 +197,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox prev;
         private System.Windows.Forms.PictureBox next;
-        private System.Windows.Forms.TextBox categeory;
+        private System.Windows.Forms.TextBox direction;
         private System.Windows.Forms.TextBox textBox;
         private AltoControls.AltoButton addTarget;
     }

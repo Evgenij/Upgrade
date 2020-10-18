@@ -25,28 +25,7 @@ namespace Upgrade.Classes.Blocks
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        struct Category
-        {
-            int id_target;
-            string name;
-
-            public Category(int id, string name)
-            {
-                this.id_target = id;
-                this.name = name;
-            }
-
-            public int GetId()
-            {
-                return id_target;
-            }
-
-            public string GetName()
-            {
-                return name;
-            }
-        }
-        private List<Category> categories = new List<Category>();
+        private List<GlobalData.DataContainer> categories = new List<GlobalData.DataContainer>();
         private int index_categ = 0;
 
         public AddDirectionForm()
@@ -73,7 +52,7 @@ namespace Upgrade.Classes.Blocks
             {
                 while (ServiceData.reader.Read())
                 {
-                    categories.Add(new Category(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                    categories.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                 }
             }
         }

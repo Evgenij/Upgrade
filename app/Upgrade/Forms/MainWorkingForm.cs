@@ -221,7 +221,15 @@ namespace Upgrade.Classes
 
         private void addTask_Click(object sender, EventArgs e)
         {
-            //
+            if (GlobalData.addTaskForm == null)
+            {
+                GlobalData.addTaskForm = new AddTaskForm();
+                GlobalData.addTaskForm.ShowDialog();
+            }
+            else
+            {
+                GlobalData.addTaskForm.ShowDialog();
+            }
         }
 
         private void exit_from_profile_Click(object sender, EventArgs e)

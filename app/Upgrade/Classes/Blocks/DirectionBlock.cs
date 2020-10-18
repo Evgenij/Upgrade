@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Upgrade.Forms;
+
 namespace Upgrade.Classes.Blocks
 {
     class DirectionBlock : Block
@@ -240,6 +242,7 @@ namespace Upgrade.Classes.Blocks
                 GlobalComponents.labelDirect.Text = this.textLabel.Text;
 
                 ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
+
                 string commandText = string.Format("SELECT target.id_target, target.name FROM target " +
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                     "WHERE direction.id_direct = {0}", this.id_record);
@@ -269,6 +272,16 @@ namespace Upgrade.Classes.Blocks
             else if (((PictureBox)sender).AccessibleName == "3")
             {
                 ((PictureBox)sender).Image = Properties.Resources.dir_target_on;
+
+                if (GlobalData.addTargetForm == null)
+                {
+                    GlobalData.addTargetForm = new AddTargetForm();
+                    GlobalData.addTargetForm.ShowDialog();
+                }
+                else
+                {
+                    GlobalData.addTargetForm.ShowDialog();
+                }
             }
         }
     }

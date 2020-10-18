@@ -129,7 +129,6 @@ namespace Upgrade
 
             if (INIManager.Read("Settings", "remember_me") == "on")
             {
-                login_auth.Font = new Font("PF DinDisplay Pro Medium", 12);
                 login_auth.ForeColor = Color.Black;
 
                 remember.AccessibleName = "on";
@@ -304,7 +303,6 @@ namespace Upgrade
                 }
                 else
                 {
-                    pass_auth.Font = new Font("PF DinDisplay Pro Medium", 12);
                     pass_auth.ForeColor = Color.Black;
                 }
 

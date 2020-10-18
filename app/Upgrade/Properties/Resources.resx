@@ -283,8 +283,8 @@
   <data name="more_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\more_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="panel_week_stat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\panel_week_stat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="task_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\task_line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="profile1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\profile1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -297,6 +297,9 @@
   </data>
   <data name="label_type_task" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\label_type_task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddDirection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddDirection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eye_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -313,8 +316,8 @@
   <data name="check_small_fail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check_small_fail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add_target" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add target.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="close_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -340,8 +343,8 @@
   <data name="direct_box_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\direct_box_center.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="task_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\task_line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="panel_week_stat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\panel_week_stat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -391,6 +394,12 @@
   <data name="scroller" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\scroller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddTask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddTask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tardets" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tardets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -406,10 +415,49 @@
   <data name="dir_target_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dir_target_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddDirection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddDirection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="label_schedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\label_schedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add_target" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add target.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="box_friday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_friday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_friday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_friday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_monday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_monday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_monday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_monday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_saturday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_saturday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_saturday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_saturday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_sunday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_sunday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_sunday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_sunday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_thursday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_thursday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_thursday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_thursday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_tuesday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_tuesday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_tuesday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_tuesday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_wednesday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_wednesday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_wednesday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_wednesday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

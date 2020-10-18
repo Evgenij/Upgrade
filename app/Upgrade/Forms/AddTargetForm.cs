@@ -26,6 +26,9 @@ namespace Upgrade.Forms
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
+        private List<GlobalData.DataContainer> directions = new List<GlobalData.DataContainer>();
+        private int index_direct = 0;
+
         public AddTargetForm()
         {
             InitializeComponent();
@@ -36,23 +39,28 @@ namespace Upgrade.Forms
         {
             IntPtr hRgn = CreateRoundRectRgn(0, 0, this.Width, this.Height, 55, 55);
             SetWindowRgn(this.Handle, hRgn, true);
+            directions.Clear();
 
             addTarget.ForeColor = Design.mainColor;
             addTarget.Active1 = Design.mainColorOpacity;
             addTarget.Active2 = Design.mainColorOpacity;
             addTarget.StrokeColor = Design.mainColor;
 
-            //ServiceData.commandText = "SELECT id_categ, name FROM category";
-            //ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.commandText = string.Format("SELECT direction.id_direct, direction.name FROM direction " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE user.id_user = {0}", User.user_id);
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
-            //ServiceData.reader = ServiceData.command.ExecuteReader();
-            //if (ServiceData.reader.HasRows)
-            //{
-            //    while (ServiceData.reader.Read())
-            //    {
-            //        categories.Add(new Category(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
-            //    }
-            //}
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (ServiceData.reader.Read())
+                {
+                    directions.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                }
+                direction.Text = directions.First().GetName();
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -86,37 +94,21 @@ namespace Upgrade.Forms
             {
                 try
                 {
-                    int id_direct = 0;
-
-                    ServiceData.commandText = string.Format("INSERT INTO direction VALUES (NULL, {0}, {1}, 0, 0, 0, '{2}')",
-                        index_categ, textBox.Text, ColorTranslator.ToHtml(color_mark.Active1));
+                    // создаем цель
+                    ServiceData.commandText = string.Format("INSERT INTO target VALUES (NULL, {0}, {1}, 0, 0, 0)",
+                        directions.ElementAt(index_direct).GetId(), textBox.Text);
                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                     ServiceData.command.ExecuteNonQuery();
 
-                    ServiceData.commandText = "SELECT id_direct FROM direction";
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-
-                    ServiceData.reader = ServiceData.command.ExecuteReader();
-                    if (ServiceData.reader.HasRows)
-                    {
-                        while (ServiceData.reader.Read())
-                        {
-                            id_direct = ServiceData.reader.GetInt32(0);
-                        }
-                    }
-
-                    ServiceData.commandText = string.Format("INSERT INTO user_dir VALUES ({0},{1})", User.user_id, id_direct);
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-                    ServiceData.command.ExecuteNonQuery();
 
                     MessageBox.Show(
                         "Цель создана!",
                         "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Close();
-                    Design.RefreshPanel(WindowManager.flowPanelDirect);
-                    await WindowManager.SetDirectBlock();
-                    GlobalData.scroller_direct.Refresh(Design.heightContentDirection);
+                    //Design.RefreshPanel(WindowManager.flowPanelTarget);
+                    //await WindowManager.SetTargetBlock();
+                    //GlobalData.scroller_target.Refresh(Design.heightContentTarget);
                 }
                 catch (Exception ex)
                 {
@@ -130,6 +122,24 @@ namespace Upgrade.Forms
                 MessageBox.Show(
                     "Вы не ввели название цели...",
                     "Ошибка создания цели", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void next_Click(object sender, EventArgs e)
+        {
+            if (index_direct < (directions.Count - 1) && index_direct >= 0)
+            {
+                index_direct++;
+                direction.Text = directions.ElementAt(index_direct).GetName();
+            }
+        }
+
+        private void prev_Click(object sender, EventArgs e)
+        {
+            if (index_direct >= 1)
+            {
+                index_direct--;
+                direction.Text = directions.ElementAt(index_direct).GetName();
             }
         }
     }
