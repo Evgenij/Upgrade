@@ -48,5 +48,6 @@ namespace Upgrade.Classes
         }
 
         public enum TypeAction { hide, show };
+        public enum TypeTime { hour, minute };
     }
 }

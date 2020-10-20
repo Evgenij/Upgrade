@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Upgrade.Classes;
+using Upgrade.Classes.Components;
 
 namespace Upgrade.Forms
 {
@@ -24,6 +25,8 @@ namespace Upgrade.Forms
                                                       int nHeightEllipse);
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+
+        UITrackBar[] uiTrackBars = new UITrackBar[4];
 
         public AddTaskForm()
         {
@@ -40,6 +43,11 @@ namespace Upgrade.Forms
             addTaskButton.Active1 = Design.mainColorOpacity;
             addTaskButton.Active2 = Design.mainColorOpacity;
             addTaskButton.StrokeColor = Design.mainColor;
+
+            uiTrackBars[0] = new UITrackBar(this, 391, 389, taskStartHour, Enums.TypeTime.hour);
+            uiTrackBars[1] = new UITrackBar(this, 391, 417, taskStartMinute, Enums.TypeTime.minute);
+            uiTrackBars[2] = new UITrackBar(this, 618, 389, taskEndHour, Enums.TypeTime.hour);
+            uiTrackBars[3] = new UITrackBar(this, 618, 417, taskEndMinute, Enums.TypeTime.minute);
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

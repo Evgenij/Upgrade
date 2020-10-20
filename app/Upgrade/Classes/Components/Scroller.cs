@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Upgrade.Classes.Components;
+
 namespace Upgrade.Classes
 {
-    class Scroller
+    class Scroller : UIComponent
     {
         private int value, multiplier;
-        private int currentY;
-        private bool isDragging = false;
 
         private readonly FlowLayoutPanel panel;
         private readonly PictureBox background;

@@ -123,6 +123,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Components\UIComponent.cs" />
+    <Compile Include="Classes\Components\UITrackBar.cs" />
     <Compile Include="Forms\AddDirectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -536,9 +538,6 @@
     <None Include="Resources\Add target.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AddTask.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\label_schedule.png" />
   </ItemGroup>
   <ItemGroup>
@@ -582,6 +581,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\box_wednesday_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\track-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\track-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add task Palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddTask.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

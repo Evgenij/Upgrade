@@ -12,6 +12,7 @@ namespace Upgrade.Forms
     class UIComboBox
     {
         private int index;
+        private int heightBox;
 
         private Timer timer;
         private Panel secondPanel;
@@ -70,8 +71,8 @@ namespace Upgrade.Forms
             flowPanel.Left = 18;
             flowPanel.Top = 18;
             flowPanel.Width = 165;
-            flowPanel.Height = 125;
-            flowPanel.BackColor = Color.White;
+            flowPanel.Height = 0;
+            flowPanel.BackColor = Color.Brown;
 
             for (int i = 0; i < labels.Length; i++)
             {
@@ -88,14 +89,17 @@ namespace Upgrade.Forms
                 items[i].Click += UIComboBox_Click;
                 items[i].Text = labels[i];
 
+                flowPanel.Height += items[i].Height;
                 flowPanel.Controls.Add(items[i]);
             }
+
+            heightBox = flowPanel.Height + 35;
 
             box.AccessibleName = "hide";
             box.Left = panel.Left - 20;
             box.Top = panel.Top + panel.Height + 10;
             box.Image = Properties.Resources.comboBox_panel;
-            box.SizeMode = PictureBoxSizeMode.Normal;
+            box.SizeMode = PictureBoxSizeMode.StretchImage;
             box.Width = 195;
             box.Height = 0;
             box.Controls.Add(flowPanel);
@@ -122,9 +126,9 @@ namespace Upgrade.Forms
         {
             if (typeAction == Enums.TypeAction.show)
             {
-                if (box.Height != 160)
+                if (box.Height != heightBox)
                 {
-                    box.Height += 10;
+                    box.Height += 5;
                 }
                 else
                 {
@@ -135,7 +139,7 @@ namespace Upgrade.Forms
             {
                 if (box.Height != 0)
                 {
-                    box.Height -= 10;
+                    box.Height -= 5;
                 }
                 else
                 {
