@@ -319,7 +319,7 @@ namespace Upgrade
                 ((TextBox)sender).Text == "введите данные")
             {
                 ((TextBox)sender).Text = null;
-                ((TextBox)sender).Font = new Font("PF DinDisplay Pro Medium", 12);
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
                 ((TextBox)sender).ForeColor = Color.Black;
             }
         }
@@ -330,7 +330,7 @@ namespace Upgrade
             {
                 ((TextBox)sender).PasswordChar = '\0';
                 ((TextBox)sender).ForeColor = Color.DarkGray;
-                ((TextBox)sender).Font = new Font("PF DinDisplay Pro", 12);
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
                 if (((TextBox)sender).Name == "login_auth" || ((TextBox)sender).Name == "login_reg")
                 {
                     ((TextBox)sender).Text = "введите ваш псевдоним";
@@ -550,7 +550,7 @@ namespace Upgrade
             panel_reg_code.BackgroundImage = Properties.Resources.restoring_access;
 
             data_box.ForeColor = Color.Gray;
-            data_box.Font = new Font("PF DinDisplay Pro", 12);
+            data_box.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 14);
             data_box.Text = "введите данные";
             data_box.AccessibleName = "data";
             data_box.Width = 208;

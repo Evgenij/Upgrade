@@ -123,6 +123,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Components\Subtask.cs" />
     <Compile Include="Classes\Components\UIComponent.cs" />
     <Compile Include="Classes\Components\UITrackBar.cs" />
     <Compile Include="Forms\AddDirectionForm.cs">

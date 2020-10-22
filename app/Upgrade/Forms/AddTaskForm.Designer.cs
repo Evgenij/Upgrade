@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.task_name = new System.Windows.Forms.TextBox();
             this.addTaskButton = new AltoControls.AltoButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -36,23 +36,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.taskStartHour = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.task_descr = new System.Windows.Forms.TextBox();
+            this.flowPanelSubtasks = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.day1 = new System.Windows.Forms.PictureBox();
+            this.day5 = new System.Windows.Forms.PictureBox();
+            this.day2 = new System.Windows.Forms.PictureBox();
+            this.day6 = new System.Windows.Forms.PictureBox();
+            this.day3 = new System.Windows.Forms.PictureBox();
+            this.day7 = new System.Windows.Forms.PictureBox();
+            this.day4 = new System.Windows.Forms.PictureBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.taskStartMinute = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -61,30 +58,40 @@
             this.taskEndHour = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.taskEndMinute = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.prev = new System.Windows.Forms.PictureBox();
+            this.next = new System.Windows.Forms.PictureBox();
+            this.target = new System.Windows.Forms.TextBox();
+            this.buttonAddSubtask = new System.Windows.Forms.Label();
+            this.taskHour = new System.Windows.Forms.Label();
+            this.taskMinute = new System.Windows.Forms.Label();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prev)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.next)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox
+            // task_name
             // 
-            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox.Location = new System.Drawing.Point(65, 159);
-            this.textBox.Multiline = true;
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(229, 37);
-            this.textBox.TabIndex = 16;
-            this.textBox.Text = "направлениенаправлениенаправлениенаправлениенаправлениенаправлениенаправление";
+            this.task_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.task_name.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.task_name.ForeColor = System.Drawing.Color.DarkGray;
+            this.task_name.Location = new System.Drawing.Point(65, 159);
+            this.task_name.Multiline = true;
+            this.task_name.Name = "task_name";
+            this.task_name.Size = new System.Drawing.Size(236, 37);
+            this.task_name.TabIndex = 16;
+            this.task_name.Text = "введите текст задачи";
+            this.task_name.Enter += new System.EventHandler(this.textBox_Enter);
+            this.task_name.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // addTaskButton
             // 
@@ -167,58 +174,40 @@
             this.panel4.Size = new System.Drawing.Size(10, 31);
             this.panel4.TabIndex = 145;
             // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(518, 227);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(38, 37);
-            this.textBox2.TabIndex = 146;
-            this.textBox2.Text = "00";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // textBox3
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(557, 225);
+            this.textBox3.Location = new System.Drawing.Point(557, 226);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(10, 37);
             this.textBox3.TabIndex = 147;
             this.textBox3.Text = ":";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox4
-            // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(567, 227);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(38, 37);
-            this.textBox4.TabIndex = 148;
-            this.textBox4.Text = "00";
-            // 
             // taskStartHour
             // 
+            this.taskStartHour.BackColor = System.Drawing.Color.White;
             this.taskStartHour.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.taskStartHour.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.taskStartHour.ForeColor = System.Drawing.Color.Gray;
             this.taskStartHour.Location = new System.Drawing.Point(506, 261);
             this.taskStartHour.Name = "taskStartHour";
+            this.taskStartHour.ReadOnly = true;
             this.taskStartHour.Size = new System.Drawing.Size(22, 20);
             this.taskStartHour.TabIndex = 149;
             this.taskStartHour.Text = "00";
             this.taskStartHour.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.taskStartHour.TextChanged += new System.EventHandler(this.taskStartHour_TextChanged);
             // 
             // textBox6
             // 
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.textBox6.ForeColor = System.Drawing.Color.Gray;
-            this.textBox6.Location = new System.Drawing.Point(551, 261);
+            this.textBox6.Location = new System.Drawing.Point(552, 261);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(22, 20);
+            this.textBox6.Size = new System.Drawing.Size(20, 20);
             this.textBox6.TabIndex = 150;
             this.textBox6.Text = "по";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -235,136 +224,135 @@
             this.textBox8.Text = "с";
             this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox1
+            // task_descr
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(65, 221);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(229, 37);
-            this.textBox1.TabIndex = 153;
-            this.textBox1.Text = "направлениенаправлениенаправлениенаправлениенаправлениенаправлениенаправление";
+            this.task_descr.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.task_descr.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.task_descr.ForeColor = System.Drawing.Color.DarkGray;
+            this.task_descr.Location = new System.Drawing.Point(65, 221);
+            this.task_descr.Multiline = true;
+            this.task_descr.Name = "task_descr";
+            this.task_descr.Size = new System.Drawing.Size(229, 37);
+            this.task_descr.TabIndex = 153;
+            this.task_descr.Text = "введите описание задачи";
+            this.task_descr.Enter += new System.EventHandler(this.textBox_Enter);
+            this.task_descr.Leave += new System.EventHandler(this.textBox_Leave);
             // 
-            // textBox9
+            // flowPanelSubtasks
             // 
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox9.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox9.ForeColor = System.Drawing.Color.DarkGray;
-            this.textBox9.Location = new System.Drawing.Point(3, 3);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(139, 18);
-            this.textBox9.TabIndex = 154;
-            this.textBox9.Text = "+ добавить подзадачу";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel1.Controls.Add(this.textBox9);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(66, 287);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(244, 94);
-            this.flowLayoutPanel1.TabIndex = 155;
+            this.flowPanelSubtasks.AutoScroll = true;
+            this.flowPanelSubtasks.BackColor = System.Drawing.Color.White;
+            this.flowPanelSubtasks.Location = new System.Drawing.Point(66, 290);
+            this.flowPanelSubtasks.Name = "flowPanelSubtasks";
+            this.flowPanelSubtasks.Size = new System.Drawing.Size(249, 91);
+            this.flowPanelSubtasks.TabIndex = 155;
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox4);
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox11);
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox6);
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox7);
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox8);
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox9);
-            this.flowLayoutPanel2.Controls.Add(this.pictureBox10);
+            this.flowLayoutPanel2.Controls.Add(this.day1);
+            this.flowLayoutPanel2.Controls.Add(this.day5);
+            this.flowLayoutPanel2.Controls.Add(this.day2);
+            this.flowLayoutPanel2.Controls.Add(this.day6);
+            this.flowLayoutPanel2.Controls.Add(this.day3);
+            this.flowLayoutPanel2.Controls.Add(this.day7);
+            this.flowLayoutPanel2.Controls.Add(this.day4);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(66, 418);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(228, 70);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(235, 74);
             this.flowLayoutPanel2.TabIndex = 156;
             // 
-            // pictureBox4
+            // day1
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.White;
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox4.Image = global::Upgrade.Properties.Resources.box_monday_off;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(48, 28);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox4.TabIndex = 157;
-            this.pictureBox4.TabStop = false;
+            this.day1.BackColor = System.Drawing.Color.White;
+            this.day1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day1.Image = global::Upgrade.Properties.Resources.box_monday_off;
+            this.day1.Location = new System.Drawing.Point(3, 3);
+            this.day1.Name = "day1";
+            this.day1.Size = new System.Drawing.Size(48, 28);
+            this.day1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.day1.TabIndex = 157;
+            this.day1.TabStop = false;
+            this.day1.Click += new System.EventHandler(this.day1_Click);
             // 
-            // pictureBox11
+            // day5
             // 
-            this.pictureBox11.BackColor = System.Drawing.Color.White;
-            this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox11.Image = global::Upgrade.Properties.Resources.box_friday_off;
-            this.pictureBox11.Location = new System.Drawing.Point(3, 37);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(49, 28);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox11.TabIndex = 164;
-            this.pictureBox11.TabStop = false;
+            this.day5.BackColor = System.Drawing.Color.White;
+            this.day5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day5.Image = global::Upgrade.Properties.Resources.box_friday_off;
+            this.day5.Location = new System.Drawing.Point(3, 37);
+            this.day5.Name = "day5";
+            this.day5.Size = new System.Drawing.Size(49, 28);
+            this.day5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.day5.TabIndex = 164;
+            this.day5.TabStop = false;
+            this.day5.Click += new System.EventHandler(this.day5_Click);
             // 
-            // pictureBox6
+            // day2
             // 
-            this.pictureBox6.BackColor = System.Drawing.Color.White;
-            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox6.Image = global::Upgrade.Properties.Resources.box_tuesday_off;
-            this.pictureBox6.Location = new System.Drawing.Point(58, 3);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(48, 28);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox6.TabIndex = 159;
-            this.pictureBox6.TabStop = false;
+            this.day2.BackColor = System.Drawing.Color.White;
+            this.day2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day2.Image = global::Upgrade.Properties.Resources.box_tuesday_off;
+            this.day2.Location = new System.Drawing.Point(58, 3);
+            this.day2.Name = "day2";
+            this.day2.Size = new System.Drawing.Size(48, 28);
+            this.day2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.day2.TabIndex = 159;
+            this.day2.TabStop = false;
+            this.day2.Click += new System.EventHandler(this.day2_Click);
             // 
-            // pictureBox7
+            // day6
             // 
-            this.pictureBox7.BackColor = System.Drawing.Color.White;
-            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox7.Image = global::Upgrade.Properties.Resources.box_saturday_off;
-            this.pictureBox7.Location = new System.Drawing.Point(58, 37);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(49, 28);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox7.TabIndex = 160;
-            this.pictureBox7.TabStop = false;
+            this.day6.BackColor = System.Drawing.Color.White;
+            this.day6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day6.Image = global::Upgrade.Properties.Resources.box_saturday_off;
+            this.day6.Location = new System.Drawing.Point(58, 37);
+            this.day6.Name = "day6";
+            this.day6.Size = new System.Drawing.Size(49, 28);
+            this.day6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.day6.TabIndex = 160;
+            this.day6.TabStop = false;
+            this.day6.Click += new System.EventHandler(this.day6_Click);
             // 
-            // pictureBox8
+            // day3
             // 
-            this.pictureBox8.BackColor = System.Drawing.Color.White;
-            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox8.Image = global::Upgrade.Properties.Resources.box_wednesday_off;
-            this.pictureBox8.Location = new System.Drawing.Point(113, 3);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(48, 28);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox8.TabIndex = 161;
-            this.pictureBox8.TabStop = false;
+            this.day3.BackColor = System.Drawing.Color.White;
+            this.day3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day3.Image = global::Upgrade.Properties.Resources.box_wednesday_off;
+            this.day3.Location = new System.Drawing.Point(113, 3);
+            this.day3.Name = "day3";
+            this.day3.Size = new System.Drawing.Size(48, 28);
+            this.day3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.day3.TabIndex = 161;
+            this.day3.TabStop = false;
+            this.day3.Click += new System.EventHandler(this.day3_Click);
             // 
-            // pictureBox9
+            // day7
             // 
-            this.pictureBox9.BackColor = System.Drawing.Color.White;
-            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox9.Image = global::Upgrade.Properties.Resources.box_sunday_off;
-            this.pictureBox9.Location = new System.Drawing.Point(113, 37);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(49, 28);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox9.TabIndex = 162;
-            this.pictureBox9.TabStop = false;
+            this.day7.BackColor = System.Drawing.Color.White;
+            this.day7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day7.Image = global::Upgrade.Properties.Resources.box_sunday_off;
+            this.day7.Location = new System.Drawing.Point(113, 37);
+            this.day7.Name = "day7";
+            this.day7.Size = new System.Drawing.Size(49, 28);
+            this.day7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.day7.TabIndex = 162;
+            this.day7.TabStop = false;
+            this.day7.Click += new System.EventHandler(this.day7_Click);
             // 
-            // pictureBox10
+            // day4
             // 
-            this.pictureBox10.BackColor = System.Drawing.Color.White;
-            this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox10.Image = global::Upgrade.Properties.Resources.box_thursday_off;
-            this.pictureBox10.Location = new System.Drawing.Point(168, 3);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(48, 28);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox10.TabIndex = 163;
-            this.pictureBox10.TabStop = false;
+            this.day4.BackColor = System.Drawing.Color.White;
+            this.day4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day4.Image = global::Upgrade.Properties.Resources.box_thursday_off;
+            this.day4.Location = new System.Drawing.Point(168, 3);
+            this.day4.Name = "day4";
+            this.day4.Size = new System.Drawing.Size(48, 28);
+            this.day4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.day4.TabIndex = 163;
+            this.day4.TabStop = false;
+            this.day4.Click += new System.EventHandler(this.day4_Click);
             // 
             // textBox10
             // 
@@ -380,14 +368,17 @@
             // 
             // taskStartMinute
             // 
+            this.taskStartMinute.BackColor = System.Drawing.Color.White;
             this.taskStartMinute.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.taskStartMinute.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.taskStartMinute.ForeColor = System.Drawing.Color.Gray;
             this.taskStartMinute.Location = new System.Drawing.Point(534, 261);
             this.taskStartMinute.Name = "taskStartMinute";
+            this.taskStartMinute.ReadOnly = true;
             this.taskStartMinute.Size = new System.Drawing.Size(20, 20);
             this.taskStartMinute.TabIndex = 158;
             this.taskStartMinute.Text = "00";
+            this.taskStartMinute.TextChanged += new System.EventHandler(this.taskStartMinute_TextChanged);
             // 
             // pictureBox3
             // 
@@ -425,11 +416,13 @@
             // 
             // taskEndHour
             // 
+            this.taskEndHour.BackColor = System.Drawing.Color.White;
             this.taskEndHour.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.taskEndHour.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.taskEndHour.ForeColor = System.Drawing.Color.Gray;
             this.taskEndHour.Location = new System.Drawing.Point(571, 261);
             this.taskEndHour.Name = "taskEndHour";
+            this.taskEndHour.ReadOnly = true;
             this.taskEndHour.Size = new System.Drawing.Size(20, 20);
             this.taskEndHour.TabIndex = 159;
             this.taskEndHour.Text = "00";
@@ -449,20 +442,113 @@
             // 
             // taskEndMinute
             // 
+            this.taskEndMinute.BackColor = System.Drawing.Color.White;
             this.taskEndMinute.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.taskEndMinute.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.taskEndMinute.ForeColor = System.Drawing.Color.Gray;
             this.taskEndMinute.Location = new System.Drawing.Point(597, 261);
             this.taskEndMinute.Name = "taskEndMinute";
+            this.taskEndMinute.ReadOnly = true;
             this.taskEndMinute.Size = new System.Drawing.Size(20, 20);
             this.taskEndMinute.TabIndex = 161;
             this.taskEndMinute.Text = "00";
+            // 
+            // prev
+            // 
+            this.prev.BackColor = System.Drawing.Color.White;
+            this.prev.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.prev.Image = global::Upgrade.Properties.Resources.prev_off;
+            this.prev.Location = new System.Drawing.Point(265, 99);
+            this.prev.Name = "prev";
+            this.prev.Size = new System.Drawing.Size(17, 23);
+            this.prev.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.prev.TabIndex = 163;
+            this.prev.TabStop = false;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
+            this.prev.MouseLeave += new System.EventHandler(this.prev_MouseLeave);
+            this.prev.MouseHover += new System.EventHandler(this.prev_MouseHover);
+            // 
+            // next
+            // 
+            this.next.BackColor = System.Drawing.Color.White;
+            this.next.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.next.Image = global::Upgrade.Properties.Resources.next_off;
+            this.next.Location = new System.Drawing.Point(284, 99);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(17, 23);
+            this.next.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.next.TabIndex = 162;
+            this.next.TabStop = false;
+            this.next.Click += new System.EventHandler(this.next_Click);
+            this.next.MouseLeave += new System.EventHandler(this.next_MouseLeave);
+            this.next.MouseHover += new System.EventHandler(this.next_MouseHover);
+            // 
+            // target
+            // 
+            this.target.BackColor = System.Drawing.Color.White;
+            this.target.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.target.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.target.Location = new System.Drawing.Point(70, 101);
+            this.target.Name = "target";
+            this.target.ReadOnly = true;
+            this.target.Size = new System.Drawing.Size(113, 20);
+            this.target.TabIndex = 164;
+            this.target.Text = "цель...";
+            // 
+            // buttonAddSubtask
+            // 
+            this.buttonAddSubtask.AutoSize = true;
+            this.buttonAddSubtask.BackColor = System.Drawing.Color.White;
+            this.buttonAddSubtask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonAddSubtask.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.buttonAddSubtask.ForeColor = System.Drawing.Color.DarkGray;
+            this.buttonAddSubtask.Location = new System.Drawing.Point(165, 268);
+            this.buttonAddSubtask.Name = "buttonAddSubtask";
+            this.buttonAddSubtask.Size = new System.Drawing.Size(140, 17);
+            this.buttonAddSubtask.TabIndex = 155;
+            this.buttonAddSubtask.Text = "+ добавить подзадачу";
+            this.buttonAddSubtask.Click += new System.EventHandler(this.buttonAddSubtask_Click);
+            this.buttonAddSubtask.MouseLeave += new System.EventHandler(this.buttonAddSubtask_MouseLeave);
+            this.buttonAddSubtask.MouseHover += new System.EventHandler(this.buttonAddSubtask_MouseHover);
+            // 
+            // taskHour
+            // 
+            this.taskHour.AutoSize = true;
+            this.taskHour.BackColor = System.Drawing.Color.White;
+            this.taskHour.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.taskHour.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.taskHour.ForeColor = System.Drawing.Color.Black;
+            this.taskHour.Location = new System.Drawing.Point(519, 227);
+            this.taskHour.Name = "taskHour";
+            this.taskHour.Size = new System.Drawing.Size(47, 37);
+            this.taskHour.TabIndex = 156;
+            this.taskHour.Text = "00";
+            // 
+            // taskMinute
+            // 
+            this.taskMinute.AutoSize = true;
+            this.taskMinute.BackColor = System.Drawing.Color.White;
+            this.taskMinute.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.taskMinute.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.taskMinute.ForeColor = System.Drawing.Color.Black;
+            this.taskMinute.Location = new System.Drawing.Point(561, 227);
+            this.taskMinute.Name = "taskMinute";
+            this.taskMinute.Size = new System.Drawing.Size(47, 37);
+            this.taskMinute.TabIndex = 165;
+            this.taskMinute.Text = "00";
             // 
             // AddTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 550);
+            this.Controls.Add(this.buttonAddSubtask);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.taskMinute);
+            this.Controls.Add(this.target);
+            this.Controls.Add(this.taskHour);
+            this.Controls.Add(this.prev);
+            this.Controls.Add(this.next);
             this.Controls.Add(this.taskEndMinute);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.taskEndHour);
@@ -470,41 +556,39 @@
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.flowLayoutPanel2);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.flowPanelSubtasks);
+            this.Controls.Add(this.task_descr);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.taskStartHour);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox);
+            this.Controls.Add(this.task_name);
             this.Controls.Add(this.addTaskButton);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddTaskForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddTaskForm";
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.day4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prev)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.next)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,7 +597,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.TextBox task_name;
         private AltoControls.AltoButton addTaskButton;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -522,28 +606,31 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox taskStartHour;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.TextBox task_descr;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelSubtasks;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox day1;
+        private System.Windows.Forms.PictureBox day2;
+        private System.Windows.Forms.PictureBox day6;
+        private System.Windows.Forms.PictureBox day3;
+        private System.Windows.Forms.PictureBox day7;
+        private System.Windows.Forms.PictureBox day4;
+        private System.Windows.Forms.PictureBox day5;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox taskStartMinute;
         private System.Windows.Forms.TextBox taskEndHour;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox taskEndMinute;
+        private System.Windows.Forms.PictureBox prev;
+        private System.Windows.Forms.PictureBox next;
+        private System.Windows.Forms.TextBox target;
+        private System.Windows.Forms.Label buttonAddSubtask;
+        private System.Windows.Forms.Label taskHour;
+        private System.Windows.Forms.Label taskMinute;
     }
 }

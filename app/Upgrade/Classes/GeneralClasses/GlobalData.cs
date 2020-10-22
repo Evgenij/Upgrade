@@ -54,6 +54,79 @@ namespace Upgrade.Classes
             }
         }
 
+        public struct DayOfWeek
+        {
+            bool status;
+
+            public void ChangeStatus(PictureBox picture, Enums.DayOfWeek day)
+            {
+                if (status == false)
+                {
+                    status = true;
+                    if (day == Enums.DayOfWeek.Понедельник)
+                    {
+                        picture.Image = Properties.Resources.box_monday_on;
+                    }
+                    else if (day == Enums.DayOfWeek.Вторник) 
+                    {
+                        picture.Image = Properties.Resources.box_thursday_on;
+                    }
+                    else if (day == Enums.DayOfWeek.Среда)
+                    {
+                        picture.Image = Properties.Resources.box_wednesday_on;
+                    }
+                    else if (day == Enums.DayOfWeek.Четверг)
+                    {
+                        picture.Image = Properties.Resources.box_tuesday_on;
+                    }
+                    else if (day == Enums.DayOfWeek.Пятница)
+                    {
+                        picture.Image = Properties.Resources.box_friday_on;
+                    }
+                    else if (day == Enums.DayOfWeek.Суббота)
+                    {
+                        picture.Image = Properties.Resources.box_saturday_on;
+                    }
+                    else if (day == Enums.DayOfWeek.Воскресенье)
+                    {
+                        picture.Image = Properties.Resources.box_sunday_on;
+                    }
+                }
+                else
+                {
+                    status = false;
+                    if (day == Enums.DayOfWeek.Понедельник)
+                    {
+                        picture.Image = Properties.Resources.box_monday_off;
+                    }
+                    else if (day == Enums.DayOfWeek.Вторник)
+                    {
+                        picture.Image = Properties.Resources.box_thursday_off;
+                    }
+                    else if (day == Enums.DayOfWeek.Среда)
+                    {
+                        picture.Image = Properties.Resources.box_wednesday_off;
+                    }
+                    else if (day == Enums.DayOfWeek.Четверг)
+                    {
+                        picture.Image = Properties.Resources.box_tuesday_off;
+                    }
+                    else if (day == Enums.DayOfWeek.Пятница)
+                    {
+                        picture.Image = Properties.Resources.box_friday_off;
+                    }
+                    else if (day == Enums.DayOfWeek.Суббота)
+                    {
+                        picture.Image = Properties.Resources.box_saturday_off;
+                    }
+                    else if (day == Enums.DayOfWeek.Воскресенье)
+                    {
+                        picture.Image = Properties.Resources.box_sunday_off;
+                    }
+                }
+            }
+        }
+
         static public Font GetFont(Enums.TypeFont typeFont, int size) 
         {
             Font font;

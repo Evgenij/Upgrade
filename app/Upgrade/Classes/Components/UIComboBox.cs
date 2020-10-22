@@ -26,7 +26,7 @@ namespace Upgrade.Forms
         private Label[] items;
         private Enums.TypeAction typeAction;
 
-        public UIComboBox(TabPage tabPage, 
+        public UIComboBox(Control tabPage, 
                           Panel panel, 
                           string AccessimbleName, 
                           string[] labels, 
@@ -72,7 +72,7 @@ namespace Upgrade.Forms
             flowPanel.Top = 18;
             flowPanel.Width = 165;
             flowPanel.Height = 0;
-            flowPanel.BackColor = Color.Brown;
+            flowPanel.BackColor = Color.Transparent;
 
             for (int i = 0; i < labels.Length; i++)
             {
@@ -247,7 +247,10 @@ namespace Upgrade.Forms
             }
             else 
             {
-                filterPanel.Left = panelMain.Left + panelMain.Width + 10;
+                if (filterPanel != null)
+                {
+                    filterPanel.Left = panelMain.Left + panelMain.Width + 10;
+                }
             }
             
 

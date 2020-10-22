@@ -261,7 +261,7 @@
             this.panel_reg_code.Controls.Add(this.accept_code_reg);
             this.panel_reg_code.Controls.Add(this.label_reg_later);
             this.panel_reg_code.Controls.Add(this.data_box);
-            this.panel_reg_code.Location = new System.Drawing.Point(50, 79);
+            this.panel_reg_code.Location = new System.Drawing.Point(307, 79);
             this.panel_reg_code.Name = "panel_reg_code";
             this.panel_reg_code.Size = new System.Drawing.Size(274, 380);
             this.panel_reg_code.TabIndex = 25;
