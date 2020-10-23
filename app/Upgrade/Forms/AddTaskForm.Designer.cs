@@ -30,7 +30,7 @@
         {
             this.task_name = new System.Windows.Forms.TextBox();
             this.addTaskButton = new AltoControls.AltoButton();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTime = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -42,7 +42,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.task_descr = new System.Windows.Forms.TextBox();
             this.flowPanelSubtasks = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowPanelDays = new System.Windows.Forms.FlowLayoutPanel();
             this.day1 = new System.Windows.Forms.PictureBox();
             this.day5 = new System.Windows.Forms.PictureBox();
             this.day2 = new System.Windows.Forms.PictureBox();
@@ -64,7 +64,8 @@
             this.buttonAddSubtask = new System.Windows.Forms.Label();
             this.taskHour = new System.Windows.Forms.Label();
             this.taskMinute = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2.SuspendLayout();
+            this.sched_name = new System.Windows.Forms.TextBox();
+            this.flowPanelDays.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.day1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.day5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.day2)).BeginInit();
@@ -84,7 +85,7 @@
             this.task_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.task_name.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.task_name.ForeColor = System.Drawing.Color.DarkGray;
-            this.task_name.Location = new System.Drawing.Point(65, 159);
+            this.task_name.Location = new System.Drawing.Point(65, 161);
             this.task_name.Multiline = true;
             this.task_name.Name = "task_name";
             this.task_name.Size = new System.Drawing.Size(236, 37);
@@ -113,20 +114,21 @@
             this.addTaskButton.TabIndex = 14;
             this.addTaskButton.Text = "создать";
             this.addTaskButton.Transparency = false;
+            this.addTaskButton.Click += new System.EventHandler(this.addTaskButton_Click);
             // 
-            // dateTimePicker1
+            // dateTime
             // 
-            this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy dddd";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf;
-            this.dateTimePicker1.Location = new System.Drawing.Point(468, 174);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(182, 25);
-            this.dateTimePicker1.TabIndex = 141;
+            this.dateTime.CalendarTrailingForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.dateTime.CustomFormat = "dd.MM.yyyy dddd";
+            this.dateTime.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.dateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTime.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf;
+            this.dateTime.Location = new System.Drawing.Point(468, 174);
+            this.dateTime.Name = "dateTime";
+            this.dateTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTime.RightToLeftLayout = true;
+            this.dateTime.Size = new System.Drawing.Size(182, 25);
+            this.dateTime.TabIndex = 141;
             // 
             // dateTimePicker2
             // 
@@ -229,7 +231,7 @@
             this.task_descr.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.task_descr.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.task_descr.ForeColor = System.Drawing.Color.DarkGray;
-            this.task_descr.Location = new System.Drawing.Point(65, 221);
+            this.task_descr.Location = new System.Drawing.Point(65, 224);
             this.task_descr.Multiline = true;
             this.task_descr.Name = "task_descr";
             this.task_descr.Size = new System.Drawing.Size(229, 37);
@@ -247,21 +249,22 @@
             this.flowPanelSubtasks.Size = new System.Drawing.Size(249, 91);
             this.flowPanelSubtasks.TabIndex = 155;
             // 
-            // flowLayoutPanel2
+            // flowPanelDays
             // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel2.Controls.Add(this.day1);
-            this.flowLayoutPanel2.Controls.Add(this.day5);
-            this.flowLayoutPanel2.Controls.Add(this.day2);
-            this.flowLayoutPanel2.Controls.Add(this.day6);
-            this.flowLayoutPanel2.Controls.Add(this.day3);
-            this.flowLayoutPanel2.Controls.Add(this.day7);
-            this.flowLayoutPanel2.Controls.Add(this.day4);
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(66, 418);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(235, 74);
-            this.flowLayoutPanel2.TabIndex = 156;
+            this.flowPanelDays.BackColor = System.Drawing.Color.White;
+            this.flowPanelDays.Controls.Add(this.day1);
+            this.flowPanelDays.Controls.Add(this.day5);
+            this.flowPanelDays.Controls.Add(this.day2);
+            this.flowPanelDays.Controls.Add(this.day6);
+            this.flowPanelDays.Controls.Add(this.day3);
+            this.flowPanelDays.Controls.Add(this.day7);
+            this.flowPanelDays.Controls.Add(this.day4);
+            this.flowPanelDays.Enabled = false;
+            this.flowPanelDays.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPanelDays.Location = new System.Drawing.Point(62, 444);
+            this.flowPanelDays.Name = "flowPanelDays";
+            this.flowPanelDays.Size = new System.Drawing.Size(235, 74);
+            this.flowPanelDays.TabIndex = 156;
             // 
             // day1
             // 
@@ -537,11 +540,26 @@
             this.taskMinute.TabIndex = 165;
             this.taskMinute.Text = "00";
             // 
+            // sched_name
+            // 
+            this.sched_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sched_name.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.sched_name.ForeColor = System.Drawing.Color.DarkGray;
+            this.sched_name.Location = new System.Drawing.Point(65, 414);
+            this.sched_name.Name = "sched_name";
+            this.sched_name.Size = new System.Drawing.Size(236, 20);
+            this.sched_name.TabIndex = 166;
+            this.sched_name.Text = "введите название расписания";
+            this.sched_name.TextChanged += new System.EventHandler(this.sched_name_TextChanged);
+            this.sched_name.Enter += new System.EventHandler(this.textBox_Enter);
+            this.sched_name.Leave += new System.EventHandler(this.textBox_Leave);
+            // 
             // AddTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 550);
+            this.Controls.Add(this.sched_name);
             this.Controls.Add(this.buttonAddSubtask);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.taskMinute);
@@ -555,7 +573,7 @@
             this.Controls.Add(this.taskStartMinute);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.flowLayoutPanel2);
+            this.Controls.Add(this.flowPanelDays);
             this.Controls.Add(this.flowPanelSubtasks);
             this.Controls.Add(this.task_descr);
             this.Controls.Add(this.textBox8);
@@ -566,7 +584,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTime);
             this.Controls.Add(this.task_name);
             this.Controls.Add(this.addTaskButton);
             this.Controls.Add(this.pictureBox2);
@@ -575,8 +593,8 @@
             this.Name = "AddTaskForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddTaskForm";
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            this.flowPanelDays.ResumeLayout(false);
+            this.flowPanelDays.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.day1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.day5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.day2)).EndInit();
@@ -600,7 +618,7 @@
         private System.Windows.Forms.TextBox task_name;
         private AltoControls.AltoButton addTaskButton;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTime;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
@@ -613,7 +631,7 @@
         private System.Windows.Forms.TextBox task_descr;
         private System.Windows.Forms.FlowLayoutPanel flowPanelSubtasks;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelDays;
         private System.Windows.Forms.PictureBox day1;
         private System.Windows.Forms.PictureBox day2;
         private System.Windows.Forms.PictureBox day6;
@@ -632,5 +650,6 @@
         private System.Windows.Forms.Label buttonAddSubtask;
         private System.Windows.Forms.Label taskHour;
         private System.Windows.Forms.Label taskMinute;
+        private System.Windows.Forms.TextBox sched_name;
     }
 }

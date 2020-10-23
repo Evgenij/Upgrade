@@ -57,6 +57,7 @@ namespace Upgrade.Classes
         public struct DayOfWeek
         {
             bool status;
+            int id_day;
 
             public void ChangeStatus(PictureBox picture, Enums.DayOfWeek day)
             {
@@ -66,35 +67,44 @@ namespace Upgrade.Classes
                     if (day == Enums.DayOfWeek.Понедельник)
                     {
                         picture.Image = Properties.Resources.box_monday_on;
+                        id_day = 1;
                     }
                     else if (day == Enums.DayOfWeek.Вторник) 
                     {
                         picture.Image = Properties.Resources.box_thursday_on;
+                        id_day = 2;
                     }
                     else if (day == Enums.DayOfWeek.Среда)
                     {
                         picture.Image = Properties.Resources.box_wednesday_on;
+                        id_day = 3;
                     }
                     else if (day == Enums.DayOfWeek.Четверг)
                     {
                         picture.Image = Properties.Resources.box_tuesday_on;
+                        id_day = 4;
                     }
                     else if (day == Enums.DayOfWeek.Пятница)
                     {
                         picture.Image = Properties.Resources.box_friday_on;
+                        id_day = 5;
                     }
                     else if (day == Enums.DayOfWeek.Суббота)
                     {
                         picture.Image = Properties.Resources.box_saturday_on;
+                        id_day = 6;
                     }
                     else if (day == Enums.DayOfWeek.Воскресенье)
                     {
                         picture.Image = Properties.Resources.box_sunday_on;
+                        id_day = 7;
                     }
                 }
                 else
                 {
                     status = false;
+                    id_day = 0;
+
                     if (day == Enums.DayOfWeek.Понедельник)
                     {
                         picture.Image = Properties.Resources.box_monday_off;
@@ -124,6 +134,16 @@ namespace Upgrade.Classes
                         picture.Image = Properties.Resources.box_sunday_off;
                     }
                 }
+            }
+
+            public bool GetStatus() 
+            {
+                return status;
+            }
+
+            public int GetIdDay() 
+            {
+                return id_day;
             }
         }
 

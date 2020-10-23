@@ -330,7 +330,6 @@ namespace Upgrade.Classes
             user_photo.BackColor = Color.White;
 
             user_login.Text = User.user_login;
-            achieves.Text = User.user_achieves.ToString();
             perform.Text = User.user_perform + "%";
             user_photo.Image = User.user_photo.Image;
 

@@ -163,7 +163,8 @@ namespace Upgrade.Forms
         private void textBox_Enter(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "введите текст задачи" ||
-                ((TextBox)sender).Text == "введите описание задачи")
+                ((TextBox)sender).Text == "введите описание задачи" ||
+                ((TextBox)sender).Text == "введите название расписания")
             {
                 ((TextBox)sender).Text = null;
                 ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
@@ -184,6 +185,10 @@ namespace Upgrade.Forms
                 else if (((TextBox)sender).Name == "task_descr")
                 {
                     ((TextBox)sender).Text = "введите описание задачи";
+                }
+                else if (((TextBox)sender).Name == "sched_name")
+                {
+                    ((TextBox)sender).Text = "введите название расписания";
                 }
             }
         }
@@ -211,6 +216,136 @@ namespace Upgrade.Forms
         private void buttonAddSubtask_Click(object sender, EventArgs e)
         {
             subtasks.Add(new Subtask(flowPanelSubtasks));
+        }
+
+        private async void addTaskButton_Click(object sender, EventArgs e)
+        {
+            if (task_name.Text != "введите текст задачи")
+            {
+                try
+                {
+                    int id_sched = 0, id_task = 0;
+
+
+                    if (sched_name.Text != "введите название расписания")
+                    {
+                        ServiceData.commandText = string.Format("INSERT INTO schedule (name) VALUES({0})", sched_name.Text);
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.ExecuteNonQuery();
+
+                        ServiceData.commandText = "SELECT id_sched FROM schedule";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                        ServiceData.reader = ServiceData.command.ExecuteReader();
+                        if (ServiceData.reader.HasRows)
+                        {
+                            while (ServiceData.reader.Read())
+                            {
+                                id_sched = ServiceData.reader.GetInt32(0);
+                            }
+                        }
+                    }
+
+                    // --------------
+
+                    ServiceData.commandText = string.Format("INSERT INTO task (id_target, text, descr, date, time, time_finish, failed, status) " +
+                        "VALUES ({0}, {1}, {2}, {3}, {4}, {5}, 0, 0)", 
+                        targets.ElementAt(index_target).GetId(), 
+                        task_name.Text, 
+                        task_descr, 
+                        dateTime.Value.ToString("dd.MM.yyyy"),
+                        taskHour.Text + ":" + taskMinute.Text,
+                        taskEndHour.Text + ":" + taskEndMinute.Text);
+
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.ExecuteNonQuery();
+
+                    ServiceData.commandText = "SELECT id_task FROM task";
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                    ServiceData.reader = ServiceData.command.ExecuteReader();
+                    if (ServiceData.reader.HasRows)
+                    {
+                        while (ServiceData.reader.Read())
+                        {
+                            id_task = ServiceData.reader.GetInt32(0);
+                        }
+                    }
+
+                    // --------------
+
+                    if (id_sched != 0)
+                    {
+                        foreach (GlobalData.DayOfWeek day in days)
+                        {
+                            if (day.GetStatus() == true)
+                            {
+                                ServiceData.commandText = string.Format("INSERT INTO sched_task (id_sched, id_task, id_day) " +
+                                    "VALUES ({0}, {1}, {2})",
+                                    id_sched,
+                                    id_task,
+                                    day.GetIdDay());
+
+                                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                                ServiceData.command.ExecuteNonQuery();
+                            }
+                        }
+                    }
+
+
+                    string successString = "Задача";
+
+                    if (id_sched != 0) 
+                    {
+                        successString += " и направление созданы!";
+                    }
+                    else
+                    {
+                        successString += " создана!";
+                    }
+
+                    MessageBox.Show(
+                        successString,
+                        "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    await WindowManager.SetPanelsMainWindow();
+                    GlobalData.scroller_task.Refresh(Design.heightContentTasks);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "Не удалось создать направление...\n-\nОшибка: " + ex.Message,
+                        "Ошибка создания направления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Вы не ввели название направления...",
+                    "Ошибка создания направления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void sched_name_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == "введите название расписания" || ((TextBox)sender).Text.Length == 0)
+            {
+                //flowPanelDays.Enabled = false;
+                flowPanelDays.Cursor = Cursors.No;
+                foreach (Control control in flowPanelDays.Controls) 
+                {
+                    control.Cursor = Cursors.No;
+                }
+            }
+            else 
+            {
+                flowPanelDays.Enabled = true;
+                flowPanelDays.Cursor = Cursors.Default;
+                foreach (Control control in flowPanelDays.Controls)
+                {
+                    control.Cursor = Cursors.Hand;
+                }
+            }
         }
     }
 }

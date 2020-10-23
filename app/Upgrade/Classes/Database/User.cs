@@ -11,7 +11,6 @@ namespace Upgrade.Forms
     {
         public static int user_id;
         public static string user_login;
-        public static int user_achieves;
         public static int user_perform;
         public static PictureBox user_photo;
 

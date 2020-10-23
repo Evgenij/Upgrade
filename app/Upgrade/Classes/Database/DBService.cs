@@ -159,7 +159,6 @@ namespace Upgrade
                 User.user_id = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("id_user"));
                 User.SetPhoto(ServiceData.reader.GetValue(ServiceData.reader.GetOrdinal("photo")).ToString());
                 User.user_login = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("login"));
-                User.user_achieves = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("num_achiev"));
                 User.user_perform = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("perform"));
                 GlobalData.mainWorkingForm.Show();
                 return true;
