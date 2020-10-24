@@ -236,7 +236,6 @@ namespace Upgrade.Forms
                 {
                     int id_sched = 0, id_task = 0;
 
-
                     if (sched_name.Text != "введите название расписания")
                     {
 
@@ -304,6 +303,24 @@ namespace Upgrade.Forms
 
                         // --------------
 
+                        if (subtasks.Count > 0)
+                        {
+                            foreach (Subtask subtask in subtasks)
+                            {
+                                if (subtask.GetText() != "delete")
+                                {
+                                    MessageBox.Show(subtask.GetText());
+                                    ServiceData.commandText = @"INSERT INTO subtask (id_task, text) VALUES (@id_task, @text)";
+                                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                                    ServiceData.command.Parameters.AddWithValue("@id_task", id_task);
+                                    ServiceData.command.Parameters.AddWithValue("@text", subtask.GetText());
+                                    ServiceData.command.ExecuteNonQuery();
+                                }
+                            }
+                        }
+
+                        // --------------
+
                         if (id_sched != 0)
                         {
                             foreach (GlobalData.DayOfWeek day in days)
@@ -341,6 +358,8 @@ namespace Upgrade.Forms
                         Design.RefreshPanel(WindowManager.flowPanelTasks);
                         await WindowManager.SetTaskBlock();
                         GlobalData.scroller_task.Refresh(Design.heightContentTasks);
+
+                        this.Close();
                     }
                     else 
                     {

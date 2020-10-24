@@ -39,6 +39,7 @@ namespace Upgrade.Classes.Components
             textBox.Text = "Подзадача...";
             textBox.Enter += TextBox_Enter;
             textBox.Leave += TextBox_Leave;
+            textBox.TextChanged += TextBox_TextChanged; ;
 
             labelAction.Top = 2;
             labelAction.Width = 12;
@@ -60,8 +61,14 @@ namespace Upgrade.Classes.Components
             flowPanel.Controls.Add(panel);
         }
 
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            text = textBox.Text;
+        }
+
         private void LabelAction_Click(object sender, EventArgs e)
         {
+            text = "delete";
             panel.Dispose();
         }
 
