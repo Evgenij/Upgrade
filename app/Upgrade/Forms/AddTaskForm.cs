@@ -206,11 +206,21 @@ namespace Upgrade.Forms
         private void taskStartHour_TextChanged(object sender, EventArgs e)
         {
             taskHour.Text = ((TextBox)sender).Text;
+
+            if (Convert.ToInt32(taskEndHour.Text) < Convert.ToInt32(taskStartHour.Text))
+            {
+                taskEndHour.Text = taskStartHour.Text;
+            }
         }
 
         private void taskStartMinute_TextChanged(object sender, EventArgs e)
         {
             taskMinute.Text = ((TextBox)sender).Text;
+
+            if (Convert.ToInt32(taskEndMinute.Text) < Convert.ToInt32(taskStartMinute.Text))
+            {
+                taskEndMinute.Text = taskStartMinute.Text;
+            }
         }
 
         private void buttonAddSubtask_Click(object sender, EventArgs e)
@@ -229,8 +239,10 @@ namespace Upgrade.Forms
 
                     if (sched_name.Text != "введите название расписания")
                     {
-                        ServiceData.commandText = string.Format("INSERT INTO schedule (name) VALUES({0})", sched_name.Text);
+
+                        ServiceData.commandText = @"INSERT INTO schedule (name) VALUES(@name)";
                         ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@name", sched_name.Text);
                         ServiceData.command.ExecuteNonQuery();
 
                         ServiceData.commandText = "SELECT id_sched FROM schedule";
@@ -248,81 +260,107 @@ namespace Upgrade.Forms
 
                     // --------------
 
-                    ServiceData.commandText = string.Format("INSERT INTO task (id_target, text, descr, date, time, time_finish, failed, status) " +
-                        "VALUES ({0}, {1}, {2}, {3}, {4}, {5}, 0, 0)", 
-                        targets.ElementAt(index_target).GetId(), 
-                        task_name.Text, 
-                        task_descr, 
-                        dateTime.Value.ToString("dd.MM.yyyy"),
-                        taskHour.Text + ":" + taskMinute.Text,
-                        taskEndHour.Text + ":" + taskEndMinute.Text);
-
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-                    ServiceData.command.ExecuteNonQuery();
-
-                    ServiceData.commandText = "SELECT id_task FROM task";
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-
-                    ServiceData.reader = ServiceData.command.ExecuteReader();
-                    if (ServiceData.reader.HasRows)
+                    string descr;
+                    if (task_descr.Text != "введите описание задачи")
                     {
-                        while (ServiceData.reader.Read())
-                        {
-                            id_task = ServiceData.reader.GetInt32(0);
-                        }
+                        descr = task_descr.Text;
+                    }
+                    else 
+                    {
+                        descr = null;
                     }
 
-                    // --------------
-
-                    if (id_sched != 0)
+                    bool taskAdding = false;
+                    if (Convert.ToInt32(taskStartHour.Text) <= Convert.ToInt32(taskEndHour.Text)) 
                     {
-                        foreach (GlobalData.DayOfWeek day in days)
-                        {
-                            if (day.GetStatus() == true)
-                            {
-                                ServiceData.commandText = string.Format("INSERT INTO sched_task (id_sched, id_task, id_day) " +
-                                    "VALUES ({0}, {1}, {2})",
-                                    id_sched,
-                                    id_task,
-                                    day.GetIdDay());
+                        taskAdding = true;
+                    }
 
-                                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-                                ServiceData.command.ExecuteNonQuery();
+
+                    if (taskAdding == true)
+                    {
+                        ServiceData.commandText = @"INSERT INTO task (id_target, text, descr, date, time, time_finish, failed, status) " +
+                            "VALUES (@target, @text, @descr, @date, @time, @time_finish, 0, 0)";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@target", targets.ElementAt(index_target).GetId());
+                        ServiceData.command.Parameters.AddWithValue("@text", task_name.Text);
+                        ServiceData.command.Parameters.AddWithValue("@descr", descr);
+                        ServiceData.command.Parameters.AddWithValue("@date", dateTime.Value.ToString("dd.MM.yyyy"));
+                        ServiceData.command.Parameters.AddWithValue("@time", taskHour.Text + ":" + taskMinute.Text);
+                        ServiceData.command.Parameters.AddWithValue("@time_finish", taskEndHour.Text + ":" + taskEndMinute.Text);
+                        ServiceData.command.ExecuteNonQuery();
+
+                        ServiceData.commandText = "SELECT id_task FROM task";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                        ServiceData.reader = ServiceData.command.ExecuteReader();
+                        if (ServiceData.reader.HasRows)
+                        {
+                            while (ServiceData.reader.Read())
+                            {
+                                id_task = ServiceData.reader.GetInt32(0);
                             }
                         }
+
+                        // --------------
+
+                        if (id_sched != 0)
+                        {
+                            foreach (GlobalData.DayOfWeek day in days)
+                            {
+                                if (day.GetStatus() == true)
+                                {
+                                    ServiceData.commandText = string.Format("INSERT INTO sched_task (id_sched, id_task, id_day) " +
+                                        "VALUES ({0}, {1}, {2})",
+                                        id_sched,
+                                        id_task,
+                                        day.GetIdDay());
+
+                                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                                    ServiceData.command.ExecuteNonQuery();
+                                }
+                            }
+                        }
+
+
+                        string successString = "Задача";
+
+                        if (id_sched != 0)
+                        {
+                            successString += " и расписание созданы!";
+                        }
+                        else
+                        {
+                            successString += " создана!";
+                        }
+
+                        MessageBox.Show(
+                            successString,
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        Design.RefreshPanel(WindowManager.flowPanelTasks);
+                        await WindowManager.SetTaskBlock();
+                        GlobalData.scroller_task.Refresh(Design.heightContentTasks);
                     }
-
-
-                    string successString = "Задача";
-
-                    if (id_sched != 0) 
+                    else 
                     {
-                        successString += " и направление созданы!";
+                        MessageBox.Show(
+                           "Время завершения задачи не может быть меньше времени его начала.",
+                           "Ошибка создания задачи", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else
-                    {
-                        successString += " создана!";
-                    }
-
-                    MessageBox.Show(
-                        successString,
-                        "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    await WindowManager.SetPanelsMainWindow();
-                    GlobalData.scroller_task.Refresh(Design.heightContentTasks);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(
-                        "Не удалось создать направление...\n-\nОшибка: " + ex.Message,
-                        "Ошибка создания направления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Не удалось создать задачу...\n-\nОшибка: " + ex.Message,
+                        "Ошибка создания задачи", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 MessageBox.Show(
-                    "Вы не ввели название направления...",
-                    "Ошибка создания направления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Вы не ввели название задачи...",
+                    "Ошибка создания задачи", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

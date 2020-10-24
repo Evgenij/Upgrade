@@ -107,7 +107,7 @@
             this.login_auth.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.login_auth.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.login_auth.ForeColor = System.Drawing.Color.Gray;
-            this.login_auth.Location = new System.Drawing.Point(65, 230);
+            this.login_auth.Location = new System.Drawing.Point(66, 230);
             this.login_auth.Name = "login_auth";
             this.login_auth.Size = new System.Drawing.Size(241, 20);
             this.login_auth.TabIndex = 14;
@@ -165,7 +165,7 @@
             this.pass_auth.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pass_auth.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pass_auth.ForeColor = System.Drawing.Color.DarkGray;
-            this.pass_auth.Location = new System.Drawing.Point(65, 284);
+            this.pass_auth.Location = new System.Drawing.Point(66, 284);
             this.pass_auth.Name = "pass_auth";
             this.pass_auth.PasswordChar = '●';
             this.pass_auth.Size = new System.Drawing.Size(215, 20);
@@ -261,7 +261,7 @@
             this.panel_reg_code.Controls.Add(this.accept_code_reg);
             this.panel_reg_code.Controls.Add(this.label_reg_later);
             this.panel_reg_code.Controls.Add(this.data_box);
-            this.panel_reg_code.Location = new System.Drawing.Point(307, 79);
+            this.panel_reg_code.Location = new System.Drawing.Point(50, 79);
             this.panel_reg_code.Name = "panel_reg_code";
             this.panel_reg_code.Size = new System.Drawing.Size(274, 380);
             this.panel_reg_code.TabIndex = 25;

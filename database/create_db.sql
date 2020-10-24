@@ -1,15 +1,19 @@
 
-DROP TABLE IF EXISTS subtask;
-DROP TABLE IF EXISTS task;
-DROP TABLE IF EXISTS schedule;
-DROP TABLE IF EXISTS target;
+DROP TABLE IF EXISTS sched_task;
 DROP TABLE IF EXISTS user_dir;
+DROP TABLE IF EXISTS achiev_categ;
+
+DROP TABLE IF EXISTS subtask;
+DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS day;
+DROP TABLE IF EXISTS task;
+DROP TABLE IF EXISTS target;
 DROP TABLE IF EXISTS direction;
 DROP TABLE IF EXISTS note;
 DROP TABLE IF EXISTS password;
-DROP TABLE IF EXISTS categ_achiev;
-DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS achievement;
+DROP TABLE IF EXISTS category;
+
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE "note" 
@@ -72,16 +76,13 @@ CREATE TABLE "target"
 	id_direct INTEGER NOT NUll,
 	name TEXT NOT NULL,
 	compliting INTEGER NOT NULL CHECK(compliting >= 0 AND compliting <= 100),
-	FOREIGN KEY
-	(id_direct) REFERENCES direction
-	(id_direct)
+	FOREIGN KEY (id_direct) REFERENCES direction(id_direct)
 );
 
 CREATE TABLE "task" 
 (
 	id_task INTEGER PRIMARY KEY AUTOINCREMENT,
 	id_target INTEGER NOT NUll,
-	id_sched INTEGER NULL,
 	text TEXT NOT NULL,
 	descr TEXT NULL,
 	date TEXT NOT NULL DEFAULT CURRENT_DATE,
@@ -89,8 +90,7 @@ CREATE TABLE "task"
 	time_finish TEXT NULL,
 	failed INTEGER NOT NULL CHECK(failed == 0 OR failed == 1),
 	status INTEGER NOT NULL CHECK(status == 0 OR status == 1),
-	FOREIGN KEY (id_target) REFERENCES target(id_target),
-	FOREIGN KEY (id_sched) REFERENCES schedule (id_sched)
+	FOREIGN KEY (id_target) REFERENCES target(id_target)
 );
 
 CREATE TABLE "subtask" 
@@ -100,6 +100,12 @@ CREATE TABLE "subtask"
 	text TEXT NOT NULL CHECK(length(text) > 0),
 	status INTEGER NOT NULL CHECK(status == 0 OR status == 1),
 	FOREIGN KEY (id_task) REFERENCES task (id_task) ON DELETE CASCADE
+);
+
+CREATE TABLE "day" 
+(
+	id_day INTEGER PRIMARY KEY AUTOINCREMENT,
+	name TEXT NOT NULL CHECK(length(name) > 0)
 );
 
 CREATE TABLE "schedule" 
@@ -118,7 +124,7 @@ CREATE TABLE "user_dir"
 	FOREIGN KEY (id_direct) REFERENCES direction(id_direct)
 );
 
-CREATE TABLE "categ_achiev"
+CREATE TABLE "achiev_categ"
 (
 	id_categ INTEGER,
 	id_achiev INTEGER,
@@ -126,10 +132,29 @@ CREATE TABLE "categ_achiev"
 	FOREIGN KEY (id_achiev) REFERENCES achievement(id_achiev)
 );
 
+CREATE TABLE "sched_task"
+(
+	id_sched INTEGER NOT NULL,
+	id_task INTEGER NOT NULL,
+	id_day INTEGER NOT NULL,
+	FOREIGN KEY (id_sched) REFERENCES schedule(id_sched),
+	FOREIGN KEY (id_task) REFERENCES task(id_task),
+	FOREIGN KEY (id_day) REFERENCES day(id_day)
+);
+
 /* ----------------------- */
 
 /* заполнение таблиц */
 
+INSERT INTO day VALUES (NULL, "ПН");
+INSERT INTO day VALUES (NULL, "ВТ");
+INSERT INTO day VALUES (NULL, "СР");
+INSERT INTO day VALUES (NULL, "ЧТ");
+INSERT INTO day VALUES (NULL, "ПТ");
+INSERT INTO day VALUES (NULL, "СБ");
+INSERT INTO day VALUES (NULL, "ВС");
+
+INSERT INTO user VALUES (NULL, NULL, "Rampad", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1652", 85);
 INSERT INTO user VALUES (NULL, NULL, "Rampad", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1652", 85);
 INSERT INTO user VALUES (NULL, NULL, "Spike", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "6532", 55);
 INSERT INTO user VALUES (NULL, NULL, "Igenaric", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1236", 25);
@@ -252,25 +277,25 @@ INSERT INTO category
 VALUES
 	(NULL, "Хобби");
 
-INSERT INTO categ_achiev
+INSERT INTO achiev_categ
 VALUES
 	(1, 1);
-INSERT INTO categ_achiev
+INSERT INTO achiev_categ
 VALUES
 	(2, 2);
-INSERT INTO categ_achiev
+INSERT INTO achiev_categ
 VALUES
 	(3, 3);
-INSERT INTO categ_achiev
+INSERT INTO achiev_categ
 VALUES
 	(3, 4);
-INSERT INTO categ_achiev
+INSERT INTO achiev_categ
 VALUES
 	(4, 5);
-INSERT INTO categ_achiev
+INSERT INTO achiev_categ
 VALUES
 	(5, 6);
-INSERT INTO categ_achiev
+INSERT INTO achiev_categ
 VALUES
 	(5, 7);
 
