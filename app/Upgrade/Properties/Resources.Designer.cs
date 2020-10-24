@@ -153,6 +153,26 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bgGeneralStat {
+            get {
+                object obj = ResourceManager.GetObject("bgGeneralStat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bgMainStat {
+            get {
+                object obj = ResourceManager.GetObject("bgMainStat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap block_change_off {
             get {
                 object obj = ResourceManager.GetObject("block_change_off", resourceCulture);
@@ -706,6 +726,36 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap icon_profile {
             get {
                 object obj = ResourceManager.GetObject("icon_profile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconStat1 {
+            get {
+                object obj = ResourceManager.GetObject("iconStat1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconStat2 {
+            get {
+                object obj = ResourceManager.GetObject("iconStat2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconStat3 {
+            get {
+                object obj = ResourceManager.GetObject("iconStat3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

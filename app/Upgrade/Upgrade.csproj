@@ -595,6 +595,21 @@
   <ItemGroup>
     <None Include="Resources\AddTask.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgGeneralStat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgMainStat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconStat1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconStat2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconStat3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

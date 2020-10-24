@@ -98,7 +98,7 @@ CREATE TABLE "subtask"
 	id_subtask INTEGER PRIMARY KEY AUTOINCREMENT,
 	id_task INTEGER NOT NUll,
 	text TEXT NOT NULL CHECK(length(text) > 0),
-	status INTEGER NOT NULL CHECK(status == 0 OR status == 1),
+	status INTEGER NOT NULL DEFAULT 0 CHECK(status == 0 OR status == 1),
 	FOREIGN KEY (id_task) REFERENCES task (id_task) ON DELETE CASCADE
 );
 

@@ -494,7 +494,7 @@
             this.target.Location = new System.Drawing.Point(70, 101);
             this.target.Name = "target";
             this.target.ReadOnly = true;
-            this.target.Size = new System.Drawing.Size(113, 20);
+            this.target.Size = new System.Drawing.Size(189, 20);
             this.target.TabIndex = 164;
             this.target.Text = "цель...";
             // 

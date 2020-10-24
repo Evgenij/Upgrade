@@ -105,6 +105,9 @@ namespace Upgrade.Classes
             // создание компонентов пункта меню с направлениями и целями
             SetTabDirection_Target();
 
+            // создание компонентов пункта меню с достижениями и статистикой
+            SetTabAchiev_Stat();
+
             timerTime = new System.Windows.Forms.Timer();
             timerTime.Interval = 1000;
             timerTime.Tick += TimerTime_Tick;
@@ -155,6 +158,11 @@ namespace Upgrade.Classes
             GlobalData.scroller_direct = new Scroller(tab_targets, flowDirect, Design.heightContentDirection);
             GlobalData.scroller_target = new Scroller(tab_targets, flowTarget, Design.heightContentTarget);
             GlobalData.scroller_task_target = new Scroller(tab_targets, flowTaskTarget, Design.heightContentTaskTarget);
+        }
+
+        private void SetTabAchiev_Stat()
+        {
+           
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -276,6 +284,11 @@ namespace Upgrade.Classes
             status_mark.Active2 = Design.mainColor;
             status_mark.StrokeColor = Design.mainColor;
 
+            sublabelAchiev.ForeColor = Design.mainColor;
+            todayStat.ForeColor = Design.mainColor;
+            labelGeneralPeriod.ForeColor = Design.mainColor;
+            labelPerformCurrentPeriod.ForeColor = Design.mainColor;
+
             not_found_note.BringToFront();
             not_found_target.BringToFront();
             not_found_task.BringToFront();
@@ -331,6 +344,19 @@ namespace Upgrade.Classes
 
             user_login.Text = User.user_login;
             perform.Text = User.user_perform + "%";
+
+            ServiceData.commandText = string.Format("SELECT count(*) FROM achievement " +
+                "INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev " +
+                "INNER JOIN category ON category.id_categ = achiev_categ.id_categ " +
+                "INNER JOIN direction ON direction.id_categ = category.id_categ " +
+                "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                "INNER JOIN user ON user.id_user = user_dir.id_user " +
+                "WHERE user.id_user = {0} and achievement.status = 1", User.user_id);
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            ServiceData.reader.Read();
+            achieves.Text = ServiceData.reader.GetInt32(0).ToString();
+
             user_photo.Image = User.user_photo.Image;
 
             block_for_focus.Focus();
@@ -731,5 +757,6 @@ namespace Upgrade.Classes
                 GlobalData.addTargetForm.ShowDialog();
             }
         }
+
     }
 }

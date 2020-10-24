@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Upgrade.Forms;
+
 namespace Upgrade.Classes.Blocks
 {
     class TargetBlock : Block
@@ -28,10 +30,10 @@ namespace Upgrade.Classes.Blocks
             textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 20);
             for (int i = 0; i < nameTarget.Length; i++) 
             {
-                if (i == 19) 
+                if (i == 17) 
                 {
                     textLabel.Text += Environment.NewLine;
-                    textLabel.Height = 45 * (textLabel.Text.Length / 19);
+                    textLabel.Height = 45 * (textLabel.Text.Length / 17);
                 }
                 textLabel.Text += nameTarget[i];
             }
@@ -267,7 +269,15 @@ namespace Upgrade.Classes.Blocks
             }
             else if (((PictureBox)sender).AccessibleName == "3")
             {
-                //((PictureBox)sender).Image = Properties.Resources.tar_task_on;
+                if (GlobalData.addTaskForm == null)
+                {
+                    GlobalData.addTaskForm = new AddTaskForm();
+                    GlobalData.addTaskForm.ShowDialog();
+                }
+                else
+                {
+                    GlobalData.addTaskForm.ShowDialog();
+                }
             }
         }
     }
