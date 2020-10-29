@@ -123,6 +123,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Blocks\AchievBlock.cs" />
     <Compile Include="Classes\Components\Subtask.cs" />
     <Compile Include="Classes\Components\UIComponent.cs" />
     <Compile Include="Classes\Components\UITrackBar.cs" />
@@ -609,6 +610,417 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconStat3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\achiev_box_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\achiev_box_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\achiev_box_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Big BOSS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Бизнесмен1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Бизнесмен2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Бизнесмен3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Бизнесмен4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Бизнесмен5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Будущий монополист.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Вижу цель -  не вижу препятствий.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Все по графику!.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Все под рукой.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Выполнил и не заметил.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Герой выходного дня.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Главное - начать!.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Главное - регулярность.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Гордость родителей.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Гроза дедлайнов.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Гроза конкурентов.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Гуру коммуникации.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\За трудовое отличие.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Инициатор.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Как тебе такое, Илон Маск_%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Лед тронулся....png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Лучше чем вчера1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Лучше чем вчера2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Лучше чем вчера3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Лучше чем вчера4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Лучше чем вчера5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Максимальный КПД.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Максимум усилий - максимум результата!.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Мастер отношений.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\На сближение1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\На сближение2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\На сближение3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\На сближение4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\На сближение5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Не время прохлождаться.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Нет предела совершенству.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Новый %27Я%27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ну...Попытка не пытка.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Первое ДЗ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Первый рубеж.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Первый шаг.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Почти привычка.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Прилежный ученик.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Проще простого!1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Проще простого!2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Проще простого!3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Проще простого!4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Проще простого!5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Пунктуальный.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Пятерка гарантирована.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Работник года1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Работник года2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Работник года3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Работник года4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Работник года5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\То ли еще будет!.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Тотальный UPGRADE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Трудоголик.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Хороший старт.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Целеустремленный1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Целеустремленный2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Целеустремленный3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Целеустремленный4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Целеустремленный5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Шаг за шагом.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Сдержал обещание!.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\37.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\39.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\43.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\46.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\47.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\49.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\52.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\53.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\54.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\55.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\56.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\57.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\58.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\59.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\61.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\62.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\63.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\65.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\66.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\67.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

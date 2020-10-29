@@ -32,7 +32,7 @@ namespace Upgrade.Classes
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        UIComboBox[] uiComboBox = new UIComboBox[2];
+        UIComboBox[] uiComboBox = new UIComboBox[3];
         Filter filter;
         private static List<int> idFailedTasks = new List<int>();
         System.Windows.Forms.Timer timerTime;
@@ -97,7 +97,7 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            WindowManager.SetFlowPanelTask(flowTasks, flowNotes, flowDirect, flowTarget, flowTaskTarget);
+            WindowManager.SetFlowPanels(flowTasks, flowNotes, flowDirect, flowTarget, flowTaskTarget, flowAcheivement);
 
             // создание компонентов главного пункта меню
             SetTabProfile();
@@ -160,9 +160,26 @@ namespace Upgrade.Classes
             GlobalData.scroller_task_target = new Scroller(tab_targets, flowTaskTarget, Design.heightContentTaskTarget);
         }
 
-        private void SetTabAchiev_Stat()
+        private async void SetTabAchiev_Stat()
         {
-           
+            List<string> category = new List<string>();
+
+            ServiceData.commandText = @"SELECT name FROM category";
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.ExecuteNonQuery();
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (ServiceData.reader.Read())
+                {
+                    category.Add(ServiceData.reader.GetString(0));
+                }
+            }
+
+            uiComboBox[2] = new UIComboBox(tab_stat, panelCategory, "category", category.ToArray(), null, null, null);
+
+            await WindowManager.SetAchievBlock(uiComboBox[2].GetValue());
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -284,7 +301,6 @@ namespace Upgrade.Classes
             status_mark.Active2 = Design.mainColor;
             status_mark.StrokeColor = Design.mainColor;
 
-            sublabelAchiev.ForeColor = Design.mainColor;
             todayStat.ForeColor = Design.mainColor;
             labelGeneralPeriod.ForeColor = Design.mainColor;
             labelPerformCurrentPeriod.ForeColor = Design.mainColor;

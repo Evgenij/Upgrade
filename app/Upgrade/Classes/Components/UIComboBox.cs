@@ -48,7 +48,7 @@ namespace Upgrade.Forms
             timer = new Timer();
 
             textLabel.Left = 0;
-            textLabel.Top = 0;
+            textLabel.Top = 0; 
             textLabel.Width = 180;
             textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 22);
             textLabel.BackColor = Design.backColor;
@@ -61,7 +61,7 @@ namespace Upgrade.Forms
                 textLabel.Text = labels[index];
                 WindowManager.period = Enums.Period.Today;
             }
-            else if (panelMain.AccessibleName == "status") 
+            else
             {
                 index = 0;
                 textLabel.Text = labels[index];
@@ -151,6 +151,11 @@ namespace Upgrade.Forms
         public Panel GetPanel()
         {
             return panelMain;
+        }
+
+        public string GetValue() 
+        {
+            return textLabel.Text;
         }
 
         private async void UIComboBox_Click(object sender, EventArgs e)

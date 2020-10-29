@@ -21,6 +21,7 @@ namespace Upgrade.Classes
         public static int heightContentDirection = 0;
         public static int heightContentTarget = 0;
         public static int heightContentTaskTarget = 0;
+        public static int heightContentAchiev = 0;
 
         private static Control panel;
         private static FlowLayoutPanel flowParent;

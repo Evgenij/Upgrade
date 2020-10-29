@@ -18,7 +18,8 @@ namespace Upgrade.Classes
         private static PictureBox[] boxStatus = new PictureBox[2];
         private static List<NoteBlock> noteBlock = new List<NoteBlock>();
         private static List<DirectionBlock> directionBlock = new List<DirectionBlock>();
-        
+        private static List<AchievBlock> achievBlocks = new List<AchievBlock>();
+
         public enum TypeBlock
         {
             Tasks,
@@ -33,6 +34,7 @@ namespace Upgrade.Classes
         public static FlowLayoutPanel flowPanelDirect;
         public static FlowLayoutPanel flowPanelTarget;
         public static FlowLayoutPanel flowPanelTaskTarget;
+        public static FlowLayoutPanel flowPanelAchiev;
 
         public static async Task SetPanelsMainWindow()
         {
@@ -40,17 +42,19 @@ namespace Upgrade.Classes
             await SetNoteBlock();
         }
 
-        public static void SetFlowPanelTask(FlowLayoutPanel flowTask, 
-                                            FlowLayoutPanel flowNotes, 
-                                            FlowLayoutPanel flowDirect, 
-                                            FlowLayoutPanel flowTarget,
-                                            FlowLayoutPanel flowTaskTarget)
+        public static void SetFlowPanels(FlowLayoutPanel flowTask, 
+                                         FlowLayoutPanel flowNotes, 
+                                         FlowLayoutPanel flowDirect, 
+                                         FlowLayoutPanel flowTarget,
+                                         FlowLayoutPanel flowTaskTarget,
+                                         FlowLayoutPanel flowAchiev)
         {
             flowPanelTasks = flowTask;
             flowPanelNotes = flowNotes;
             flowPanelDirect = flowDirect;
             flowPanelTarget = flowTarget;
             flowPanelTaskTarget = flowTaskTarget;
+            flowPanelAchiev = flowAchiev;
         }
 
         public static async Task SetTaskBlock()
@@ -489,6 +493,35 @@ namespace Upgrade.Classes
                 while (await ServiceData.reader.ReadAsync())
                 {
                     targets.Add(new TargetBlock(flowPanelTarget, ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
+                }
+            }
+        }
+
+        public static async Task SetAchievBlock(string nameCateg)
+        {
+            Design.heightContentAchiev = 0;
+
+            ServiceData.commandText = @"SELECT achievement.id_achiev, achievement.name, " +
+                "achievement.descr, achievement.current_score, achievement.final_score, achievement.status FROM achievement " +
+                "INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev " +
+                "INNER JOIN category ON category.id_categ = achiev_categ.id_categ " +
+                "WHERE category.name = @nameCateg ORDER BY achievement.status";
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.Parameters.AddWithValue("@nameCateg", nameCateg);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (await ServiceData.reader.ReadAsync())
+                {
+                    achievBlocks.Add(new AchievBlock(
+                        flowPanelAchiev, 
+                        ServiceData.reader.GetInt32(0),
+                        ServiceData.reader.GetString(1), 
+                        ServiceData.reader.GetString(2),
+                        ServiceData.reader.GetInt32(3),
+                        ServiceData.reader.GetInt32(4),
+                        ServiceData.reader.GetInt32(5)));
                 }
             }
         }

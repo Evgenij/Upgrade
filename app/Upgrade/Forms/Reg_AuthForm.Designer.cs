@@ -133,7 +133,7 @@
             this.authorization.BackColor = System.Drawing.Color.Transparent;
             this.authorization.Cursor = System.Windows.Forms.Cursors.Hand;
             this.authorization.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.authorization.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.authorization.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.authorization.ForeColor = System.Drawing.Color.DarkBlue;
             this.authorization.Inactive1 = System.Drawing.Color.Transparent;
             this.authorization.Inactive2 = System.Drawing.Color.Transparent;
@@ -672,7 +672,6 @@
         private System.Windows.Forms.PictureBox backgr_auth;
         private System.Windows.Forms.TextBox login_auth;
         private System.Windows.Forms.Label label_auth_password;
-        private AltoControls.AltoButton authorization;
         private System.Windows.Forms.Label label_auth_login;
         private System.Windows.Forms.TextBox pass_auth;
         private System.Windows.Forms.Label label7;
@@ -694,6 +693,7 @@
         private System.Windows.Forms.TextBox pass_rest;
         private System.Windows.Forms.Label rest_pass_back;
         private System.Windows.Forms.Panel panel_rest_pass;
+        private AltoControls.AltoButton authorization;
     }
 }
 
