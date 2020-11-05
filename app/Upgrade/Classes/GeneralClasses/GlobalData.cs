@@ -31,6 +31,7 @@ namespace Upgrade.Classes
         static public Scroller scroller_direct;
         static public Scroller scroller_target;
         static public Scroller scroller_task_target;
+        static public Scroller scroller_achiev;
 
         public struct DataContainer
         {

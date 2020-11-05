@@ -279,7 +279,8 @@ namespace Upgrade.Classes
                         ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] + sql_command[4] + sql_command[5] +
                                                                 "AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ORDER BY task.date",
                                                                 User.user_id,
-                                                                date.First(), date.Last(),
+                                                                date.First(),
+                                                                date.Last(),
                                                                 DateTime.Now.ToString("MM"),
                                                                 DateTime.Now.ToString("yyyy"));
 

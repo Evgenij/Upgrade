@@ -19,6 +19,7 @@ namespace test
         public Form1()
         {
             InitializeComponent();
+            
             cartesianChart1.Series.Add(
                 new LineSeries
                 {

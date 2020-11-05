@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Classes.Blocks;
+using Upgrade.Classes.Components;
 using Upgrade.Forms;
 
 namespace Upgrade.Classes
@@ -32,10 +33,12 @@ namespace Upgrade.Classes
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
-        UIComboBox[] uiComboBox = new UIComboBox[3];
-        Filter filter;
+        private UIComboBox[] uiComboBox = new UIComboBox[3];
+        private Filter filter;
+        private PieChart pieChart;
         private static List<int> idFailedTasks = new List<int>();
         System.Windows.Forms.Timer timerTime;
+        private int countTask = 0, countTaskInWork = 0, countTaskDone = 0, countTaskFailed = 0, performLastPeriod = 0;
 
         public MainWorkingForm()
         {
@@ -180,6 +183,137 @@ namespace Upgrade.Classes
             uiComboBox[2] = new UIComboBox(tab_stat, panelCategory, "category", category.ToArray(), null, null, null);
 
             await WindowManager.SetAchievBlock(uiComboBox[2].GetValue());
+            GlobalData.scroller_achiev = new Scroller(tab_stat, flowAcheivement, Design.heightContentAchiev);
+
+            setCurrentCountTask();
+
+            pieChart = new PieChart(bgMainStat, 25, 80, countTaskInWork, countTaskDone, countTaskFailed);
+        }
+
+
+        private void setCurrentCountTask() 
+        {
+            // вывод кол-ва всех задач на сегодня
+            ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                "INNER JOIN target ON task.id_target = target.id_target " +
+                "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE user.id_user = {0} AND task.date = '{1}'", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+
+            MessageBox.Show(ServiceData.commandText);
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.ExecuteNonQuery();
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (ServiceData.reader.Read())
+                {
+                    countTask = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            // вывод кол-ва всех задач "в процессе" на сегодня
+            ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                "INNER JOIN target ON task.id_target = target.id_target " +
+                "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE user.id_user = {0} AND task.date = '{1}' AND task.status = 0 AND task.failed = 0", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.ExecuteNonQuery();
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (ServiceData.reader.Read())
+                {
+                    countTaskInWork = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            // вывод кол-ва всех выполненых задач на сегодня
+            ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                "INNER JOIN target ON task.id_target = target.id_target " +
+                "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE user.id_user = {0} AND task.date = '{1}' AND task.status = 1", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.ExecuteNonQuery();
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (ServiceData.reader.Read())
+                {
+                    countTaskDone = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            // вывод кол-ва всех проваленных задач на сегодня
+            ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                "INNER JOIN target ON task.id_target = target.id_target " +
+                "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                "WHERE user.id_user = {0} AND task.date = '{1}' AND task.failed = 1 AND task.status = 0", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.ExecuteNonQuery();
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (ServiceData.reader.Read())
+                {
+                    countTaskFailed = ServiceData.reader.GetInt32(0);
+                }
+            }
+
+            labelCountTask.Text = countTask.ToString();
+            labelTaskInWork.Text = countTaskInWork.ToString();
+            labelTaskDone.Text = countTaskDone.ToString();
+            labelTaskFailed.Text = countTaskFailed.ToString();
+            labelPerformCurrentPeriod.Text = ((countTaskDone * 100) / countTask).ToString() + "%";
+        }
+
+        private void changePeriod(Label currentLabel, Enums.PeriodStatistic period) 
+        {
+            todayStat.ForeColor = Color.Gray;
+            weekStat.ForeColor = Color.Gray;
+            monthStat.ForeColor = Color.Gray;
+            allTimeStat.ForeColor = Color.Gray;
+
+            currentLabel.ForeColor = Design.mainColor;
+
+            if (period == Enums.PeriodStatistic.today) 
+            {
+                labelPeriod.Visible = true;
+                datePeriod.Visible = true;
+                datePeriod.Text = DateTime.Now.ToString("dd.MM.yyyy");
+                datePeriod.ForeColor = Design.mainColor;
+                pieChart.Show();
+            }
+            else if (period == Enums.PeriodStatistic.week)
+            {
+                labelPeriod.Visible = false;
+                datePeriod.Visible = false;
+                pieChart.Hide();
+            }
+            else if (period == Enums.PeriodStatistic.month)
+            {
+                labelPeriod.Visible = false;
+                datePeriod.Visible = false;
+                pieChart.Hide();
+            }
+            else if (period == Enums.PeriodStatistic.all_time)
+            {
+                labelPeriod.Visible = false;
+                datePeriod.Visible = false;
+                pieChart.Hide();
+            }
         }
 
         private void profile_Click(object sender, EventArgs e)
@@ -774,5 +908,24 @@ namespace Upgrade.Classes
             }
         }
 
+        private void todayStat_Click(object sender, EventArgs e)
+        {
+            changePeriod((Label)sender, Enums.PeriodStatistic.today);
+        }
+
+        private void labelWeek_Click(object sender, EventArgs e)
+        {
+            changePeriod((Label)sender, Enums.PeriodStatistic.week);
+        }
+
+        private void labelMonth_Click(object sender, EventArgs e)
+        {
+            changePeriod((Label)sender, Enums.PeriodStatistic.month);
+        }
+
+        private void labelAllTime_Click(object sender, EventArgs e)
+        {
+            changePeriod((Label)sender, Enums.PeriodStatistic.all_time);
+        }
     }
 }

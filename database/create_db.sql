@@ -21,7 +21,7 @@ CREATE TABLE "note"
 	id_note INTEGER PRIMARY KEY AUTOINCREMENT,
 	id_user INTEGER NOT NULL,
 	text TEXT NOT NULL CHECK(length(text) != 0),
-	FOREIGN KEY (id_user) REFERENCES user (id_user)
+	FOREIGN KEY (id_user) REFERENCES user (id_user) ON DELETE CASCADE
 );
 
 CREATE TABLE "password" 
@@ -77,7 +77,7 @@ CREATE TABLE "target"
 	id_direct INTEGER NOT NUll,
 	name TEXT NOT NULL,
 	compliting INTEGER NOT NULL CHECK(compliting >= 0 AND compliting <= 100),
-	FOREIGN KEY (id_direct) REFERENCES direction(id_direct)
+	FOREIGN KEY (id_direct) REFERENCES direction(id_direct) ON DELETE CASCADE
 );
 
 CREATE TABLE "task" 
@@ -91,7 +91,7 @@ CREATE TABLE "task"
 	time_finish TEXT NULL,
 	failed INTEGER NOT NULL CHECK(failed == 0 OR failed == 1),
 	status INTEGER NOT NULL CHECK(status == 0 OR status == 1),
-	FOREIGN KEY (id_target) REFERENCES target(id_target)
+	FOREIGN KEY (id_target) REFERENCES target(id_target) ON DELETE CASCADE
 );
 
 CREATE TABLE "subtask" 
@@ -121,16 +121,16 @@ CREATE TABLE "user_dir"
 (
 	id_user INTEGER,
 	id_direct INTEGER,
-	FOREIGN KEY (id_user) REFERENCES user(id_user),
-	FOREIGN KEY (id_direct) REFERENCES direction(id_direct)
+	FOREIGN KEY (id_user) REFERENCES user(id_user) ON DELETE CASCADE,
+	FOREIGN KEY (id_direct) REFERENCES direction(id_direct) ON DELETE CASCADE
 );
 
 CREATE TABLE "achiev_categ"
 (
 	id_categ INTEGER,
 	id_achiev INTEGER,
-	FOREIGN KEY (id_categ) REFERENCES category(id_categ),
-	FOREIGN KEY (id_achiev) REFERENCES achievement(id_achiev)
+	FOREIGN KEY (id_categ) REFERENCES category(id_categ) ON DELETE CASCADE,
+	FOREIGN KEY (id_achiev) REFERENCES achievement(id_achiev) ON DELETE CASCADE
 );
 
 CREATE TABLE "sched_task"
@@ -138,9 +138,9 @@ CREATE TABLE "sched_task"
 	id_sched INTEGER NOT NULL,
 	id_task INTEGER NOT NULL,
 	id_day INTEGER NOT NULL,
-	FOREIGN KEY (id_sched) REFERENCES schedule(id_sched),
-	FOREIGN KEY (id_task) REFERENCES task(id_task),
-	FOREIGN KEY (id_day) REFERENCES day(id_day)
+	FOREIGN KEY (id_sched) REFERENCES schedule(id_sched) ON DELETE CASCADE,
+	FOREIGN KEY (id_task) REFERENCES task(id_task) ON DELETE CASCADE,
+	FOREIGN KEY (id_day) REFERENCES day(id_day) ON DELETE CASCADE
 );
 
 /* ----------------------- */
@@ -275,7 +275,7 @@ INSERT INTO achievement VALUES (NULL, "Лед тронулся", "Поднять
 INSERT INTO achievement VALUES (NULL, "Мастер отношений", "Поднять эффективность до 80%", 0, 80, 0);
 INSERT INTO achievement VALUES (NULL, "Гуру коммуникации", "Поднять эффективность до 100%", 0, 100, 0);
 INSERT INTO achievement VALUES (NULL, "Инициатор", "Создать задачу", 0, 1, 0);
-INSERT INTO achievement VALUES (NULL, "Пунктуальный", "Создать расписание", 1, 0, 0);
+INSERT INTO achievement VALUES (NULL, "Пунктуальный", "Создать расписание", 1, 1, 0);
 INSERT INTO achievement VALUES (NULL, "Сдержал обещание!", "Выполнить все задачи за день", 0, 1, 0);	
 INSERT INTO achievement VALUES (NULL, "На сближение", "Выполнить 1 задачу", 0, 1, 0);	
 INSERT INTO achievement VALUES (NULL, "На сближение", "Выполнить 10 задач", 0, 10, 0);	
@@ -288,7 +288,7 @@ INSERT INTO achievement VALUES (NULL, "То ли еще будет!", "Подн�
 INSERT INTO achievement VALUES (NULL, "Трудоголик", "Поднять эффективность до 80%", 0, 80, 0);
 INSERT INTO achievement VALUES (NULL, "Big BOSS", "Поднять эффективность до 100%", 0, 100, 0);
 INSERT INTO achievement VALUES (NULL, "Все под рукой", "Создать задачу", 0, 1, 0);
-INSERT INTO achievement VALUES (NULL, "Гроза дедлайнов", "Создать расписание", 1, 0, 0);
+INSERT INTO achievement VALUES (NULL, "Гроза дедлайнов", "Создать расписание", 1, 1, 0);
 INSERT INTO achievement VALUES (NULL, "За трудовое отличие", "Выполнить все задачи за день", 0, 1, 0);	
 INSERT INTO achievement VALUES (NULL, "Работник года", "Выполнить 1 задачу", 0, 1, 0);	
 INSERT INTO achievement VALUES (NULL, "Работник года", "Выполнить 10 задач", 0, 10, 0);	
@@ -301,7 +301,7 @@ INSERT INTO achievement VALUES (NULL, "Хороший старт", "Поднят
 INSERT INTO achievement VALUES (NULL, "Гроза конкурентов", "Поднять эффективность до 80%", 0, 80, 0);
 INSERT INTO achievement VALUES (NULL, "Будущий монополист", "Поднять эффективность до 100%", 0, 100, 0);
 INSERT INTO achievement VALUES (NULL, "Главное - начать!", "Создать задачу", 0, 1, 0);
-INSERT INTO achievement VALUES (NULL, "Не время прохлаждаться", "Создать расписание", 1, 0, 0);
+INSERT INTO achievement VALUES (NULL, "Не время прохлаждаться", "Создать расписание", 1, 1, 0);
 INSERT INTO achievement VALUES (NULL, "Максимальный КПД", "Выполнить все задачи за день", 0, 1, 0);	
 INSERT INTO achievement VALUES (NULL, "Бизнесмен", "Выполнить 1 задачу", 0, 1, 0);	
 INSERT INTO achievement VALUES (NULL, "Бизнесмен", "Выполнить 10 задач", 0, 10, 0);	

@@ -162,87 +162,96 @@ namespace Upgrade.Forms
         {
             index = Convert.ToInt32(((Label)sender).AccessibleName);
             textLabel.Text = ((Label)sender).Text;
-
             panelMain.Width = textLabel.Text.Length * 14;
-            if (index == 0)
+
+            if (panelMain.AccessibleName == "category")
             {
-                panelMain.Width -= 15;
-                if (labelPeriod != null)
-                {
-                    labelPeriod.Text = "прошлую неделю";
-                }
-
-                if (panelMain.AccessibleName == "period")
-                {
-                    WindowManager.period = Enums.Period.LastWeek;
-                }
-                else if (panelMain.AccessibleName == "status") 
-                {
-                    WindowManager.status = Enums.StatusTask.Empty;
-                }
+                Design.RefreshPanel(WindowManager.flowPanelAchiev);
+                await WindowManager.SetAchievBlock(((Label)sender).Text);
+                GlobalData.scroller_achiev.Refresh(Design.heightContentAchiev);
             }
-            else if (index == 1) 
+            else
             {
-                panelMain.Width += 5;
-                if (labelPeriod != null)
+                if (index == 0)
                 {
-                    labelPeriod.Text = "вчера";
+                    panelMain.Width -= 15;
+                    if (labelPeriod != null)
+                    {
+                        labelPeriod.Text = "прошлую неделю";
+                    }
+
+                    if (panelMain.AccessibleName == "period")
+                    {
+                        WindowManager.period = Enums.Period.LastWeek;
+                    }
+                    else if (panelMain.AccessibleName == "status")
+                    {
+                        WindowManager.status = Enums.StatusTask.Empty;
+                    }
+                }
+                else if (index == 1)
+                {
+                    panelMain.Width += 5;
+                    if (labelPeriod != null)
+                    {
+                        labelPeriod.Text = "вчера";
+                    }
+
+                    if (panelMain.AccessibleName == "period")
+                    {
+                        WindowManager.period = Enums.Period.Yesterday;
+                    }
+                    else if (panelMain.AccessibleName == "status")
+                    {
+                        WindowManager.status = Enums.StatusTask.Done;
+                    }
+                }
+                else if (index == 2)
+                {
+                    if (labelPeriod != null)
+                    {
+                        labelPeriod.Text = "сегодня";
+                    }
+
+                    if (panelMain.AccessibleName == "period")
+                    {
+                        WindowManager.period = Enums.Period.Today;
+                    }
+                    else if (panelMain.AccessibleName == "status")
+                    {
+                        WindowManager.status = Enums.StatusTask.Failed;
+                    }
+                }
+                else if (index == 3)
+                {
+                    if (labelPeriod != null)
+                    {
+                        labelPeriod.Text = "завтра";
+                    }
+
+                    if (panelMain.AccessibleName == "period")
+                    {
+                        WindowManager.period = Enums.Period.Tomorrow;
+                    }
+                }
+                else if (index == 4)
+                {
+                    panelMain.Width -= 20;
+                    if (labelPeriod != null)
+                    {
+                        labelPeriod.Text = "текущую неделю";
+                    }
+
+                    if (panelMain.AccessibleName == "period")
+                    {
+                        WindowManager.period = Enums.Period.CurrentWeek;
+                    }
                 }
 
-                if (panelMain.AccessibleName == "period")
-                {
-                    WindowManager.period = Enums.Period.Yesterday;
-                }
-                else if (panelMain.AccessibleName == "status")
-                {
-                    WindowManager.status = Enums.StatusTask.Done;
-                }
+                Design.RefreshPanel(WindowManager.flowPanelTasks);
+                await WindowManager.SetTaskBlock();
+                GlobalData.scroller_task.Refresh(Design.heightContentTasks);
             }
-            else if (index == 2)
-            {
-                if (labelPeriod != null)
-                {
-                    labelPeriod.Text = "сегодня";
-                }
-
-                if (panelMain.AccessibleName == "period")
-                {
-                    WindowManager.period = Enums.Period.Today;
-                }
-                else if (panelMain.AccessibleName == "status")
-                {
-                    WindowManager.status = Enums.StatusTask.Failed;
-                }
-            }
-            else if (index == 3)
-            {
-                if (labelPeriod != null)
-                {
-                    labelPeriod.Text = "завтра";
-                }
-
-                if (panelMain.AccessibleName == "period")
-                {
-                    WindowManager.period = Enums.Period.Tomorrow;
-                }
-            }
-            else if (index == 4)
-            {
-                panelMain.Width -= 20;
-                if (labelPeriod != null)
-                {
-                    labelPeriod.Text = "текущую неделю";
-                }
-
-                if (panelMain.AccessibleName == "period")
-                {
-                    WindowManager.period = Enums.Period.CurrentWeek;
-                }
-            }
-
-            Design.RefreshPanel(WindowManager.flowPanelTasks);
-            await WindowManager.SetTaskBlock();
-            GlobalData.scroller_task.Refresh(Design.heightContentTasks);
 
             arrow.Left = panelMain.Width - arrow.Width;
             if (secondPanel != null)

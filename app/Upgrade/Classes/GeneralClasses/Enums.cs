@@ -47,6 +47,14 @@ namespace Upgrade.Classes
             CurrentWeek
         }
 
+        public enum PeriodStatistic
+        {
+            today,
+            week,
+            month,
+            all_time
+        }
+
         public enum TypeAction { hide, show };
         public enum TypeTime { hour, minute };
     }

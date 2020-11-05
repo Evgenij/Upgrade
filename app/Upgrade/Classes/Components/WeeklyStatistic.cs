@@ -51,7 +51,7 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0",
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0 AND task.failed = 1",
                     User.user_id,
                     daysCurrentWeek[i],
                     DateTime.Now.ToString("MM"),
@@ -73,7 +73,7 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1 AND task.failed = 0",
                     User.user_id,
                     daysCurrentWeek[i],
                     DateTime.Now.ToString("MM"),

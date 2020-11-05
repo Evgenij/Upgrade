@@ -104,3 +104,12 @@ C:\Users\evgen\Desktop\Upgrade\app\Upgrade\obj\Debug\Upgrade.exe
 C:\Users\evgen\Desktop\Upgrade\app\Upgrade\obj\Debug\Upgrade.pdb
 C:\Users\evgen\Desktop\Upgrade\app\Upgrade\obj\Debug\Upgrade.Forms.AddTargetForm.resources
 C:\Users\evgen\Desktop\Upgrade\app\Upgrade\obj\Debug\Upgrade.Forms.AddTaskForm.resources
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.dll
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.pdb
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.xml
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\evgen\Desktop\Upgrade\app\Upgrade\bin\Debug\LiveCharts.Wpf.xml
