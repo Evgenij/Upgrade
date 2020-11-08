@@ -214,21 +214,29 @@ namespace Upgrade.Classes
             SetStatistic(tabPage, mainBox, textBoxPerformLastWeek, textBoxPerformCurrentWeek, face);
         }
 
-        private static double CalculatePerformLastWeek() 
+        public static double CalculatePerformLastWeek() 
         {
-            double perform = 0.0;
-
             for (int i = 0; i < failded.Length; i++)
             {
+                string month;
+                if (Convert.ToInt32(DateTime.Now.ToString("dd")) < Convert.ToInt32(daysLastWeek[i]))
+                {
+                    month = DateTime.Now.AddMonths(-1).ToString("MM");
+                }
+                else
+                {
+                    month = DateTime.Now.Month.ToString();
+                }
+
                 ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
                     "INNER JOIN target ON target.id_target = task.id_target " +
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0", 
+                    "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.failed = 1", 
                     User.user_id, 
-                    daysLastWeek[i], 
-                    DateTime.Now.ToString("MM"),
+                    daysLastWeek[i],
+                    month,
                     DateTime.Now.ToString("yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -242,6 +250,16 @@ namespace Upgrade.Classes
 
             for (int i = 0; i < done.Length; i++)
             {
+                string month;
+                if (Convert.ToInt32(DateTime.Now.ToString("dd")) < Convert.ToInt32(daysLastWeek[i]))
+                {
+                    month = DateTime.Now.AddMonths(-1).ToString("MM");
+                }
+                else
+                {
+                    month = DateTime.Now.Month.ToString();
+                }
+
                 ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
                     "INNER JOIN target ON target.id_target = task.id_target " +
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
@@ -249,8 +267,8 @@ namespace Upgrade.Classes
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1", 
                     User.user_id, 
-                    daysLastWeek[i], 
-                    DateTime.Now.ToString("MM"),
+                    daysLastWeek[i],
+                    month,
                     DateTime.Now.ToString("yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -262,25 +280,23 @@ namespace Upgrade.Classes
                 }
             }
 
-            int[] daysPerform = new int[7];
-
-            for (int i = 0; i < countFailded.Length; i++)
-            {
-                if (countFailded[i] != 0 || countDone[i] != 0)
-                {
-                    perform += daysPerform[i] = (countDone[i] * 100) / (countFailded[i] + countDone[i]);
-                }
-            }
-
-            return perform / 7;
+            return (countDone.Sum() * 100) / (countDone.Sum() + countFailded.Sum());
         }
 
-        private static double CalculatePerformCurrentWeek()
+        public static double CalculatePerformCurrentWeek()
         {
-            double perform = 0.0;
-
             for (int i = 0; i < failded.Length; i++)
             {
+                string month;
+                if (Convert.ToInt32(DateTime.Now.ToString("dd")) < Convert.ToInt32(daysLastWeek[i]))
+                {
+                    month = DateTime.Now.AddMonths(-1).ToString("MM");
+                }
+                else
+                {
+                    month = DateTime.Now.Month.ToString();
+                }
+
                 ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
                     "INNER JOIN target ON target.id_target = task.id_target " +
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
@@ -289,7 +305,7 @@ namespace Upgrade.Classes
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0",
                     User.user_id,
                     daysCurrentWeek[i],
-                    DateTime.Now.ToString("MM"),
+                    month,
                     DateTime.Now.ToString("yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -303,6 +319,16 @@ namespace Upgrade.Classes
 
             for (int i = 0; i < done.Length; i++)
             {
+                string month;
+                if (Convert.ToInt32(DateTime.Now.ToString("dd")) < Convert.ToInt32(daysLastWeek[i]))
+                {
+                    month = DateTime.Now.AddMonths(-1).ToString("MM");
+                }
+                else
+                {
+                    month = DateTime.Now.Month.ToString();
+                }
+
                 ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
                     "INNER JOIN target ON target.id_target = task.id_target " +
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
@@ -311,7 +337,7 @@ namespace Upgrade.Classes
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
                     User.user_id,
                     daysCurrentWeek[i],
-                    DateTime.Now.ToString("MM"),
+                    month,
                     DateTime.Now.ToString("yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -323,17 +349,7 @@ namespace Upgrade.Classes
                 }
             }
 
-            int[] daysPerform = new int[7];
-
-            for (int i = 0; i < countFailded.Length; i++)
-            {
-                if (countFailded[i] != 0 || countDone[i] != 0)
-                {
-                    perform += daysPerform[i] = (countDone[i] * 100) / (countFailded[i] + countDone[i]);
-                }
-            }
-
-            return perform / 7;
+            return (countDone.Sum() * 100) / (countDone.Sum() + countFailded.Sum());
         }
 
         public static string[] GetDaysLastWeek()

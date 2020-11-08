@@ -140,6 +140,7 @@
     <Compile Include="Classes\Blocks\AchievBlock.cs" />
     <Compile Include="Classes\Blocks\Subtask.cs" />
     <Compile Include="Classes\Components\PieChart.cs" />
+    <Compile Include="Classes\Components\StatisticChart.cs" />
     <Compile Include="Classes\Components\UIComponent.cs" />
     <Compile Include="Classes\Components\UITrackBar.cs" />
     <Compile Include="Forms\AddDirectionForm.cs">

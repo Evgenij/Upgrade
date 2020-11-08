@@ -40,6 +40,8 @@
             this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tab_stat = new System.Windows.Forms.TabPage();
+            this.datePeriod = new System.Windows.Forms.Label();
+            this.labelPeriod = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelCategory = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -51,7 +53,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.labelPerformCurrentPeriod = new System.Windows.Forms.Label();
             this.labelPerformLastPeriod = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.labelCurrentPerform = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -62,7 +64,6 @@
             this.bgMainStat = new System.Windows.Forms.PictureBox();
             this.bgGeneralStat = new System.Windows.Forms.PictureBox();
             this.flowAcheivement = new System.Windows.Forms.FlowLayoutPanel();
-            this.allTimeStat = new System.Windows.Forms.Label();
             this.monthStat = new System.Windows.Forms.Label();
             this.weekStat = new System.Windows.Forms.Label();
             this.todayStat = new System.Windows.Forms.Label();
@@ -130,8 +131,6 @@
             this.hide_border_tabs = new System.Windows.Forms.Panel();
             this.user_photo = new System.Windows.Forms.PictureBox();
             this.panel_profile = new System.Windows.Forms.PictureBox();
-            this.labelPeriod = new System.Windows.Forms.Label();
-            this.datePeriod = new System.Windows.Forms.Label();
             this.panel_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settings)).BeginInit();
@@ -307,7 +306,7 @@
             this.tab_stat.Controls.Add(this.label23);
             this.tab_stat.Controls.Add(this.labelPerformCurrentPeriod);
             this.tab_stat.Controls.Add(this.labelPerformLastPeriod);
-            this.tab_stat.Controls.Add(this.label20);
+            this.tab_stat.Controls.Add(this.labelCurrentPerform);
             this.tab_stat.Controls.Add(this.pictureBox3);
             this.tab_stat.Controls.Add(this.pictureBox2);
             this.tab_stat.Controls.Add(this.pictureBox1);
@@ -318,7 +317,6 @@
             this.tab_stat.Controls.Add(this.bgMainStat);
             this.tab_stat.Controls.Add(this.bgGeneralStat);
             this.tab_stat.Controls.Add(this.flowAcheivement);
-            this.tab_stat.Controls.Add(this.allTimeStat);
             this.tab_stat.Controls.Add(this.monthStat);
             this.tab_stat.Controls.Add(this.weekStat);
             this.tab_stat.Controls.Add(this.todayStat);
@@ -330,6 +328,30 @@
             this.tab_stat.TabIndex = 2;
             this.tab_stat.Text = "tabPage1";
             this.tab_stat.UseVisualStyleBackColor = true;
+            // 
+            // datePeriod
+            // 
+            this.datePeriod.AutoSize = true;
+            this.datePeriod.BackColor = System.Drawing.Color.White;
+            this.datePeriod.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.datePeriod.ForeColor = System.Drawing.Color.Indigo;
+            this.datePeriod.Location = new System.Drawing.Point(618, 149);
+            this.datePeriod.Name = "datePeriod";
+            this.datePeriod.Size = new System.Drawing.Size(81, 19);
+            this.datePeriod.TabIndex = 161;
+            this.datePeriod.Text = "05.11.2020";
+            // 
+            // labelPeriod
+            // 
+            this.labelPeriod.AutoSize = true;
+            this.labelPeriod.BackColor = System.Drawing.Color.White;
+            this.labelPeriod.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.labelPeriod.ForeColor = System.Drawing.Color.Black;
+            this.labelPeriod.Location = new System.Drawing.Point(529, 149);
+            this.labelPeriod.Name = "labelPeriod";
+            this.labelPeriod.Size = new System.Drawing.Size(97, 19);
+            this.labelPeriod.TabIndex = 160;
+            this.labelPeriod.Text = "За сегодня - ";
             // 
             // panel4
             // 
@@ -447,23 +469,23 @@
             this.labelPerformLastPeriod.BackColor = System.Drawing.Color.White;
             this.labelPerformLastPeriod.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.labelPerformLastPeriod.ForeColor = System.Drawing.Color.Gray;
-            this.labelPerformLastPeriod.Location = new System.Drawing.Point(527, 664);
+            this.labelPerformLastPeriod.Location = new System.Drawing.Point(527, 659);
             this.labelPerformLastPeriod.Name = "labelPerformLastPeriod";
             this.labelPerformLastPeriod.Size = new System.Drawing.Size(189, 19);
             this.labelPerformLastPeriod.TabIndex = 149;
             this.labelPerformLastPeriod.Text = "Эффективность вчера 85%";
             // 
-            // label20
+            // labelCurrentPerform
             // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.White;
-            this.label20.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(527, 683);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(213, 24);
-            this.label20.TabIndex = 148;
-            this.label20.Text = "Текущая эффективность";
+            this.labelCurrentPerform.AutoSize = true;
+            this.labelCurrentPerform.BackColor = System.Drawing.Color.White;
+            this.labelCurrentPerform.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.labelCurrentPerform.ForeColor = System.Drawing.Color.Black;
+            this.labelCurrentPerform.Location = new System.Drawing.Point(527, 683);
+            this.labelCurrentPerform.Name = "labelCurrentPerform";
+            this.labelCurrentPerform.Size = new System.Drawing.Size(213, 24);
+            this.labelCurrentPerform.TabIndex = 148;
+            this.labelCurrentPerform.Text = "Текущая эффективность";
             // 
             // pictureBox3
             // 
@@ -580,19 +602,6 @@
             this.flowAcheivement.Name = "flowAcheivement";
             this.flowAcheivement.Size = new System.Drawing.Size(330, 622);
             this.flowAcheivement.TabIndex = 139;
-            // 
-            // allTimeStat
-            // 
-            this.allTimeStat.AutoSize = true;
-            this.allTimeStat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.allTimeStat.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.allTimeStat.ForeColor = System.Drawing.Color.Gray;
-            this.allTimeStat.Location = new System.Drawing.Point(716, 72);
-            this.allTimeStat.Name = "allTimeStat";
-            this.allTimeStat.Size = new System.Drawing.Size(89, 22);
-            this.allTimeStat.TabIndex = 138;
-            this.allTimeStat.Text = "Все время";
-            this.allTimeStat.Click += new System.EventHandler(this.labelAllTime_Click);
             // 
             // monthStat
             // 
@@ -1459,30 +1468,6 @@
             this.panel_profile.TabIndex = 13;
             this.panel_profile.TabStop = false;
             // 
-            // labelPeriod
-            // 
-            this.labelPeriod.AutoSize = true;
-            this.labelPeriod.BackColor = System.Drawing.Color.White;
-            this.labelPeriod.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.labelPeriod.ForeColor = System.Drawing.Color.Black;
-            this.labelPeriod.Location = new System.Drawing.Point(529, 149);
-            this.labelPeriod.Name = "labelPeriod";
-            this.labelPeriod.Size = new System.Drawing.Size(97, 19);
-            this.labelPeriod.TabIndex = 160;
-            this.labelPeriod.Text = "За сегодня - ";
-            // 
-            // datePeriod
-            // 
-            this.datePeriod.AutoSize = true;
-            this.datePeriod.BackColor = System.Drawing.Color.White;
-            this.datePeriod.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.datePeriod.ForeColor = System.Drawing.Color.Indigo;
-            this.datePeriod.Location = new System.Drawing.Point(618, 149);
-            this.datePeriod.Name = "datePeriod";
-            this.datePeriod.Size = new System.Drawing.Size(81, 19);
-            this.datePeriod.TabIndex = 161;
-            this.datePeriod.Text = "05.11.2020";
-            // 
             // MainWorkingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1625,7 +1610,6 @@
         private System.Windows.Forms.PictureBox status_task_done;
         private AltoControls.AltoButton status_mark;
         private System.Windows.Forms.FlowLayoutPanel flowAcheivement;
-        private System.Windows.Forms.Label allTimeStat;
         private System.Windows.Forms.Label monthStat;
         private System.Windows.Forms.Label weekStat;
         private System.Windows.Forms.Label todayStat;
@@ -1642,7 +1626,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label labelPerformCurrentPeriod;
         private System.Windows.Forms.Label labelPerformLastPeriod;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label labelCurrentPerform;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label labelTaskFailed;
         private System.Windows.Forms.Label labelTaskDone;

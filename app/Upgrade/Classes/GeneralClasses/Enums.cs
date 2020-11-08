@@ -51,8 +51,7 @@ namespace Upgrade.Classes
         {
             today,
             week,
-            month,
-            all_time
+            month
         }
 
         public enum TypeAction { hide, show };

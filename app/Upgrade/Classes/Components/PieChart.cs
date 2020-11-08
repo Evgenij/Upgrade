@@ -24,6 +24,7 @@ namespace Upgrade.Classes.Components
             pieChart.Top = y;
             pieChart.Left = x;
             pieChart.Size = new System.Drawing.Size(350, 180);
+            pieChart.Cursor = Cursors.Hand;
 
             pieChart.Series = new SeriesCollection
             {
