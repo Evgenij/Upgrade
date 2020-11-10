@@ -200,7 +200,7 @@ namespace Upgrade.Classes
                 while (reader.Read())
                 {
                     count_subtasks++;
-                    subTaskBlocks.Add(new SubTaskBlock(this, flowPanelSubtasks, reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2)));
+                    subTaskBlocks.Add(new SubTaskBlock(flowPanelSubtasks, reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), this));
                     if (reader.GetInt32(2) == 1) 
                     {
                         success_subtask++;

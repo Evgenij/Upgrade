@@ -31,7 +31,7 @@ namespace Upgrade.Classes.Components
             box.Controls.Add(chart);
         }
 
-        public void SetChart(List<int> valuesD, List<int> valuesF) 
+        public void SetChart(List<int> valuesD, List<int> valuesF, bool month = false, string[] daysMonth = null) 
         {
             chart.Series.Clear();
             chart.AxisX.Clear();
@@ -39,59 +39,117 @@ namespace Upgrade.Classes.Components
 
             ChartValues<int> valuesDone = new ChartValues<int>();
             ChartValues<int> valuesFail = new ChartValues<int>();
-            // System.Windows.Media.Brushes brush = new System.Windows.Media.Brushes;
 
-            for (int i = 0; i < valuesD.Count; i++)
+            if (month == false)
             {
-                valuesDone.Add(valuesD[i]);
-            }
-            for (int i = 0; i < valuesD.Count; i++)
-            {
-                valuesFail.Add(valuesF[i]);
-            }
+                // System.Windows.Media.Brushes brush = new System.Windows.Media.Brushes;
 
-            chart.Series.Add(
-                new LineSeries
+                for (int i = 0; i < valuesD.Count; i++)
                 {
-                    Title = "Выполнено",
-                    Values = valuesDone,
-                    StrokeThickness = 2,
-                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(Design.mainColor.R, Design.mainColor.G, Design.mainColor.B)),
-                    Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)(Design.mainColor.R + 100), (byte)(Design.mainColor.G + 100), (byte)(Design.mainColor.B + 100)))
+                    valuesDone.Add(valuesD[i]);
                 }
-            );
-            chart.Series.Add(
-                new LineSeries
+                for (int i = 0; i < valuesD.Count; i++)
                 {
-                    Title = "Провалено",
-                    Values = valuesFail,
-                    StrokeThickness = 2,
-                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(110, 110, 110)),
-                    Fill = System.Windows.Media.Brushes.Transparent
+                    valuesFail.Add(valuesF[i]);
                 }
-            );
-            chart.AxisX.Add(
-                new Axis
+
+                chart.Series.Add(
+                    new LineSeries
+                    {
+                        Title = "Выполнено",
+                        Values = valuesDone,
+                        StrokeThickness = 2,
+                        Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(Design.mainColor.R, Design.mainColor.G, Design.mainColor.B)),
+                        Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)(Design.mainColor.R + 100), (byte)(Design.mainColor.G + 100), (byte)(Design.mainColor.B + 100)))
+                    }
+                );
+                chart.Series.Add(
+                    new LineSeries
+                    {
+                        Title = "Провалено",
+                        Values = valuesFail,
+                        StrokeThickness = 2,
+                        Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(110, 110, 110)),
+                        Fill = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+                chart.AxisX.Add(
+                    new Axis
+                    {
+                        Separator = new Separator
+                        {
+                            Step = 1,
+                            IsEnabled = false
+                        },
+                        FontSize = 14,
+                        Labels = new[] { "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС" }
+                    });
+
+                chart.AxisY.Add(new Axis
                 {
+                    Title = "Количество задач",
                     Separator = new Separator
                     {
                         Step = 1,
                         IsEnabled = false
                     },
-                    FontSize = 14,
-                    Labels = new[] { "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС" }
+                    FontSize = 14
                 });
-
-            chart.AxisY.Add(new Axis
+            }
+            else 
             {
-                Title = "Количество задач",
-                Separator = new Separator
+                for (int i = 0; i < valuesD.Count; i++)
                 {
-                    Step = 1,
-                    IsEnabled = false
-                },
-                FontSize = 14
-            });
+                    valuesDone.Add(valuesD[i]);
+                }
+                for (int i = 0; i < valuesD.Count; i++)
+                {
+                    valuesFail.Add(valuesF[i]);
+                }
+
+                chart.Series.Add(
+                    new LineSeries
+                    {
+                        Title = "Выполнено",
+                        Values = valuesDone,
+                        StrokeThickness = 2,
+                        Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(Design.mainColor.R, Design.mainColor.G, Design.mainColor.B)),
+                        Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)(Design.mainColor.R + 100), (byte)(Design.mainColor.G + 100), (byte)(Design.mainColor.B + 100)))
+                    }
+                );
+                chart.Series.Add(
+                    new LineSeries
+                    {
+                        Title = "Провалено",
+                        Values = valuesFail,
+                        StrokeThickness = 2,
+                        Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(110, 110, 110)),
+                        Fill = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+                chart.AxisX.Add(
+                    new Axis
+                    {
+                        Separator = new Separator
+                        {
+                            Step = 4,
+                            IsEnabled = false
+                        },
+                        FontSize = 14,
+                        Labels = daysMonth
+                    });
+
+                chart.AxisY.Add(new Axis
+                {
+                    Title = "Количество задач",
+                    Separator = new Separator
+                    {
+                        Step = 1,
+                        IsEnabled = false
+                    },
+                    FontSize = 14
+                });
+            }
         }
 
         public void Hide()

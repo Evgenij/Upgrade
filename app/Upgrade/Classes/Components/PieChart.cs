@@ -37,7 +37,7 @@ namespace Upgrade.Classes.Components
                     StrokeThickness = 2,
                     Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(200,75,0)),
                     Fill = System.Windows.Media.Brushes.Coral,
-                    PushOut = 3,
+                    PushOut = 2,
                     DataLabels = true,
                     LabelPoint = labelPoint
                 },
@@ -48,9 +48,9 @@ namespace Upgrade.Classes.Components
                     Foreground = System.Windows.Media.Brushes.Black,
                     Values = new ChartValues<double> {countTaskDone},
                     StrokeThickness = 2,
-                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(33,150,83)),
-                    Fill = System.Windows.Media.Brushes.LightGreen,
-                    PushOut = 3,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(3, 142, 0)),
+                    Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(105, 211, 102)),
+                    PushOut = 2,
                     DataLabels = true,
                     LabelPoint = labelPoint
                 },
@@ -60,9 +60,9 @@ namespace Upgrade.Classes.Components
                     FontSize = 12,
                     Foreground = System.Windows.Media.Brushes.Black,
                     Values = new ChartValues<double> {countTaskFailed},
-                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(110, 110, 110)),
-                    Fill = System.Windows.Media.Brushes.Silver,
-                    PushOut = 3,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(214, 45, 48)),
+                    Fill = System.Windows.Media.Brushes.LightCoral,
+                    PushOut = 2,
                     DataLabels = true,
                     LabelPoint = labelPoint
                 }

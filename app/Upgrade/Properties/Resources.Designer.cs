@@ -973,6 +973,36 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap box_sched_bottom {
+            get {
+                object obj = ResourceManager.GetObject("box_sched_bottom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap box_sched_center {
+            get {
+                object obj = ResourceManager.GetObject("box_sched_center", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap box_sched_top {
+            get {
+                object obj = ResourceManager.GetObject("box_sched_top", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap box_sunday_off {
             get {
                 object obj = ResourceManager.GetObject("box_sunday_off", resourceCulture);
@@ -1206,6 +1236,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap delete_on {
             get {
                 object obj = ResourceManager.GetObject("delete_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap deleteButton {
+            get {
+                object obj = ResourceManager.GetObject("deleteButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1476,6 +1516,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap label_type_task {
             get {
                 object obj = ResourceManager.GetObject("label_type_task", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

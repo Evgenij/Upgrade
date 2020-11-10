@@ -37,12 +37,13 @@ namespace Upgrade.Classes
         private Filter filter;
         private PieChart pieChart;
         private StatisticChart statisticChart;
-        private static List<int> idFailedTasks = new List<int>();
         System.Windows.Forms.Timer timerTime;
 
-        private int countTask = 0, countTaskInWork = 0; 
-        List<int> countTaskDone = new List<int>(), 
+        private static List<int> idFailedTasks = new List<int>(), 
+            countTaskDone = new List<int>(), 
             countTaskFailed = new List<int>();
+        private int countTask = 0, countTaskInWork = 0;
+        private string[] daysMonth;
 
         private int countTaskLastPeriod = 0, countTaskDoneLastPeriod = 0;
 
@@ -106,7 +107,7 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            WindowManager.SetFlowPanels(flowTasks, flowNotes, flowDirect, flowTarget, flowTaskTarget, flowAcheivement);
+            WindowManager.SetFlowPanels(flowTasks, flowNotes, flowDirect, flowTarget, flowTaskTarget, flowAcheivement, flowSchedule);
 
             // создание компонентов главного пункта меню
             SetTabProfile();
@@ -116,6 +117,9 @@ namespace Upgrade.Classes
 
             // создание компонентов пункта меню с достижениями и статистикой
             SetTabAchiev_Stat();
+
+            // создание компонентов пункта меню с расписаниями и паролями
+            SetTabSched_Pass();
 
             timerTime = new System.Windows.Forms.Timer();
             timerTime.Interval = 1000;
@@ -193,9 +197,16 @@ namespace Upgrade.Classes
 
             setCurrentCountTask(Enums.PeriodStatistic.today);
 
-            pieChart = new PieChart(bgMainStat, 25, 80, countTaskInWork, countTaskDone.Count, countTaskFailed.Count);
+            datePeriod.Text = DateTime.Now.ToString("dd.MM.yyyy");
+            pieChart = new PieChart(bgMainStat, 25, 80, countTaskInWork, countTaskDone.ToArray().Sum(), countTaskFailed.ToArray().Sum());
             statisticChart = new StatisticChart(bgMainStat, 20, 40, countTaskDone, countTaskFailed);
             statisticChart.Hide();
+        }
+
+        private async void SetTabSched_Pass() 
+        {
+            await WindowManager.SetSheduleBlock();
+            GlobalData.scroller_schedule = new Scroller(tab_sched, flowSchedule, Design.heightContentShedule);
         }
 
         private void changePeriod(Label currentLabel, Enums.PeriodStatistic period)
@@ -210,10 +221,10 @@ namespace Upgrade.Classes
             {
                 labelPeriod.Visible = true;
                 datePeriod.Visible = true;
-                datePeriod.Text = DateTime.Now.ToString("dd.MM.yyyy");
                 datePeriod.ForeColor = Design.mainColor;
                 pieChart.Show();
                 statisticChart.Hide();
+                labelGeneralPeriod.Text = "сегодня";
                 setCurrentCountTask(Enums.PeriodStatistic.today);
             }
             else if (period == Enums.PeriodStatistic.week)
@@ -222,6 +233,7 @@ namespace Upgrade.Classes
                 datePeriod.Visible = false;
                 pieChart.Hide();
                 statisticChart.Show();
+                labelGeneralPeriod.Text = "неделю";
                 setCurrentCountTask(Enums.PeriodStatistic.week);
                 statisticChart.SetChart(countTaskDone, countTaskFailed);
             }
@@ -231,7 +243,9 @@ namespace Upgrade.Classes
                 datePeriod.Visible = false;
                 pieChart.Hide();
                 statisticChart.Show();
+                labelGeneralPeriod.Text = "месяц";
                 setCurrentCountTask(Enums.PeriodStatistic.month);
+                statisticChart.SetChart(countTaskDone, countTaskFailed, true, daysMonth);
             }
         }
 
@@ -376,7 +390,14 @@ namespace Upgrade.Classes
                 //---------------------------
 
                 labelCurrentPerform.Text = "Эффективность за сегодня";
-                labelPerformCurrentPeriod.Text = ((countTaskDone.First() * 100) / countTask).ToString() + "%";
+                if (countTask != 0)
+                {
+                    labelPerformCurrentPeriod.Text = ((countTaskDone.First() * 100) / countTask).ToString() + "%";
+                }
+                else 
+                {
+                    labelPerformCurrentPeriod.Text = "0";
+                }
                 labelPerformLastPeriod.Text = "Эффективность за вчера " + ((countTaskDoneLastPeriod * 100) / countTaskLastPeriod).ToString() + "%";
                 labelCountTask.Text = countTask.ToString();
                 labelTaskInWork.Text = countTaskInWork.ToString();
@@ -396,8 +417,8 @@ namespace Upgrade.Classes
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ",
                     User.user_id,
-                    daysCurrentWeek[0],
-                    daysCurrentWeek[6],
+                    daysCurrentWeek.First(),
+                    daysCurrentWeek.Last(),
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
 
@@ -414,7 +435,7 @@ namespace Upgrade.Classes
                         countTask = ServiceData.reader.GetInt32(0);
                     }
                 }
-                
+
                 // вывод кол-ва всех задач "в процессе" на сегодня
                 ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
                     "INNER JOIN target ON task.id_target = target.id_target " +
@@ -423,8 +444,8 @@ namespace Upgrade.Classes
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 0 AND task.failed = 0",
                     User.user_id,
-                    daysCurrentWeek[0],
-                    daysCurrentWeek[6],
+                    daysCurrentWeek.First(),
+                    daysCurrentWeek.Last(),
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
 
@@ -504,8 +525,8 @@ namespace Upgrade.Classes
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}'",
                     User.user_id,
-                    daysLastWeek[0],
-                    daysLastWeek[6],
+                    daysLastWeek.First(),
+                    daysLastWeek.Last(),
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
 
@@ -531,8 +552,8 @@ namespace Upgrade.Classes
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 1",
                     User.user_id,
-                    daysLastWeek[0],
-                    daysLastWeek[6],
+                    daysLastWeek.First(),
+                    daysLastWeek.Last(),
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
 
@@ -550,13 +571,6 @@ namespace Upgrade.Classes
 
                 //-------------------------
 
-                //MessageBox.Show("all " + countTask.ToString() +
-                //    " done " + countTaskDone.ToArray().Sum().ToString() + 
-                //    " fail " + countTaskFailed.ToArray().Sum().ToString());
-
-                //MessageBox.Show("all_Last " + countTaskLastPeriod.ToString() +
-                //    " done_Last " + countTaskDoneLastPeriod.ToString());
-
                 labelCurrentPerform.Text = "Эффективность за неделю";
                 labelPerformCurrentPeriod.Text = WeeklyStatistic.CalculatePerformCurrentWeek().ToString() + "%";
                 labelPerformLastPeriod.Text = "Эффективность за прошлую неделю " + WeeklyStatistic.CalculatePerformLastWeek().ToString() + "%";
@@ -566,6 +580,183 @@ namespace Upgrade.Classes
                 labelTaskDone.Text = countTaskDone.ToArray().Sum().ToString();
                 labelTaskFailed.Text = countTaskFailed.ToArray().Sum().ToString();
             }
+            else if (period == Enums.PeriodStatistic.month) 
+            {
+                string[] daysLastMonth = WeeklyStatistic.GetDaysLastMonth();
+                string[] daysCurrentMonth = WeeklyStatistic.GetDaysCurrentMonth();
+                daysMonth = daysCurrentMonth;
+
+                // вывод кол-ва всех задач на сегодня
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON task.id_target = target.id_target " +
+                    "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                    "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                    "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                    "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ",
+                    User.user_id,
+                    daysCurrentMonth.First(),
+                    daysCurrentMonth.Last(),
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+
+                //MessageBox.Show(ServiceData.commandText);
+
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.ExecuteNonQuery();
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    while (ServiceData.reader.Read())
+                    {
+                        countTask = ServiceData.reader.GetInt32(0);
+                    }
+                }
+
+                // вывод кол-ва всех задач "в процессе" на сегодня
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON task.id_target = target.id_target " +
+                    "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                    "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                    "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                    "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 0 AND task.failed = 0",
+                    User.user_id,
+                    daysCurrentMonth.First(),
+                    daysCurrentMonth.Last(),
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.ExecuteNonQuery();
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    while (ServiceData.reader.Read())
+                    {
+                        countTaskInWork = ServiceData.reader.GetInt32(0);
+                    }
+                }
+
+                for (int i = 0; i < daysCurrentMonth.Length; i++)
+                {
+                    // вывод кол-ва всех выполненых задач на сегодня
+                    ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON task.id_target = target.id_target " +
+                    "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                    "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                    "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                    "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
+                    User.user_id,
+                    daysCurrentMonth[i],
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.ExecuteNonQuery();
+
+                    ServiceData.reader = ServiceData.command.ExecuteReader();
+                    if (ServiceData.reader.HasRows)
+                    {
+                        while (ServiceData.reader.Read())
+                        {
+                            countTaskDone.Add(ServiceData.reader.GetInt32(0));
+                        }
+                    }
+                }
+
+                for (int i = 0; i < daysCurrentMonth.Length; i++)
+                {
+                    // вывод кол-ва всех проваленных задач на сегодня
+                    ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON task.id_target = target.id_target " +
+                    "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                    "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                    "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                    "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.failed = 1 AND task.status = 0",
+                    User.user_id,
+                    daysCurrentMonth[i],
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.ExecuteNonQuery();
+
+                    ServiceData.reader = ServiceData.command.ExecuteReader();
+                    if (ServiceData.reader.HasRows)
+                    {
+                        while (ServiceData.reader.Read())
+                        {
+                            countTaskFailed.Add(ServiceData.reader.GetInt32(0));
+                        }
+                    }
+                }
+
+                //-------------------------
+
+                // вывод кол-ва всех задач на сегодня
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON task.id_target = target.id_target " +
+                    "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                    "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                    "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                    "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}'",
+                    User.user_id,
+                    daysLastMonth.First(),
+                    daysLastMonth.Last(),
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+
+                //MessageBox.Show(ServiceData.commandText);
+
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.ExecuteNonQuery();
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    while (ServiceData.reader.Read())
+                    {
+                        countTaskLastPeriod = ServiceData.reader.GetInt32(0);
+                    }
+                }
+
+                // вывод кол-ва всех выполненых задач на сегодня
+                ServiceData.commandText = string.Format("SELECT count(id_task) FROM task " +
+                    "INNER JOIN target ON task.id_target = target.id_target " +
+                    "INNER JOIN direction ON target.id_direct = direction.id_direct " +
+                    "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
+                    "INNER JOIN user ON user_dir.id_user = user.id_user " +
+                    "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 1",
+                    User.user_id,
+                    daysLastMonth.First(),
+                    daysLastMonth.Last(),
+                    DateTime.Now.ToString("MM"),
+                    DateTime.Now.ToString("yyyy"));
+
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.ExecuteNonQuery();
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    while (ServiceData.reader.Read())
+                    {
+                        countTaskDoneLastPeriod = ServiceData.reader.GetInt32(0);
+                    }
+                }
+
+                //-------------------------
+
+                labelCurrentPerform.Text = "Эффективность за месяц";
+                labelPerformCurrentPeriod.Text = ((countTaskDone.ToArray().Sum() * 100) / countTask).ToString() + "%";
+                labelPerformLastPeriod.Text = "Эффективность за прошлый месяц " + ((countTaskDoneLastPeriod * 100) / countTaskLastPeriod).ToString() + "%";
+
+                labelCountTask.Text = countTask.ToString();
+                labelTaskInWork.Text = countTaskInWork.ToString();
+                labelTaskDone.Text = countTaskDone.ToArray().Sum().ToString();
+                labelTaskFailed.Text = countTaskFailed.ToArray().Sum().ToString();
+            } 
 
             labelPerformCurrentPeriod.Left = labelCurrentPerform.Left + labelCurrentPerform.Width;
         }

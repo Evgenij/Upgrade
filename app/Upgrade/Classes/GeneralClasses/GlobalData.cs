@@ -32,6 +32,7 @@ namespace Upgrade.Classes
         static public Scroller scroller_target;
         static public Scroller scroller_task_target;
         static public Scroller scroller_achiev;
+        static public Scroller scroller_schedule;
 
         public struct DataContainer
         {
@@ -72,7 +73,7 @@ namespace Upgrade.Classes
                     }
                     else if (day == Enums.DayOfWeek.Вторник) 
                     {
-                        picture.Image = Properties.Resources.box_thursday_on;
+                        picture.Image = Properties.Resources.box_tuesday_on;
                         id_day = 2;
                     }
                     else if (day == Enums.DayOfWeek.Среда)
@@ -82,7 +83,7 @@ namespace Upgrade.Classes
                     }
                     else if (day == Enums.DayOfWeek.Четверг)
                     {
-                        picture.Image = Properties.Resources.box_tuesday_on;
+                        picture.Image = Properties.Resources.box_thursday_on;
                         id_day = 4;
                     }
                     else if (day == Enums.DayOfWeek.Пятница)
@@ -112,7 +113,7 @@ namespace Upgrade.Classes
                     }
                     else if (day == Enums.DayOfWeek.Вторник)
                     {
-                        picture.Image = Properties.Resources.box_thursday_off;
+                        picture.Image = Properties.Resources.box_tuesday_off;
                     }
                     else if (day == Enums.DayOfWeek.Среда)
                     {
@@ -120,7 +121,7 @@ namespace Upgrade.Classes
                     }
                     else if (day == Enums.DayOfWeek.Четверг)
                     {
-                        picture.Image = Properties.Resources.box_tuesday_off;
+                        picture.Image = Properties.Resources.box_thursday_off;
                     }
                     else if (day == Enums.DayOfWeek.Пятница)
                     {
@@ -140,6 +141,11 @@ namespace Upgrade.Classes
             public bool GetStatus() 
             {
                 return status;
+            }
+
+            public void SetIdDay(int id)
+            {
+                id_day = id;
             }
 
             public int GetIdDay() 

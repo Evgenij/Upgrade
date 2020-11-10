@@ -22,6 +22,7 @@ namespace Upgrade.Classes
         public static int heightContentTarget = 0;
         public static int heightContentTaskTarget = 0;
         public static int heightContentAchiev = 0;
+        public static int heightContentShedule = 0;
 
         private static Control panel;
         private static FlowLayoutPanel flowParent;
@@ -126,6 +127,7 @@ namespace Upgrade.Classes
                 ClearFlowPanel();
 
                 await WindowManager.SetPanelsMainWindow();
+                await WindowManager.SetSheduleBlock();
                 WeeklyStatistic.Refresh();
             }
         }

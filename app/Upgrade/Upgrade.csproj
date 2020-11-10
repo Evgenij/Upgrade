@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Blocks\AchievBlock.cs" />
+    <Compile Include="Classes\Blocks\ScheduleBlock.cs" />
     <Compile Include="Classes\Blocks\Subtask.cs" />
     <Compile Include="Classes\Components\PieChart.cs" />
     <Compile Include="Classes\Components\StatisticChart.cs" />
@@ -1037,6 +1038,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\67.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sched_box_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sched_box_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sched_box_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_sched_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_sched_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_sched_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

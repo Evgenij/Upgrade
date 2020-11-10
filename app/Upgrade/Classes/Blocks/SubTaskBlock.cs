@@ -14,7 +14,7 @@ namespace Upgrade.Classes
         private PictureBox check;
         private TaskBlock taskBlock;
 
-        public SubTaskBlock(TaskBlock parentTaskBlock, Control flowPanel, int id_subtask, string textSubTask, int status)
+        public SubTaskBlock(Control flowPanel, int id_subtask, string textSubTask, int status, TaskBlock parentTaskBlock = null)
         {
             this.id_record = id_subtask;
             panel = new Panel();
@@ -28,22 +28,22 @@ namespace Upgrade.Classes
             panel.Click += Click;
 
             check.AccessibleName = "undone";
-            if (taskBlock.GetStatus() == Enums.StatusTask.Done)
+            if (taskBlock != null && taskBlock.GetStatus() == Enums.StatusTask.Done)
             {
                 check.Image = Properties.Resources.check_small_done;
             }
-            else if (taskBlock.GetStatus() == Enums.StatusTask.Failed)
+            else if (taskBlock != null && taskBlock.GetStatus() == Enums.StatusTask.Failed)
             {
                 check.Image = Properties.Resources.check_small_fail;
             }
-            else 
+            else
             {
                 if (status == 1)
                 {
                     check.AccessibleName = "done";
                     check.Image = Properties.Resources.check_small_done;
                 }
-                else 
+                else
                 {
                     check.Image = Properties.Resources.check_small_off;
                 }
@@ -92,7 +92,7 @@ namespace Upgrade.Classes
 
         private void Check_MouseLeave(object sender, EventArgs e)
         {
-            if (taskBlock.GetStatus() == Enums.StatusTask.Empty)
+            if (taskBlock != null && taskBlock.GetStatus() == Enums.StatusTask.Empty)
             {
                 if (check.AccessibleName != "done")
                 {
@@ -103,7 +103,7 @@ namespace Upgrade.Classes
 
         private void Check_MouseHover(object sender, EventArgs e)
         {
-            if (taskBlock.GetStatus() == Enums.StatusTask.Empty)
+            if (taskBlock != null && taskBlock.GetStatus() == Enums.StatusTask.Empty)
             {
                 if (check.AccessibleName != "done")
                 {
@@ -114,7 +114,7 @@ namespace Upgrade.Classes
 
         private void Click(object sender, EventArgs e)
         {
-            if (taskBlock.GetStatus() == Enums.StatusTask.Empty)
+            if (taskBlock != null && taskBlock.GetStatus() == Enums.StatusTask.Empty)
             {
                 if (check.AccessibleName == "undone")
                 {

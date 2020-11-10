@@ -349,7 +349,14 @@ namespace Upgrade.Classes
                 }
             }
 
-            return (countDone.Sum() * 100) / (countDone.Sum() + countFailded.Sum());
+            if (countDone.Sum() != 0 || countFailded.Sum() != 0)
+            {
+                return (countDone.Sum() * 100) / (countDone.Sum() + countFailded.Sum());
+            }
+            else 
+            {
+                return 0;
+            }
         }
 
         public static string[] GetDaysLastWeek()
@@ -388,6 +395,38 @@ namespace Upgrade.Classes
             for (int i = 0; i < 7; i++)
             {
                 days.Add(date.AddDays(i).ToString("dd"));
+            }
+
+            return days.ToArray();
+        }
+
+        public static string[] GetDaysLastMonth()
+        {
+            List<string> days = new List<string>();
+
+            DateTime now = DateTime.Now;
+            var endDate = now.AddMonths(-1);
+            var startDate = new DateTime(now.Year, endDate.Month, 1);
+
+            for (int i = 0; i < DateTime.DaysInMonth(now.Year, endDate.Month); i++)
+            {
+                days.Add(startDate.AddDays(i).ToString("dd"));
+            }
+
+            return days.ToArray();
+        }
+
+        public static string[] GetDaysCurrentMonth() 
+        {
+            List<string> days = new List<string>();
+
+            DateTime now = DateTime.Now;
+            var startDate = new DateTime(now.Year, now.Month, 1);
+            //var endDate = startDate.AddMonths(1).AddDays(-1);
+
+            for (int i = 0; i < DateTime.DaysInMonth(now.Year, now.Month); i++)
+            {
+                days.Add(startDate.AddDays(i).ToString("dd"));
             }
 
             return days.ToArray();

@@ -171,7 +171,7 @@ namespace Upgrade.Classes.Blocks
             labelFinalScore.Top = box_bottom.Top - 15;
             labelCurrentScore.Top = box_bottom.Top - 23;
 
-            panel.Width = 280;
+            panel.Width = box_center.Width;
             panel.Height = box_top.Height + box_center.Height + box_bottom.Height + 4;
             statusBox.Left = panel.Width - statusBox.Width - 25;
             labelFinalScore.Left = panel.Width - labelFinalScore.Width - 20;
@@ -190,19 +190,14 @@ namespace Upgrade.Classes.Blocks
             panel.Controls.Add(labelCurrentScore);
             panel.Controls.Add(labelFinalScore);
 
+            box_top.SendToBack();
+            box_center.SendToBack();
             box_bottom.SendToBack();
-            textLabel.BringToFront();
-            icon.BringToFront();
-            statusBox.BringToFront();
-            textBoxDescr.BringToFront();
-            currentLabel.BringToFront();
-            statusLine[0].BringToFront();
-            statusLine[1].BringToFront();
-            labelFinalScore.BringToFront();
             labelCurrentScore.BringToFront();
+
+
             flowPanel.Controls.Add(panel);
 
-            Design.heightContentAchiev += panel.Height;
             Design.heightContentAchiev += panel.Height;
         }
     }

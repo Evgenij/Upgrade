@@ -18,7 +18,8 @@ namespace Upgrade.Classes
         private static PictureBox[] boxStatus = new PictureBox[2];
         private static List<NoteBlock> noteBlock = new List<NoteBlock>();
         private static List<DirectionBlock> directionBlock = new List<DirectionBlock>();
-        private static List<AchievBlock> achievBlocks = new List<AchievBlock>();
+        private static List<AchievBlock> achievBlock = new List<AchievBlock>();
+        private static List<ScheduleBlock> scheduleBlock = new List<ScheduleBlock>();
 
         public enum TypeBlock
         {
@@ -35,6 +36,7 @@ namespace Upgrade.Classes
         public static FlowLayoutPanel flowPanelTarget;
         public static FlowLayoutPanel flowPanelTaskTarget;
         public static FlowLayoutPanel flowPanelAchiev;
+        public static FlowLayoutPanel flowPanelSchedule;
 
         public static async Task SetPanelsMainWindow()
         {
@@ -47,7 +49,8 @@ namespace Upgrade.Classes
                                          FlowLayoutPanel flowDirect, 
                                          FlowLayoutPanel flowTarget,
                                          FlowLayoutPanel flowTaskTarget,
-                                         FlowLayoutPanel flowAchiev)
+                                         FlowLayoutPanel flowAchiev,
+                                         FlowLayoutPanel flowSchedule)
         {
             flowPanelTasks = flowTask;
             flowPanelNotes = flowNotes;
@@ -55,6 +58,7 @@ namespace Upgrade.Classes
             flowPanelTarget = flowTarget;
             flowPanelTaskTarget = flowTaskTarget;
             flowPanelAchiev = flowAchiev;
+            flowPanelSchedule = flowSchedule;
         }
 
         public static async Task SetTaskBlock()
@@ -515,7 +519,7 @@ namespace Upgrade.Classes
             {
                 while (await ServiceData.reader.ReadAsync())
                 {
-                    achievBlocks.Add(new AchievBlock(
+                    achievBlock.Add(new AchievBlock(
                         flowPanelAchiev, 
                         ServiceData.reader.GetInt32(0),
                         ServiceData.reader.GetString(1), 
@@ -523,6 +527,52 @@ namespace Upgrade.Classes
                         ServiceData.reader.GetInt32(3),
                         ServiceData.reader.GetInt32(4),
                         ServiceData.reader.GetInt32(5)));
+                }
+            }
+        }
+
+        public static async Task SetSheduleBlock()
+        {
+            Design.heightContentShedule = 0;
+
+            ServiceData.commandText = @"SELECT 
+                schedule.id_sched,
+                schedule.name, 
+                direction.name, 
+                direction.color_mark, 
+                target.name,
+                task.text, 
+                task.descr, 
+                task.time,
+                task.time_finish FROM schedule 
+                INNER JOIN sched_task ON sched_task.id_sched = schedule.id_sched
+                INNER JOIN day ON day.id_day = sched_task.id_day
+                INNER JOIN task ON task.id_task = sched_task.id_task
+                INNER JOIN target ON task.id_target = target.id_target 
+                INNER JOIN direction ON target.id_direct = direction.id_direct 
+                INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct 
+                INNER JOIN user ON user_dir.id_user = user.id_user 
+                WHERE user.id_user = @user
+                GROUP BY schedule.id_sched";
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.Parameters.AddWithValue("@user", User.user_id);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (await ServiceData.reader.ReadAsync())
+                {
+                    scheduleBlock.Add(new ScheduleBlock(flowPanelSchedule, 
+                        ServiceData.reader.GetInt32(0), 
+                        ServiceData.reader.GetString(1),
+                        ServiceData.reader.GetString(2),
+                        ServiceData.reader.GetString(3),
+                        ServiceData.reader.GetString(4),
+                        ServiceData.reader.GetString(5),
+                        ServiceData.reader.GetValue(6).ToString(),
+                        ServiceData.reader.GetString(7),
+                        ServiceData.reader.GetString(8)));
                 }
             }
         }
