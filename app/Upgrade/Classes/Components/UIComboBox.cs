@@ -168,7 +168,6 @@ namespace Upgrade.Forms
             {
                 Design.RefreshPanel(WindowManager.flowPanelAchiev);
                 await WindowManager.SetAchievBlock(((Label)sender).Text);
-                GlobalData.scroller_achiev.Refresh(Design.heightContentAchiev);
             }
             else
             {
@@ -250,7 +249,6 @@ namespace Upgrade.Forms
 
                 Design.RefreshPanel(WindowManager.flowPanelTasks);
                 await WindowManager.SetTaskBlock();
-                GlobalData.scroller_task.Refresh(Design.heightContentTasks);
             }
 
             arrow.Left = panelMain.Width - arrow.Width;

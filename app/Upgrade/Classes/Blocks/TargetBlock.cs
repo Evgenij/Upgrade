@@ -172,8 +172,6 @@ namespace Upgrade.Classes.Blocks
                 buttons[i].BringToFront();
             }
             flowPanel.Controls.Add(panel);
-
-            Design.heightContentTarget += panel.Height;
         }
 
         private void button_MouseLeave(object sender, EventArgs e)
@@ -218,7 +216,6 @@ namespace Upgrade.Classes.Blocks
             {
                 GlobalComponents.status_mark.Left = 900;
                 GlobalData.id_target = id_record;
-                Design.heightContentTaskTarget = 0;
                 Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
                 GlobalComponents.labelTarget.Text = textLabel.Text;
 
@@ -255,16 +252,6 @@ namespace Upgrade.Classes.Blocks
                             Convert.ToInt32(ServiceData.reader.GetValue(9)),
                             Convert.ToInt32(ServiceData.reader.GetValue(10))));
                     }
-                }
-                GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
-
-                if (Design.heightContentTaskTarget == 0)
-                {
-                    GlobalComponents.notFoundTaskTarget.Visible = true;
-                }
-                else
-                {
-                    GlobalComponents.notFoundTaskTarget.Visible = false;
                 }
             }
             else if (((PictureBox)sender).AccessibleName == "3")

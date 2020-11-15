@@ -27,6 +27,17 @@ namespace Upgrade.Classes
             Failed
         }
 
+        public enum TypeBlock 
+        {
+            Task,
+            Note,
+            Target,
+            Direction,
+            TaskTarget,
+            Schedule,
+            DataService
+        }
+
         public enum DayOfWeek
         {
             Понедельник = 1,

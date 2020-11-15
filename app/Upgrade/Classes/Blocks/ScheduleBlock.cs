@@ -325,9 +325,7 @@ namespace Upgrade.Classes.Blocks
                 ServiceData.command.Parameters.AddWithValue("@idSched", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
-                Design.heightContentShedule -= panel.Height;
-                Design.HidePanel(panel, flowPanel);
-                GlobalData.scroller_schedule.Refresh(Design.heightContentShedule);
+                Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Schedule);
             }
         }
 

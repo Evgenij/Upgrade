@@ -130,7 +130,6 @@ namespace Upgrade.Classes.Blocks
                     this.Close();
                     Design.RefreshPanel(WindowManager.flowPanelDirect);
                     await WindowManager.SetDirectBlock();
-                    GlobalData.scroller_direct.Refresh(Design.heightContentDirection);
                 }
                 catch (Exception ex)
                 {

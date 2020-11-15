@@ -351,9 +351,6 @@ namespace Upgrade.Classes
             time_range.BringToFront();
             panelAction.BringToFront();
             flowPanel.Controls.Add(panel);
-
-            Design.heightContentTasks += panel.Height;
-            Design.heightContentTaskTarget += panel.Height;
         }
 
         private void BoxDelete_Click(object sender, EventArgs e)
@@ -367,9 +364,7 @@ namespace Upgrade.Classes
                 ServiceData.command.Parameters.AddWithValue("@id_task", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
-                Design.heightContentTasks -= panel.Height;
-                Design.HidePanel(panel, flowPanel);
-                GlobalData.scroller_task.Refresh(Design.heightContentTasks);
+                Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Task);
             }
             else 
             {
@@ -415,7 +410,7 @@ namespace Upgrade.Classes
 
                 check.AccessibleName = "done";
                 check.Image = Properties.Resources.check_done;
-                Design.HidePanel(panel, flowPanel);
+                Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Task);
             }
         }
 
@@ -464,7 +459,7 @@ namespace Upgrade.Classes
 
                     check.AccessibleName = "done";
                     check.Image = Properties.Resources.check_done;
-                    Design.HidePanel(panel, flowPanel);
+                    Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Task);
                 }
             }
         }

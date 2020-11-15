@@ -75,8 +75,6 @@ namespace Upgrade.Classes
             panel.Controls.Add(box_bottom);
             box_bottom.BringToFront();
             flowPanel.Controls.Add(panel);
-
-            Design.heightContentNotes += panel.Height;
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
@@ -90,9 +88,7 @@ namespace Upgrade.Classes
                 ServiceData.command.Parameters.AddWithValue("@id_note", this.id_record);
                 ServiceData.command.ExecuteNonQuery();
 
-                Design.heightContentNotes -= panel.Height;
-                Design.HidePanel(panel, flowPanel);
-                GlobalData.scroller_note.Refresh(Design.heightContentNotes);
+                Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Note);
             }
         }
 

@@ -24,15 +24,7 @@ namespace Upgrade.Classes
         static public AddDirectionForm addDirectionForm;
         static public AddTargetForm addTargetForm;
         static public AddTaskForm addTaskForm;
-
-        // scrollers
-        static public Scroller scroller_task;
-        static public Scroller scroller_note;
-        static public Scroller scroller_direct;
-        static public Scroller scroller_target;
-        static public Scroller scroller_task_target;
-        static public Scroller scroller_achiev;
-        static public Scroller scroller_schedule;
+        static public AddDataService addDataService;
 
         public struct DataContainer
         {

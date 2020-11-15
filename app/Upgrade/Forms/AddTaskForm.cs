@@ -357,7 +357,6 @@ namespace Upgrade.Forms
 
                         Design.RefreshPanel(WindowManager.flowPanelTasks);
                         await WindowManager.SetTaskBlock();
-                        GlobalData.scroller_task.Refresh(Design.heightContentTasks);
 
                         this.Close();
                     }

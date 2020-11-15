@@ -23,9 +23,11 @@ namespace Upgrade.Classes
         public static int heightContentTaskTarget = 0;
         public static int heightContentAchiev = 0;
         public static int heightContentShedule = 0;
+        public static int heightContentDataService = 0;
 
         private static Control panel;
         private static FlowLayoutPanel flowParent;
+        private static Enums.TypeBlock typeBlock;
         private static int start;
         private static int finish;
 
@@ -47,15 +49,16 @@ namespace Upgrade.Classes
             timer.Start();
         }
 
-        static public void HidePanel(Control hidingPanel, FlowLayoutPanel flowPanel)
+        static public void HidePanel(Control hidingPanel, FlowLayoutPanel flowPanel, Enums.TypeBlock type)
         {
+            panel = hidingPanel;
+            flowParent = flowPanel;
+            typeBlock = type;
+
             timer = new Timer();
             timer.Enabled = false;
             timer.Interval = 10;
             timer.Tick += Timer_Tick;
-
-            panel = hidingPanel;
-            flowParent = flowPanel;
 
             timer.Start();
         }
@@ -121,13 +124,36 @@ namespace Upgrade.Classes
             }
             else
             {
+
                 panel.Dispose();
                 timer.Stop();
                 timer.Dispose();
                 ClearFlowPanel();
 
-                await WindowManager.SetPanelsMainWindow();
-                await WindowManager.SetSheduleBlock();
+                if (typeBlock == Enums.TypeBlock.Task)
+                {
+                    await WindowManager.SetTaskBlock();
+                }
+                else if (typeBlock == Enums.TypeBlock.Note)
+                {
+                    await WindowManager.SetNoteBlock();
+                }
+                else if (typeBlock == Enums.TypeBlock.Schedule)
+                {
+                    await WindowManager.SetSheduleBlock();
+                }
+                else if (typeBlock == Enums.TypeBlock.Target)
+                {
+                    await WindowManager.SetTargetBlock();
+                }
+                else if (typeBlock == Enums.TypeBlock.Direction)
+                {
+                    await WindowManager.SetDirectBlock();
+                }
+                else if (typeBlock == Enums.TypeBlock.DataService)
+                {
+                    await WindowManager.SetDataServiceBlock();
+                }
                 WeeklyStatistic.Refresh();
             }
         }

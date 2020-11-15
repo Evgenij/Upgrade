@@ -138,9 +138,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Blocks\AchievBlock.cs" />
+    <Compile Include="Classes\Blocks\DataServiceBlock.cs" />
     <Compile Include="Classes\Blocks\ScheduleBlock.cs" />
     <Compile Include="Classes\Blocks\Subtask.cs" />
     <Compile Include="Classes\Components\PieChart.cs" />
+    <Compile Include="Classes\Components\Service.cs" />
     <Compile Include="Classes\Components\StatisticChart.cs" />
     <Compile Include="Classes\Components\UIComponent.cs" />
     <Compile Include="Classes\Components\UITrackBar.cs" />
@@ -164,7 +166,6 @@
     <Compile Include="Classes\GeneralClasses\IniManager.cs" />
     <Compile Include="Classes\GeneralClasses\GlobalComponents.cs" />
     <Compile Include="Classes\MailSender.cs" />
-    <Compile Include="Classes\Components\Scroller.cs" />
     <Compile Include="Classes\Database\ServiceData.cs" />
     <Compile Include="Classes\Database\User.cs" />
     <Compile Include="Classes\Components\WeeklyStatistic.cs" />
@@ -175,6 +176,12 @@
     </Compile>
     <Compile Include="Forms\AddNoteForm.Designer.cs">
       <DependentUpon>AddNoteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddDataService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddDataService.Designer.cs">
+      <DependentUpon>AddDataService.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddTargetForm.cs">
       <SubType>Form</SubType>
@@ -207,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddNoteForm.resx">
       <DependentUpon>AddNoteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddDataService.resx">
+      <DependentUpon>AddDataService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddTargetForm.resx">
       <DependentUpon>AddTargetForm.cs</DependentUpon>
@@ -1062,6 +1072,126 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\deleteButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addPassword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serviceIcon31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rectangle 171.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\service_box_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\service_box_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\service_box_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copyButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slider_tip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slider_tip_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slider_tip_top.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

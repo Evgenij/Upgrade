@@ -20,6 +20,7 @@ namespace Upgrade.Classes
         private static List<DirectionBlock> directionBlock = new List<DirectionBlock>();
         private static List<AchievBlock> achievBlock = new List<AchievBlock>();
         private static List<ScheduleBlock> scheduleBlock = new List<ScheduleBlock>();
+        private static List<DataServiceBlock> dataServiceBlock = new List<DataServiceBlock>();
 
         public enum TypeBlock
         {
@@ -37,6 +38,7 @@ namespace Upgrade.Classes
         public static FlowLayoutPanel flowPanelTaskTarget;
         public static FlowLayoutPanel flowPanelAchiev;
         public static FlowLayoutPanel flowPanelSchedule;
+        public static FlowLayoutPanel flowPanelServices;
 
         public static async Task SetPanelsMainWindow()
         {
@@ -50,7 +52,8 @@ namespace Upgrade.Classes
                                          FlowLayoutPanel flowTarget,
                                          FlowLayoutPanel flowTaskTarget,
                                          FlowLayoutPanel flowAchiev,
-                                         FlowLayoutPanel flowSchedule)
+                                         FlowLayoutPanel flowSchedule,
+                                         FlowLayoutPanel flowDataService)
         {
             flowPanelTasks = flowTask;
             flowPanelNotes = flowNotes;
@@ -59,12 +62,11 @@ namespace Upgrade.Classes
             flowPanelTaskTarget = flowTaskTarget;
             flowPanelAchiev = flowAchiev;
             flowPanelSchedule = flowSchedule;
+            flowPanelServices = flowDataService;
         }
 
         public static async Task SetTaskBlock()
         {
-            Design.heightContentTasks = 0;
-
             string[] sql_command = new string[6]; 
             string[] date = new string[7];
 
@@ -161,7 +163,6 @@ namespace Upgrade.Classes
                                 boxStatus[0].Height = 35;
                                 boxStatus[0].Image = Properties.Resources.done_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[0]);
-                                Design.heightContentTasks += boxStatus[0].Height;
                             }
                             else if (i == 3)
                             {
@@ -171,7 +172,6 @@ namespace Upgrade.Classes
                                 boxStatus[1].Height = 35;
                                 boxStatus[1].Image = Properties.Resources.fail_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[1]);
-                                Design.heightContentTasks += boxStatus[1].Height;
                             }
 
                             while (await ServiceData.reader.ReadAsync())
@@ -213,7 +213,6 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.done_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
-                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {
@@ -253,7 +252,6 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.fail_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
-                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {
@@ -301,7 +299,6 @@ namespace Upgrade.Classes
                                 boxStatus[0].Height = 35;
                                 boxStatus[0].Image = Properties.Resources.done_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[0]);
-                                Design.heightContentTasks += boxStatus[0].Height;
                             }
                             else if (i == 3)
                             {
@@ -311,7 +308,6 @@ namespace Upgrade.Classes
                                 boxStatus[1].Height = 35;
                                 boxStatus[1].Image = Properties.Resources.fail_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[1]);
-                                Design.heightContentTasks += boxStatus[1].Height;
                             }
 
                             while (await ServiceData.reader.ReadAsync())
@@ -353,7 +349,6 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.done_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
-                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {
@@ -393,7 +388,6 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.fail_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
-                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {
@@ -414,21 +408,10 @@ namespace Upgrade.Classes
                     }
                 }
             }
-
-            if (Design.heightContentTasks == 0)
-            {
-                GlobalComponents.notFoundTask.Visible = true;
-            }
-            else
-            {
-                GlobalComponents.notFoundTask.Visible = false;
-            }
         }
 
         public static async Task SetNoteBlock()
         {
-            Design.heightContentNotes = 0;
-
             ServiceData.commandText = @"SELECT id_note, text FROM note WHERE id_user = @user_id";
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
             ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
@@ -444,21 +427,10 @@ namespace Upgrade.Classes
                         ServiceData.reader.GetString(1)));
                 }
             }
-
-            if (Design.heightContentNotes == 0)
-            {
-                GlobalComponents.notFoundNote.Visible = true;
-            }
-            else 
-            {
-                GlobalComponents.notFoundNote.Visible = false;
-            }
         }
 
         public static async Task SetDirectBlock()
         {
-            Design.heightContentDirection = 0;
-
             ServiceData.commandText = string.Format("SELECT direction.id_direct, direction.name, direction.color_mark FROM direction " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
@@ -481,8 +453,6 @@ namespace Upgrade.Classes
 
         public static async Task SetTargetBlock()
         {
-            Design.heightContentTarget = 0;
-
             ServiceData.commandText = string.Format("SELECT target.id_target, target.name FROM target " +
                 "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                 "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
@@ -504,8 +474,6 @@ namespace Upgrade.Classes
 
         public static async Task SetAchievBlock(string nameCateg)
         {
-            Design.heightContentAchiev = 0;
-
             ServiceData.commandText = @"SELECT achievement.id_achiev, achievement.name, " +
                 "achievement.descr, achievement.current_score, achievement.final_score, achievement.status FROM achievement " +
                 "INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev " +
@@ -533,8 +501,6 @@ namespace Upgrade.Classes
 
         public static async Task SetSheduleBlock()
         {
-            Design.heightContentShedule = 0;
-
             ServiceData.commandText = @"SELECT 
                 schedule.id_sched,
                 schedule.name, 
@@ -573,6 +539,35 @@ namespace Upgrade.Classes
                         ServiceData.reader.GetValue(6).ToString(),
                         ServiceData.reader.GetString(7),
                         ServiceData.reader.GetString(8)));
+                }
+            }
+        }
+
+        public static async Task SetDataServiceBlock()
+        {
+            ServiceData.commandText = @"SELECT 
+                data_service.id_service,                
+                data_service.login, 
+                data_service.password, 
+                data_service.em_ph 
+                FROM data_service 
+                INNER JOIN user ON user.id_user = data_service.id_user
+                WHERE user.id_user = @user";
+
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.Parameters.AddWithValue("@user", User.user_id);
+
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            if (ServiceData.reader.HasRows)
+            {
+                while (await ServiceData.reader.ReadAsync())
+                {
+                    dataServiceBlock.Add(new DataServiceBlock(
+                        flowPanelServices,
+                        ServiceData.reader.GetInt32(0),
+                        ServiceData.reader.GetString(1),
+                        ServiceData.reader.GetString(2),
+                        ServiceData.reader.GetString(3)));
                 }
             }
         }

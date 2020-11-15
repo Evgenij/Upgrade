@@ -107,7 +107,11 @@ namespace Upgrade.Classes
             IntPtr hRgn = CreateRoundRectRgn(-1, -1, 1366, 768, 78, 78);
             SetWindowRgn(this.Handle, hRgn, true);
 
-            WindowManager.SetFlowPanels(flowTasks, flowNotes, flowDirect, flowTarget, flowTaskTarget, flowAcheivement, flowSchedule);
+            WindowManager.SetFlowPanels(
+                flowTasks, flowNotes, 
+                flowDirect, flowTarget, 
+                flowTaskTarget, flowAcheivement, 
+                flowSchedule, flowDataService);
 
             // создание компонентов главного пункта меню
             SetTabProfile();
@@ -119,7 +123,7 @@ namespace Upgrade.Classes
             SetTabAchiev_Stat();
 
             // создание компонентов пункта меню с расписаниями и паролями
-            SetTabSched_Pass();
+            SetTabSched_Services();
 
             timerTime = new System.Windows.Forms.Timer();
             timerTime.Interval = 1000;
@@ -154,8 +158,6 @@ namespace Upgrade.Classes
             WeeklyStatistic.SetStatistic(tab_profile, panel_week_stat, performLastWeek, performCurrentWeek, faceIndicator);
 
             Design.SetMarkCurrentDay(day_mark);
-            GlobalData.scroller_task = new Scroller(tab_profile, flowTasks, Design.heightContentTasks);
-            GlobalData.scroller_note = new Scroller(tab_profile, flowNotes, Design.heightContentNotes);
             filter = new Filter(tab_profile, panel_filter);
         }
 
@@ -168,9 +170,6 @@ namespace Upgrade.Classes
             GlobalComponents.status_mark = status_mark;
 
             await WindowManager.SetDirectBlock();
-            GlobalData.scroller_direct = new Scroller(tab_targets, flowDirect, Design.heightContentDirection);
-            GlobalData.scroller_target = new Scroller(tab_targets, flowTarget, Design.heightContentTarget);
-            GlobalData.scroller_task_target = new Scroller(tab_targets, flowTaskTarget, Design.heightContentTaskTarget);
         }
 
         private async void SetTabAchiev_Stat()
@@ -193,7 +192,7 @@ namespace Upgrade.Classes
             uiComboBox[2] = new UIComboBox(tab_stat, panelCategory, "category", category.ToArray(), null, null, null);
 
             await WindowManager.SetAchievBlock(uiComboBox[2].GetValue());
-            GlobalData.scroller_achiev = new Scroller(tab_stat, flowAcheivement, Design.heightContentAchiev);
+            //GlobalData.scroller_achiev = new Scroller(tab_stat, flowAcheivement, Design.heightContentAchiev);
 
             setCurrentCountTask(Enums.PeriodStatistic.today);
 
@@ -203,10 +202,33 @@ namespace Upgrade.Classes
             statisticChart.Hide();
         }
 
-        private async void SetTabSched_Pass() 
+        private async void SetTabSched_Services() 
         {
             await WindowManager.SetSheduleBlock();
-            GlobalData.scroller_schedule = new Scroller(tab_sched, flowSchedule, Design.heightContentShedule);
+            await WindowManager.SetDataServiceBlock();
+
+
+            if (flowSchedule.Height < Design.heightContentShedule)
+            {
+                scheduleScrollTipTop.Visible = true;
+                scheduleScrollTipBottom.Visible = true;
+            }
+            else 
+            {
+                scheduleScrollTipTop.Visible = false;
+                scheduleScrollTipBottom.Visible = false;
+            }
+
+            if (flowDataService.Height < Design.heightContentDataService)
+            {
+                servicesScrollTipTop.Visible = true;
+                servicesScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                servicesScrollTipTop.Visible = false;
+                servicesScrollTipBottom.Visible = false;
+            }
         }
 
         private void changePeriod(Label currentLabel, Enums.PeriodStatistic period)
@@ -796,11 +818,6 @@ namespace Upgrade.Classes
             active_item.Image = Properties.Resources.settings;
         }
 
-        private void flowTasks_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            GlobalData.scroller_task.Refresh(Design.heightContentTasks);
-        }
-
         private void exit_from_profile_MouseHover(object sender, EventArgs e)
         {
             exit_from_profile.ForeColor = Design.mainColor;
@@ -816,11 +833,6 @@ namespace Upgrade.Classes
             Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 280);
             tabs.SelectedTab = tab_sched;
             active_item.Image = Properties.Resources.schedule;
-        }
-
-        private void flowNotes_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            GlobalData.scroller_note.Refresh(Design.heightContentNotes);
         }
 
         private void addTask_Click(object sender, EventArgs e)
@@ -1054,6 +1066,30 @@ namespace Upgrade.Classes
                                                  Design.mainColor.B);
             addTarget.MouseDown += button_MouseDown;
             addTarget.MouseUp += button_MouseUp;
+
+            addDataService.ForeColor = Design.mainColor;
+            addDataService.Inactive1 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDataService.Inactive2 = Color.FromArgb(50,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDataService.Active1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDataService.Active2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDataService.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            addDataService.MouseDown += button_MouseDown;
+            addDataService.MouseUp += button_MouseUp;
         }
 
         private void button_MouseUp(object sender, MouseEventArgs e)
@@ -1136,7 +1172,6 @@ namespace Upgrade.Classes
 
                 Design.RefreshPanel(WindowManager.flowPanelTasks);
                 await WindowManager.SetTaskBlock();
-                GlobalData.scroller_task.Refresh(Design.heightContentTasks);
                 WeeklyStatistic.Refresh();
 
                 idFailedTasks.Clear();
@@ -1146,7 +1181,6 @@ namespace Upgrade.Classes
         private void status_task_none_Click(object sender, EventArgs e)
         {
             GlobalComponents.status_mark.Left = 900;
-            Design.heightContentTaskTarget = 0;
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
 
             ServiceData.commandText = string.Format("SELECT " +
@@ -1182,22 +1216,11 @@ namespace Upgrade.Classes
                         Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
             }
-            GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
-
-            if (Design.heightContentTaskTarget == 0)
-            {
-                GlobalComponents.notFoundTaskTarget.Visible = true;
-            }
-            else
-            {
-                GlobalComponents.notFoundTaskTarget.Visible = false;
-            }
         }
 
         private void status_task_done_Click(object sender, EventArgs e)
         {
             GlobalComponents.status_mark.Left = 923;
-            Design.heightContentTaskTarget = 0;
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
 
             ServiceData.commandText = string.Format("SELECT " +
@@ -1223,7 +1246,6 @@ namespace Upgrade.Classes
                 boxStatus.Height = 35;
                 boxStatus.Image = Properties.Resources.done_tasks;
                 WindowManager.flowPanelTaskTarget.Controls.Add(boxStatus);
-                Design.heightContentTasks += boxStatus.Height;
 
                 while (ServiceData.reader.Read())
                 {
@@ -1242,22 +1264,11 @@ namespace Upgrade.Classes
                         Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
             }
-            GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
-
-            if (Design.heightContentTaskTarget == 0)
-            {
-                GlobalComponents.notFoundTaskTarget.Visible = true;
-            }
-            else
-            {
-                GlobalComponents.notFoundTaskTarget.Visible = false;
-            }
         }
 
         private void status_task_fail_Click(object sender, EventArgs e)
         {
             GlobalComponents.status_mark.Left = 947;
-            Design.heightContentTaskTarget = 0;
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
 
             ServiceData.commandText = string.Format("SELECT " +
@@ -1283,7 +1294,6 @@ namespace Upgrade.Classes
                 boxStatus.Height = 35;
                 boxStatus.Image = Properties.Resources.fail_tasks;
                 WindowManager.flowPanelTaskTarget.Controls.Add(boxStatus);
-                Design.heightContentTasks += boxStatus.Height;
 
                 while (ServiceData.reader.Read())
                 {
@@ -1301,16 +1311,6 @@ namespace Upgrade.Classes
                         Convert.ToInt32(ServiceData.reader.GetValue(9)),
                         Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
-            }
-            GlobalData.scroller_task_target.Refresh(Design.heightContentTaskTarget);
-
-            if (Design.heightContentTaskTarget == 0)
-            {
-                GlobalComponents.notFoundTaskTarget.Visible = true;
-            }
-            else
-            {
-                GlobalComponents.notFoundTaskTarget.Visible = false;
             }
         }
 
@@ -1337,6 +1337,19 @@ namespace Upgrade.Classes
             else
             {
                 GlobalData.addDirectionForm.ShowDialog();
+            }
+        }
+
+        private void addDataService_Click(object sender, EventArgs e)
+        {
+            if (GlobalData.addDataService == null)
+            {
+                GlobalData.addDataService = new AddDataService();
+                GlobalData.addDataService.ShowDialog();
+            }
+            else
+            {
+                GlobalData.addDataService.ShowDialog();
             }
         }
 

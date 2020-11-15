@@ -10,6 +10,5 @@ namespace Upgrade.Classes.Components
     {
         protected bool isDragging = false;
         protected int currentX;
-        protected int currentY;
     }
 }

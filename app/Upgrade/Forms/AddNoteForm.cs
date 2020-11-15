@@ -69,7 +69,6 @@ namespace Upgrade.Forms
                     this.Close();
                     Design.RefreshPanel(WindowManager.flowPanelNotes);
                     await WindowManager.SetNoteBlock();
-                    GlobalData.scroller_note.Refresh(Design.heightContentNotes);
                 }
                 catch (Exception ex) 
                 {

@@ -197,7 +197,6 @@ namespace Upgrade.Classes
 
             Design.RefreshPanel(WindowManager.flowPanelTasks);
             await WindowManager.SetTaskBlock();
-            GlobalData.scroller_task.Refresh(Design.heightContentTasks);
         }
 
         private void ButtonNext_Click(object sender, EventArgs e)

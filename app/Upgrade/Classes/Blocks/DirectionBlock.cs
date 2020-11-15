@@ -258,16 +258,6 @@ namespace Upgrade.Classes.Blocks
                         targets.Add(new TargetBlock(WindowManager.flowPanelTarget, reader.GetInt32(0), reader.GetString(1)));   
                     }
                 }
-                GlobalData.scroller_target.Refresh(Design.heightContentTarget);
-
-                if (Design.heightContentTarget == 0)
-                {
-                    GlobalComponents.notFoundTarget.Visible = true;
-                }
-                else
-                {
-                    GlobalComponents.notFoundTarget.Visible = false;
-                }
             }
             else if (((PictureBox)sender).AccessibleName == "3")
             {
