@@ -119,7 +119,7 @@ namespace Upgrade.Classes.Blocks
                         }        
                     }
 
-                    ServiceData.commandText = string.Format("INSERT INTO user_dir VALUES ({0},{1})", User.user_id, id_direct);
+                    ServiceData.commandText = string.Format("INSERT INTO user_dir VALUES ({0},{1})", User.userId, id_direct);
                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                     ServiceData.command.ExecuteNonQuery();
 

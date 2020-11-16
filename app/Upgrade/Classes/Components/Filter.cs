@@ -99,7 +99,7 @@ namespace Upgrade.Classes
             ServiceData.commandText = string.Format("SELECT direction.id_direct, direction.name FROM direction " +
                 "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                 "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                "WHERE user.id_user = {0}",User.user_id);
+                "WHERE user.id_user = {0}",User.userId);
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 

@@ -118,7 +118,6 @@ namespace Upgrade.Classes.Components
         {
             isDragging = true;
             currentX = e.X;
-            //MessageBox.Show(currentX.ToString());
         }
 
         private void TrackButton_MouseUp(object sender, MouseEventArgs e)

@@ -40,16 +40,48 @@
             this.picture_menu = new System.Windows.Forms.PictureBox();
             this.block_for_focus = new System.Windows.Forms.TextBox();
             this.tabs = new System.Windows.Forms.TabControl();
+            this.tab_sett = new System.Windows.Forms.TabPage();
+            this.exampleText = new System.Windows.Forms.TextBox();
+            this.Blue = new System.Windows.Forms.TextBox();
+            this.green = new System.Windows.Forms.TextBox();
+            this.red = new System.Windows.Forms.TextBox();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.userEmail = new System.Windows.Forms.TextBox();
+            this.userPassword = new System.Windows.Forms.TextBox();
+            this.userLogin = new System.Windows.Forms.TextBox();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.buttonBlue = new System.Windows.Forms.PictureBox();
+            this.buttonGreen = new System.Windows.Forms.PictureBox();
+            this.buttonRed = new System.Windows.Forms.PictureBox();
+            this.lineBlue = new System.Windows.Forms.PictureBox();
+            this.lineGreen = new System.Windows.Forms.PictureBox();
+            this.lineRed = new System.Windows.Forms.PictureBox();
+            this.labelUserEmail = new System.Windows.Forms.Label();
+            this.labelUserPassword = new System.Windows.Forms.Label();
+            this.labelUserLogin = new System.Windows.Forms.Label();
+            this.labelChangeUserPhoto = new System.Windows.Forms.Label();
+            this.userPhotoSettings = new System.Windows.Forms.PictureBox();
+            this.buttonChangeEmail = new System.Windows.Forms.PictureBox();
+            this.buttonChangePassword = new System.Windows.Forms.PictureBox();
+            this.buttonChangeLogin = new System.Windows.Forms.PictureBox();
+            this.exampleLogo = new System.Windows.Forms.PictureBox();
+            this.exampleColorBlock = new AltoControls.AltoButton();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.tab_sched = new System.Windows.Forms.TabPage();
+            this.scheduleScrollTipBottom = new System.Windows.Forms.PictureBox();
+            this.scheduleScrollTipTop = new System.Windows.Forms.PictureBox();
             this.servicesScrollTipTop = new System.Windows.Forms.PictureBox();
             this.servicesScrollTipBottom = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.addDataService = new AltoControls.AltoButton();
             this.flowDataService = new System.Windows.Forms.FlowLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.sublabelSchedule = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.flowSchedule = new System.Windows.Forms.FlowLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.sublabelPasswords = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tab_stat = new System.Windows.Forms.TabPage();
@@ -129,8 +161,6 @@
             this.status_task_none = new System.Windows.Forms.PictureBox();
             this.status_task_done = new System.Windows.Forms.PictureBox();
             this.status_task_fail = new System.Windows.Forms.PictureBox();
-            this.tab_sett = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
             this.exit_from_profile = new System.Windows.Forms.Label();
             this.label_my_passwords = new System.Windows.Forms.TextBox();
             this.user_login = new System.Windows.Forms.TextBox();
@@ -142,8 +172,8 @@
             this.hide_border_tabs = new System.Windows.Forms.Panel();
             this.user_photo = new System.Windows.Forms.PictureBox();
             this.panel_profile = new System.Windows.Forms.PictureBox();
-            this.scheduleScrollTipTop = new System.Windows.Forms.PictureBox();
-            this.scheduleScrollTipBottom = new System.Windows.Forms.PictureBox();
+            this.rebootSystem = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panel_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.active_item)).BeginInit();
@@ -154,7 +184,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.profile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).BeginInit();
             this.tabs.SuspendLayout();
+            this.tab_sett.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonGreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonRed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lineBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lineGreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lineRed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userPhotoSettings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonChangeEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonChangePassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonChangeLogin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exampleLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.tab_sched.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipBottom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipTop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesScrollTipTop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesScrollTipBottom)).BeginInit();
             this.tab_stat.SuspendLayout();
@@ -175,11 +225,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.status_task_none)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.status_task_done)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.status_task_fail)).BeginInit();
-            this.tab_sett.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.user_photo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_profile)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipTop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipBottom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_menu
@@ -308,11 +356,11 @@
             // 
             // tabs
             // 
+            this.tabs.Controls.Add(this.tab_sett);
             this.tabs.Controls.Add(this.tab_sched);
             this.tabs.Controls.Add(this.tab_stat);
             this.tabs.Controls.Add(this.tab_profile);
             this.tabs.Controls.Add(this.tab_targets);
-            this.tabs.Controls.Add(this.tab_sett);
             this.tabs.ItemSize = new System.Drawing.Size(0, 1);
             this.tabs.Location = new System.Drawing.Point(-4, -5);
             this.tabs.Name = "tabs";
@@ -321,6 +369,437 @@
             this.tabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabs.TabIndex = 3;
             this.tabs.TabStop = false;
+            // 
+            // tab_sett
+            // 
+            this.tab_sett.Controls.Add(this.rebootSystem);
+            this.tab_sett.Controls.Add(this.exampleText);
+            this.tab_sett.Controls.Add(this.Blue);
+            this.tab_sett.Controls.Add(this.green);
+            this.tab_sett.Controls.Add(this.red);
+            this.tab_sett.Controls.Add(this.pictureBox22);
+            this.tab_sett.Controls.Add(this.pictureBox21);
+            this.tab_sett.Controls.Add(this.userEmail);
+            this.tab_sett.Controls.Add(this.userPassword);
+            this.tab_sett.Controls.Add(this.userLogin);
+            this.tab_sett.Controls.Add(this.pictureBox20);
+            this.tab_sett.Controls.Add(this.pictureBox19);
+            this.tab_sett.Controls.Add(this.buttonBlue);
+            this.tab_sett.Controls.Add(this.buttonGreen);
+            this.tab_sett.Controls.Add(this.buttonRed);
+            this.tab_sett.Controls.Add(this.lineBlue);
+            this.tab_sett.Controls.Add(this.lineGreen);
+            this.tab_sett.Controls.Add(this.lineRed);
+            this.tab_sett.Controls.Add(this.labelUserEmail);
+            this.tab_sett.Controls.Add(this.labelUserPassword);
+            this.tab_sett.Controls.Add(this.labelUserLogin);
+            this.tab_sett.Controls.Add(this.labelChangeUserPhoto);
+            this.tab_sett.Controls.Add(this.userPhotoSettings);
+            this.tab_sett.Controls.Add(this.buttonChangeEmail);
+            this.tab_sett.Controls.Add(this.buttonChangePassword);
+            this.tab_sett.Controls.Add(this.buttonChangeLogin);
+            this.tab_sett.Controls.Add(this.exampleLogo);
+            this.tab_sett.Controls.Add(this.exampleColorBlock);
+            this.tab_sett.Controls.Add(this.pictureBox7);
+            this.tab_sett.Controls.Add(this.pictureBox6);
+            this.tab_sett.Location = new System.Drawing.Point(4, 5);
+            this.tab_sett.Name = "tab_sett";
+            this.tab_sett.Size = new System.Drawing.Size(1002, 771);
+            this.tab_sett.TabIndex = 4;
+            this.tab_sett.Text = "tabPage3";
+            this.tab_sett.UseVisualStyleBackColor = true;
+            // 
+            // exampleText
+            // 
+            this.exampleText.BackColor = System.Drawing.Color.White;
+            this.exampleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.exampleText.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.exampleText.ForeColor = System.Drawing.Color.Gray;
+            this.exampleText.Location = new System.Drawing.Point(570, 196);
+            this.exampleText.Multiline = true;
+            this.exampleText.Name = "exampleText";
+            this.exampleText.ReadOnly = true;
+            this.exampleText.Size = new System.Drawing.Size(98, 53);
+            this.exampleText.TabIndex = 146;
+            this.exampleText.Text = "пример\r\nоформления\r\nтекста\r\n";
+            this.exampleText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Blue
+            // 
+            this.Blue.BackColor = System.Drawing.Color.White;
+            this.Blue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Blue.Enabled = false;
+            this.Blue.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.Blue.ForeColor = System.Drawing.Color.Gray;
+            this.Blue.Location = new System.Drawing.Point(871, 190);
+            this.Blue.Name = "Blue";
+            this.Blue.ReadOnly = true;
+            this.Blue.Size = new System.Drawing.Size(69, 18);
+            this.Blue.TabIndex = 145;
+            this.Blue.Text = "0";
+            this.Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // green
+            // 
+            this.green.BackColor = System.Drawing.Color.White;
+            this.green.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.green.Enabled = false;
+            this.green.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.green.ForeColor = System.Drawing.Color.Gray;
+            this.green.Location = new System.Drawing.Point(871, 153);
+            this.green.Name = "green";
+            this.green.ReadOnly = true;
+            this.green.Size = new System.Drawing.Size(69, 18);
+            this.green.TabIndex = 144;
+            this.green.Text = "0";
+            this.green.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // red
+            // 
+            this.red.BackColor = System.Drawing.Color.White;
+            this.red.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.red.Enabled = false;
+            this.red.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.red.ForeColor = System.Drawing.Color.Gray;
+            this.red.Location = new System.Drawing.Point(871, 116);
+            this.red.Name = "red";
+            this.red.ReadOnly = true;
+            this.red.Size = new System.Drawing.Size(69, 18);
+            this.red.TabIndex = 143;
+            this.red.Text = "0";
+            this.red.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.pictureBox22.Location = new System.Drawing.Point(778, 278);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Size = new System.Drawing.Size(3, 40);
+            this.pictureBox22.TabIndex = 142;
+            this.pictureBox22.TabStop = false;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.pictureBox21.Location = new System.Drawing.Point(313, 324);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(3, 40);
+            this.pictureBox21.TabIndex = 141;
+            this.pictureBox21.TabStop = false;
+            // 
+            // userEmail
+            // 
+            this.userEmail.BackColor = System.Drawing.Color.White;
+            this.userEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.userEmail.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.userEmail.ForeColor = System.Drawing.Color.Gray;
+            this.userEmail.Location = new System.Drawing.Point(277, 246);
+            this.userEmail.Name = "userEmail";
+            this.userEmail.ReadOnly = true;
+            this.userEmail.Size = new System.Drawing.Size(175, 18);
+            this.userEmail.TabIndex = 140;
+            this.userEmail.Text = "Nickname";
+            // 
+            // userPassword
+            // 
+            this.userPassword.BackColor = System.Drawing.Color.White;
+            this.userPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.userPassword.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.userPassword.ForeColor = System.Drawing.Color.Gray;
+            this.userPassword.Location = new System.Drawing.Point(277, 192);
+            this.userPassword.Name = "userPassword";
+            this.userPassword.ReadOnly = true;
+            this.userPassword.Size = new System.Drawing.Size(175, 18);
+            this.userPassword.TabIndex = 139;
+            this.userPassword.Text = "Nickname";
+            this.userPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.userPassword_KeyUp);
+            // 
+            // userLogin
+            // 
+            this.userLogin.BackColor = System.Drawing.Color.White;
+            this.userLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.userLogin.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.userLogin.ForeColor = System.Drawing.Color.Gray;
+            this.userLogin.Location = new System.Drawing.Point(277, 138);
+            this.userLogin.Name = "userLogin";
+            this.userLogin.ReadOnly = true;
+            this.userLogin.Size = new System.Drawing.Size(175, 18);
+            this.userLogin.TabIndex = 138;
+            this.userLogin.Text = "Nickname";
+            this.userLogin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.userLogin_KeyUp);
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.AccessibleName = "profile";
+            this.pictureBox20.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox20.Image = global::Upgrade.Properties.Resources.contacts_profile_account_connection_icon_124666;
+            this.pictureBox20.Location = new System.Drawing.Point(144, 375);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(340, 332);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox20.TabIndex = 137;
+            this.pictureBox20.TabStop = false;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.AccessibleName = "profile";
+            this.pictureBox19.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox19.Image = global::Upgrade.Properties.Resources.settings_options_preferences_gears_icon_124617__1_;
+            this.pictureBox19.Location = new System.Drawing.Point(631, 322);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(290, 269);
+            this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox19.TabIndex = 136;
+            this.pictureBox19.TabStop = false;
+            // 
+            // buttonBlue
+            // 
+            this.buttonBlue.AccessibleName = "profile";
+            this.buttonBlue.BackColor = System.Drawing.Color.White;
+            this.buttonBlue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonBlue.Image = global::Upgrade.Properties.Resources.buttonTrack;
+            this.buttonBlue.Location = new System.Drawing.Point(679, 209);
+            this.buttonBlue.Name = "buttonBlue";
+            this.buttonBlue.Size = new System.Drawing.Size(12, 12);
+            this.buttonBlue.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.buttonBlue.TabIndex = 132;
+            this.buttonBlue.TabStop = false;
+            this.buttonBlue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonBlue_MouseDown);
+            this.buttonBlue.MouseMove += new System.Windows.Forms.MouseEventHandler(this.buttonBlue_MouseMove);
+            this.buttonBlue.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonBlue_MouseUp);
+            // 
+            // buttonGreen
+            // 
+            this.buttonGreen.AccessibleName = "profile";
+            this.buttonGreen.BackColor = System.Drawing.Color.White;
+            this.buttonGreen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonGreen.Image = global::Upgrade.Properties.Resources.buttonTrack;
+            this.buttonGreen.Location = new System.Drawing.Point(679, 172);
+            this.buttonGreen.Name = "buttonGreen";
+            this.buttonGreen.Size = new System.Drawing.Size(12, 12);
+            this.buttonGreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.buttonGreen.TabIndex = 131;
+            this.buttonGreen.TabStop = false;
+            this.buttonGreen.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonGreen_MouseDown);
+            this.buttonGreen.MouseMove += new System.Windows.Forms.MouseEventHandler(this.buttonGreen_MouseMove);
+            this.buttonGreen.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonGreen_MouseUp);
+            // 
+            // buttonRed
+            // 
+            this.buttonRed.AccessibleName = "profile";
+            this.buttonRed.BackColor = System.Drawing.Color.White;
+            this.buttonRed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRed.Image = global::Upgrade.Properties.Resources.buttonTrack;
+            this.buttonRed.Location = new System.Drawing.Point(679, 137);
+            this.buttonRed.Name = "buttonRed";
+            this.buttonRed.Size = new System.Drawing.Size(12, 12);
+            this.buttonRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.buttonRed.TabIndex = 130;
+            this.buttonRed.TabStop = false;
+            this.buttonRed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonRed_MouseDown);
+            this.buttonRed.MouseMove += new System.Windows.Forms.MouseEventHandler(this.buttonRed_MouseMove);
+            this.buttonRed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonRed_MouseUp);
+            // 
+            // lineBlue
+            // 
+            this.lineBlue.AccessibleName = "profile";
+            this.lineBlue.BackColor = System.Drawing.Color.White;
+            this.lineBlue.Image = global::Upgrade.Properties.Resources.track_line;
+            this.lineBlue.Location = new System.Drawing.Point(679, 213);
+            this.lineBlue.Name = "lineBlue";
+            this.lineBlue.Size = new System.Drawing.Size(267, 3);
+            this.lineBlue.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.lineBlue.TabIndex = 129;
+            this.lineBlue.TabStop = false;
+            // 
+            // lineGreen
+            // 
+            this.lineGreen.AccessibleName = "profile";
+            this.lineGreen.BackColor = System.Drawing.Color.White;
+            this.lineGreen.Image = global::Upgrade.Properties.Resources.track_line;
+            this.lineGreen.Location = new System.Drawing.Point(679, 177);
+            this.lineGreen.Name = "lineGreen";
+            this.lineGreen.Size = new System.Drawing.Size(267, 3);
+            this.lineGreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.lineGreen.TabIndex = 128;
+            this.lineGreen.TabStop = false;
+            // 
+            // lineRed
+            // 
+            this.lineRed.AccessibleName = "profile";
+            this.lineRed.BackColor = System.Drawing.Color.White;
+            this.lineRed.Image = global::Upgrade.Properties.Resources.track_line;
+            this.lineRed.Location = new System.Drawing.Point(679, 141);
+            this.lineRed.Name = "lineRed";
+            this.lineRed.Size = new System.Drawing.Size(267, 3);
+            this.lineRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.lineRed.TabIndex = 127;
+            this.lineRed.TabStop = false;
+            // 
+            // labelUserEmail
+            // 
+            this.labelUserEmail.AutoSize = true;
+            this.labelUserEmail.BackColor = System.Drawing.Color.White;
+            this.labelUserEmail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelUserEmail.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.labelUserEmail.ForeColor = System.Drawing.Color.DimGray;
+            this.labelUserEmail.Location = new System.Drawing.Point(274, 221);
+            this.labelUserEmail.Name = "labelUserEmail";
+            this.labelUserEmail.Size = new System.Drawing.Size(118, 17);
+            this.labelUserEmail.TabIndex = 126;
+            this.labelUserEmail.Text = "электронная почта";
+            // 
+            // labelUserPassword
+            // 
+            this.labelUserPassword.AutoSize = true;
+            this.labelUserPassword.BackColor = System.Drawing.Color.White;
+            this.labelUserPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelUserPassword.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.labelUserPassword.ForeColor = System.Drawing.Color.DimGray;
+            this.labelUserPassword.Location = new System.Drawing.Point(274, 167);
+            this.labelUserPassword.Name = "labelUserPassword";
+            this.labelUserPassword.Size = new System.Drawing.Size(50, 17);
+            this.labelUserPassword.TabIndex = 125;
+            this.labelUserPassword.Text = "пароль";
+            // 
+            // labelUserLogin
+            // 
+            this.labelUserLogin.AutoSize = true;
+            this.labelUserLogin.BackColor = System.Drawing.Color.White;
+            this.labelUserLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelUserLogin.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.labelUserLogin.ForeColor = System.Drawing.Color.DimGray;
+            this.labelUserLogin.Location = new System.Drawing.Point(274, 113);
+            this.labelUserLogin.Name = "labelUserLogin";
+            this.labelUserLogin.Size = new System.Drawing.Size(42, 17);
+            this.labelUserLogin.TabIndex = 124;
+            this.labelUserLogin.Text = "логин";
+            // 
+            // labelChangeUserPhoto
+            // 
+            this.labelChangeUserPhoto.AutoSize = true;
+            this.labelChangeUserPhoto.BackColor = System.Drawing.Color.White;
+            this.labelChangeUserPhoto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelChangeUserPhoto.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.labelChangeUserPhoto.ForeColor = System.Drawing.Color.DimGray;
+            this.labelChangeUserPhoto.Location = new System.Drawing.Point(147, 244);
+            this.labelChangeUserPhoto.Name = "labelChangeUserPhoto";
+            this.labelChangeUserPhoto.Size = new System.Drawing.Size(96, 17);
+            this.labelChangeUserPhoto.TabIndex = 116;
+            this.labelChangeUserPhoto.Text = "изменить фото";
+            this.labelChangeUserPhoto.Click += new System.EventHandler(this.labelChangeUserPhoto_Click);
+            this.labelChangeUserPhoto.MouseLeave += new System.EventHandler(this.labelChangeUserPhoto_MouseLeave);
+            this.labelChangeUserPhoto.MouseHover += new System.EventHandler(this.labelChangeUserPhoto_MouseHover);
+            // 
+            // userPhotoSettings
+            // 
+            this.userPhotoSettings.AccessibleName = "profile";
+            this.userPhotoSettings.BackColor = System.Drawing.Color.White;
+            this.userPhotoSettings.Image = global::Upgrade.Properties.Resources.default_user_photo;
+            this.userPhotoSettings.Location = new System.Drawing.Point(138, 129);
+            this.userPhotoSettings.Name = "userPhotoSettings";
+            this.userPhotoSettings.Size = new System.Drawing.Size(110, 110);
+            this.userPhotoSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userPhotoSettings.TabIndex = 116;
+            this.userPhotoSettings.TabStop = false;
+            // 
+            // buttonChangeEmail
+            // 
+            this.buttonChangeEmail.AccessibleName = "change";
+            this.buttonChangeEmail.BackColor = System.Drawing.Color.White;
+            this.buttonChangeEmail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonChangeEmail.Image = global::Upgrade.Properties.Resources.changeData;
+            this.buttonChangeEmail.Location = new System.Drawing.Point(466, 245);
+            this.buttonChangeEmail.Name = "buttonChangeEmail";
+            this.buttonChangeEmail.Size = new System.Drawing.Size(20, 20);
+            this.buttonChangeEmail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.buttonChangeEmail.TabIndex = 123;
+            this.buttonChangeEmail.TabStop = false;
+            this.buttonChangeEmail.Click += new System.EventHandler(this.buttonChangeEmail_Click);
+            // 
+            // buttonChangePassword
+            // 
+            this.buttonChangePassword.AccessibleName = "change";
+            this.buttonChangePassword.BackColor = System.Drawing.Color.White;
+            this.buttonChangePassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonChangePassword.Image = global::Upgrade.Properties.Resources.changeData;
+            this.buttonChangePassword.Location = new System.Drawing.Point(466, 191);
+            this.buttonChangePassword.Name = "buttonChangePassword";
+            this.buttonChangePassword.Size = new System.Drawing.Size(20, 20);
+            this.buttonChangePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.buttonChangePassword.TabIndex = 122;
+            this.buttonChangePassword.TabStop = false;
+            this.buttonChangePassword.Click += new System.EventHandler(this.buttonChangePassword_Click);
+            // 
+            // buttonChangeLogin
+            // 
+            this.buttonChangeLogin.AccessibleName = "change";
+            this.buttonChangeLogin.BackColor = System.Drawing.Color.White;
+            this.buttonChangeLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonChangeLogin.Image = global::Upgrade.Properties.Resources.changeData;
+            this.buttonChangeLogin.Location = new System.Drawing.Point(466, 136);
+            this.buttonChangeLogin.Name = "buttonChangeLogin";
+            this.buttonChangeLogin.Size = new System.Drawing.Size(20, 20);
+            this.buttonChangeLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.buttonChangeLogin.TabIndex = 121;
+            this.buttonChangeLogin.TabStop = false;
+            this.buttonChangeLogin.Click += new System.EventHandler(this.buttonChangeLogin_Click);
+            // 
+            // exampleLogo
+            // 
+            this.exampleLogo.AccessibleName = "profile";
+            this.exampleLogo.BackColor = System.Drawing.Color.Indigo;
+            this.exampleLogo.Image = global::Upgrade.Properties.Resources.exampleIcon;
+            this.exampleLogo.Location = new System.Drawing.Point(605, 142);
+            this.exampleLogo.Name = "exampleLogo";
+            this.exampleLogo.Size = new System.Drawing.Size(27, 24);
+            this.exampleLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.exampleLogo.TabIndex = 120;
+            this.exampleLogo.TabStop = false;
+            // 
+            // exampleColorBlock
+            // 
+            this.exampleColorBlock.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.exampleColorBlock.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.exampleColorBlock.BackColor = System.Drawing.Color.White;
+            this.exampleColorBlock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exampleColorBlock.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.exampleColorBlock.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.exampleColorBlock.ForeColor = System.Drawing.Color.Indigo;
+            this.exampleColorBlock.Inactive1 = System.Drawing.Color.Indigo;
+            this.exampleColorBlock.Inactive2 = System.Drawing.Color.Indigo;
+            this.exampleColorBlock.Location = new System.Drawing.Point(584, 119);
+            this.exampleColorBlock.Name = "exampleColorBlock";
+            this.exampleColorBlock.Radius = 17;
+            this.exampleColorBlock.Size = new System.Drawing.Size(70, 70);
+            this.exampleColorBlock.Stroke = true;
+            this.exampleColorBlock.StrokeColor = System.Drawing.Color.Indigo;
+            this.exampleColorBlock.TabIndex = 119;
+            this.exampleColorBlock.Transparency = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.AccessibleName = "profile";
+            this.pictureBox7.BackColor = System.Drawing.Color.White;
+            this.pictureBox7.Image = global::Upgrade.Properties.Resources.Settings_color;
+            this.pictureBox7.Location = new System.Drawing.Point(552, 36);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(420, 227);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox7.TabIndex = 117;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.AccessibleName = "profile";
+            this.pictureBox6.BackColor = System.Drawing.Color.White;
+            this.pictureBox6.Image = global::Upgrade.Properties.Resources.dataProfile;
+            this.pictureBox6.Location = new System.Drawing.Point(110, 36);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(420, 265);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox6.TabIndex = 116;
+            this.pictureBox6.TabStop = false;
             // 
             // tab_sched
             // 
@@ -331,10 +810,10 @@
             this.tab_sched.Controls.Add(this.panel6);
             this.tab_sched.Controls.Add(this.addDataService);
             this.tab_sched.Controls.Add(this.flowDataService);
-            this.tab_sched.Controls.Add(this.label4);
+            this.tab_sched.Controls.Add(this.sublabelSchedule);
             this.tab_sched.Controls.Add(this.panel5);
             this.tab_sched.Controls.Add(this.flowSchedule);
-            this.tab_sched.Controls.Add(this.label3);
+            this.tab_sched.Controls.Add(this.sublabelPasswords);
             this.tab_sched.Controls.Add(this.label9);
             this.tab_sched.Controls.Add(this.label11);
             this.tab_sched.Location = new System.Drawing.Point(4, 5);
@@ -343,6 +822,30 @@
             this.tab_sched.TabIndex = 3;
             this.tab_sched.Text = "tabPage2";
             this.tab_sched.UseVisualStyleBackColor = true;
+            // 
+            // scheduleScrollTipBottom
+            // 
+            this.scheduleScrollTipBottom.AccessibleName = "profile";
+            this.scheduleScrollTipBottom.BackColor = System.Drawing.Color.White;
+            this.scheduleScrollTipBottom.Image = global::Upgrade.Properties.Resources.slider_tip_bottom;
+            this.scheduleScrollTipBottom.Location = new System.Drawing.Point(555, 718);
+            this.scheduleScrollTipBottom.Name = "scheduleScrollTipBottom";
+            this.scheduleScrollTipBottom.Size = new System.Drawing.Size(7, 19);
+            this.scheduleScrollTipBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.scheduleScrollTipBottom.TabIndex = 170;
+            this.scheduleScrollTipBottom.TabStop = false;
+            // 
+            // scheduleScrollTipTop
+            // 
+            this.scheduleScrollTipTop.AccessibleName = "profile";
+            this.scheduleScrollTipTop.BackColor = System.Drawing.Color.White;
+            this.scheduleScrollTipTop.Image = global::Upgrade.Properties.Resources.slider_tip_top;
+            this.scheduleScrollTipTop.Location = new System.Drawing.Point(555, 115);
+            this.scheduleScrollTipTop.Name = "scheduleScrollTipTop";
+            this.scheduleScrollTipTop.Size = new System.Drawing.Size(7, 19);
+            this.scheduleScrollTipTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.scheduleScrollTipTop.TabIndex = 169;
+            this.scheduleScrollTipTop.TabStop = false;
             // 
             // servicesScrollTipTop
             // 
@@ -406,17 +909,17 @@
             this.flowDataService.Size = new System.Drawing.Size(385, 622);
             this.flowDataService.TabIndex = 164;
             // 
-            // label4
+            // sublabelSchedule
             // 
-            this.label4.AutoSize = true;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.Color.Indigo;
-            this.label4.Location = new System.Drawing.Point(119, 71);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(195, 22);
-            this.label4.TabIndex = 166;
-            this.label4.Text = "Повторяющиеся задачи";
+            this.sublabelSchedule.AutoSize = true;
+            this.sublabelSchedule.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sublabelSchedule.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.sublabelSchedule.ForeColor = System.Drawing.Color.Indigo;
+            this.sublabelSchedule.Location = new System.Drawing.Point(119, 71);
+            this.sublabelSchedule.Name = "sublabelSchedule";
+            this.sublabelSchedule.Size = new System.Drawing.Size(195, 22);
+            this.sublabelSchedule.TabIndex = 166;
+            this.sublabelSchedule.Text = "Повторяющиеся задачи";
             // 
             // panel5
             // 
@@ -433,17 +936,17 @@
             this.flowSchedule.Size = new System.Drawing.Size(458, 622);
             this.flowSchedule.TabIndex = 163;
             // 
-            // label3
+            // sublabelPasswords
             // 
-            this.label3.AutoSize = true;
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(591, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 22);
-            this.label3.TabIndex = 162;
-            this.label3.Text = "Защита ваших данных";
+            this.sublabelPasswords.AutoSize = true;
+            this.sublabelPasswords.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sublabelPasswords.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.sublabelPasswords.ForeColor = System.Drawing.Color.Indigo;
+            this.sublabelPasswords.Location = new System.Drawing.Point(591, 71);
+            this.sublabelPasswords.Name = "sublabelPasswords";
+            this.sublabelPasswords.Size = new System.Drawing.Size(183, 22);
+            this.sublabelPasswords.TabIndex = 162;
+            this.sublabelPasswords.Text = "Защита ваших данных";
             // 
             // label9
             // 
@@ -461,9 +964,9 @@
             this.label11.Font = new System.Drawing.Font("Calibri", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label11.Location = new System.Drawing.Point(117, 36);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(168, 35);
+            this.label11.Size = new System.Drawing.Size(158, 35);
             this.label11.TabIndex = 160;
-            this.label11.Text = "Достижения";
+            this.label11.Text = "Расписания";
             // 
             // tab_stat
             // 
@@ -838,6 +1341,7 @@
             // 
             // tab_profile
             // 
+            this.tab_profile.Controls.Add(this.pictureBox8);
             this.tab_profile.Controls.Add(this.not_found_note);
             this.tab_profile.Controls.Add(this.not_found_task);
             this.tab_profile.Controls.Add(this.panel_filter);
@@ -1065,11 +1569,11 @@
             // label_today
             // 
             this.label_today.AutoSize = true;
-            this.label_today.Font = new System.Drawing.Font("Calibri", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_today.Font = new System.Drawing.Font("Calibri", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_today.ForeColor = System.Drawing.Color.Black;
             this.label_today.Location = new System.Drawing.Point(245, 34);
             this.label_today.Name = "label_today";
-            this.label_today.Size = new System.Drawing.Size(109, 35);
+            this.label_today.Size = new System.Drawing.Size(110, 35);
             this.label_today.TabIndex = 3;
             this.label_today.Text = "сегодня";
             // 
@@ -1086,7 +1590,7 @@
             // 
             // panel_hide_scroll_1
             // 
-            this.panel_hide_scroll_1.Location = new System.Drawing.Point(550, 123);
+            this.panel_hide_scroll_1.Location = new System.Drawing.Point(574, 123);
             this.panel_hide_scroll_1.Name = "panel_hide_scroll_1";
             this.panel_hide_scroll_1.Size = new System.Drawing.Size(25, 620);
             this.panel_hide_scroll_1.TabIndex = 1;
@@ -1097,7 +1601,7 @@
             this.flowTasks.AutoScroll = true;
             this.flowTasks.Location = new System.Drawing.Point(115, 123);
             this.flowTasks.Name = "flowTasks";
-            this.flowTasks.Size = new System.Drawing.Size(460, 620);
+            this.flowTasks.Size = new System.Drawing.Size(466, 620);
             this.flowTasks.TabIndex = 0;
             // 
             // faceIndicator
@@ -1421,25 +1925,6 @@
             this.status_task_fail.TabStop = false;
             this.status_task_fail.Click += new System.EventHandler(this.status_task_fail_Click);
             // 
-            // tab_sett
-            // 
-            this.tab_sett.Controls.Add(this.label5);
-            this.tab_sett.Location = new System.Drawing.Point(4, 5);
-            this.tab_sett.Name = "tab_sett";
-            this.tab_sett.Size = new System.Drawing.Size(1002, 771);
-            this.tab_sett.TabIndex = 4;
-            this.tab_sett.Text = "tabPage3";
-            this.tab_sett.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(106, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "settings";
-            // 
             // exit_from_profile
             // 
             this.exit_from_profile.AutoSize = true;
@@ -1601,7 +2086,7 @@
             // 
             this.user_photo.AccessibleName = "profile";
             this.user_photo.BackColor = System.Drawing.Color.White;
-            this.user_photo.Image = global::Upgrade.Properties.Resources.default_user_photo;
+            this.user_photo.Image = ((System.Drawing.Image)(resources.GetObject("user_photo.Image")));
             this.user_photo.Location = new System.Drawing.Point(1132, 115);
             this.user_photo.Name = "user_photo";
             this.user_photo.Size = new System.Drawing.Size(110, 110);
@@ -1621,29 +2106,33 @@
             this.panel_profile.TabIndex = 13;
             this.panel_profile.TabStop = false;
             // 
-            // scheduleScrollTipTop
+            // rebootSystem
             // 
-            this.scheduleScrollTipTop.AccessibleName = "profile";
-            this.scheduleScrollTipTop.BackColor = System.Drawing.Color.White;
-            this.scheduleScrollTipTop.Image = global::Upgrade.Properties.Resources.slider_tip_top;
-            this.scheduleScrollTipTop.Location = new System.Drawing.Point(555, 115);
-            this.scheduleScrollTipTop.Name = "scheduleScrollTipTop";
-            this.scheduleScrollTipTop.Size = new System.Drawing.Size(7, 19);
-            this.scheduleScrollTipTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.scheduleScrollTipTop.TabIndex = 169;
-            this.scheduleScrollTipTop.TabStop = false;
+            this.rebootSystem.AutoSize = true;
+            this.rebootSystem.BackColor = System.Drawing.Color.White;
+            this.rebootSystem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rebootSystem.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.rebootSystem.ForeColor = System.Drawing.Color.DarkGray;
+            this.rebootSystem.Location = new System.Drawing.Point(803, 73);
+            this.rebootSystem.Name = "rebootSystem";
+            this.rebootSystem.Size = new System.Drawing.Size(143, 17);
+            this.rebootSystem.TabIndex = 147;
+            this.rebootSystem.Text = "перезагрузить систему";
+            this.rebootSystem.Click += new System.EventHandler(this.rebootSystem_Click);
+            this.rebootSystem.MouseLeave += new System.EventHandler(this.rebootSystem_MouseLeave);
+            this.rebootSystem.MouseHover += new System.EventHandler(this.rebootSystem_MouseHover);
             // 
-            // scheduleScrollTipBottom
+            // pictureBox8
             // 
-            this.scheduleScrollTipBottom.AccessibleName = "profile";
-            this.scheduleScrollTipBottom.BackColor = System.Drawing.Color.White;
-            this.scheduleScrollTipBottom.Image = global::Upgrade.Properties.Resources.slider_tip_bottom;
-            this.scheduleScrollTipBottom.Location = new System.Drawing.Point(555, 718);
-            this.scheduleScrollTipBottom.Name = "scheduleScrollTipBottom";
-            this.scheduleScrollTipBottom.Size = new System.Drawing.Size(7, 19);
-            this.scheduleScrollTipBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.scheduleScrollTipBottom.TabIndex = 170;
-            this.scheduleScrollTipBottom.TabStop = false;
+            this.pictureBox8.AccessibleName = "profile";
+            this.pictureBox8.BackColor = System.Drawing.Color.White;
+            this.pictureBox8.Image = global::Upgrade.Properties.Resources.slider_tip_top;
+            this.pictureBox8.Location = new System.Drawing.Point(567, 123);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(7, 19);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox8.TabIndex = 170;
+            this.pictureBox8.TabStop = false;
             // 
             // MainWorkingForm
             // 
@@ -1681,8 +2170,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.profile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_menu)).EndInit();
             this.tabs.ResumeLayout(false);
+            this.tab_sett.ResumeLayout(false);
+            this.tab_sett.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonGreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonRed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lineBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lineGreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lineRed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userPhotoSettings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonChangeEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonChangePassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonChangeLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exampleLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.tab_sched.ResumeLayout(false);
             this.tab_sched.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipBottom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipTop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesScrollTipTop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesScrollTipBottom)).EndInit();
             this.tab_stat.ResumeLayout(false);
@@ -1706,12 +2216,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.status_task_none)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.status_task_done)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.status_task_fail)).EndInit();
-            this.tab_sett.ResumeLayout(false);
-            this.tab_sett.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.user_photo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_profile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipTop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleScrollTipBottom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1731,7 +2238,6 @@
         private System.Windows.Forms.TabPage tab_stat;
         private System.Windows.Forms.TabPage tab_sched;
         private System.Windows.Forms.TabPage tab_sett;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox panel_profile;
         private System.Windows.Forms.TabPage tab_profile;
         private System.Windows.Forms.FlowLayoutPanel flowTasks;
@@ -1822,10 +2328,10 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.FlowLayoutPanel flowSchedule;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label sublabelPasswords;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label sublabelSchedule;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.FlowLayoutPanel flowDataService;
         private AltoControls.AltoButton addDataService;
@@ -1833,5 +2339,36 @@
         private System.Windows.Forms.PictureBox servicesScrollTipTop;
         private System.Windows.Forms.PictureBox scheduleScrollTipBottom;
         private System.Windows.Forms.PictureBox scheduleScrollTipTop;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox exampleLogo;
+        private AltoControls.AltoButton exampleColorBlock;
+        private System.Windows.Forms.PictureBox buttonChangeLogin;
+        private System.Windows.Forms.PictureBox buttonRed;
+        private System.Windows.Forms.PictureBox lineBlue;
+        private System.Windows.Forms.PictureBox lineGreen;
+        private System.Windows.Forms.PictureBox lineRed;
+        private System.Windows.Forms.Label labelUserEmail;
+        private System.Windows.Forms.Label labelUserPassword;
+        private System.Windows.Forms.Label labelUserLogin;
+        private System.Windows.Forms.Label labelChangeUserPhoto;
+        private System.Windows.Forms.PictureBox userPhotoSettings;
+        private System.Windows.Forms.PictureBox buttonChangeEmail;
+        private System.Windows.Forms.PictureBox buttonChangePassword;
+        private System.Windows.Forms.PictureBox buttonBlue;
+        private System.Windows.Forms.PictureBox buttonGreen;
+        private System.Windows.Forms.PictureBox pictureBox19;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.PictureBox pictureBox21;
+        private System.Windows.Forms.TextBox userEmail;
+        private System.Windows.Forms.TextBox userPassword;
+        private System.Windows.Forms.TextBox userLogin;
+        private System.Windows.Forms.TextBox Blue;
+        private System.Windows.Forms.TextBox green;
+        private System.Windows.Forms.TextBox red;
+        private System.Windows.Forms.TextBox exampleText;
+        private System.Windows.Forms.Label rebootSystem;
+        private System.Windows.Forms.PictureBox pictureBox8;
     }
 }

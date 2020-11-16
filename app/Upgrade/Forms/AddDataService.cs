@@ -122,7 +122,7 @@ namespace Upgrade.Forms
                             VALUES (@id_service, @id_user, @login, @password, @em_phone)";
                         ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                         ServiceData.command.Parameters.AddWithValue("@id_service", id_service);
-                        ServiceData.command.Parameters.AddWithValue("@id_user", User.user_id);
+                        ServiceData.command.Parameters.AddWithValue("@id_user", User.userId);
                         ServiceData.command.Parameters.AddWithValue("@login", login.Text);
                         ServiceData.command.Parameters.AddWithValue("@password", password.Text);
                         ServiceData.command.Parameters.AddWithValue("@em_phone", em_phone.Text);

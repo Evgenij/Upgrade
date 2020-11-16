@@ -118,20 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="AddNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddNote.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tar_task_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tar_task_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon30" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="schedule_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\schedule_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="filter_added" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\filter_added.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -147,9 +144,6 @@
   </data>
   <data name="label_type_task" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\label_type_task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="serviceIcon19" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="faceIndicatorBad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,32 +166,26 @@
   <data name="dir_sett_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dir_sett_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_45" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\45.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="back_scroll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\back_scroll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add_target" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add target.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_62" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\62.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="check_small_fail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\check_small_fail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="photo_border" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\photo_border.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="direct_box_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\direct_box_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconStat2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconStat2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tip_back_scroll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tip_back_scroll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconStat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconStat1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rem_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rem_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,17 +208,20 @@
   <data name="profile1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\profile1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="track-line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\track-line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="box_sunday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box_sunday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_56" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\56.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="comboBox_panel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\comboBox_panel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="panel_week_stat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\panel_week_stat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_61" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\61.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="filter_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\filter_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,14 +229,8 @@
   <data name="_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon26" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\17.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="service_box_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\service_box_center.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_30" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,8 +247,8 @@
   <data name="_58" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\58.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="direct_box_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\direct_box_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -274,8 +259,8 @@
   <data name="menu_panel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\menu_panel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_44" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\44.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="eye_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eye_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dir_find_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dir_find_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,8 +271,8 @@
   <data name="status_check_fail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\status_check_fail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mark_item" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mark_item.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="prev_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prev_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -298,8 +283,11 @@
   <data name="_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon18" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="changeData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\changeData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="service_box_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\service_box_center.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="scroller" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\scroller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -307,14 +295,11 @@
   <data name="delete_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="block_change_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\block_change_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="direct_box_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\direct_box_center.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -325,6 +310,9 @@
   <data name="settings_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="exampleIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exampleIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dir_sett_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dir_sett_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -334,11 +322,8 @@
   <data name="stat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon29" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon29.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="serviceIcon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bgMainStat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bgMainStat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -358,11 +343,11 @@
   <data name="label_schedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\label_schedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_61" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\61.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Settings_color" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Settings_color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_47" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\47.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -382,26 +367,17 @@
   <data name="_28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon12" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Rectangle 171" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rectangle 171.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="block_delete_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\block_delete_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="box_friday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box_friday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_45" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\45.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check_done" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check_done.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -418,14 +394,8 @@
   <data name="_51" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\51.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon25" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_37" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\37.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="serviceIcon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="default_user_photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default_user_photo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -436,14 +406,8 @@
   <data name="track_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\track-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="service_box_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\service_box_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="dir_target_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dir_target_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="serviceIcon7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -457,14 +421,11 @@
   <data name="restoring_access" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\restoring_access.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="tar_task_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tar_task_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_41" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="service_box_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\service_box_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stat_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stat_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -472,14 +433,8 @@
   <data name="_35" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\35.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="box_sched_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box_sched_center.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="serviceIcon15" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="task_box_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\task_box_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -499,8 +454,8 @@
   <data name="_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bgGeneralStat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bgGeneralStat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_66" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\66.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_36" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -517,14 +472,11 @@
   <data name="_33" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\33.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon17" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon17.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="copyButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\copyButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_29" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\29.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="close_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -543,9 +495,6 @@
   </data>
   <data name="AddDirection" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddDirection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_62" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\62.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="box_monday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box_monday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -568,14 +517,11 @@
   <data name="_19" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="comboBox_panel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\comboBox_panel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="schedule_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\schedule_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rem_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rem_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -592,29 +538,11 @@
   <data name="_34" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\34.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon14" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="eye_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eye_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconStat3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconStat3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="check_fail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\check_fail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="dir_target_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dir_target_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="serviceIcon13" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="direct_box_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\direct_box_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -624,6 +552,9 @@
   </data>
   <data name="check_small_done" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check_small_done.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -643,11 +574,8 @@
   <data name="AutorizationForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AutorizationForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_66" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\66.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="copyButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copyButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddTask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddTask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -658,14 +586,14 @@
   <data name="_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon22" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_44" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\44.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="panel_profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\panel_profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="check_fail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check_fail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_65" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\65.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -676,50 +604,38 @@
   <data name="note_box_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\note_box_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_60" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="service_box_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\service_box_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_53" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\53.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="back_scroll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\back_scroll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="next_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\next_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="note_not_found" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\note_not_found.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="direct_box_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\direct_box_center.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_43" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\43.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon28" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon31" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="iconStat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconStat1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tardets" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tardets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bgGeneralStat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bgGeneralStat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="note_box_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\note_box_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slider_tip_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slider_tip_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="box_monday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box_monday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -733,17 +649,23 @@
   <data name="_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="box_saturday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_saturday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="faceIndicatorMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\middle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="buttonTrack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\buttonTrack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rem_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rem_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add_target" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add target.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="iconStat3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconStat3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -757,11 +679,14 @@
   <data name="_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="block_delete_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\block_delete_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_49" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\49.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_options_preferences_gears_icon_124617 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings_options_preferences_gears_icon_124617 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_38" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\38.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -769,11 +694,20 @@
   <data name="_57" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\57.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dataProfile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dataProfile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slider_tip_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slider_tip_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="next_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\next_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_55" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\55.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_31" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_41" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="back_reg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\back_reg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -781,14 +715,11 @@
   <data name="separator" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\separator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="box_saturday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\box_saturday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon23" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="box_saturday_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\box_saturday_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="check_small_fail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check_small_fail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_39" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\39.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -796,31 +727,28 @@
   <data name="_14" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="track-line" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\track-line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mark_item" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mark_item.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="note_not_found" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\note_not_found.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="more_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\more_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon27" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon27.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box_saturday_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_saturday_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_59" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\59.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceIcon21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\serviceIcon21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="achiev_box_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\achiev_box_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="slider_tip_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\slider_tip_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="contacts_profile_account_connection_icon_124666" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\contacts_profile_account_connection_icon_124666.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="slider_tip_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\slider_tip_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="okey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\okey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -48,7 +48,7 @@ namespace Upgrade
             ServiceData.command.ExecuteNonQuery();
         }
 
-        static private string GetMD5Hash(string text)
+        static public string GetMD5Hash(string text)
         {
             using (var hashAlg = MD5.Create()) // Создаем экземпляр класса реализующего алгоритм MD5
             {
@@ -60,11 +60,6 @@ namespace Upgrade
                 }
                 return builder.ToString(); // Возвращаем значение хеша
             }
-        }
-
-        private bool EquatePasswords(string password1, string password2)
-        {
-            return GetMD5Hash(password1) == password2;
         }
 
         static public bool Registration(string login,
@@ -156,10 +151,12 @@ namespace Upgrade
             if (ServiceData.reader.HasRows)
             {
                 ServiceData.reader.ReadAsync();
-                User.user_id = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("id_user"));
+                User.userId = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("id_user"));
+                User.userLogin = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("login"));
+                User.userPassword = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("password"));
+                User.userEmail = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("email"));
                 User.SetPhoto(ServiceData.reader.GetValue(ServiceData.reader.GetOrdinal("photo")).ToString());
-                User.user_login = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("login"));
-                User.user_perform = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("perform"));
+                User.userPerform = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("perform"));
                 GlobalData.mainWorkingForm.Show();
                 return true;
             }

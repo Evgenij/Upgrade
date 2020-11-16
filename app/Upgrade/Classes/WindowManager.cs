@@ -145,7 +145,7 @@ namespace Upgrade.Classes
                     {
                         ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] + sql_command[4] + sql_command[5] + 
                                                                 "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
-                                                                User.user_id,
+                                                                User.userId,
                                                                 date.First(),
                                                                 DateTime.Now.ToString("MM"),
                                                                 DateTime.Now.ToString("yyyy"));
@@ -197,7 +197,7 @@ namespace Upgrade.Classes
                 {
                     ServiceData.commandText = string.Format(sql_command[0] + sql_command[2] + sql_command[4] + sql_command[5] + 
                                                             "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
-                                                            User.user_id,
+                                                            User.userId,
                                                             date.First(),
                                                             DateTime.Now.ToString("MM"),
                                                             DateTime.Now.ToString("yyyy"));
@@ -236,7 +236,7 @@ namespace Upgrade.Classes
                 {
                     ServiceData.commandText = string.Format(sql_command[0] + sql_command[3] + sql_command[4] + sql_command[5] + 
                                                             "AND task.date = '{1}.{2}.{3}' ORDER BY task.time",
-                                                            User.user_id,
+                                                            User.userId,
                                                             date.First(),
                                                             DateTime.Now.ToString("MM"),
                                                             DateTime.Now.ToString("yyyy"));
@@ -280,7 +280,7 @@ namespace Upgrade.Classes
                     {
                         ServiceData.commandText = string.Format(sql_command[0] + sql_command[i] + sql_command[4] + sql_command[5] +
                                                                 "AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ORDER BY task.date",
-                                                                User.user_id,
+                                                                User.userId,
                                                                 date.First(),
                                                                 date.Last(),
                                                                 DateTime.Now.ToString("MM"),
@@ -333,7 +333,7 @@ namespace Upgrade.Classes
                 {
                     ServiceData.commandText = string.Format(sql_command[0] + sql_command[2] + sql_command[4] + sql_command[5] +
                                                             "AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ORDER BY task.date",
-                                                            User.user_id,
+                                                            User.userId,
                                                             date.First(), date.Last(),
                                                             DateTime.Now.ToString("MM"),
                                                             DateTime.Now.ToString("yyyy"));
@@ -372,7 +372,7 @@ namespace Upgrade.Classes
                 {
                     ServiceData.commandText = string.Format(sql_command[0] + sql_command[3] + sql_command[4] + sql_command[5] +
                                                             "AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ORDER BY task.date",
-                                                            User.user_id,
+                                                            User.userId,
                                                             date.First(), date.Last(),
                                                             DateTime.Now.ToString("MM"),
                                                             DateTime.Now.ToString("yyyy"));
@@ -414,7 +414,7 @@ namespace Upgrade.Classes
         {
             ServiceData.commandText = @"SELECT id_note, text FROM note WHERE id_user = @user_id";
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-            ServiceData.command.Parameters.AddWithValue("@user_id", User.user_id);
+            ServiceData.command.Parameters.AddWithValue("@user_id", User.userId);
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)
@@ -434,7 +434,7 @@ namespace Upgrade.Classes
             ServiceData.commandText = string.Format("SELECT direction.id_direct, direction.name, direction.color_mark FROM direction " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE user.id_user = {0}", User.user_id);
+                "WHERE user.id_user = {0}", User.userId);
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -457,7 +457,7 @@ namespace Upgrade.Classes
                 "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                 "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                 "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                "WHERE user.id_user = {0}", User.user_id);
+                "WHERE user.id_user = {0}", User.userId);
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
@@ -522,7 +522,7 @@ namespace Upgrade.Classes
                 GROUP BY schedule.id_sched";
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-            ServiceData.command.Parameters.AddWithValue("@user", User.user_id);
+            ServiceData.command.Parameters.AddWithValue("@user", User.userId);
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)
@@ -555,7 +555,7 @@ namespace Upgrade.Classes
                 WHERE user.id_user = @user";
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-            ServiceData.command.Parameters.AddWithValue("@user", User.user_id);
+            ServiceData.command.Parameters.AddWithValue("@user", User.userId);
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)

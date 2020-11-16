@@ -1193,6 +1193,30 @@
   <ItemGroup>
     <None Include="Resources\slider_tip_top.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exampleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\changeData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttonTrack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_options_preferences_gears_icon_124617 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contacts_profile_account_connection_icon_124666.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\okey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dataProfile.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

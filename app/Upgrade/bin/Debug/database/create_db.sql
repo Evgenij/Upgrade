@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS task;
 DROP TABLE IF EXISTS target;
 DROP TABLE IF EXISTS direction;
 DROP TABLE IF EXISTS note;
-DROP TABLE IF EXISTS password;
+DROP TABLE IF EXISTS data_service;
 DROP TABLE IF EXISTS achievement;
 DROP TABLE IF EXISTS category;
 
@@ -24,11 +24,10 @@ CREATE TABLE "note"
 	FOREIGN KEY (id_user) REFERENCES user (id_user)
 );
 
-CREATE TABLE "password" 
+CREATE TABLE "data_service" 
 (
-	id_pass INTEGER PRIMARY KEY AUTOINCREMENT,
+	id_service INTEGER NOT NULL, 
 	id_user INTEGER NOT NULL,
-	name_serv TEXT NOT NULL CHECK(length(name_serv) > 0),
 	login TEXT NOT NULL CHECK(length(login) > 0),
 	password TEXT NOT NULL CHECK(length(password) > 0),
 	em_ph TEXT NULL
@@ -37,7 +36,7 @@ CREATE TABLE "password"
 CREATE TABLE "user" 
 (
 	id_user INTEGER PRIMARY KEY AUTOINCREMENT,
-	photo BLOB NULL,
+	photo TEXT NULL,
 	login TEXT NOT NULL CHECK(length(login) != 0),
 	password TEXT NOT NULL CHECK(length(password) > 0),
 	email TEXT NULL,
@@ -174,21 +173,21 @@ INSERT INTO note VALUES (NULL, 4, "Текст заметки №9");
 INSERT INTO note VALUES (NULL, 4, "Текст заметки №10");
 INSERT INTO note VALUES (NULL, 4, "Текст заметки №11");
 
-INSERT INTO password
+INSERT INTO data_service
 VALUES
-	(NULL, 1, "Вконтакте", "login", "password №1", "email@mail.ru");
-INSERT INTO password
+	(1, 4, "login", "password №1", "email@mail.ru");
+INSERT INTO data_service
 VALUES
-	(NULL, 1, "Вконтакте", "login", "password №2", "0714148150");
-INSERT INTO password
+	(2, 4, "login", "password №2", "0714148150");
+INSERT INTO data_service
 VALUES
-	(NULL, 2, "Вконтакте", "login", "password №3", "email@mail.ru");
-INSERT INTO password
+	(3, 2, "login", "password №3", "email@mail.ru");
+INSERT INTO data_service
 VALUES
-	(NULL, 3, "Вконтакте", "login", "password №4", "0714148150");
-INSERT INTO password
+	(4, 3, "login", "password №4", "0714148150");
+INSERT INTO data_service
 VALUES
-	(NULL, 4, "Вконтакте", "login", "password №5", "0714148150");
+	(5, 4, "login", "password №5", "0714148150");
 
 INSERT INTO direction
 VALUES

@@ -120,7 +120,7 @@
             this.label_auth_password.AutoSize = true;
             this.label_auth_password.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_auth_password.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_auth_password.Location = new System.Drawing.Point(62, 262);
+            this.label_auth_password.Location = new System.Drawing.Point(62, 261);
             this.label_auth_password.Name = "label_auth_password";
             this.label_auth_password.Size = new System.Drawing.Size(50, 17);
             this.label_auth_password.TabIndex = 15;
@@ -153,11 +153,11 @@
             this.label_auth_login.AutoSize = true;
             this.label_auth_login.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_auth_login.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_auth_login.Location = new System.Drawing.Point(62, 208);
+            this.label_auth_login.Location = new System.Drawing.Point(62, 207);
             this.label_auth_login.Name = "label_auth_login";
-            this.label_auth_login.Size = new System.Drawing.Size(74, 17);
+            this.label_auth_login.Size = new System.Drawing.Size(42, 17);
             this.label_auth_login.TabIndex = 17;
-            this.label_auth_login.Text = "псевдоним";
+            this.label_auth_login.Text = "логин";
             this.label_auth_login.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pass_auth
@@ -430,10 +430,10 @@
             this.domen_list.Cursor = System.Windows.Forms.Cursors.Hand;
             this.domen_list.DropDownHeight = 70;
             this.domen_list.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.domen_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.domen_list.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.domen_list.FormattingEnabled = true;
             this.domen_list.IntegralHeight = false;
-            this.domen_list.ItemHeight = 20;
+            this.domen_list.ItemHeight = 17;
             this.domen_list.Items.AddRange(new object[] {
             "@mail.ru",
             "@bk.ru",
@@ -447,7 +447,7 @@
             this.domen_list.Location = new System.Drawing.Point(203, 326);
             this.domen_list.MaxDropDownItems = 4;
             this.domen_list.Name = "domen_list";
-            this.domen_list.Size = new System.Drawing.Size(105, 28);
+            this.domen_list.Size = new System.Drawing.Size(105, 25);
             this.domen_list.TabIndex = 26;
             // 
             // panel_back
@@ -475,13 +475,13 @@
             // label_reg_login
             // 
             this.label_reg_login.AutoSize = true;
-            this.label_reg_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_reg_login.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_reg_login.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_reg_login.Location = new System.Drawing.Point(63, 200);
+            this.label_reg_login.Location = new System.Drawing.Point(63, 198);
             this.label_reg_login.Name = "label_reg_login";
-            this.label_reg_login.Size = new System.Drawing.Size(79, 17);
+            this.label_reg_login.Size = new System.Drawing.Size(42, 17);
             this.label_reg_login.TabIndex = 2;
-            this.label_reg_login.Text = "псевдоним";
+            this.label_reg_login.Text = "логин";
             // 
             // registration
             // 
@@ -490,7 +490,7 @@
             this.registration.BackColor = System.Drawing.Color.Transparent;
             this.registration.Cursor = System.Windows.Forms.Cursors.Hand;
             this.registration.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.registration.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.registration.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.registration.ForeColor = System.Drawing.Color.DarkBlue;
             this.registration.Inactive1 = System.Drawing.Color.Transparent;
             this.registration.Inactive2 = System.Drawing.Color.Transparent;
@@ -508,11 +508,11 @@
             // login_reg
             // 
             this.login_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.login_reg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.login_reg.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.login_reg.ForeColor = System.Drawing.Color.Gray;
             this.login_reg.Location = new System.Drawing.Point(66, 222);
             this.login_reg.Name = "login_reg";
-            this.login_reg.Size = new System.Drawing.Size(241, 19);
+            this.login_reg.Size = new System.Drawing.Size(241, 18);
             this.login_reg.TabIndex = 7;
             this.login_reg.Text = "введите ваш псевдоним";
             this.login_reg.Enter += new System.EventHandler(this.Enter);
@@ -522,11 +522,11 @@
             // 
             this.label_empty_email.AutoSize = true;
             this.label_empty_email.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label_empty_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_empty_email.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_empty_email.ForeColor = System.Drawing.Color.DimGray;
-            this.label_empty_email.Location = new System.Drawing.Point(64, 355);
+            this.label_empty_email.Location = new System.Drawing.Point(64, 357);
             this.label_empty_email.Name = "label_empty_email";
-            this.label_empty_email.Size = new System.Drawing.Size(253, 17);
+            this.label_empty_email.Size = new System.Drawing.Size(222, 17);
             this.label_empty_email.TabIndex = 10;
             this.label_empty_email.Text = "нет почты или интернет соединения";
             this.label_empty_email.Click += new System.EventHandler(this.label4_Click);
@@ -536,11 +536,11 @@
             // email_reg
             // 
             this.email_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.email_reg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.email_reg.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.email_reg.ForeColor = System.Drawing.Color.Gray;
             this.email_reg.Location = new System.Drawing.Point(66, 330);
             this.email_reg.Name = "email_reg";
-            this.email_reg.Size = new System.Drawing.Size(135, 19);
+            this.email_reg.Size = new System.Drawing.Size(142, 18);
             this.email_reg.TabIndex = 9;
             this.email_reg.Text = "введите email";
             this.email_reg.Enter += new System.EventHandler(this.Enter);
@@ -549,22 +549,22 @@
             // label_reg_password
             // 
             this.label_reg_password.AutoSize = true;
-            this.label_reg_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_reg_password.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_reg_password.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_reg_password.Location = new System.Drawing.Point(64, 254);
+            this.label_reg_password.Location = new System.Drawing.Point(64, 252);
             this.label_reg_password.Name = "label_reg_password";
-            this.label_reg_password.Size = new System.Drawing.Size(55, 17);
+            this.label_reg_password.Size = new System.Drawing.Size(50, 17);
             this.label_reg_password.TabIndex = 3;
             this.label_reg_password.Text = "пароль";
             // 
             // pass_reg
             // 
             this.pass_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pass_reg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pass_reg.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.pass_reg.ForeColor = System.Drawing.Color.Gray;
-            this.pass_reg.Location = new System.Drawing.Point(67, 276);
+            this.pass_reg.Location = new System.Drawing.Point(67, 277);
             this.pass_reg.Name = "pass_reg";
-            this.pass_reg.Size = new System.Drawing.Size(241, 19);
+            this.pass_reg.Size = new System.Drawing.Size(241, 18);
             this.pass_reg.TabIndex = 8;
             this.pass_reg.Text = "введите пароль";
             this.pass_reg.Enter += new System.EventHandler(this.Enter);
@@ -573,11 +573,11 @@
             // label_reg_email
             // 
             this.label_reg_email.AutoSize = true;
-            this.label_reg_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_reg_email.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_reg_email.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_reg_email.Location = new System.Drawing.Point(63, 308);
+            this.label_reg_email.Location = new System.Drawing.Point(63, 305);
             this.label_reg_email.Name = "label_reg_email";
-            this.label_reg_email.Size = new System.Drawing.Size(136, 17);
+            this.label_reg_email.Size = new System.Drawing.Size(118, 17);
             this.label_reg_email.TabIndex = 4;
             this.label_reg_email.Text = "электронная почта";
             // 

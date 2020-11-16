@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,21 +10,22 @@ namespace Upgrade.Forms
 {
     class User
     {
-        public static int user_id;
-        public static string user_login;
-        public static int user_perform;
-        public static PictureBox user_photo;
+        public static int userId;
+        public static string userLogin;
+        public static string userPassword;
+        public static string userEmail;
+        public static int userPerform;
+        public static string pathPhoto;
 
-        public static void SetPhoto(string valuePhoto) 
+        public static void SetPhoto(string path) 
         {
-            user_photo = new PictureBox();
-            if (valuePhoto == "")
+            if (path == "")
             {
-                user_photo.Image = Properties.Resources.default_user_photo;
+                pathPhoto = AppDomain.CurrentDomain.BaseDirectory + @"user_photo\default_user_photo.png";
             }
             else 
             {
-                //user_photo.Image = ;
+                pathPhoto = path;
             }
         }
     }

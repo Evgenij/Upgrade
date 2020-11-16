@@ -49,7 +49,7 @@ namespace Upgrade
 
             Design.mainColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
                                               Convert.ToInt32(INIManager.Read("Design", "Green")),
-                                              Convert.ToInt32(INIManager.Read("Design", "blue")));
+                                              Convert.ToInt32(INIManager.Read("Design", "Blue")));
 
             Design.mainColorOpacity = Color.FromArgb(40,
                                                      Design.mainColor.R,

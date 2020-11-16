@@ -52,7 +52,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0 AND task.failed = 1",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek[i],
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -74,7 +74,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1 AND task.failed = 0",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek[i],
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -234,7 +234,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.failed = 1", 
-                    User.user_id, 
+                    User.userId, 
                     daysLastWeek[i],
                     month,
                     DateTime.Now.ToString("yyyy"));
@@ -266,7 +266,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1", 
-                    User.user_id, 
+                    User.userId, 
                     daysLastWeek[i],
                     month,
                     DateTime.Now.ToString("yyyy"));
@@ -280,7 +280,14 @@ namespace Upgrade.Classes
                 }
             }
 
-            return (countDone.Sum() * 100) / (countDone.Sum() + countFailded.Sum());
+            if (countFailded.Sum() != 0)
+            {
+                return (countDone.Sum() * 100) / (countDone.Sum() + countFailded.Sum());
+            }
+            else 
+            {
+                return 0;
+            }
         }
 
         public static double CalculatePerformCurrentWeek()
@@ -303,7 +310,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 0",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek[i],
                     month,
                     DateTime.Now.ToString("yyyy"));
@@ -335,7 +342,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                     "INNER JOIN user ON user.id_user = user_dir.id_user " +
                     "WHERE user_dir.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek[i],
                     month,
                     DateTime.Now.ToString("yyyy"));

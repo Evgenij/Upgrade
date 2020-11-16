@@ -129,7 +129,7 @@ namespace Upgrade.Classes.Blocks
                 WHERE user.id_user = @user AND schedule.id_sched = @idSched";
 
             SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
-            command.Parameters.AddWithValue("@user", User.user_id);
+            command.Parameters.AddWithValue("@user", User.userId);
             command.Parameters.AddWithValue("@idSched", id_record);
 
             SQLiteDataReader reader = command.ExecuteReader();

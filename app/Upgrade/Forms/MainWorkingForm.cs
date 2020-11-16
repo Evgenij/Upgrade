@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -33,11 +34,16 @@ namespace Upgrade.Classes
         [DllImport("user32.dll")]
         public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
+        System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
         private UIComboBox[] uiComboBox = new UIComboBox[3];
         private Filter filter;
         private PieChart pieChart;
         private StatisticChart statisticChart;
         System.Windows.Forms.Timer timerTime;
+
+        // переменные для реализации изменения цветового оформления приложения
+        bool isDraggingRed = false, isDraggingGreen = false, isDraggingBlue = false;
+        int currentXRed, currentXGreen, currentXBlue, valueRed = 0, valueGreen = 0, valueBlue = 0;
 
         private static List<int> idFailedTasks = new List<int>(), 
             countTaskDone = new List<int>(), 
@@ -124,6 +130,9 @@ namespace Upgrade.Classes
 
             // создание компонентов пункта меню с расписаниями и паролями
             SetTabSched_Services();
+
+            // создание компонентов пункта меню с настройками
+            SetTabSettings();
 
             timerTime = new System.Windows.Forms.Timer();
             timerTime.Interval = 1000;
@@ -231,6 +240,21 @@ namespace Upgrade.Classes
             }
         }
 
+        private void SetTabSettings() 
+        {
+            userLogin.Text = User.userLogin;
+            userPassword.Text = User.userPassword;
+            userEmail.Text = User.userEmail;
+
+            red.Text = INIManager.Read("Design", "Red");
+            green.Text = INIManager.Read("Design", "Green");
+            Blue.Text = INIManager.Read("Design", "Blue");
+
+            buttonRed.Left = buttonRed.Left + Convert.ToInt32(red.Text);
+            buttonGreen.Left = buttonGreen.Left + Convert.ToInt32(green.Text);
+            buttonBlue.Left = buttonBlue.Left + Convert.ToInt32(Blue.Text);
+        }
+
         private void changePeriod(Label currentLabel, Enums.PeriodStatistic period)
         {
             todayStat.ForeColor = Color.Gray;
@@ -284,7 +308,7 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                    "WHERE user.id_user = {0} AND task.date = '{1}'", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+                    "WHERE user.id_user = {0} AND task.date = '{1}'", User.userId, DateTime.Now.ToString("dd.MM.yyyy"));
 
                 //MessageBox.Show(ServiceData.commandText);
 
@@ -306,7 +330,7 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                    "WHERE user.id_user = {0} AND task.date = '{1}' AND task.status = 0 AND task.failed = 0", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+                    "WHERE user.id_user = {0} AND task.date = '{1}' AND task.status = 0 AND task.failed = 0", User.userId, DateTime.Now.ToString("dd.MM.yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.ExecuteNonQuery();
 
@@ -325,7 +349,7 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                    "WHERE user.id_user = {0} AND task.date = '{1}' AND task.status = 1", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+                    "WHERE user.id_user = {0} AND task.date = '{1}' AND task.status = 1", User.userId, DateTime.Now.ToString("dd.MM.yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.ExecuteNonQuery();
 
@@ -344,7 +368,7 @@ namespace Upgrade.Classes
                     "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                    "WHERE user.id_user = {0} AND task.date = '{1}' AND task.failed = 1 AND task.status = 0", User.user_id, DateTime.Now.ToString("dd.MM.yyyy"));
+                    "WHERE user.id_user = {0} AND task.date = '{1}' AND task.failed = 1 AND task.status = 0", User.userId, DateTime.Now.ToString("dd.MM.yyyy"));
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.ExecuteNonQuery();
 
@@ -366,7 +390,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}'",
-                    User.user_id,
+                    User.userId,
                     DateTime.Now.AddDays(-1).ToString("dd"),
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -392,7 +416,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
-                    User.user_id,
+                    User.userId,
                     DateTime.Now.AddDays(-1).ToString("dd"),
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -420,7 +444,14 @@ namespace Upgrade.Classes
                 {
                     labelPerformCurrentPeriod.Text = "0";
                 }
-                labelPerformLastPeriod.Text = "Эффективность за вчера " + ((countTaskDoneLastPeriod * 100) / countTaskLastPeriod).ToString() + "%";
+                if (countTaskLastPeriod != 0)
+                {
+                    labelPerformLastPeriod.Text = "Эффективность за вчера " + ((countTaskDoneLastPeriod * 100) / countTaskLastPeriod).ToString() + "%";
+                }
+                else 
+                {
+                    labelPerformLastPeriod.Text = "Эффективность за вчера 0 %";
+                }
                 labelCountTask.Text = countTask.ToString();
                 labelTaskInWork.Text = countTaskInWork.ToString();
                 labelTaskDone.Text = countTaskDone.First().ToString();
@@ -438,7 +469,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek.First(),
                     daysCurrentWeek.Last(),
                     DateTime.Now.ToString("MM"),
@@ -465,7 +496,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 0 AND task.failed = 0",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek.First(),
                     daysCurrentWeek.Last(),
                     DateTime.Now.ToString("MM"),
@@ -492,7 +523,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek[i],
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -519,7 +550,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.failed = 1 AND task.status = 0",
-                    User.user_id,
+                    User.userId,
                     daysCurrentWeek[i],
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -546,7 +577,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}'",
-                    User.user_id,
+                    User.userId,
                     daysLastWeek.First(),
                     daysLastWeek.Last(),
                     DateTime.Now.ToString("MM"),
@@ -573,7 +604,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 1",
-                    User.user_id,
+                    User.userId,
                     daysLastWeek.First(),
                     daysLastWeek.Last(),
                     DateTime.Now.ToString("MM"),
@@ -615,7 +646,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' ",
-                    User.user_id,
+                    User.userId,
                     daysCurrentMonth.First(),
                     daysCurrentMonth.Last(),
                     DateTime.Now.ToString("MM"),
@@ -642,7 +673,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 0 AND task.failed = 0",
-                    User.user_id,
+                    User.userId,
                     daysCurrentMonth.First(),
                     daysCurrentMonth.Last(),
                     DateTime.Now.ToString("MM"),
@@ -669,7 +700,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.status = 1",
-                    User.user_id,
+                    User.userId,
                     daysCurrentMonth[i],
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -696,7 +727,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date = '{1}.{2}.{3}' AND task.failed = 1 AND task.status = 0",
-                    User.user_id,
+                    User.userId,
                     daysCurrentMonth[i],
                     DateTime.Now.ToString("MM"),
                     DateTime.Now.ToString("yyyy"));
@@ -723,7 +754,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}'",
-                    User.user_id,
+                    User.userId,
                     daysLastMonth.First(),
                     daysLastMonth.Last(),
                     DateTime.Now.ToString("MM"),
@@ -750,7 +781,7 @@ namespace Upgrade.Classes
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
                     "WHERE user.id_user = {0} AND task.date BETWEEN '{1}.{3}.{4}' AND '{2}.{3}.{4}' AND task.status = 1",
-                    User.user_id,
+                    User.userId,
                     daysLastMonth.First(),
                     daysLastMonth.Last(),
                     DateTime.Now.ToString("MM"),
@@ -771,8 +802,22 @@ namespace Upgrade.Classes
                 //-------------------------
 
                 labelCurrentPerform.Text = "Эффективность за месяц";
-                labelPerformCurrentPeriod.Text = ((countTaskDone.ToArray().Sum() * 100) / countTask).ToString() + "%";
-                labelPerformLastPeriod.Text = "Эффективность за прошлый месяц " + ((countTaskDoneLastPeriod * 100) / countTaskLastPeriod).ToString() + "%";
+                if (countTask != 0)
+                {
+                    labelPerformCurrentPeriod.Text = ((countTaskDone.ToArray().Sum() * 100) / countTask).ToString() + "%";
+                }
+                else 
+                {
+                    labelPerformCurrentPeriod.Text = "0%";
+                }
+                if (countTaskLastPeriod != 0)
+                {
+                    labelPerformLastPeriod.Text = "Эффективность за прошлый месяц " + ((countTaskDoneLastPeriod * 100) / countTaskLastPeriod).ToString() + "%";
+                }
+                else 
+                {
+                    labelPerformLastPeriod.Text = "Эффективность за прошлый месяц 0%";
+                }
 
                 labelCountTask.Text = countTask.ToString();
                 labelTaskInWork.Text = countTaskInWork.ToString();
@@ -901,6 +946,9 @@ namespace Upgrade.Classes
             not_found_task.BringToFront();
             not_found_task_target.BringToFront();
 
+            sublabelSchedule.ForeColor = Design.mainColor;
+            sublabelPasswords.ForeColor = Design.mainColor;
+
             calendar.BringToFront();
             calendar.StateCheckedNormal.Day.Back.Color1 = Color.FromArgb(
                                                                     Design.mainColorOpacity.A + 40,
@@ -943,14 +991,13 @@ namespace Upgrade.Classes
 
             SetStyleButtons();
 
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             path.AddEllipse(0, 0, 110, 110);
             Region rgn = new Region(path);
             user_photo.Region = rgn;
-            user_photo.BackColor = Color.White;
+            userPhotoSettings.Region = rgn;
 
-            user_login.Text = User.user_login;
-            perform.Text = User.user_perform + "%";
+            user_login.Text = User.userLogin;
+            perform.Text = User.userPerform + "%";
 
             ServiceData.commandText = string.Format("SELECT count(*) FROM achievement " +
                 "INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev " +
@@ -958,13 +1005,14 @@ namespace Upgrade.Classes
                 "INNER JOIN direction ON direction.id_categ = category.id_categ " +
                 "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                 "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                "WHERE user.id_user = {0} and achievement.status = 1", User.user_id);
+                "WHERE user.id_user = {0} and achievement.status = 1", User.userId);
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
             ServiceData.reader = ServiceData.command.ExecuteReader();
             ServiceData.reader.Read();
             achieves.Text = ServiceData.reader.GetInt32(0).ToString();
 
-            user_photo.Image = User.user_photo.Image;
+            user_photo.Load(User.pathPhoto);
+            userPhotoSettings.Load(User.pathPhoto);
 
             block_for_focus.Focus();
         }
@@ -1090,6 +1138,14 @@ namespace Upgrade.Classes
                                                  Design.mainColor.B);
             addDataService.MouseDown += button_MouseDown;
             addDataService.MouseUp += button_MouseUp;
+
+            exampleText.ForeColor = Design.mainColor;
+            exampleLogo.BackColor = Design.mainColor;
+            exampleColorBlock.Inactive1 = Design.mainColor;
+            exampleColorBlock.Inactive2 = Design.mainColor;
+            exampleColorBlock.Active1 = Design.mainColor;
+            exampleColorBlock.Active2 = Design.mainColor;
+            exampleColorBlock.StrokeColor = Design.mainColor;
         }
 
         private void button_MouseUp(object sender, MouseEventArgs e)
@@ -1109,7 +1165,7 @@ namespace Upgrade.Classes
                 "INNER JOIN direction ON direction.id_direct = target.id_direct " +
                 "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
                 "WHERE user_dir.id_user = {0} AND task.status = 0 AND task.failed = 0 AND task.date = '{1}.{2}.{3}' AND task.time_finish < '{4}:{5}'", 
-                    User.user_id, 
+                    User.userId, 
                     DateTime.Now.ToString("dd"), 
                     DateTime.Now.ToString("MM"), 
                     DateTime.Now.ToString("yyyy"),
@@ -1350,6 +1406,412 @@ namespace Upgrade.Classes
             else
             {
                 GlobalData.addDataService.ShowDialog();
+            }
+        }
+
+        private void labelChangeUserPhoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+
+            user_photo.Image.Dispose();
+            string newPath = AppDomain.CurrentDomain.BaseDirectory + @"user_photo\userPhoto" + 
+                User.userId.ToString() + 
+                DateTime.Now.Minute.ToString() + 
+                DateTime.Now.Second.ToString() + ".png";
+
+            FileInfo fileInf = new FileInfo(openFileDialog.FileName);
+            if (fileInf.Exists)
+            {
+                fileInf.CopyTo(newPath, true);
+                User.SetPhoto(newPath);
+
+                ServiceData.commandText = @"UPDATE user SET photo = @pathPhoto WHERE id_user = @id_user";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@pathPhoto", newPath);
+                ServiceData.command.Parameters.AddWithValue("@id_user", User.userId);
+                ServiceData.command.ExecuteNonQuery();
+
+                userPhotoSettings.Load(User.pathPhoto);
+                user_photo.Load(User.pathPhoto);
+            }
+        }
+
+        private void labelChangeUserPhoto_MouseLeave(object sender, EventArgs e)
+        {
+            ((Label)sender).ForeColor = Color.DimGray;
+        }
+
+        private void labelChangeUserPhoto_MouseHover(object sender, EventArgs e)
+        {
+            ((Label)sender).ForeColor = Design.mainColor;
+        }
+
+        private void buttonChangeLogin_Click(object sender, EventArgs e)
+        {
+            if (((PictureBox)sender).AccessibleName == "change")
+            {
+                userLogin.ReadOnly = false;
+                userLogin.ForeColor = Color.Black;
+                ((PictureBox)sender).Image = Properties.Resources.okey;
+                ((PictureBox)sender).AccessibleName = "okey";
+            }
+            else 
+            {
+                userLogin.ReadOnly = true;
+                userLogin.ForeColor = Color.Gray;
+
+                ServiceData.commandText = @"UPDATE user SET login = @login WHERE id_user = @id_user";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@login", userLogin.Text);
+                ServiceData.command.Parameters.AddWithValue("@id_user", User.userId);
+                ServiceData.command.ExecuteNonQuery();
+
+                MessageBox.Show(
+                    "Логин изменен!",
+                    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ((PictureBox)sender).Image = Properties.Resources.changeData;
+                ((PictureBox)sender).AccessibleName = "change";
+            }
+        }
+
+        private void userLogin_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                userLogin.ReadOnly = true;
+                userLogin.ForeColor = Color.Gray;
+
+                ServiceData.commandText = @"UPDATE user SET login = @login WHERE id_user = @id_user";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@login", userLogin.Text);
+                ServiceData.command.Parameters.AddWithValue("@id_user", User.userId);
+                ServiceData.command.ExecuteNonQuery();
+
+                MessageBox.Show(
+                    "Логин изменен!",
+                    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void buttonGreen_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDraggingGreen)
+            {
+                if (buttonGreen.Left >= lineGreen.Left && buttonGreen.Left + buttonGreen.Width <= lineGreen.Left + lineGreen.Width)
+                {
+                    buttonGreen.Left = buttonGreen.Left + (e.X - currentXGreen);
+                }
+                else if (buttonGreen.Left < lineGreen.Left)
+                {
+                    buttonGreen.Left = lineGreen.Left;
+                    isDraggingGreen = false;
+                }
+                else if (buttonGreen.Left + buttonGreen.Width > lineGreen.Left + lineGreen.Width)
+                {
+                    buttonGreen.Left = lineGreen.Left + lineGreen.Width - buttonGreen.Width;
+                    isDraggingGreen = false;
+                }
+
+                valueGreen = buttonGreen.Left - lineGreen.Left;
+                if (valueGreen >= 10 && valueGreen <= 255)
+                {
+                    green.Text = valueGreen.ToString();
+                }
+            }
+        }
+
+        private void buttonGreen_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDraggingGreen = true;
+            currentXGreen = e.X;
+        }
+
+        private void buttonGreen_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDraggingGreen = false;
+
+            INIManager.WriteInt("Design", "Green", valueGreen);
+            exampleLogo.BackColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleText.ForeColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Inactive1 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Inactive2 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Active1 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Active2 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.StrokeColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+        }
+
+        private void buttonBlue_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDraggingBlue)
+            {
+                if (buttonBlue.Left >= lineBlue.Left && buttonBlue.Left + buttonBlue.Width <= lineBlue.Left + lineBlue.Width)
+                {
+                    buttonBlue.Left = buttonBlue.Left + (e.X - currentXBlue);
+                }
+                else if (buttonBlue.Left < lineBlue.Left)
+                {
+                    buttonBlue.Left = lineBlue.Left;
+                    isDraggingBlue = false;
+                }
+                else if (buttonBlue.Left + buttonBlue.Width > lineBlue.Left + lineBlue.Width)
+                {
+                    buttonBlue.Left = lineBlue.Left + lineBlue.Width - buttonBlue.Width;
+                    isDraggingBlue = false;
+                }
+
+                valueBlue = buttonBlue.Left - lineBlue.Left;
+                if (valueBlue >= 10 && valueBlue <= 255)
+                {
+                    Blue.Text = valueBlue.ToString();
+                }
+            }
+        }
+
+        private void buttonBlue_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDraggingBlue = true;
+            currentXBlue = e.X;
+        }
+
+        private void buttonBlue_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDraggingBlue = false;
+
+            INIManager.WriteInt("Design", "Blue", valueBlue);
+            exampleLogo.BackColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleText.ForeColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Inactive1 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Inactive2 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Active1 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Active2 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.StrokeColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+        }
+
+        private void rebootSystem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void rebootSystem_MouseHover(object sender, EventArgs e)
+        {
+            ((Label)sender).ForeColor = Design.mainColor;
+        }
+
+        private void rebootSystem_MouseLeave(object sender, EventArgs e)
+        {
+            ((Label)sender).ForeColor = Color.DarkGray;
+        }
+
+        string oldPass;
+        private void buttonChangePassword_Click(object sender, EventArgs e)
+        {
+            if (((PictureBox)sender).AccessibleName == "change")
+            {
+                userPassword.ReadOnly = false;
+                userPassword.ForeColor = Color.Black;
+                oldPass = userPassword.Text;
+                userPassword.Text = "";
+                ((PictureBox)sender).Image = Properties.Resources.okey;
+                ((PictureBox)sender).AccessibleName = "okey";
+            }
+            else 
+            {
+                if (userPassword.Text != "")
+                {
+                    if (oldPass != DBService.GetMD5Hash(userPassword.Text))
+                    {
+                        userPassword.ReadOnly = true;
+                        userPassword.ForeColor = Color.Gray;
+
+                        ServiceData.commandText = @"UPDATE user SET password = @password WHERE id_user = @id_user";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@password", DBService.GetMD5Hash(userPassword.Text));
+                        ServiceData.command.Parameters.AddWithValue("@id_user", User.userId);
+                        ServiceData.command.ExecuteNonQuery();
+
+                        MessageBox.Show(
+                            "Пароль изменен!",
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        userPassword.Text = DBService.GetMD5Hash(userPassword.Text);
+                        ((PictureBox)sender).Image = Properties.Resources.changeData;
+                        ((PictureBox)sender).AccessibleName = "change";
+                    }
+                    else
+                    {
+                        userPassword.ReadOnly = true;
+                        userPassword.ForeColor = Color.Gray;
+                        userPassword.Text = oldPass;
+
+                        ((PictureBox)sender).Image = Properties.Resources.changeData;
+                        ((PictureBox)sender).AccessibleName = "change";
+                    }
+                }
+                else
+                {
+                    userPassword.ReadOnly = true;
+                    userPassword.ForeColor = Color.Gray;
+                    userPassword.Text = oldPass;
+
+                    ((PictureBox)sender).Image = Properties.Resources.changeData;
+                    ((PictureBox)sender).AccessibleName = "change";
+                }
+            }
+        }
+
+        private void buttonRed_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDraggingRed = false;
+
+            INIManager.WriteInt("Design", "Red", valueRed);
+            exampleLogo.BackColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleText.ForeColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                                  Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Inactive1 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Inactive2 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Active1 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.Active2 = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+            exampleColorBlock.StrokeColor = Color.FromArgb(Convert.ToInt32(INIManager.Read("Design", "Red")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Green")),
+                                          Convert.ToInt32(INIManager.Read("Design", "Blue")));
+        }
+
+        private void buttonRed_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDraggingRed)
+            {
+                if (buttonRed.Left >= lineRed.Left && buttonRed.Left + buttonRed.Width <= lineRed.Left + lineRed.Width)
+                {
+                    buttonRed.Left = buttonRed.Left + (e.X - currentXRed);
+                }
+                else if (buttonRed.Left < lineRed.Left)
+                {
+                    buttonRed.Left = lineRed.Left;
+                    isDraggingRed = false;
+                }
+                else if (buttonRed.Left + buttonRed.Width > lineRed.Left + lineRed.Width)
+                {
+                    buttonRed.Left = lineRed.Left + lineRed.Width - buttonRed.Width;
+                    isDraggingRed = false;
+                }
+
+                valueRed = buttonRed.Left - lineRed.Left;
+                if (valueRed >= 10 && valueRed <= 255)
+                {
+                    red.Text = valueRed.ToString();
+                }
+            }
+        }
+
+        private void buttonRed_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDraggingRed = true;
+            currentXRed = e.X;
+        }
+
+        private void userPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+            {
+                if (userPassword.Text != "")
+                {
+                    if (oldPass != DBService.GetMD5Hash(userPassword.Text))
+                    {
+                        userPassword.ReadOnly = true;
+                        userPassword.ForeColor = Color.Gray;
+
+                        ServiceData.commandText = @"UPDATE user SET password = @password WHERE id_user = @id_user";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@password", DBService.GetMD5Hash(userPassword.Text));
+                        ServiceData.command.Parameters.AddWithValue("@id_user", User.userId);
+                        ServiceData.command.ExecuteNonQuery();
+
+                        MessageBox.Show(
+                            "Пароль изменен!",
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        userPassword.Text = DBService.GetMD5Hash(userPassword.Text);
+                    }
+                }
+                else 
+                {
+                    userPassword.ReadOnly = true;
+                    userPassword.ForeColor = Color.Gray;
+                    userPassword.Text = oldPass;
+                }
+            }
+        }
+
+        private void buttonChangeEmail_Click(object sender, EventArgs e)
+        {
+            if (((PictureBox)sender).AccessibleName == "change")
+            {
+                userEmail.ReadOnly = false;
+                userEmail.ForeColor = Color.Black;
+                ((PictureBox)sender).Image = Properties.Resources.okey;
+                ((PictureBox)sender).AccessibleName = "okey";
+            }
+            else
+            {
+                userEmail.ReadOnly = true;
+                userEmail.ForeColor = Color.Gray;
+
+                ServiceData.commandText = @"UPDATE user SET email = @email WHERE id_user = @id_user";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@email", userEmail.Text);
+                ServiceData.command.Parameters.AddWithValue("@id_user", User.userId);
+                ServiceData.command.ExecuteNonQuery();
+
+                MessageBox.Show(
+                    "Email изменен!",
+                    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ((PictureBox)sender).Image = Properties.Resources.changeData;
+                ((PictureBox)sender).AccessibleName = "change";
             }
         }
 

@@ -58,7 +58,7 @@ namespace Upgrade.Forms
             {
                 try
                 {
-                    ServiceData.commandText = string.Format("INSERT INTO note ('id_note', 'id_user', 'text') VALUES (NULL, {0}, '{1}')", User.user_id, textArea.Text);
+                    ServiceData.commandText = string.Format("INSERT INTO note ('id_note', 'id_user', 'text') VALUES (NULL, {0}, '{1}')", User.userId, textArea.Text);
                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                     ServiceData.command.ExecuteNonQuery();
 
