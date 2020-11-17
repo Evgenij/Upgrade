@@ -12,5 +12,7 @@ namespace Upgrade.Classes
         public static Label labelPeriod, labelDirect, labelTarget;
         public static PictureBox notFoundTask, notFoundNote, notFoundTarget, notFoundTaskTarget;
         public static AltoControls.AltoButton status_mark;
+
+        public static PictureBox targetScrollTipTop, targetScrollTipBottom, task_targetScrollTipTop, task_targetScrollTipBottom;
     }
 }

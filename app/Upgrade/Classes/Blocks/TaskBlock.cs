@@ -351,6 +351,9 @@ namespace Upgrade.Classes
             time_range.BringToFront();
             panelAction.BringToFront();
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentTasks += panel.Height;
+            Design.heightContentTaskTarget += panel.Height;
         }
 
         private void BoxDelete_Click(object sender, EventArgs e)

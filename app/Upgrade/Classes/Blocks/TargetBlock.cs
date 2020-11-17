@@ -16,10 +16,12 @@ namespace Upgrade.Classes.Blocks
         private Label labelPerform;
         private Label labelStat;
         private PictureBox[] buttons = new PictureBox[3];
+        private string nameTarget;
 
         public TargetBlock(FlowLayoutPanel flowPanel, int id_target, string nameTarget) 
         {
             this.id_record = id_target;
+            this.nameTarget = nameTarget;
             labelPerform = new Label();
             labelStat = new Label();
 
@@ -61,7 +63,7 @@ namespace Upgrade.Classes.Blocks
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE target.id_target = {0} ", id_record);
+                "WHERE target.id_target = {0} AND user.id_user = {1}", id_record, User.userId);
 
             SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
 
@@ -81,7 +83,7 @@ namespace Upgrade.Classes.Blocks
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE target.id_target = {0} AND task.status = 1", id_record);
+                "WHERE target.id_target = {0} AND task.status = 1 AND user.id_user = {1}", id_record, User.userId);
 
             command = new SQLiteCommand(commandText, ServiceData.connect);
 
@@ -172,6 +174,8 @@ namespace Upgrade.Classes.Blocks
                 buttons[i].BringToFront();
             }
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentTarget += panel.Height;
         }
 
         private void button_MouseLeave(object sender, EventArgs e)
@@ -217,7 +221,8 @@ namespace Upgrade.Classes.Blocks
                 GlobalComponents.status_mark.Left = 900;
                 GlobalData.id_target = id_record;
                 Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
-                GlobalComponents.labelTarget.Text = textLabel.Text;
+                GlobalComponents.labelTarget.Text = nameTarget;
+                Design.heightContentTaskTarget = 0;
 
                 ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
                 string commandText = string.Format("SELECT " +
@@ -227,13 +232,15 @@ namespace Upgrade.Classes.Blocks
                     "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                    "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0", this.id_record);
+                    "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0 AND user.id_user = {1} ORDER BY task.date", 
+                    this.id_record, User.userId);
 
                 SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
 
                 SQLiteDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    GlobalComponents.notFoundTaskTarget.Visible = false;
                     List<TaskBlock> tasks = new List<TaskBlock>();
 
                     while (reader.Read())
@@ -252,6 +259,21 @@ namespace Upgrade.Classes.Blocks
                             Convert.ToInt32(ServiceData.reader.GetValue(9)),
                             Convert.ToInt32(ServiceData.reader.GetValue(10))));
                     }
+                }
+                else
+                {
+                    GlobalComponents.notFoundTaskTarget.Visible = true;
+                }
+
+                if (WindowManager.flowPanelTaskTarget.Height < Design.heightContentTaskTarget)
+                {
+                    GlobalComponents.task_targetScrollTipTop.Visible = true;
+                    GlobalComponents.task_targetScrollTipBottom.Visible = true;
+                }
+                else
+                {
+                    GlobalComponents.task_targetScrollTipTop.Visible = false;
+                    GlobalComponents.task_targetScrollTipBottom.Visible = false;
                 }
             }
             else if (((PictureBox)sender).AccessibleName == "3")

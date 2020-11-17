@@ -156,7 +156,6 @@ namespace Upgrade
                 User.userPassword = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("password"));
                 User.userEmail = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("email"));
                 User.SetPhoto(ServiceData.reader.GetValue(ServiceData.reader.GetOrdinal("photo")).ToString());
-                User.userPerform = ServiceData.reader.GetInt32(ServiceData.reader.GetOrdinal("perform"));
                 GlobalData.mainWorkingForm.Show();
                 return true;
             }

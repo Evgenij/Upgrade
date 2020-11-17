@@ -124,7 +124,6 @@ namespace Upgrade.Classes
             }
             else
             {
-
                 panel.Dispose();
                 timer.Stop();
                 timer.Dispose();

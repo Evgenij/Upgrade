@@ -1217,6 +1217,24 @@
   <ItemGroup>
     <None Include="Resources\dataProfile.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rightBorder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hideApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttonsApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeApp1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hideApp1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

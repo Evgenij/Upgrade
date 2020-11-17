@@ -147,10 +147,10 @@ namespace Upgrade
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            //if (MessageBox.Show("Зыкрыть приложение?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //{
+            if (MessageBox.Show("Зыкрыть приложение?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
                 Application.Exit();
-            //}
+            }
         }
 
         private void label8_Click(object sender, EventArgs e)

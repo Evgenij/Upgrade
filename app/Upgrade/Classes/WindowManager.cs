@@ -67,6 +67,7 @@ namespace Upgrade.Classes
 
         public static async Task SetTaskBlock()
         {
+            Design.heightContentTasks = 0;
             string[] sql_command = new string[6]; 
             string[] date = new string[7];
 
@@ -163,6 +164,7 @@ namespace Upgrade.Classes
                                 boxStatus[0].Height = 35;
                                 boxStatus[0].Image = Properties.Resources.done_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[0]);
+                                Design.heightContentTasks += boxStatus[0].Height;
                             }
                             else if (i == 3)
                             {
@@ -172,6 +174,7 @@ namespace Upgrade.Classes
                                 boxStatus[1].Height = 35;
                                 boxStatus[1].Image = Properties.Resources.fail_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[1]);
+                                Design.heightContentTasks += boxStatus[1].Height;
                             }
 
                             while (await ServiceData.reader.ReadAsync())
@@ -213,6 +216,7 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.done_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
+                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {
@@ -252,6 +256,7 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.fail_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
+                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {
@@ -299,6 +304,7 @@ namespace Upgrade.Classes
                                 boxStatus[0].Height = 35;
                                 boxStatus[0].Image = Properties.Resources.done_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[0]);
+                                Design.heightContentTasks += boxStatus[0].Height;
                             }
                             else if (i == 3)
                             {
@@ -308,6 +314,7 @@ namespace Upgrade.Classes
                                 boxStatus[1].Height = 35;
                                 boxStatus[1].Image = Properties.Resources.fail_tasks;
                                 flowPanelTasks.Controls.Add(boxStatus[1]);
+                                Design.heightContentTasks += boxStatus[1].Height;
                             }
 
                             while (await ServiceData.reader.ReadAsync())
@@ -349,6 +356,7 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.done_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
+                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {
@@ -388,6 +396,7 @@ namespace Upgrade.Classes
                         boxStatus[0].Height = 35;
                         boxStatus[0].Image = Properties.Resources.fail_tasks;
                         flowPanelTasks.Controls.Add(boxStatus[0]);
+                        Design.heightContentTasks += boxStatus[0].Height;
 
                         while (await ServiceData.reader.ReadAsync())
                         {

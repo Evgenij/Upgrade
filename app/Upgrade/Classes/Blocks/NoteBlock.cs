@@ -75,10 +75,14 @@ namespace Upgrade.Classes
             panel.Controls.Add(box_bottom);
             box_bottom.BringToFront();
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentNotes += panel.Height;
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
+            //Design.heightContentNotes = 0;
+
             if (MessageBox.Show("Вы действительно хотите удалить заметку?\n\n\"" + textLabel.Text + "\"",
                                 "Сообщение", MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Question) == DialogResult.Yes)
@@ -90,6 +94,8 @@ namespace Upgrade.Classes
 
                 Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Note);
             }
+
+            //MessageBox.Show(Design.heightContentNotes.ToString());
         }
 
         private void ButtonDelete_MouseLeave(object sender, EventArgs e)

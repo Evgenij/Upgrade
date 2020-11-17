@@ -30,7 +30,7 @@ namespace Upgrade.Classes.Blocks
             textLabel.Left = 22;
             textLabel.Top = 20;
             textLabel.Width = 255;
-            textLabel.Height = 21;
+            textLabel.Height = 24;
             textLabel.Font = GlobalData.GetFont(Enums.TypeFont.Bold, 20);
             for (int i = 0; i < nameDirect.Length; i++)
             {
@@ -65,7 +65,7 @@ namespace Upgrade.Classes.Blocks
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE direction.id_direct = {0}", id_record);
+                "WHERE direction.id_direct = {0} AND user.id_user = {1}", id_record, User.userId);
 
             SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
 
@@ -86,7 +86,7 @@ namespace Upgrade.Classes.Blocks
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE direction.id_direct = {0} AND task.status = 1", id_record);
+                "WHERE direction.id_direct = {0} AND task.status = 1  AND user.id_user = {1}", id_record, User.userId);
 
             command = new SQLiteCommand(commandText, ServiceData.connect);
 
@@ -252,11 +252,27 @@ namespace Upgrade.Classes.Blocks
                 SQLiteDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    GlobalComponents.notFoundTarget.Visible = false;
                     List<TargetBlock> targets = new List<TargetBlock>();
                     while (reader.Read())
                     {
-                        targets.Add(new TargetBlock(WindowManager.flowPanelTarget, reader.GetInt32(0), reader.GetString(1)));   
+                        targets.Add(new TargetBlock(WindowManager.flowPanelTarget, reader.GetInt32(0), reader.GetString(1)));
                     }
+                }
+                else
+                {
+                    GlobalComponents.notFoundTarget.Visible = true;
+                }
+
+                if (WindowManager.flowPanelTarget.Height < Design.heightContentTarget)
+                {
+                    GlobalComponents.targetScrollTipTop.Visible = true;
+                    GlobalComponents.targetScrollTipBottom.Visible = true;
+                }
+                else
+                {
+                    GlobalComponents.targetScrollTipTop.Visible = false;
+                    GlobalComponents.targetScrollTipBottom.Visible = false;
                 }
             }
             else if (((PictureBox)sender).AccessibleName == "3")

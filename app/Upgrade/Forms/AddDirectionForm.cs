@@ -102,9 +102,12 @@ namespace Upgrade.Classes.Blocks
                 {
                     int id_direct = 0;
 
-                    ServiceData.commandText = string.Format("INSERT INTO direction VALUES (NULL, {0}, {1}, 0, 0, 0, '{2}')", 
-                        index_categ, textBox.Text, ColorTranslator.ToHtml(color_mark.Active1));
+                    ServiceData.commandText = "INSERT INTO direction ('id_categ', 'name', 'color_mark') " +
+                        "VALUES(@idCateg, @name, @colorMark)"; 
                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.Parameters.AddWithValue("@idCateg", index_categ);
+                    ServiceData.command.Parameters.AddWithValue("@name", textBox.Text);
+                    ServiceData.command.Parameters.AddWithValue("@colorMark", ColorTranslator.ToHtml(color_mark.Active1));
                     ServiceData.command.ExecuteNonQuery();
 
                     ServiceData.commandText = "SELECT id_direct FROM direction";

@@ -1103,6 +1103,16 @@ namespace Upgrade.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap buttonsApp {
+            get {
+                object obj = ResourceManager.GetObject("buttonsApp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap buttonTrack {
             get {
                 object obj = ResourceManager.GetObject("buttonTrack", resourceCulture);
@@ -1226,6 +1236,26 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap close_on {
             get {
                 object obj = ResourceManager.GetObject("close_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap closeApp {
+            get {
+                object obj = ResourceManager.GetObject("closeApp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap closeApp1 {
+            get {
+                object obj = ResourceManager.GetObject("closeApp1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1526,6 +1556,26 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap filter_on {
             get {
                 object obj = ResourceManager.GetObject("filter_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hideApp {
+            get {
+                object obj = ResourceManager.GetObject("hideApp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hideApp1 {
+            get {
+                object obj = ResourceManager.GetObject("hideApp1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1846,6 +1896,16 @@ namespace Upgrade.Properties {
         internal static System.Drawing.Bitmap restoring_access {
             get {
                 object obj = ResourceManager.GetObject("restoring_access", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rightBorder {
+            get {
+                object obj = ResourceManager.GetObject("rightBorder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

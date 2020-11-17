@@ -44,7 +44,7 @@
             this.addNote.BackColor = System.Drawing.Color.White;
             this.addNote.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addNote.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.addNote.Font = new System.Drawing.Font("PF DinDisplay Pro Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.addNote.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.addNote.ForeColor = System.Drawing.Color.Indigo;
             this.addNote.Inactive1 = System.Drawing.Color.Transparent;
             this.addNote.Inactive2 = System.Drawing.Color.Transparent;

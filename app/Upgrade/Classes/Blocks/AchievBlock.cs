@@ -197,6 +197,8 @@ namespace Upgrade.Classes.Blocks
 
 
             flowPanel.Controls.Add(panel);
+
+            Design.heightContentAchiev += panel.Height;
         }
     }
 }

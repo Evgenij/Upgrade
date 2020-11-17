@@ -168,6 +168,28 @@ namespace Upgrade.Classes
 
             Design.SetMarkCurrentDay(day_mark);
             filter = new Filter(tab_profile, panel_filter);
+
+            if (flowTasks.Height < Design.heightContentTasks)
+            {
+                taskScrollTipTop.Visible = true;
+                taskScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                taskScrollTipTop.Visible = false;
+                taskScrollTipBottom.Visible = false;
+            }
+
+            if (flowNotes.Height < Design.heightContentNotes)
+            {
+                noteScrollTipTop.Visible = true;
+                noteScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                noteScrollTipTop.Visible = false;
+                noteScrollTipBottom.Visible = false;
+            }
         }
 
         private async void SetTabDirection_Target()
@@ -177,8 +199,35 @@ namespace Upgrade.Classes
             GlobalComponents.notFoundTarget = not_found_target;
             GlobalComponents.notFoundTaskTarget = not_found_task_target;
             GlobalComponents.status_mark = status_mark;
+            GlobalComponents.targetScrollTipTop = targetScrollTipTop;
+            GlobalComponents.targetScrollTipBottom = targetScrollTipBottom;
+            GlobalComponents.task_targetScrollTipTop = task_targetScrollTipTop;
+            GlobalComponents.task_targetScrollTipBottom = task_targetScrollTipBottom;
 
             await WindowManager.SetDirectBlock();
+
+            if (flowDirect.Height < Design.heightContentDirection)
+            {
+                directScrollTipTop.Visible = true;
+                directScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                directScrollTipTop.Visible = false;
+                directScrollTipBottom.Visible = false;
+            }
+
+
+            if (flowTarget.Height < Design.heightContentTarget)
+            {
+                targetScrollTipTop.Visible = true;
+                targetScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                targetScrollTipTop.Visible = false;
+                targetScrollTipBottom.Visible = false;
+            }
         }
 
         private async void SetTabAchiev_Stat()
@@ -201,7 +250,6 @@ namespace Upgrade.Classes
             uiComboBox[2] = new UIComboBox(tab_stat, panelCategory, "category", category.ToArray(), null, null, null);
 
             await WindowManager.SetAchievBlock(uiComboBox[2].GetValue());
-            //GlobalData.scroller_achiev = new Scroller(tab_stat, flowAcheivement, Design.heightContentAchiev);
 
             setCurrentCountTask(Enums.PeriodStatistic.today);
 
@@ -209,6 +257,17 @@ namespace Upgrade.Classes
             pieChart = new PieChart(bgMainStat, 25, 80, countTaskInWork, countTaskDone.ToArray().Sum(), countTaskFailed.ToArray().Sum());
             statisticChart = new StatisticChart(bgMainStat, 20, 40, countTaskDone, countTaskFailed);
             statisticChart.Hide();
+
+            if (flowAcheivement.Height < Design.heightContentAchiev)
+            {
+                achievScrollTipTop.Visible = true;
+                achievScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                achievScrollTipTop.Visible = false;
+                achievScrollTipBottom.Visible = false;
+            }
         }
 
         private async void SetTabSched_Services() 
@@ -940,6 +999,7 @@ namespace Upgrade.Classes
             todayStat.ForeColor = Design.mainColor;
             labelGeneralPeriod.ForeColor = Design.mainColor;
             labelPerformCurrentPeriod.ForeColor = Design.mainColor;
+            performCurrentWeek.ForeColor = Design.mainColor;
 
             not_found_note.BringToFront();
             not_found_target.BringToFront();
@@ -1010,6 +1070,8 @@ namespace Upgrade.Classes
             ServiceData.reader = ServiceData.command.ExecuteReader();
             ServiceData.reader.Read();
             achieves.Text = ServiceData.reader.GetInt32(0).ToString();
+
+            perform.Text = User.CalculatePerform();
 
             user_photo.Load(User.pathPhoto);
             userPhotoSettings.Load(User.pathPhoto);
@@ -1238,6 +1300,7 @@ namespace Upgrade.Classes
         {
             GlobalComponents.status_mark.Left = 900;
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
+            Design.heightContentTaskTarget = 0;
 
             ServiceData.commandText = string.Format("SELECT " +
                 "task.id_task, task.date, task.time, task.time_finish, direction.name, direction.color_mark, " +
@@ -1246,13 +1309,15 @@ namespace Upgrade.Classes
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0", GlobalData.id_target);
+                "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0 AND user.id_user = {1} ORDER BY task.date", 
+                GlobalData.id_target, User.userId);
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)
             {
+                GlobalComponents.notFoundTaskTarget.Visible = false;
                 List<TaskBlock> tasks = new List<TaskBlock>();
 
                 while (ServiceData.reader.Read())
@@ -1272,12 +1337,28 @@ namespace Upgrade.Classes
                         Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
             }
+            else
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = true;
+            }
+
+            if (WindowManager.flowPanelTaskTarget.Height < Design.heightContentTaskTarget)
+            {
+                GlobalComponents.task_targetScrollTipTop.Visible = true;
+                GlobalComponents.task_targetScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                GlobalComponents.task_targetScrollTipTop.Visible = false;
+                GlobalComponents.task_targetScrollTipBottom.Visible = false;
+            }
         }
 
         private void status_task_done_Click(object sender, EventArgs e)
         {
             GlobalComponents.status_mark.Left = 923;
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
+            Design.heightContentTaskTarget = 0;
 
             ServiceData.commandText = string.Format("SELECT " +
                 "task.id_task, task.date, task.time, task.time_finish, direction.name,  direction.color_mark, " +
@@ -1286,13 +1367,15 @@ namespace Upgrade.Classes
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE target.id_target = {0} AND task.status = 1 AND task.failed = 0", GlobalData.id_target);
+                "WHERE target.id_target = {0} AND task.status = 1 AND task.failed = 0 AND user.id_user = {1} ORDER BY task.date", 
+                GlobalData.id_target, User.userId);
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)
             {
+                GlobalComponents.notFoundTaskTarget.Visible = false;
                 List<TaskBlock> tasks = new List<TaskBlock>();
                 PictureBox boxStatus = new PictureBox();
 
@@ -1302,6 +1385,7 @@ namespace Upgrade.Classes
                 boxStatus.Height = 35;
                 boxStatus.Image = Properties.Resources.done_tasks;
                 WindowManager.flowPanelTaskTarget.Controls.Add(boxStatus);
+                Design.heightContentTaskTarget += boxStatus.Height;
 
                 while (ServiceData.reader.Read())
                 {
@@ -1320,12 +1404,28 @@ namespace Upgrade.Classes
                         Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
             }
+            else
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = true;
+            }
+
+            if (WindowManager.flowPanelTaskTarget.Height < Design.heightContentTaskTarget)
+            {
+                GlobalComponents.task_targetScrollTipTop.Visible = true;
+                GlobalComponents.task_targetScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                GlobalComponents.task_targetScrollTipTop.Visible = false;
+                GlobalComponents.task_targetScrollTipBottom.Visible = false;
+            }
         }
 
         private void status_task_fail_Click(object sender, EventArgs e)
         {
             GlobalComponents.status_mark.Left = 947;
             Design.RefreshPanel(WindowManager.flowPanelTaskTarget);
+            Design.heightContentTaskTarget = 0;
 
             ServiceData.commandText = string.Format("SELECT " +
                 "task.id_task, task.date, task.time, task.time_finish, direction.name,  direction.color_mark, " +
@@ -1334,13 +1434,15 @@ namespace Upgrade.Classes
                 "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                 "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 1", GlobalData.id_target);
+                "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 1 AND user.id_user = {1} ORDER BY task.date", 
+                GlobalData.id_target, User.userId);
 
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
 
             ServiceData.reader = ServiceData.command.ExecuteReader();
             if (ServiceData.reader.HasRows)
             {
+                GlobalComponents.notFoundTaskTarget.Visible = false;
                 List<TaskBlock> tasks = new List<TaskBlock>();
                 PictureBox boxStatus = new PictureBox();
 
@@ -1350,6 +1452,7 @@ namespace Upgrade.Classes
                 boxStatus.Height = 35;
                 boxStatus.Image = Properties.Resources.fail_tasks;
                 WindowManager.flowPanelTaskTarget.Controls.Add(boxStatus);
+                Design.heightContentTaskTarget += boxStatus.Height;
 
                 while (ServiceData.reader.Read())
                 {
@@ -1367,6 +1470,21 @@ namespace Upgrade.Classes
                         Convert.ToInt32(ServiceData.reader.GetValue(9)),
                         Convert.ToInt32(ServiceData.reader.GetValue(10))));
                 }
+            }
+            else
+            {
+                GlobalComponents.notFoundTaskTarget.Visible = true;
+            }
+
+            if (WindowManager.flowPanelTaskTarget.Height < Design.heightContentTaskTarget)
+            {
+                GlobalComponents.task_targetScrollTipTop.Visible = true;
+                GlobalComponents.task_targetScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                GlobalComponents.task_targetScrollTipTop.Visible = false;
+                GlobalComponents.task_targetScrollTipBottom.Visible = false;
             }
         }
 
@@ -1633,6 +1751,90 @@ namespace Upgrade.Classes
         private void rebootSystem_MouseLeave(object sender, EventArgs e)
         {
             ((Label)sender).ForeColor = Color.DarkGray;
+        }
+
+        private void flowTasks_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowTasks.Height < Design.heightContentTasks)
+            {
+                taskScrollTipTop.Visible = true;
+                taskScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                taskScrollTipTop.Visible = false;
+                taskScrollTipBottom.Visible = false;
+            }
+        }
+
+        private void flowNotes_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            if (flowNotes.Height < Design.heightContentNotes)
+            {
+                noteScrollTipTop.Visible = true;
+                noteScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                noteScrollTipTop.Visible = false;
+                noteScrollTipBottom.Visible = false;
+            }
+        }
+
+        private void flowNotes_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowNotes.Height < Design.heightContentNotes)
+            {
+                noteScrollTipTop.Visible = true;
+                noteScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                noteScrollTipTop.Visible = false;
+                noteScrollTipBottom.Visible = false;
+            }
+        }
+
+        private void flowTarget_ControlAdded(object sender, ControlEventArgs e)
+        {
+            not_found_target.Visible = false;
+            if (flowTarget.Height < Design.heightContentTarget)
+            {   
+                targetScrollTipTop.Visible = true;
+                targetScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                targetScrollTipTop.Visible = false;
+                targetScrollTipBottom.Visible = false;
+            }
+        }
+
+        private void achieves_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 220);
+            tabs.SelectedTab = tab_stat;
+            active_item.Image = Properties.Resources.stat;
+        }
+
+        private void perform_Click(object sender, EventArgs e)
+        {
+            Design.MovePanel(active_item, Enums.Direction.Vertical, active_item.Top, 220);
+            tabs.SelectedTab = tab_stat;
+            active_item.Image = Properties.Resources.stat;
+        }
+
+        private void closeApp_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Зыкрыть приложение?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void hideApp_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         string oldPass;
