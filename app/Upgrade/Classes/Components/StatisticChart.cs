@@ -14,10 +14,8 @@ using Separator = LiveCharts.Wpf.Separator;
 
 namespace Upgrade.Classes.Components
 {
-    class StatisticChart
+    class StatisticChart : Chart
     {
-        private LiveCharts.WinForms.CartesianChart chart;
-
         public StatisticChart(Control box, int x, int y, List<int> valuesD, List<int> valuesF)
         {
             chart = new LiveCharts.WinForms.CartesianChart();
@@ -60,7 +58,7 @@ namespace Upgrade.Classes.Components
                         Values = valuesDone,
                         StrokeThickness = 2,
                         Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(Design.mainColor.R, Design.mainColor.G, Design.mainColor.B)),
-                        Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)(Design.mainColor.R + 100), (byte)(Design.mainColor.G + 100), (byte)(Design.mainColor.B + 100)))
+                        Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(220,220,220))
                     }
                 );
                 chart.Series.Add(
@@ -114,7 +112,7 @@ namespace Upgrade.Classes.Components
                         Values = valuesDone,
                         StrokeThickness = 2,
                         Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(Design.mainColor.R, Design.mainColor.G, Design.mainColor.B)),
-                        Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)(Design.mainColor.R + 100), (byte)(Design.mainColor.G + 100), (byte)(Design.mainColor.B + 100)))
+                        Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 220, 220))
                     }
                 );
                 chart.Series.Add(

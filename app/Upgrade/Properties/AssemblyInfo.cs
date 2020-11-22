@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
 [assembly: AssemblyTitle("Upgrade")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Система планирования задач и целей")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Upgrade")]

@@ -40,9 +40,28 @@ namespace Upgrade.Classes.Blocks
             SetWindowRgn(this.Handle, hRgn, true);
 
             addDirection.ForeColor = Design.mainColor;
-            addDirection.Active1 = Design.mainColorOpacity;
-            addDirection.Active2 = Design.mainColorOpacity;
-            addDirection.StrokeColor = Design.mainColor;
+            addDirection.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirection.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirection.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirection.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addDirection.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            addDirection.MouseDown += button_MouseDown;
+            addDirection.MouseUp += button_MouseUp;
 
             ServiceData.commandText = "SELECT id_categ, name FROM category";
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
@@ -55,6 +74,16 @@ namespace Upgrade.Classes.Blocks
                     categories.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                 }
             }
+        }
+
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Design.mainColor;
+        }
+
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Color.White;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

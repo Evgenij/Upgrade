@@ -15,26 +15,5 @@ namespace Upgrade
         static public SQLiteDataReader reader;
 
         static public string commandText;
-
-        public enum Tables 
-        { 
-            user,
-            user_dir,
-            task,
-            target,
-            subtask,
-            schedule,
-            password,
-            note, 
-            direction
-        }
-
-        public enum DataType
-        {
-            NULL,
-            INTEGER,
-            TEXT,
-            BLOB
-        }
     }
 }

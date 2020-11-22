@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="Upgrade.Classes.Blocks.AchievBlock" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAACAAAAEAAAAAAAAAAAgAAAQAAAAQAAAgAAAAA=</HashCode>
+      <FileName>Classes\Blocks\AchievBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Blocks.DataServiceBlock" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAaAAgAAAAAAAACAAgAAAQAMSgAAABFACAgBAAQARYA=</HashCode>
+      <FileName>Classes\Blocks\DataServiceBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Blocks.DirectionBlock" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAhAAAEIEAAAAAAAAABAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Blocks\DirectionBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Blocks.ScheduleBlock" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAgAAAAAgAgAAAAAAAAAAEAAAAAAAAAhAAAFAAAgE=</HashCode>
+      <FileName>Classes\Blocks\ScheduleBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Blocks.TargetBlock" Collapsed="true">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAhAAAAIEAACAAAAAABAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Blocks\TargetBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Blocks.AddDirectionForm" Collapsed="true">
+    <Position X="13" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEACBAACiECABADAACAAAQSEAABAAAwBABEAIJAQAA=</HashCode>
+      <FileName>Forms\AddDirectionForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Block" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAEAAAACAAAAAAAAAAAAAABAAAAUAAIAA=</HashCode>
+      <FileName>Classes\Blocks\Block.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.NoteBlock" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Blocks\NoteBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.SubTaskBlock" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAIAAAQAAAAAABAAAAAAQAAAAAAAAAAAgA=</HashCode>
+      <FileName>Classes\Blocks\SubTaskBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.TaskBlock" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGgggAAQIgIgACYAgQAAYAESgIAAQBAiggAAAAARgA=</HashCode>
+      <FileName>Classes\Blocks\TaskBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Filter" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAACBAAAAg4FFAAAAAAgEAAAAEBAAABAJQAkCAAAA=</HashCode>
+      <FileName>Classes\Components\Filter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.WeeklyStatistic" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAAAAAUCBAAAAACgAgABIAAAQAgAAAAIICAgAKAoA=</HashCode>
+      <FileName>Classes\Components\WeeklyStatistic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Design" Collapsed="true">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAUAAIAYAAIABgAAEACAAEAAAAIIwADFEASQAAEAg=</HashCode>
+      <FileName>Classes\GeneralClasses\Design.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Enums" Collapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\GeneralClasses\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.GlobalComponents" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAFAAAAAAAUCAAAAQAgAAAAAIAAAAAAAAEABAIAAA=</HashCode>
+      <FileName>Classes\GeneralClasses\GlobalComponents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.GlobalData" Collapsed="true">
+    <Position X="9.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CABAAAAAAAAAAEAIAAAAAAAAAEgBQAEBQAAAAAAAAAA=</HashCode>
+      <FileName>Classes\GeneralClasses\GlobalData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.MailSender" Collapsed="true">
+    <Position X="11.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\MailSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.WindowManager" Collapsed="true">
+    <Position X="9.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AB4CAAEEBAAAIgABAAKQAEEIggAQAIABACIAAwAAAJA=</HashCode>
+      <FileName>Classes\WindowManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.MainWorkingForm" Collapsed="true">
+    <Position X="9.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>v//b9r0+jXf8izgTwmeL8V7HUgezl6fRtW/vrXX6ZDg=</HashCode>
+      <FileName>Forms\MainWorkingForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Components.Subtask" Collapsed="true">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAIAAAgAOAAAACAAAhAAAAgAIAAAAAQAAAAA=</HashCode>
+      <FileName>Classes\Blocks\Subtask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Components.PieChart" Collapsed="true">
+    <Position X="5.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Components\PieChart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Components.Service" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAACAAAAAAAAAEAAAAAAAAAQAAAAMAAgA=</HashCode>
+      <FileName>Classes\Components\Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Components.StatisticChart" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Upgrade.Classes.Components.Chart" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="4.312" />
+        <Point X="4.25" Y="5.125" />
+        <Point X="5.5" Y="5.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAEAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Components\StatisticChart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Components.UIComponent" Collapsed="true">
+    <Position X="1.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAAAAAA=</HashCode>
+      <FileName>Classes\Components\UIComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Components.UITrackBar" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="Upgrade.Classes.Components.UIComponent" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="2.25" Y="4.312" />
+        <Point X="2.25" Y="5.349" />
+        <Point X="1.75" Y="5.349" />
+        <Point X="1.75" Y="5.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAgAAAAAAAARAAIAAAAAAAAEAAiAAAAAgA=</HashCode>
+      <FileName>Classes\Components\UITrackBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Forms.UIComboBox" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAEQQAIAAAUABAAAgAAgAIAAAAAAAIAAEAQEAJAAA=</HashCode>
+      <FileName>Classes\Components\UIComboBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Forms.User" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAABAAAACAACAAAAAAAAAAAAAAAAAQAABAAAAg=</HashCode>
+      <FileName>Classes\Database\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Forms.AddDataServiceForm" Collapsed="true">
+    <Position X="2.25" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAACAAAAABAAKEAAQCCAAAAIQQQAAAAsBAECA=</HashCode>
+      <FileName>Forms\AddDataServiceForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Forms.AddNoteForm" Collapsed="true">
+    <Position X="6" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAAAABAACAAAQCAAERAAAQAAgAAABAAAA=</HashCode>
+      <FileName>Forms\AddNoteForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Forms.AddTargetForm" Collapsed="true">
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAiBAIBADIAKABAQCAAAEAAAwBABBAAJAQAA=</HashCode>
+      <FileName>Forms\AddTargetForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Forms.AddTaskForm" Collapsed="true">
+    <Position X="11.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCCgCtAPACAMCAODIAKgBATC/iAAJIQQUCDEE0JEAIw=</HashCode>
+      <FileName>Forms\AddTaskForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.DBService" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAIAAAAAAAAAEAAQAAAAAAAQAEAAA=</HashCode>
+      <FileName>Classes\Database\DBService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.ServiceData" Collapsed="true">
+    <Position X="13.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Classes\Database\ServiceData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.INIManager" Collapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAkAIQAgAAAAAgAADgAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\GeneralClasses\IniManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Reg_AuthForm" Collapsed="true">
+    <Position X="4.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABIC2CICJQihBNBAOTDqgCAmsHwKAwIESMECQAAgI=</HashCode>
+      <FileName>Forms\Reg_AuthForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgrade.Classes.Components.Chart" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Components\Chart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

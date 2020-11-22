@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Classes;
+using Upgrade.Forms;
 
 namespace Upgrade
 {
@@ -70,24 +71,79 @@ namespace Upgrade
             panel_reg.BringToFront();
 
             // стилизация кнопки авторизации
-            authorization.StrokeColor = Design.mainColor;
             authorization.ForeColor = Design.mainColor;
-
-            authorization.Active1 = Design.mainColorOpacity;
-            authorization.Active2 = Design.mainColorOpacity;
+            authorization.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            authorization.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            authorization.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            authorization.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            authorization.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            authorization.MouseDown += button_MouseDown;
+            authorization.MouseUp += button_MouseUp;
 
             // стилизация кнопки регистрации
-            registration.StrokeColor = Design.mainColor;
             registration.ForeColor = Design.mainColor;
-
-            registration.Active1 = Design.mainColorOpacity;
-            registration.Active2 = Design.mainColorOpacity;
+            registration.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            registration.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            registration.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            registration.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            registration.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            registration.MouseDown += button_MouseDown;
+            registration.MouseUp += button_MouseUp;
 
             // стилизация кнопки подтверждения кода
-            accept_code_reg.StrokeColor = Design.mainColor;
             accept_code_reg.ForeColor = Design.mainColor;
-            accept_code_reg.Active1 = Design.mainColorOpacity;
-            accept_code_reg.Active2 = Design.mainColorOpacity;
+            accept_code_reg.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            accept_code_reg.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            accept_code_reg.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            accept_code_reg.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            accept_code_reg.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            accept_code_reg.MouseDown += button_MouseDown;
+            accept_code_reg.MouseUp += button_MouseUp;
 
             // стилизация элементов формы
             panel_chart.BackColor = Design.mainColor;
@@ -103,6 +159,16 @@ namespace Upgrade
             label_pass_rest.ForeColor = Design.mainColor;
         }
 
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Design.mainColor;
+        }
+
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Color.White;
+        }
+
         private void back_Click(object sender, EventArgs e)
         {
             Design.MovePanel(panel_reg, Enums.Direction.Horizontal, 0, 370);
@@ -116,7 +182,7 @@ namespace Upgrade
                      "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             label_reg_email.Text = "регистрационный код";
             email_reg.Enabled = false;
-            email_reg.Font = new Font("PF DinDisplay Pro Medium", 12);
+            email_reg.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
             email_reg.ForeColor = Color.Black;
             email_reg.Text = GlobalData.RegistrationCode;
 
@@ -140,14 +206,14 @@ namespace Upgrade
             {
                 remember.AccessibleName = "off";
                 remember.Image = Properties.Resources.rem_0;
-                login_auth.Text = "введите ваш псевдоним";
+                login_auth.Text = "введите ваш логин";
                 pass_auth.Text = "введите пароль";
             }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Зыкрыть приложение?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Зыкрыть систему?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -238,7 +304,7 @@ namespace Upgrade
                         {
                             Design.MovePanel(panel_reg, Enums.Direction.Horizontal, 0, 370);
                             login_auth.Text = login_reg.Text;
-                            login_auth.Text = pass_reg.Text;
+                            pass_auth.Text = pass_reg.Text;
                         }
                     }
                 }
@@ -288,7 +354,7 @@ namespace Upgrade
             {
                 eye.AccessibleName = "on";
                 eye.Image = Properties.Resources.eye_on;
-                pass_auth.Top += 1;
+                //pass_auth.Top += 1;
                 pass_auth.ForeColor = Color.DarkGray;
                 pass_auth.PasswordChar = '●';
             }
@@ -296,7 +362,7 @@ namespace Upgrade
             {
                 eye.AccessibleName = "off";
                 eye.Image = Properties.Resources.eye_off;
-                pass_auth.Top -= 1;
+                //pass_auth.Top -= 1;
                 if (pass_auth.Text == "введите пароль")
                 {
                     pass_auth.ForeColor = Color.DarkGray;
@@ -312,14 +378,15 @@ namespace Upgrade
 
         private new void Enter(object sender, EventArgs e)
         {
-            if (((TextBox)sender).Text == "введите ваш псевдоним" ||
+            if (((TextBox)sender).Text == "введите ваш логин" ||
                 ((TextBox)sender).Text == "введите пароль" ||
                 ((TextBox)sender).Text == "введите email" ||
                 ((TextBox)sender).Text == "ваш код" ||
                 ((TextBox)sender).Text == "введите данные")
             {
+                ((TextBox)sender).PasswordChar = '\0';
                 ((TextBox)sender).Text = null;
-                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
                 ((TextBox)sender).ForeColor = Color.Black;
             }
         }
@@ -330,10 +397,10 @@ namespace Upgrade
             {
                 ((TextBox)sender).PasswordChar = '\0';
                 ((TextBox)sender).ForeColor = Color.DarkGray;
-                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
                 if (((TextBox)sender).Name == "login_auth" || ((TextBox)sender).Name == "login_reg")
                 {
-                    ((TextBox)sender).Text = "введите ваш псевдоним";
+                    ((TextBox)sender).Text = "введите ваш логин";
                 }
                 else if (((TextBox)sender).Name == "pass_auth" || ((TextBox)sender).Name == "pass_reg")
                 {
@@ -351,18 +418,6 @@ namespace Upgrade
                 {
                     ((TextBox)sender).Text = "введите email";
                 }
-            }
-        }
-
-        private void chart_Click(object sender, EventArgs e)
-        {
-            if (MailSender.SendMail("iermolienko.00@mail.ru", "Подтверждение регистрации", "траливали", GlobalData.GererateCode()))
-            {
-                MessageBox.Show("success!");
-            }
-            else
-            {
-                MessageBox.Show("error...");
             }
         }
 

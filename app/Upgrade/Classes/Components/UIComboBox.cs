@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Classes;
+using Upgrade.Classes.Components;
 
 namespace Upgrade.Forms
 {
-    class UIComboBox
+    class UIComboBox : UIComponent
     {
         private int index;
         private int heightBox;

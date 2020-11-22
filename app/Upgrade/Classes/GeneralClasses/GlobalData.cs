@@ -24,7 +24,7 @@ namespace Upgrade.Classes
         static public AddDirectionForm addDirectionForm;
         static public AddTargetForm addTargetForm;
         static public AddTaskForm addTaskForm;
-        static public AddDataService addDataService;
+        static public AddDataServiceForm addDataService;
 
         public struct DataContainer
         {

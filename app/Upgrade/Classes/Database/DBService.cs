@@ -88,21 +88,34 @@ namespace Upgrade
                                             "подтверждения вашей электронной почты и восстановления данных аккаунта", 
                                             GlobalData.RegistrationCode))
                     {
-                        string[] values = { "NULL", "NULL", login, GetMD5Hash(password), email, GlobalData.RegistrationCode, "0", "0" };
-                            ServiceData.DataType[] datas = {
-                            ServiceData.DataType.NULL,
-                            ServiceData.DataType.NULL,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.INTEGER,
-                            ServiceData.DataType.INTEGER
-                        };
+                        try 
+                        {
+                            ServiceData.commandText = @"INSERT INTO user ('login', 'password', 'email', 'reg_code') 
+                                VALUES(@login, @password, @email, @regCode); ";
+                            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                            ServiceData.command.Parameters.AddWithValue("@login", login);
+                            ServiceData.command.Parameters.AddWithValue("@password", GetMD5Hash(password));
+                            ServiceData.command.Parameters.AddWithValue("@email", email);
+                            ServiceData.command.Parameters.AddWithValue("@regCode", GlobalData.RegistrationCode);
+                            ServiceData.command.ExecuteNonQuery();
 
-                        InsertDataToTable(ServiceData.Tables.user, values, datas);
+                            ServiceData.commandText = @"INSERT INTO user_dir ('id_user', 'id_direct') 
+                                VALUES(@idUser, @idDirect); ";
+                            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                            ServiceData.command.Parameters.AddWithValue("@idUser", User.userId);
+                            ServiceData.command.Parameters.AddWithValue("@idDirect", 1);
+                            ServiceData.command.ExecuteNonQuery();
 
-                        return true;
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(
+                                "Не удалось зарегистрироваться...\n-\nОшибка: " + ex.Message,
+                                "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            return false;
+                        }
                     }
                     else
                     {
@@ -115,21 +128,27 @@ namespace Upgrade
                 }
                 else 
                 {
-                    string[] values = { "NULL", "NULL", login, GetMD5Hash(password), "отсутствует", GlobalData.RegistrationCode, "0", "0" };
-                    ServiceData.DataType[] datas = {
-                            ServiceData.DataType.NULL,
-                            ServiceData.DataType.NULL,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.TEXT,
-                            ServiceData.DataType.INTEGER,
-                            ServiceData.DataType.INTEGER
-                        };
+                    try
+                    {
+                        ServiceData.commandText = @"INSERT INTO user ('login', 'password', 'email', 'reg_code') 
+                                VALUES(@login, @password, @email, @regCode); ";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@login", login);
+                        ServiceData.command.Parameters.AddWithValue("@password", GetMD5Hash(password));
+                        ServiceData.command.Parameters.AddWithValue("@email", "отсутствует");
+                        ServiceData.command.Parameters.AddWithValue("@regCode", GlobalData.RegistrationCode);
+                        ServiceData.command.ExecuteNonQuery();
 
-                    InsertDataToTable(ServiceData.Tables.user, values, datas);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            "Не удалось зарегистрироваться...\n-\nОшибка: " + ex.Message,
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    return true;
+                        return false;
+                    }
                 }
             }
             else
@@ -156,6 +175,7 @@ namespace Upgrade
                 User.userPassword = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("password"));
                 User.userEmail = ServiceData.reader.GetString(ServiceData.reader.GetOrdinal("email"));
                 User.SetPhoto(ServiceData.reader.GetValue(ServiceData.reader.GetOrdinal("photo")).ToString());
+                GlobalData.mainWorkingForm = new MainWorkingForm();
                 GlobalData.mainWorkingForm.Show();
                 return true;
             }
@@ -167,51 +187,5 @@ namespace Upgrade
                 return false;
             }
         }
-
-        static private void InsertDataToTable(ServiceData.Tables table, 
-                                              string[] values, 
-                                              ServiceData.DataType[] dataType) 
-        {
-            ServiceData.commandText = @"INSERT INTO ["+ table +"] VALUES (";
-
-            // формирование строки запроса с параметрами вместо значений
-            for (int i = 0; i < values.Length; i++) 
-            {
-                if (i == values.Length - 1)
-                {
-                    ServiceData.commandText += "@value" + (i + 1).ToString();
-                }
-                else
-                {
-                    ServiceData.commandText += "@value" + (i + 1).ToString() + ", ";
-                }
-            }
-            ServiceData.commandText += ")";
-
-            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-            //MessageBox.Show(ServiceData.command.CommandText);
-
-            // присваивание параметрам конкретных значений в зависимости от их типа данных
-            for (int i = 0; i < dataType.Length; i++)
-            {
-                //MessageBox.Show("@value" + (i + 1).ToString() + ":" + values[i]);
-
-                if (dataType[i] == ServiceData.DataType.NULL)
-                {
-                    ServiceData.command.Parameters.AddWithValue("@value" + (i + 1).ToString(), Convert.DBNull);
-                }
-                else if (dataType[i] == ServiceData.DataType.INTEGER)
-                {
-                    ServiceData.command.Parameters.AddWithValue("@value" + (i + 1).ToString(), Convert.ToInt32(values[i]));
-                }
-                else
-                {
-                    ServiceData.command.Parameters.AddWithValue("@value" + (i + 1).ToString(), values[i]);
-                }
-            }
-
-            ServiceData.command.ExecuteNonQuery();
-        }
-        
     }
 }

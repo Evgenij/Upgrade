@@ -12,12 +12,8 @@ using System.Windows.Forms;
 
 namespace Upgrade.Classes.Components
 {
-    class PieChart
+    class PieChart : Chart
     {
-        private LiveCharts.WinForms.PieChart pieChart;
-        Func<ChartPoint, string> labelPoint = chartPoint =>
-               string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
-
         public PieChart(Control box, int x, int y, int countTaskInWork, int countTaskDone, int countTaskFailed) 
         {
             pieChart = new LiveCharts.WinForms.PieChart();

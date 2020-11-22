@@ -42,9 +42,28 @@ namespace Upgrade.Forms
             directions.Clear();
 
             addTarget.ForeColor = Design.mainColor;
-            addTarget.Active1 = Design.mainColorOpacity;
-            addTarget.Active2 = Design.mainColorOpacity;
-            addTarget.StrokeColor = Design.mainColor;
+            addTarget.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTarget.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            addTarget.MouseDown += button_MouseDown;
+            addTarget.MouseUp += button_MouseUp;
 
             ServiceData.commandText = string.Format("SELECT direction.id_direct, direction.name FROM direction " +
                 "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
@@ -61,6 +80,16 @@ namespace Upgrade.Forms
                 }
                 direction.Text = directions.First().GetName();
             }
+        }
+
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Design.mainColor;
+        }
+
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Color.White;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

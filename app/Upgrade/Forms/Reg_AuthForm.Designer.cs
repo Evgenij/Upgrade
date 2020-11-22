@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reg_AuthForm));
             this.panel_chart = new System.Windows.Forms.Panel();
             this.chart = new System.Windows.Forms.PictureBox();
             this.login_auth = new System.Windows.Forms.TextBox();
@@ -100,14 +101,13 @@
             this.chart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.chart.TabIndex = 0;
             this.chart.TabStop = false;
-            this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // login_auth
             // 
             this.login_auth.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.login_auth.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.login_auth.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.login_auth.ForeColor = System.Drawing.Color.Gray;
-            this.login_auth.Location = new System.Drawing.Point(66, 230);
+            this.login_auth.Location = new System.Drawing.Point(66, 229);
             this.login_auth.Name = "login_auth";
             this.login_auth.Size = new System.Drawing.Size(241, 20);
             this.login_auth.TabIndex = 14;
@@ -163,7 +163,7 @@
             // pass_auth
             // 
             this.pass_auth.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pass_auth.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pass_auth.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.pass_auth.ForeColor = System.Drawing.Color.DarkGray;
             this.pass_auth.Location = new System.Drawing.Point(66, 284);
             this.pass_auth.Name = "pass_auth";
@@ -240,7 +240,7 @@
             this.rest_pass.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rest_pass.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rest_pass.ForeColor = System.Drawing.Color.DimGray;
-            this.rest_pass.Location = new System.Drawing.Point(219, 313);
+            this.rest_pass.Location = new System.Drawing.Point(223, 313);
             this.rest_pass.Name = "rest_pass";
             this.rest_pass.Size = new System.Drawing.Size(90, 17);
             this.rest_pass.TabIndex = 22;
@@ -430,10 +430,10 @@
             this.domen_list.Cursor = System.Windows.Forms.Cursors.Hand;
             this.domen_list.DropDownHeight = 70;
             this.domen_list.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.domen_list.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.domen_list.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.domen_list.FormattingEnabled = true;
             this.domen_list.IntegralHeight = false;
-            this.domen_list.ItemHeight = 17;
+            this.domen_list.ItemHeight = 19;
             this.domen_list.Items.AddRange(new object[] {
             "@mail.ru",
             "@bk.ru",
@@ -447,7 +447,7 @@
             this.domen_list.Location = new System.Drawing.Point(203, 326);
             this.domen_list.MaxDropDownItems = 4;
             this.domen_list.Name = "domen_list";
-            this.domen_list.Size = new System.Drawing.Size(105, 25);
+            this.domen_list.Size = new System.Drawing.Size(105, 27);
             this.domen_list.TabIndex = 26;
             // 
             // panel_back
@@ -508,13 +508,13 @@
             // login_reg
             // 
             this.login_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.login_reg.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.login_reg.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.login_reg.ForeColor = System.Drawing.Color.Gray;
-            this.login_reg.Location = new System.Drawing.Point(66, 222);
+            this.login_reg.Location = new System.Drawing.Point(66, 221);
             this.login_reg.Name = "login_reg";
-            this.login_reg.Size = new System.Drawing.Size(241, 18);
+            this.login_reg.Size = new System.Drawing.Size(241, 20);
             this.login_reg.TabIndex = 7;
-            this.login_reg.Text = "введите ваш псевдоним";
+            this.login_reg.Text = "введите ваш логин";
             this.login_reg.Enter += new System.EventHandler(this.Enter);
             this.login_reg.Leave += new System.EventHandler(this.Leave);
             // 
@@ -536,11 +536,11 @@
             // email_reg
             // 
             this.email_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.email_reg.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.email_reg.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.email_reg.ForeColor = System.Drawing.Color.Gray;
-            this.email_reg.Location = new System.Drawing.Point(66, 330);
+            this.email_reg.Location = new System.Drawing.Point(66, 329);
             this.email_reg.Name = "email_reg";
-            this.email_reg.Size = new System.Drawing.Size(142, 18);
+            this.email_reg.Size = new System.Drawing.Size(142, 20);
             this.email_reg.TabIndex = 9;
             this.email_reg.Text = "введите email";
             this.email_reg.Enter += new System.EventHandler(this.Enter);
@@ -560,11 +560,11 @@
             // pass_reg
             // 
             this.pass_reg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pass_reg.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.pass_reg.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.pass_reg.ForeColor = System.Drawing.Color.Gray;
-            this.pass_reg.Location = new System.Drawing.Point(67, 277);
+            this.pass_reg.Location = new System.Drawing.Point(67, 275);
             this.pass_reg.Name = "pass_reg";
-            this.pass_reg.Size = new System.Drawing.Size(241, 18);
+            this.pass_reg.Size = new System.Drawing.Size(241, 20);
             this.pass_reg.TabIndex = 8;
             this.pass_reg.Text = "введите пароль";
             this.pass_reg.Enter += new System.EventHandler(this.Enter);
@@ -626,6 +626,7 @@
             this.Controls.Add(this.backgr_auth);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Reg_AuthForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

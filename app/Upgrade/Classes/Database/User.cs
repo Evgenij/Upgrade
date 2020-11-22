@@ -15,7 +15,6 @@ namespace Upgrade.Forms
         public static string userLogin;
         public static string userPassword;
         public static string userEmail;
-        public static int userPerform;
         public static string pathPhoto;
 
         public static void SetPhoto(string path) 
@@ -74,6 +73,22 @@ namespace Upgrade.Forms
             {
                 return "0%";
             }
+        }
+
+        public static string CalculateAcheives()
+        {
+            ServiceData.commandText = string.Format("SELECT count(*) FROM achievement " +
+                "INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev " +
+                "INNER JOIN category ON category.id_categ = achiev_categ.id_categ " +
+                "INNER JOIN direction ON direction.id_categ = category.id_categ " +
+                "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
+                "INNER JOIN user ON user.id_user = user_dir.id_user " +
+                "WHERE user.id_user = {0} and achievement.status = 1", User.userId);
+            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.reader = ServiceData.command.ExecuteReader();
+            ServiceData.reader.Read();
+
+            return ServiceData.reader.GetInt32(0).ToString();
         }
     }
 }

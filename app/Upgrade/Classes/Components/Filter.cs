@@ -116,13 +116,28 @@ namespace Upgrade.Classes
 
             button.Top = box.Top + 57;
             button.Left = 163;
-            button.Inactive1 = System.Drawing.Color.Transparent;
-            button.Inactive2 = System.Drawing.Color.Transparent;
-            button.Active1 = Design.mainColorOpacity;
-            button.Active2 = Design.mainColorOpacity;
             button.Stroke = true;
-            button.StrokeColor = Design.mainColor;
             button.ForeColor = Design.mainColor;
+            button.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            button.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            button.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            button.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            button.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
             button.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
             button.Text = "применить";
             button.Radius = 17;
@@ -130,6 +145,8 @@ namespace Upgrade.Classes
             button.Height = 35;
             button.Cursor = Cursors.Hand;
             button.Click += Button_Click;
+            button.MouseDown += button_MouseDown;
+            button.MouseUp += button_MouseUp;
 
             labels[0].Text = directions.ElementAt(0).GetName();
             labels[1].Text = targets.ElementAt(0).GetName();
@@ -150,6 +167,16 @@ namespace Upgrade.Classes
             timer.Enabled = false;
             timer.Tick += Timer_Tick;
             typeAction = Enums.TypeAction.hide;
+        }
+
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Design.mainColor;
+        }
+
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Color.White;
         }
 
         private void Timer_Tick(object sender, EventArgs e)

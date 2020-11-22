@@ -119,21 +119,6 @@ namespace Upgrade.Classes
                 flowTaskTarget, flowAcheivement, 
                 flowSchedule, flowDataService);
 
-            // создание компонентов главного пункта меню
-            SetTabProfile();
-
-            // создание компонентов пункта меню с направлениями и целями
-            SetTabDirection_Target();
-
-            // создание компонентов пункта меню с достижениями и статистикой
-            SetTabAchiev_Stat();
-
-            // создание компонентов пункта меню с расписаниями и паролями
-            SetTabSched_Services();
-
-            // создание компонентов пункта меню с настройками
-            SetTabSettings();
-
             timerTime = new System.Windows.Forms.Timer();
             timerTime.Interval = 1000;
             timerTime.Tick += TimerTime_Tick;
@@ -204,6 +189,7 @@ namespace Upgrade.Classes
             GlobalComponents.task_targetScrollTipTop = task_targetScrollTipTop;
             GlobalComponents.task_targetScrollTipBottom = task_targetScrollTipBottom;
 
+            Design.heightContentDirection = 0;
             await WindowManager.SetDirectBlock();
 
             if (flowDirect.Height < Design.heightContentDirection)
@@ -253,6 +239,7 @@ namespace Upgrade.Classes
 
             setCurrentCountTask(Enums.PeriodStatistic.today);
 
+            datePeriod.ForeColor = Design.mainColor;
             datePeriod.Text = DateTime.Now.ToString("dd.MM.yyyy");
             pieChart = new PieChart(bgMainStat, 25, 80, countTaskInWork, countTaskDone.ToArray().Sum(), countTaskFailed.ToArray().Sum());
             statisticChart = new StatisticChart(bgMainStat, 20, 40, countTaskDone, countTaskFailed);
@@ -304,6 +291,7 @@ namespace Upgrade.Classes
             userLogin.Text = User.userLogin;
             userPassword.Text = User.userPassword;
             userEmail.Text = User.userEmail;
+            sublabelSettings.ForeColor = Design.mainColor;
 
             red.Text = INIManager.Read("Design", "Red");
             green.Text = INIManager.Read("Design", "Green");
@@ -501,7 +489,7 @@ namespace Upgrade.Classes
                 }
                 else 
                 {
-                    labelPerformCurrentPeriod.Text = "0";
+                    labelPerformCurrentPeriod.Text = "0%";
                 }
                 if (countTaskLastPeriod != 0)
                 {
@@ -509,7 +497,7 @@ namespace Upgrade.Classes
                 }
                 else 
                 {
-                    labelPerformLastPeriod.Text = "Эффективность за вчера 0 %";
+                    labelPerformLastPeriod.Text = "Эффективность за вчера 0%";
                 }
                 labelCountTask.Text = countTask.ToString();
                 labelTaskInWork.Text = countTaskInWork.ToString();
@@ -882,7 +870,29 @@ namespace Upgrade.Classes
                 labelTaskInWork.Text = countTaskInWork.ToString();
                 labelTaskDone.Text = countTaskDone.ToArray().Sum().ToString();
                 labelTaskFailed.Text = countTaskFailed.ToArray().Sum().ToString();
-            } 
+            }
+
+            if (labelPerformCurrentPeriod.Text[0] != '0')
+            {
+                labelPerformCurrentPeriod.Text = labelPerformCurrentPeriod.Text.Trim(new char[] { '%' });
+
+                if (Convert.ToInt32(labelPerformCurrentPeriod.Text) >= 0 && Convert.ToInt32(labelPerformCurrentPeriod.Text) < 40)
+                {
+                    iconFacePerform.Image = Properties.Resources.faceIndicatorBad;
+                }
+                else if (Convert.ToInt32(labelPerformCurrentPeriod.Text) >= 40 && Convert.ToInt32(labelPerformCurrentPeriod.Text) < 65)
+                {
+                    iconFacePerform.Image = Properties.Resources.faceIndicatorMiddle;
+                }
+                else
+                {
+                    iconFacePerform.Image = Properties.Resources.faceIndicatorHappy;
+                }
+            }
+            else 
+            {
+                iconFacePerform.Image = Properties.Resources.faceIndicatorBad;
+            }
 
             labelPerformCurrentPeriod.Left = labelCurrentPerform.Left + labelCurrentPerform.Width;
         }
@@ -959,7 +969,7 @@ namespace Upgrade.Classes
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                this.Hide();
+                this.Close();
                 INIManager.WriteString("Settings", "remember_me", "off");
                 GlobalData.reg_authForm.Show();
             }
@@ -967,6 +977,21 @@ namespace Upgrade.Classes
 
         private void MainWorkingForm_Shown(object sender, EventArgs e)
         {
+            // создание компонентов главного пункта меню
+            SetTabProfile();
+
+            // создание компонентов пункта меню с направлениями и целями
+            SetTabDirection_Target();
+
+            // создание компонентов пункта меню с достижениями и статистикой
+            SetTabAchiev_Stat();
+
+            // создание компонентов пункта меню с расписаниями и паролями
+            SetTabSched_Services();
+
+            // создание компонентов пункта меню с настройками
+            SetTabSettings();
+
             panel_menu.BackColor = Design.mainColor;
 
             tab_profile.BackColor = Design.backColor;
@@ -1053,26 +1078,12 @@ namespace Upgrade.Classes
 
             path.AddEllipse(0, 0, 110, 110);
             Region rgn = new Region(path);
+
             user_photo.Region = rgn;
             userPhotoSettings.Region = rgn;
-
             user_login.Text = User.userLogin;
-            perform.Text = User.userPerform + "%";
-
-            ServiceData.commandText = string.Format("SELECT count(*) FROM achievement " +
-                "INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev " +
-                "INNER JOIN category ON category.id_categ = achiev_categ.id_categ " +
-                "INNER JOIN direction ON direction.id_categ = category.id_categ " +
-                "INNER JOIN user_dir ON user_dir.id_direct = direction.id_direct " +
-                "INNER JOIN user ON user.id_user = user_dir.id_user " +
-                "WHERE user.id_user = {0} and achievement.status = 1", User.userId);
-            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-            ServiceData.reader = ServiceData.command.ExecuteReader();
-            ServiceData.reader.Read();
-            achieves.Text = ServiceData.reader.GetInt32(0).ToString();
-
+            achieves.Text = User.CalculateAcheives();
             perform.Text = User.CalculatePerform();
-
             user_photo.Load(User.pathPhoto);
             userPhotoSettings.Load(User.pathPhoto);
 
@@ -1518,7 +1529,7 @@ namespace Upgrade.Classes
         {
             if (GlobalData.addDataService == null)
             {
-                GlobalData.addDataService = new AddDataService();
+                GlobalData.addDataService = new AddDataServiceForm();
                 GlobalData.addDataService.ShowDialog();
             }
             else
@@ -1826,7 +1837,7 @@ namespace Upgrade.Classes
 
         private void closeApp_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Зыкрыть приложение?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Зыкрыть систему?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -1835,6 +1846,20 @@ namespace Upgrade.Classes
         private void hideApp_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void flowDataService_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowDataService.Height < Design.heightContentDataService)
+            {
+                servicesScrollTipTop.Visible = true;
+                servicesScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                servicesScrollTipTop.Visible = false;
+                servicesScrollTipBottom.Visible = false;
+            }
         }
 
         string oldPass;

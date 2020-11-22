@@ -37,9 +37,37 @@ namespace Upgrade.Forms
             SetWindowRgn(this.Handle, hRgn, true);
 
             addNote.ForeColor = Design.mainColor;
-            addNote.Active1 = Design.mainColorOpacity;
-            addNote.Active2 = Design.mainColorOpacity;
-            addNote.StrokeColor = Design.mainColor;
+            addNote.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addNote.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            addNote.MouseDown += button_MouseDown;
+            addNote.MouseUp += button_MouseUp;
+        }
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Design.mainColor;
+        }
+
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Color.White;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

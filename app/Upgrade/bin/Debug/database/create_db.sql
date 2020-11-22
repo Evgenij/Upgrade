@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE "note" 
 (
-	id_note INTEGER PRIMARY KEY AUTOINCREMENT,
+	id_note INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
 	id_user INTEGER NOT NULL,
 	text TEXT NOT NULL CHECK(length(text) != 0),
 	FOREIGN KEY (id_user) REFERENCES user (id_user)
@@ -30,7 +30,8 @@ CREATE TABLE "data_service"
 	id_user INTEGER NOT NULL,
 	login TEXT NOT NULL CHECK(length(login) > 0),
 	password TEXT NOT NULL CHECK(length(password) > 0),
-	em_ph TEXT NULL
+	em_ph TEXT NULL,
+	FOREIGN KEY (id_user) REFERENCES user (id_user)
 );
 
 CREATE TABLE "user" 
@@ -40,8 +41,7 @@ CREATE TABLE "user"
 	login TEXT NOT NULL CHECK(length(login) != 0),
 	password TEXT NOT NULL CHECK(length(password) > 0),
 	email TEXT NULL,
-	reg_code TEXT NOT NULL CHECK(length(reg_code) == 4),
-	perform INTEGER NOT NULL
+	reg_code TEXT NOT NULL CHECK(length(reg_code) == 4)
 );
 
 CREATE TABLE "direction" 
@@ -49,8 +49,8 @@ CREATE TABLE "direction"
 	id_direct INTEGER PRIMARY KEY AUTOINCREMENT,
 	id_categ INTEGER NOT NULL, 
 	name TEXT NOT NULL CHECK(length(name) > 0),
-	compliting INTEGER NOT NULL CHECK(compliting >= 0 AND compliting <= 100),
-	color_mark TEXT NOT NULL
+	color_mark TEXT NOT NULL,
+	FOREIGN KEY (id_categ) REFERENCES category(id_categ)
 );
 
 /*таблица категорий с фиксированными данными, данные не меняются в процессе работы приложения*/
@@ -75,7 +75,6 @@ CREATE TABLE "target"
 	id_target INTEGER PRIMARY KEY AUTOINCREMENT,
 	id_direct INTEGER NOT NUll,
 	name TEXT NOT NULL,
-	compliting INTEGER NOT NULL CHECK(compliting >= 0 AND compliting <= 100),
 	FOREIGN KEY (id_direct) REFERENCES direction(id_direct)
 );
 
@@ -154,12 +153,10 @@ INSERT INTO day VALUES (NULL, "ПТ");
 INSERT INTO day VALUES (NULL, "СБ");
 INSERT INTO day VALUES (NULL, "ВС");
 
-INSERT INTO user VALUES (NULL, NULL, "Rampad", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1652", 85);
-INSERT INTO user VALUES (NULL, NULL, "Rampad", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1652", 85);
-INSERT INTO user VALUES (NULL, NULL, "Spike", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "6532", 55);
-INSERT INTO user VALUES (NULL, NULL, "Igenaric", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1236", 25);
-INSERT INTO user VALUES (NULL, NULL, "Netris", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "4672", 35);
-INSERT INTO user VALUES (NULL, NULL, "_coffeiok_", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "4672", 55);
+INSERT INTO user VALUES (NULL, NULL, "Rampad", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1652");
+INSERT INTO user VALUES (NULL, NULL, "Spike", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "6532");
+INSERT INTO user VALUES (NULL, NULL, "Igenaric", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "1236");
+INSERT INTO user VALUES (NULL, NULL, "Netris", "202CB962AC59075B964B07152D234B70", "email@mail.ru", "4672");
 
 INSERT INTO note VALUES (NULL, 1, "Текст заметки №1");
 INSERT INTO note VALUES (NULL, 1, "Текст заметки №2");
@@ -189,27 +186,46 @@ INSERT INTO data_service
 VALUES
 	(5, 4, "login", "password №5", "0714148150");
 
+	INSERT INTO category
+VALUES
+	(NULL, "Без категории");
+INSERT INTO category
+VALUES
+	(NULL, "Отношения");
+INSERT INTO category
+VALUES
+	(NULL, "Работа");
+INSERT INTO category
+VALUES
+	(NULL, "Бизнес");
+INSERT INTO category
+VALUES
+	(NULL, "Саморазвитие");
+INSERT INTO category
+VALUES
+	(NULL, "Учеба");
+	
 INSERT INTO direction
 VALUES
-	(NULL, 1, "Повседневные дела", 50, "#323232");
+	(NULL, 1, "Повседневные дела", "#323232");
 INSERT INTO direction
 VALUES
-	(NULL, 2, "Работа", 50, "#323232");
+	(NULL, 2, "Работа", "#323232");
 INSERT INTO direction
 VALUES
-	(NULL, 3, "Мой бизнес", 50, "#323232");
+	(NULL, 3, "Мой бизнес", "#323232");
 INSERT INTO direction
 VALUES
-	(NULL, 3, "Магазин 'Flora'", 50, "#323232");
+	(NULL, 3, "Магазин 'Flora'", "#323232");
 INSERT INTO direction
 VALUES
-	(NULL, 4, "Семья", 50, "#323232");
+	(NULL, 4, "Семья", "#323232");
 INSERT INTO direction
 VALUES
-	(NULL, 5, "Гитара", 50, "#323232");
+	(NULL, 5, "Гитара", "#323232");
 INSERT INTO direction
 VALUES
-	(NULL, 5, "Футбол", 50, "#323232");
+	(NULL, 5, "Футбол", "#323232");
 
 INSERT INTO user_dir
 VALUES
@@ -235,25 +251,6 @@ VALUES
 INSERT INTO user_dir
 VALUES
 	(4, 4);
-
-INSERT INTO category
-VALUES
-	(NULL, "Без категории");
-INSERT INTO category
-VALUES
-	(NULL, "Отношения");
-INSERT INTO category
-VALUES
-	(NULL, "Работа");
-INSERT INTO category
-VALUES
-	(NULL, "Бизнес");
-INSERT INTO category
-VALUES
-	(NULL, "Саморазвитие");
-INSERT INTO category
-VALUES
-	(NULL, "Учеба");
 	
 -- Без категории
 INSERT INTO achievement VALUES (NULL, "Первый рубеж", "Поднять эффективность до 50%", 34, 50, 0);
@@ -417,19 +414,19 @@ INSERT INTO achiev_categ VALUES (6, 67);
 
 INSERT INTO target
 VALUES
-	(NULL, 1, "Сделать ремонт", 70);
+	(NULL, 1, "Сделать ремонт");
 INSERT INTO target
 VALUES
-	(NULL, 1, "Утеплить окна", 100);
+	(NULL, 1, "Утеплить окна");
 INSERT INTO target
 VALUES
-	(NULL, 2, "Перевыполнить план", 65);
+	(NULL, 2, "Перевыполнить план");
 INSERT INTO target
 VALUES
-	(NULL, 2, "Повысить охват рекламы", 40);
+	(NULL, 2, "Повысить охват рекламы");
 INSERT INTO target
 VALUES
-	(NULL, 2, "Разработать систему скидок", 66);
+	(NULL, 2, "Разработать систему скидок");
 
 INSERT INTO schedule
 VALUES

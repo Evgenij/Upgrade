@@ -72,14 +72,43 @@ namespace Upgrade.Forms
             SetWindowRgn(this.Handle, hRgn, true);
 
             addTaskButton.ForeColor = Design.mainColor;
-            addTaskButton.Active1 = Design.mainColorOpacity;
-            addTaskButton.Active2 = Design.mainColorOpacity;
-            addTaskButton.StrokeColor = Design.mainColor;
+            addTaskButton.Inactive1 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTaskButton.Inactive2 = Color.FromArgb(80,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTaskButton.Active1 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTaskButton.Active2 = Color.FromArgb(100,
+                                               Design.mainColor.R,
+                                               Design.mainColor.G,
+                                               Design.mainColor.B);
+            addTaskButton.StrokeColor = Color.FromArgb(20,
+                                                 Design.mainColor.R,
+                                                 Design.mainColor.G,
+                                                 Design.mainColor.B);
+            addTaskButton.MouseDown += button_MouseDown;
+            addTaskButton.MouseUp += button_MouseUp;
 
             uiTrackBars[0] = new UITrackBar(this, 391, 389, taskStartHour, Enums.TypeTime.hour);
             uiTrackBars[1] = new UITrackBar(this, 391, 417, taskStartMinute, Enums.TypeTime.minute);
             uiTrackBars[2] = new UITrackBar(this, 618, 389, taskEndHour, Enums.TypeTime.hour);
             uiTrackBars[3] = new UITrackBar(this, 618, 417, taskEndMinute, Enums.TypeTime.minute);
+        }
+
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Design.mainColor;
+        }
+
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((AltoControls.AltoButton)sender).ForeColor = Color.White;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
