@@ -433,27 +433,47 @@ namespace Upgrade
 
         private void label_reg_later_Click(object sender, EventArgs e)
         {
-            //
+            if (DBService.Authorization(login_reg.Text, pass_reg.Text))
+            {
+                if (INIManager.Read("Settings", "remember_me") == "on")
+                {
+                    INIManager.WriteString("Settings", "login", login_reg.Text);
+                    INIManager.WriteString("Settings", "password", pass_reg.Text);
+                }
+                this.Hide();
+                panel_reg_code.Visible = false;
+                Design.MovePanel(panel_reg, Enums.Direction.Horizontal, 0, 370);
+            }
         }
 
         private void accept_code_reg_Click(object sender, EventArgs e)
         {
             if (panel_reg_code.AccessibleName == "reg_code")
             {
-                ServiceData.commandText = @"SELECT * FROM user WHERE login = @login AND password = @password AND reg_code = @code";
+                ServiceData.commandText = @"SELECT * FROM user WHERE login = @login AND reg_code = @code";
                 ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                 ServiceData.command.Parameters.AddWithValue("@login", login_reg.Text);
-                ServiceData.command.Parameters.AddWithValue("@password", pass_reg.Text);
                 ServiceData.command.Parameters.AddWithValue("@code", data_box.Text);
 
                 ServiceData.reader = ServiceData.command.ExecuteReader();
                 if (ServiceData.reader.HasRows)
                 {
-                    MessageBox.Show("Всьо чьотка!");
+                    if (DBService.Authorization(login_reg.Text, pass_reg.Text))
+                    {
+                        if (INIManager.Read("Settings", "remember_me") == "on")
+                        {
+                            INIManager.WriteString("Settings", "login", login_reg.Text);
+                            INIManager.WriteString("Settings", "password", pass_reg.Text);
+                        }
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Шота ты ни тот код ввёл, праверь ищьо раз");
+                    MessageBox.Show("Регистрационный код введен не верно...",
+                                        "Ошибка",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                 }
             }
             else 
@@ -496,9 +516,9 @@ namespace Upgrade
                         else
                         {
                             MessageBox.Show("Данный регистрационный код не найден...",
-                                            "Ошибка",
-                                            MessageBoxButtons.OK,
-                                            MessageBoxIcon.Error);
+                                                "Ошибка",
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Error);
                         }
                     }
                     else

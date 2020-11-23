@@ -352,9 +352,9 @@
             // 
             this.label_reg_later.AutoSize = true;
             this.label_reg_later.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label_reg_later.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_reg_later.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_reg_later.ForeColor = System.Drawing.Color.DimGray;
-            this.label_reg_later.Location = new System.Drawing.Point(93, 224);
+            this.label_reg_later.Location = new System.Drawing.Point(94, 224);
             this.label_reg_later.Name = "label_reg_later";
             this.label_reg_later.Size = new System.Drawing.Size(88, 17);
             this.label_reg_later.TabIndex = 12;
@@ -367,11 +367,12 @@
             // 
             this.data_box.AccessibleName = "code";
             this.data_box.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.data_box.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.data_box.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.data_box.ForeColor = System.Drawing.Color.Gray;
-            this.data_box.Location = new System.Drawing.Point(97, 192);
+            this.data_box.Location = new System.Drawing.Point(97, 195);
+            this.data_box.MaxLength = 4;
             this.data_box.Name = "data_box";
-            this.data_box.Size = new System.Drawing.Size(80, 23);
+            this.data_box.Size = new System.Drawing.Size(80, 20);
             this.data_box.TabIndex = 12;
             this.data_box.Text = "ваш код";
             this.data_box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

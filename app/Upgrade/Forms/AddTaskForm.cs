@@ -338,7 +338,6 @@ namespace Upgrade.Forms
                             {
                                 if (subtask.GetText() != "delete")
                                 {
-                                    MessageBox.Show(subtask.GetText());
                                     ServiceData.commandText = @"INSERT INTO subtask (id_task, text) VALUES (@id_task, @text)";
                                     ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
                                     ServiceData.command.Parameters.AddWithValue("@id_task", id_task);

@@ -874,13 +874,13 @@ namespace Upgrade.Classes
 
             if (labelPerformCurrentPeriod.Text[0] != '0')
             {
-                labelPerformCurrentPeriod.Text = labelPerformCurrentPeriod.Text.Trim(new char[] { '%' });
+                string valuePerform = labelPerformCurrentPeriod.Text.Trim(new char[] { '%' });
 
-                if (Convert.ToInt32(labelPerformCurrentPeriod.Text) >= 0 && Convert.ToInt32(labelPerformCurrentPeriod.Text) < 40)
+                if (Convert.ToInt32(valuePerform) >= 0 && Convert.ToInt32(valuePerform) < 40)
                 {
                     iconFacePerform.Image = Properties.Resources.faceIndicatorBad;
                 }
-                else if (Convert.ToInt32(labelPerformCurrentPeriod.Text) >= 40 && Convert.ToInt32(labelPerformCurrentPeriod.Text) < 65)
+                else if (Convert.ToInt32(valuePerform) >= 40 && Convert.ToInt32(valuePerform) < 65)
                 {
                     iconFacePerform.Image = Properties.Resources.faceIndicatorMiddle;
                 }

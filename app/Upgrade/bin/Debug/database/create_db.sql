@@ -119,8 +119,8 @@ CREATE TABLE "user_dir"
 (
 	id_user INTEGER,
 	id_direct INTEGER,
-	FOREIGN KEY (id_user) REFERENCES user(id_user),
-	FOREIGN KEY (id_direct) REFERENCES direction(id_direct)
+	FOREIGN KEY (id_user) REFERENCES user(id_user) ON DELETE CASCADE,
+	FOREIGN KEY (id_direct) REFERENCES direction(id_direct) ON DELETE CASCADE
 );
 
 CREATE TABLE "achiev_categ"
