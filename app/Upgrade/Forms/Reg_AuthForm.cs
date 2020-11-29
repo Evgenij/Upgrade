@@ -182,7 +182,7 @@ namespace Upgrade
                      "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             label_reg_email.Text = "регистрационный код";
             email_reg.Enabled = false;
-            email_reg.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 14);
+            email_reg.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
             email_reg.ForeColor = Color.Black;
             email_reg.Text = GlobalData.RegistrationCode;
 
@@ -294,7 +294,15 @@ namespace Upgrade
                 {
                     if (DBService.Registration(login_reg.Text, pass_reg.Text, ""))
                     {
-                        DBService.Authorization(login_reg.Text, pass_reg.Text);
+                        if (DBService.Authorization(login_reg.Text, pass_reg.Text)) 
+                        {
+                            if (INIManager.Read("Settings", "remember_me") == "on")
+                            {
+                                INIManager.WriteString("Settings", "login", login_reg.Text);
+                                INIManager.WriteString("Settings", "password", login_reg.Text);
+                            }
+                            this.Hide();
+                        }
                     }
                     else 
                     {

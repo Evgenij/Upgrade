@@ -15,13 +15,14 @@ namespace Upgrade.Classes.Blocks
     {
         private Label labelPerform;
         private Label labelStat;
-        private PictureBox[] buttons = new PictureBox[3];
+        private PictureBox[] buttons = new PictureBox[4];
         private string nameTarget;
 
         public TargetBlock(FlowLayoutPanel flowPanel, int id_target, string nameTarget) 
         {
             this.id_record = id_target;
             this.nameTarget = nameTarget;
+            this.flowPanel = flowPanel;
             labelPerform = new Label();
             labelStat = new Label();
 
@@ -135,18 +136,23 @@ namespace Upgrade.Classes.Blocks
 
                 if (i == 0)
                 {
-                    buttons[i].Image = Properties.Resources.dir_sett_off;
+                    buttons[i].Image = Properties.Resources.delete_off;
                     buttons[i].Left = textLabel.Left;
                 }
                 else if (i == 1)
                 {
-                    buttons[i].Image = Properties.Resources.dir_find_off;
+                    buttons[i].Image = Properties.Resources.dir_sett_off;
                     buttons[i].Left = 44;
                 }
                 else if (i == 2)
                 {
-                    buttons[i].Image = Properties.Resources.tar_task_off;
+                    buttons[i].Image = Properties.Resources.dir_find_off;
                     buttons[i].Left = 67;
+                }
+                else if (i == 3)
+                {
+                    buttons[i].Image = Properties.Resources.tar_task_off;
+                    buttons[i].Left = 90;
                 }
 
                 buttons[i].MouseHover += button_MouseHover;
@@ -182,13 +188,17 @@ namespace Upgrade.Classes.Blocks
         {
             if (((PictureBox)sender).AccessibleName == "1")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_sett_off;
+                ((PictureBox)sender).Image = Properties.Resources.delete_off;
             }
             else if (((PictureBox)sender).AccessibleName == "2")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_find_off;
+                ((PictureBox)sender).Image = Properties.Resources.dir_sett_off;
             }
             else if (((PictureBox)sender).AccessibleName == "3")
+            {
+                ((PictureBox)sender).Image = Properties.Resources.dir_find_off;
+            }
+            else if (((PictureBox)sender).AccessibleName == "4")
             {
                 ((PictureBox)sender).Image = Properties.Resources.tar_task_off;
             }
@@ -198,13 +208,17 @@ namespace Upgrade.Classes.Blocks
         {
             if (((PictureBox)sender).AccessibleName == "1")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_sett_on;
+                ((PictureBox)sender).Image = Properties.Resources.delete_on;
             }
             else if (((PictureBox)sender).AccessibleName == "2")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_find_on;
+                ((PictureBox)sender).Image = Properties.Resources.dir_sett_on;
             }
             else if (((PictureBox)sender).AccessibleName == "3")
+            {
+                ((PictureBox)sender).Image = Properties.Resources.dir_find_on;
+            }
+            else if (((PictureBox)sender).AccessibleName == "4")
             {
                 ((PictureBox)sender).Image = Properties.Resources.tar_task_on;
             }
@@ -214,9 +228,34 @@ namespace Upgrade.Classes.Blocks
         {
             if (((PictureBox)sender).AccessibleName == "1")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_sett_on;
+                if (MessageBox.Show("Вы действительно хотите удалить цель?\n\n\"" + nameTarget + "\"",
+                                "Сообщение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ServiceData.commandText = @"DELETE FROM target WHERE id_target = @idTarget";
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.Parameters.AddWithValue("@idTarget", this.id_record);
+                    ServiceData.command.ExecuteNonQuery();
+
+                    Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Target);
+                }
             }
             else if (((PictureBox)sender).AccessibleName == "2")
+            {
+                GlobalData.changeTarget = true;
+                WindowManager.idTarget = id_record;
+
+                if (GlobalData.addTargetForm == null)
+                {
+                    GlobalData.addTargetForm = new AddTargetForm();
+                    GlobalData.addTargetForm.ShowDialog();
+                }
+                else
+                {
+                    GlobalData.addTargetForm.ShowDialog();
+                }
+            }
+            else if (((PictureBox)sender).AccessibleName == "3")
             {
                 GlobalComponents.status_mark.Left = 900;
                 GlobalData.id_target = id_record;
@@ -224,7 +263,6 @@ namespace Upgrade.Classes.Blocks
                 GlobalComponents.labelTarget.Text = nameTarget;
                 Design.heightContentTaskTarget = 0;
 
-                ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
                 string commandText = string.Format("SELECT " +
                     "task.id_task, task.date, task.time, task.time_finish, direction.name, direction.color_mark, " +
                     "target.name, task.text, task.descr, task.failed, task.status FROM task " +
@@ -232,7 +270,7 @@ namespace Upgrade.Classes.Blocks
                     "INNER JOIN direction ON target.id_direct = direction.id_direct " +
                     "INNER JOIN user_dir ON direction.id_direct = user_dir.id_direct " +
                     "INNER JOIN user ON user_dir.id_user = user.id_user " +
-                    "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0 AND user.id_user = {1} ORDER BY task.date", 
+                    "WHERE target.id_target = {0} AND task.status = 0 AND task.failed = 0 AND user.id_user = {1} ORDER BY task.date",
                     this.id_record, User.userId);
 
                 SQLiteCommand command = new SQLiteCommand(commandText, ServiceData.connect);
@@ -240,24 +278,24 @@ namespace Upgrade.Classes.Blocks
                 SQLiteDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    GlobalComponents.notFoundTaskTarget.Visible = false;
+                    GlobalComponents.notFoundTaskTarget.Visible = false;     
                     List<TaskBlock> tasks = new List<TaskBlock>();
 
                     while (reader.Read())
                     {
                         tasks.Add(new TaskBlock(
                             WindowManager.flowPanelTaskTarget,
-                            Convert.ToInt32(ServiceData.reader.GetValue(0)),
-                            ServiceData.reader.GetString(1),
-                            ServiceData.reader.GetString(2),
-                            ServiceData.reader.GetString(3),
-                            ServiceData.reader.GetString(4),
-                            ServiceData.reader.GetString(5),
-                            ServiceData.reader.GetString(6),
-                            ServiceData.reader.GetString(7),
-                            ServiceData.reader.GetValue(8).ToString(),
-                            Convert.ToInt32(ServiceData.reader.GetValue(9)),
-                            Convert.ToInt32(ServiceData.reader.GetValue(10))));
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetString(3),
+                            reader.GetString(4),
+                            reader.GetString(5),
+                            reader.GetString(6),
+                            reader.GetString(7),
+                            reader.GetValue(8).ToString(),
+                            reader.GetInt32(9),
+                            reader.GetInt32(10)));
                     }
                 }
                 else
@@ -276,7 +314,7 @@ namespace Upgrade.Classes.Blocks
                     GlobalComponents.task_targetScrollTipBottom.Visible = false;
                 }
             }
-            else if (((PictureBox)sender).AccessibleName == "3")
+            else if (((PictureBox)sender).AccessibleName == "2")
             {
                 if (GlobalData.addTaskForm == null)
                 {

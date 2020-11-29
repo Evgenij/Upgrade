@@ -307,30 +307,55 @@ namespace Upgrade.Forms
 
                     if (taskAdding == true)
                     {
-                        ServiceData.commandText = @"INSERT INTO task (id_target, text, descr, date, time, time_finish, failed, status) " +
-                            "VALUES (@target, @text, @descr, @date, @time, @time_finish, 0, 0)";
-                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-                        ServiceData.command.Parameters.AddWithValue("@target", targets.ElementAt(index_target).GetId());
-                        ServiceData.command.Parameters.AddWithValue("@text", task_name.Text);
-                        ServiceData.command.Parameters.AddWithValue("@descr", descr);
-                        ServiceData.command.Parameters.AddWithValue("@date", dateTime.Value.ToString("dd.MM.yyyy"));
-                        ServiceData.command.Parameters.AddWithValue("@time", taskHour.Text + ":" + taskMinute.Text);
-                        ServiceData.command.Parameters.AddWithValue("@time_finish", taskEndHour.Text + ":" + taskEndMinute.Text);
-                        ServiceData.command.ExecuteNonQuery();
-
-                        ServiceData.commandText = "SELECT id_task FROM task";
-                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-
-                        ServiceData.reader = ServiceData.command.ExecuteReader();
-                        if (ServiceData.reader.HasRows)
+                        if (GlobalData.changeTask == false)
                         {
-                            while (ServiceData.reader.Read())
+                            ServiceData.commandText = @"INSERT INTO task (id_target, text, descr, date, time, time_finish, failed, status) " +
+                                "VALUES (@target, @text, @descr, @date, @time, @time_finish, 0, 0)";
+                            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                            ServiceData.command.Parameters.AddWithValue("@target", targets.ElementAt(index_target).GetId());
+                            ServiceData.command.Parameters.AddWithValue("@text", task_name.Text);
+                            ServiceData.command.Parameters.AddWithValue("@descr", descr);
+                            ServiceData.command.Parameters.AddWithValue("@date", dateTime.Value.ToString("dd.MM.yyyy"));
+                            ServiceData.command.Parameters.AddWithValue("@time", taskHour.Text + ":" + taskMinute.Text);
+                            ServiceData.command.Parameters.AddWithValue("@time_finish", taskEndHour.Text + ":" + taskEndMinute.Text);
+                            ServiceData.command.ExecuteNonQuery();
+
+                            ServiceData.commandText = "SELECT id_task FROM task";
+                            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                            ServiceData.reader = ServiceData.command.ExecuteReader();
+                            if (ServiceData.reader.HasRows)
                             {
-                                id_task = ServiceData.reader.GetInt32(0);
+                                while (ServiceData.reader.Read())
+                                {
+                                    id_task = ServiceData.reader.GetInt32(0);
+                                }
                             }
                         }
+                        else 
+                        {
+                            id_task = WindowManager.idTask;
 
-                        // --------------
+                            ServiceData.commandText = @"UPDATE task SET 
+                                id_target = @target, 
+                                text = @text, 
+                                descr = @descr, 
+                                date = @date,
+                                time = @time,
+                                time_finish = @time_finish
+                                WHERE id_task = @id_task";
+                            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                            ServiceData.command.Parameters.AddWithValue("@id_task", id_task);
+                            ServiceData.command.Parameters.AddWithValue("@target", targets.ElementAt(index_target).GetId());
+                            ServiceData.command.Parameters.AddWithValue("@text", task_name.Text);
+                            ServiceData.command.Parameters.AddWithValue("@descr", descr);
+                            ServiceData.command.Parameters.AddWithValue("@date", dateTime.Value.ToString("dd.MM.yyyy"));
+                            ServiceData.command.Parameters.AddWithValue("@time", taskHour.Text + ":" + taskMinute.Text);
+                            ServiceData.command.Parameters.AddWithValue("@time_finish", taskEndHour.Text + ":" + taskEndMinute.Text);
+                            ServiceData.command.ExecuteNonQuery();
+                        }
+
+                        // добавлние подзадач
 
                         if (subtasks.Count > 0)
                         {
@@ -347,7 +372,7 @@ namespace Upgrade.Forms
                             }
                         }
 
-                        // --------------
+                        // добавлние расписания
 
                         if (id_sched != 0)
                         {
@@ -365,18 +390,28 @@ namespace Upgrade.Forms
                                     ServiceData.command.ExecuteNonQuery();
                                 }
                             }
+
+                            Design.RefreshPanel(WindowManager.flowPanelSchedule);
+                            await WindowManager.SetSheduleBlock();
                         }
 
 
                         string successString = "Задача";
 
-                        if (id_sched != 0)
+                        if (GlobalData.changeTask == false)
                         {
-                            successString += " и расписание созданы!";
+                            if (id_sched != 0)
+                            {
+                                successString += " и расписание созданы!";
+                            }
+                            else
+                            {
+                                successString += " создана!";
+                            }
                         }
-                        else
+                        else 
                         {
-                            successString += " создана!";
+                            successString += " изменена!";
                         }
 
                         MessageBox.Show(
@@ -386,6 +421,7 @@ namespace Upgrade.Forms
                         Design.RefreshPanel(WindowManager.flowPanelTasks);
                         await WindowManager.SetTaskBlock();
 
+                        GlobalData.changeTask = false;
                         this.Close();
                     }
                     else 
@@ -429,6 +465,63 @@ namespace Upgrade.Forms
                 {
                     control.Cursor = Cursors.Hand;
                 }
+            }
+        }
+
+        private void AddTaskForm_Shown(object sender, EventArgs e)
+        {
+            if (GlobalData.changeTask == true)
+            {
+                addTaskButton.Text = "изменить данные";
+                addTaskButton.Width = 160;
+                addTaskButton.Left = 623;
+
+                ServiceData.commandText = "SELECT task.text, task.descr, " +
+                    "task.time, task.time_finish FROM task " +
+                    "WHERE task.id_task = @id_task";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@id_task", WindowManager.idTask);
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+
+                if (ServiceData.reader.HasRows)
+                {
+                    ServiceData.reader.Read();
+
+                    task_name.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                    task_name.ForeColor = Color.Black;
+                    task_descr.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                    task_descr.ForeColor = Color.Black;
+
+                    task_name.Text = ServiceData.reader.GetString(0);
+                    task_descr.Text = ServiceData.reader.GetValue(1).ToString();
+                    sched_name.Text = "введите название расписания";
+
+                    string time = ServiceData.reader.GetString(2);
+                    string time_finish = ServiceData.reader.GetString(3);
+
+                    dateTime.Value = DateTime.Today;
+                    taskHour.Text = time.Split(':').First();
+                    taskMinute.Text = time.Split(':').Last();
+                    taskStartHour.Text = time.Split(':').First();
+                    taskEndHour.Text = time.Split(':').Last();
+                    taskEndHour.Text = time_finish.Split(':').First();
+                    taskEndMinute.Text = time_finish.Split(':').Last();
+                }
+            }
+            else 
+            {
+                addTaskButton.Text = "создать";
+                addTaskButton.Width = 100;
+                addTaskButton.Left = 673;
+
+                task_name.Text = "введите текст задачи";
+                task_descr.Text = "введите описание задачи";
+                sched_name.Text = "введите название расписания";
+                dateTime.Value = DateTime.Now;
+                taskHour.Text = "00";
+                taskMinute.Text = "00";
+                taskEndHour.Text = "00";
+                taskEndMinute.Text = "00";
             }
         }
     }

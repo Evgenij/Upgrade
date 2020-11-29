@@ -26,20 +26,22 @@ namespace Upgrade.Classes
         static public AddTaskForm addTaskForm;
         static public AddDataServiceForm addDataService;
 
+        static public bool changeTask = false, changeTarget = false, changeDirection = false;
+
         public struct DataContainer
         {
-            int id_target;
+            int id;
             string name;
 
             public DataContainer(int id, string name)
             {
-                this.id_target = id;
+                this.id = id;
                 this.name = name;
             }
 
             public int GetId()
             {
-                return id_target;
+                return id;
             }
 
             public string GetName()

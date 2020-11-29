@@ -595,6 +595,7 @@
             this.Name = "AddTaskForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddTaskForm";
+            this.Shown += new System.EventHandler(this.AddTaskForm_Shown);
             this.flowPanelDays.ResumeLayout(false);
             this.flowPanelDays.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.day1)).EndInit();

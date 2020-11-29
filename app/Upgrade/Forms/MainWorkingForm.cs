@@ -316,6 +316,7 @@ namespace Upgrade.Classes
                 datePeriod.Visible = true;
                 datePeriod.ForeColor = Design.mainColor;
                 pieChart.Show();
+                pieChart.SetChart(countTaskInWork, countTaskDone.ToArray().Sum(), countTaskFailed.ToArray().Sum());
                 statisticChart.Hide();
                 labelGeneralPeriod.Text = "сегодня";
                 setCurrentCountTask(Enums.PeriodStatistic.today);
@@ -1839,6 +1840,7 @@ namespace Upgrade.Classes
         {
             if (MessageBox.Show("Зыкрыть систему?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                DBService.CloseConnectionWithDB();
                 Application.Exit();
             }
         }
@@ -1859,6 +1861,20 @@ namespace Upgrade.Classes
             {
                 servicesScrollTipTop.Visible = false;
                 servicesScrollTipBottom.Visible = false;
+            }
+        }
+
+        private void flowDirect_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (flowDirect.Height < Design.heightContentDirection)
+            {
+                directScrollTipTop.Visible = true;
+                directScrollTipBottom.Visible = true;
+            }
+            else
+            {
+                directScrollTipTop.Visible = false;
+                directScrollTipBottom.Visible = false;
             }
         }
 

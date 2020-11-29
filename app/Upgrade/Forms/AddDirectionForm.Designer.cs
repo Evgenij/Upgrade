@@ -33,7 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.color_mark = new AltoControls.AltoButton();
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.nameDirection = new System.Windows.Forms.TextBox();
             this.categeory = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -114,15 +114,18 @@
             this.color_mark.Transparency = false;
             this.color_mark.Click += new System.EventHandler(this.color_mark_Click);
             // 
-            // textBox
+            // nameDirection
             // 
-            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox.Location = new System.Drawing.Point(31, 102);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(240, 20);
-            this.textBox.TabIndex = 8;
-            this.textBox.Text = "направление";
+            this.nameDirection.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nameDirection.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.nameDirection.ForeColor = System.Drawing.Color.DarkGray;
+            this.nameDirection.Location = new System.Drawing.Point(31, 102);
+            this.nameDirection.Name = "nameDirection";
+            this.nameDirection.Size = new System.Drawing.Size(240, 20);
+            this.nameDirection.TabIndex = 8;
+            this.nameDirection.Text = "введите название направления";
+            this.nameDirection.Enter += new System.EventHandler(this.textBox_Enter);
+            this.nameDirection.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // categeory
             // 
@@ -223,7 +226,7 @@
             this.Controls.Add(this.next);
             this.Controls.Add(this.categeory);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox);
+            this.Controls.Add(this.nameDirection);
             this.Controls.Add(this.color_mark);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -253,7 +256,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private AltoControls.AltoButton color_mark;
-        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.TextBox nameDirection;
         private System.Windows.Forms.TextBox categeory;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox next;

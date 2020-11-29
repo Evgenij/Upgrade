@@ -32,7 +32,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.direction = new System.Windows.Forms.TextBox();
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.nameTarget = new System.Windows.Forms.TextBox();
             this.addTarget = new AltoControls.AltoButton();
             this.prev = new System.Windows.Forms.PictureBox();
             this.next = new System.Windows.Forms.PictureBox();
@@ -79,14 +79,18 @@
             this.direction.Size = new System.Drawing.Size(144, 20);
             this.direction.TabIndex = 14;
             // 
-            // textBox
+            // nameTarget
             // 
-            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.textBox.Location = new System.Drawing.Point(32, 103);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(190, 20);
-            this.textBox.TabIndex = 13;
+            this.nameTarget.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nameTarget.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.nameTarget.ForeColor = System.Drawing.Color.DarkGray;
+            this.nameTarget.Location = new System.Drawing.Point(32, 103);
+            this.nameTarget.Name = "nameTarget";
+            this.nameTarget.Size = new System.Drawing.Size(190, 20);
+            this.nameTarget.TabIndex = 13;
+            this.nameTarget.Text = "введите название цели";
+            this.nameTarget.Enter += new System.EventHandler(this.nameTarget_Enter);
+            this.nameTarget.Leave += new System.EventHandler(this.nameTarget_Leave);
             // 
             // addTarget
             // 
@@ -172,7 +176,7 @@
             this.Controls.Add(this.prev);
             this.Controls.Add(this.next);
             this.Controls.Add(this.direction);
-            this.Controls.Add(this.textBox);
+            this.Controls.Add(this.nameTarget);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
@@ -182,6 +186,7 @@
             this.Name = "AddTargetForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddTargetForm";
+            this.Shown += new System.EventHandler(this.AddTargetForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.prev)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.next)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -200,7 +205,7 @@
         private System.Windows.Forms.PictureBox prev;
         private System.Windows.Forms.PictureBox next;
         private System.Windows.Forms.TextBox direction;
-        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.TextBox nameTarget;
         private AltoControls.AltoButton addTarget;
     }
 }

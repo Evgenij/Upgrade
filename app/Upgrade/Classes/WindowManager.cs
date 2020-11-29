@@ -29,7 +29,7 @@ namespace Upgrade.Classes
         }
         public static Enums.Period period;
         public static Enums.StatusTask status;
-        public static int id_direct, id_target;
+        public static int idDirect, idTarget, idTask;
 
         public static FlowLayoutPanel flowPanelTasks;
         public static FlowLayoutPanel flowPanelNotes;
@@ -87,17 +87,17 @@ namespace Upgrade.Classes
             // проваленные задачи
             sql_command[3] = "AND task.failed = 1 ";
 
-            if (id_direct != 0)
+            if (idDirect != 0)
             {
-                sql_command[4] = string.Format("AND direction.id_direct = {0} ", id_direct);
+                sql_command[4] = string.Format("AND direction.id_direct = {0} ", idDirect);
             }
             else 
             {
                 sql_command[4] = "";
             }
-            if (id_target != 0) 
+            if (idTarget != 0) 
             {
-                sql_command[5] = string.Format("AND target.id_target = {0} ", id_target);
+                sql_command[5] = string.Format("AND target.id_target = {0} ", idTarget);
             }
             else
             {
@@ -483,12 +483,18 @@ namespace Upgrade.Classes
 
         public static async Task SetAchievBlock(string nameCateg)
         {
-            ServiceData.commandText = @"SELECT achievement.id_achiev, achievement.name, " +
-                "achievement.descr, achievement.current_score, achievement.final_score, achievement.status FROM achievement " +
-                "INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev " +
-                "INNER JOIN category ON category.id_categ = achiev_categ.id_categ " +
-                "WHERE category.name = @nameCateg ORDER BY achievement.status";
+            ServiceData.commandText = @"SELECT achievement.id_achiev, achievement.name, 
+                achievement.descr, user_achiev.current_score, 
+                achievement.final_score, user_achiev.status 
+                FROM achievement 
+                INNER JOIN achiev_categ ON achiev_categ.id_achiev = achievement.id_achiev 
+                INNER JOIN category ON category.id_categ = achiev_categ.id_categ 
+                INNER JOIN user_achiev ON user_achiev.id_achiev = achievement.id_achiev 
+                INNER JOIN user ON user.id_user = user_achiev.id_user 
+                WHERE user.id_user = @idUser AND category.name = @nameCateg
+                ORDER BY user_achiev.status";
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+            ServiceData.command.Parameters.AddWithValue("@idUser", User.userId);
             ServiceData.command.Parameters.AddWithValue("@nameCateg", nameCateg);
 
             ServiceData.reader = ServiceData.command.ExecuteReader();

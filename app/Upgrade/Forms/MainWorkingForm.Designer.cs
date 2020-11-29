@@ -957,7 +957,7 @@
             this.addTarget.ForeColor = System.Drawing.Color.BlueViolet;
             this.addTarget.Inactive1 = System.Drawing.Color.Thistle;
             this.addTarget.Inactive2 = System.Drawing.Color.Thistle;
-            this.addTarget.Location = new System.Drawing.Point(422, 396);
+            this.addTarget.Location = new System.Drawing.Point(425, 396);
             this.addTarget.Name = "addTarget";
             this.addTarget.Radius = 20;
             this.addTarget.Size = new System.Drawing.Size(40, 40);
@@ -982,9 +982,9 @@
             this.label_name_direct.ForeColor = System.Drawing.Color.Black;
             this.label_name_direct.Location = new System.Drawing.Point(231, 424);
             this.label_name_direct.Name = "label_name_direct";
-            this.label_name_direct.Size = new System.Drawing.Size(167, 22);
+            this.label_name_direct.Size = new System.Drawing.Size(206, 22);
             this.label_name_direct.TabIndex = 127;
-            this.label_name_direct.Text = "Повседневные дела";
+            this.label_name_direct.Text = "выберите направление...";
             // 
             // sublabel_target
             // 
@@ -1025,7 +1025,7 @@
             this.addDirect.ForeColor = System.Drawing.Color.BlueViolet;
             this.addDirect.Inactive1 = System.Drawing.Color.Thistle;
             this.addDirect.Inactive2 = System.Drawing.Color.Thistle;
-            this.addDirect.Location = new System.Drawing.Point(422, 43);
+            this.addDirect.Location = new System.Drawing.Point(427, 43);
             this.addDirect.Name = "addDirect";
             this.addDirect.Radius = 20;
             this.addDirect.Size = new System.Drawing.Size(40, 40);
@@ -1083,6 +1083,7 @@
             this.flowDirect.Name = "flowDirect";
             this.flowDirect.Size = new System.Drawing.Size(355, 250);
             this.flowDirect.TabIndex = 123;
+            this.flowDirect.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flowDirect_ControlAdded);
             // 
             // status_task_none
             // 

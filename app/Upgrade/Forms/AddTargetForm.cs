@@ -79,6 +79,7 @@ namespace Upgrade.Forms
                     directions.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                 }
                 direction.Text = directions.First().GetName();
+                //index_direct = directions.First().GetId();
             }
         }
 
@@ -117,27 +118,47 @@ namespace Upgrade.Forms
             ((PictureBox)sender).Image = Properties.Resources.prev_off;
         }
 
-        private void addTarget_Click(object sender, EventArgs e)
+        private async void addTarget_Click(object sender, EventArgs e)
         {
-            if (textBox.Text.Length != 0)
+            if (nameTarget.Text.Length != 0)
             {
                 try
                 {
-                    // создаем цель
-                    ServiceData.commandText = string.Format("INSERT INTO target VALUES (NULL, {0}, {1}, 0, 0, 0)",
-                        directions.ElementAt(index_direct).GetId(), textBox.Text);
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-                    ServiceData.command.ExecuteNonQuery();
+                    if (GlobalData.changeTarget == false)
+                    {
+                        // создаем цель
+                        ServiceData.commandText = @"INSERT INTO target VALUES (NULL, @idDirect, @name)";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@idDirect", directions.ElementAt(index_direct).GetId());
+                        ServiceData.command.Parameters.AddWithValue("@name", nameTarget.Text);
+                        ServiceData.command.ExecuteNonQuery();
 
+                        MessageBox.Show(
+                            "Цель создана!",
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else 
+                    {
+                        ServiceData.commandText = "UPDATE target SET " +
+                            "name = @name, " +
+                            "id_direct = @idDirect " +
+                            "WHERE id_target = @idTarget";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@name", nameTarget.Text);
+                        ServiceData.command.Parameters.AddWithValue("@idDirect", directions.ElementAt(index_direct).GetId());
+                        ServiceData.command.Parameters.AddWithValue("@idTarget", WindowManager.idTarget);
+                        ServiceData.command.ExecuteNonQuery();
 
-                    MessageBox.Show(
-                        "Цель создана!",
-                        "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(
+                            "Цель изменена!",
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        GlobalData.changeTarget = false;
+                    }
 
                     this.Close();
-                    //Design.RefreshPanel(WindowManager.flowPanelTarget);
-                    //await WindowManager.SetTargetBlock();
-                    //GlobalData.scroller_target.Refresh(Design.heightContentTarget);
+                    Design.RefreshPanel(WindowManager.flowPanelTarget);
+                    await WindowManager.SetTargetBlock();
                 }
                 catch (Exception ex)
                 {
@@ -169,6 +190,61 @@ namespace Upgrade.Forms
             {
                 index_direct--;
                 direction.Text = directions.ElementAt(index_direct).GetName();
+            }
+        }
+
+        private void AddTargetForm_Shown(object sender, EventArgs e)
+        {
+            if (GlobalData.changeTarget == true)
+            {
+                nameTarget.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                nameTarget.ForeColor = Color.Black;
+
+                addTarget.Text = "изменить данные";
+                addTarget.Width = 160;
+                addTarget.Left = 270;
+
+                ServiceData.commandText = "SELECT name FROM target WHERE id_target = @idTarget";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@idTarget", WindowManager.idTarget);
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    ServiceData.reader.Read();
+                    nameTarget.Text = ServiceData.reader.GetString(0);
+                }
+            }
+            else
+            {
+                addTarget.Text = "создать";
+                addTarget.Width = 100;
+                addTarget.Left = 325;
+
+                nameTarget.Text = "введите название цели";
+            }
+        }
+
+        private void nameTarget_Leave(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == "")
+            {
+                ((TextBox)sender).ForeColor = Color.DarkGray;
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                if (((TextBox)sender).Name == "nameTarget")
+                {
+                    ((TextBox)sender).Text = "введите название цели";
+                }
+            }
+        }
+
+        private void nameTarget_Enter(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == "введите название цели")
+            {
+                ((TextBox)sender).Text = null;
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                ((TextBox)sender).ForeColor = Color.Black;
             }
         }
     }

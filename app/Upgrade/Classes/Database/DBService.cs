@@ -43,7 +43,6 @@ namespace Upgrade
             ConnectToDB(databaseName);
 
             ServiceData.commandText = File.ReadAllText(@"database\create_db.sql");
-
             ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
             ServiceData.command.ExecuteNonQuery();
         }
@@ -114,6 +113,12 @@ namespace Upgrade
                             ServiceData.command.Parameters.AddWithValue("@idDirect", 1);
                             ServiceData.command.ExecuteNonQuery();
 
+
+                            ServiceData.commandText = File.ReadAllText(@"database\user-achiev.sql");
+                            ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                            ServiceData.command.Parameters.AddWithValue("@idUser", User.userId);
+                            ServiceData.command.ExecuteNonQuery();
+
                             return true;
                         }
                         catch (Exception ex)
@@ -145,6 +150,28 @@ namespace Upgrade
                         ServiceData.command.Parameters.AddWithValue("@password", GetMD5Hash(password));
                         ServiceData.command.Parameters.AddWithValue("@email", "отсутствует");
                         ServiceData.command.Parameters.AddWithValue("@regCode", GlobalData.RegistrationCode);
+                        ServiceData.command.ExecuteNonQuery();
+
+                        ServiceData.commandText = "SELECT id_user FROM user";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.reader = ServiceData.command.ExecuteReader();
+                        if (ServiceData.reader.HasRows)
+                        {
+                            while (ServiceData.reader.Read())
+                            {
+                                User.userId = ServiceData.reader.GetInt32(0);
+                            }
+                        }
+
+                        ServiceData.commandText = @"INSERT INTO user_dir ('id_user', 'id_direct') VALUES (@idUser, @idDirect)";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@idUser", User.userId);
+                        ServiceData.command.Parameters.AddWithValue("@idDirect", 1);
+                        ServiceData.command.ExecuteNonQuery();
+
+                        ServiceData.commandText = File.ReadAllText(@"database\user-achiev.sql");
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@idUser", User.userId);
                         ServiceData.command.ExecuteNonQuery();
 
                         return true;

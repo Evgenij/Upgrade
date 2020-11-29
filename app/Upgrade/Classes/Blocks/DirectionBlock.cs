@@ -16,7 +16,7 @@ namespace Upgrade.Classes.Blocks
         private Label labelPerform;
         private Label labelStat;
         private static AltoControls.AltoButton colorMark;
-        private PictureBox[] buttons = new PictureBox[3];
+        private PictureBox[] buttons = new PictureBox[4];
 
         public DirectionBlock(FlowLayoutPanel flowPanel,
                               int id_direct, 
@@ -24,6 +24,7 @@ namespace Upgrade.Classes.Blocks
                               string mark) 
         {
             this.id_record = id_direct;
+            this.flowPanel = flowPanel;
             labelPerform = new Label();
             labelStat = new Label();
 
@@ -138,18 +139,23 @@ namespace Upgrade.Classes.Blocks
 
                 if (i == 0)
                 {
-                    buttons[i].Image = Properties.Resources.dir_sett_off;
+                    buttons[i].Image = Properties.Resources.delete_off;
                     buttons[i].Left = box_center.Width - buttons[i].Width - 22;
                 }
                 else if (i == 1)
                 {
-                    buttons[i].Image = Properties.Resources.dir_find_off;
+                    buttons[i].Image = Properties.Resources.dir_sett_off;
                     buttons[i].Left = box_center.Width - buttons[i].Width - 45;
                 }
                 else if (i == 2)
                 {
-                    buttons[i].Image = Properties.Resources.dir_target_off;
+                    buttons[i].Image = Properties.Resources.dir_find_off;
                     buttons[i].Left = box_center.Width - buttons[i].Width - 69;
+                }
+                else if (i == 3)
+                {
+                    buttons[i].Image = Properties.Resources.dir_target_off;
+                    buttons[i].Left = box_center.Width - buttons[i].Width - 92;
                 }
 
                 buttons[i].MouseHover += button_MouseHover;
@@ -170,7 +176,6 @@ namespace Upgrade.Classes.Blocks
             colorMark.Radius = 4;
             colorMark.Width = 60;
             colorMark.Height = 10;
-            //colorMark.Cursor = Cursors.Hand;
 
             panel.Width = 305;
             panel.Height = box_top.Height + box_center.Height + box_bottom.Height;
@@ -201,13 +206,17 @@ namespace Upgrade.Classes.Blocks
         {
             if (((PictureBox)sender).AccessibleName == "1")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_sett_off;
+                ((PictureBox)sender).Image = Properties.Resources.delete_off;
             }
             else if (((PictureBox)sender).AccessibleName == "2")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_find_off;
+                ((PictureBox)sender).Image = Properties.Resources.dir_sett_off;
             }
             else if (((PictureBox)sender).AccessibleName == "3")
+            {
+                ((PictureBox)sender).Image = Properties.Resources.dir_find_off;
+            }
+            else if (((PictureBox)sender).AccessibleName == "4")
             {
                 ((PictureBox)sender).Image = Properties.Resources.dir_target_off;
             }
@@ -217,13 +226,17 @@ namespace Upgrade.Classes.Blocks
         {
             if (((PictureBox)sender).AccessibleName == "1") 
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_sett_on;
+                ((PictureBox)sender).Image = Properties.Resources.delete_on;
             }
             else if (((PictureBox)sender).AccessibleName == "2")
             {
+                ((PictureBox)sender).Image = Properties.Resources.dir_sett_on;
+            }
+            else if (((PictureBox)sender).AccessibleName == "3") 
+            { 
                 ((PictureBox)sender).Image = Properties.Resources.dir_find_on;
             }
-            else if (((PictureBox)sender).AccessibleName == "3")
+            else if (((PictureBox)sender).AccessibleName == "4")
             {
                 ((PictureBox)sender).Image = Properties.Resources.dir_target_on;
             }
@@ -233,15 +246,38 @@ namespace Upgrade.Classes.Blocks
         {
             if (((PictureBox)sender).AccessibleName == "1")
             {
-                ((PictureBox)sender).Image = Properties.Resources.dir_sett_on;
+                if (MessageBox.Show("Вы действительно хотите удалить направление?\n\n\"" + textLabel.Text + "\"",
+                                "Сообщение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ServiceData.commandText = @"DELETE FROM direction WHERE id_direct = @idDirect";
+                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                    ServiceData.command.Parameters.AddWithValue("@idDirect", this.id_record);
+                    ServiceData.command.ExecuteNonQuery();
+
+                    Design.HidePanel(panel, flowPanel, Enums.TypeBlock.Direction);
+                }
             }
             else if (((PictureBox)sender).AccessibleName == "2")
+            {
+                WindowManager.idDirect = id_record;
+                GlobalData.changeDirection = true;
+
+                if (GlobalData.addDirectionForm == null)
+                {
+                    GlobalData.addDirectionForm = new AddDirectionForm();
+                    GlobalData.addDirectionForm.ShowDialog();
+                }
+                else
+                {
+                    GlobalData.addDirectionForm.ShowDialog();
+                }
+            }
+            else if (((PictureBox)sender).AccessibleName == "3")
             {
                 Design.heightContentTarget = 0;
                 Design.RefreshPanel(WindowManager.flowPanelTarget);
                 GlobalComponents.labelDirect.Text = this.textLabel.Text;
-
-                ((PictureBox)sender).Image = Properties.Resources.dir_find_set;
 
                 string commandText = string.Format("SELECT target.id_target, target.name FROM target " +
                     "INNER JOIN direction ON direction.id_direct = target.id_direct " +
@@ -275,10 +311,9 @@ namespace Upgrade.Classes.Blocks
                     GlobalComponents.targetScrollTipBottom.Visible = false;
                 }
             }
-            else if (((PictureBox)sender).AccessibleName == "3")
-            {
-                ((PictureBox)sender).Image = Properties.Resources.dir_target_on;
 
+            else if (((PictureBox)sender).AccessibleName == "4")
+            {
                 if (GlobalData.addTargetForm == null)
                 {
                     GlobalData.addTargetForm = new AddTargetForm();

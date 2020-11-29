@@ -211,15 +211,15 @@ namespace Upgrade.Classes
             {
                 pictureButton.AccessibleName = "added";
                 pictureButton.Image = Properties.Resources.filter_added;
-                WindowManager.id_direct = directions.ElementAt(indexDir).GetId();
-                WindowManager.id_target = targets.ElementAt(indexTar).GetId();
+                WindowManager.idDirect = directions.ElementAt(indexDir).GetId();
+                WindowManager.idTarget = targets.ElementAt(indexTar).GetId();
             }
             else 
             {
                 pictureButton.AccessibleName = "empty";
                 pictureButton.Image = Properties.Resources.filter_off;
-                WindowManager.id_direct = 0;
-                WindowManager.id_target = 0;
+                WindowManager.idDirect = 0;
+                WindowManager.idTarget = 0;
             }
 
             Design.RefreshPanel(WindowManager.flowPanelTasks);
@@ -249,7 +249,7 @@ namespace Upgrade.Classes
                         {
                             targets.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                         }
-                        WindowManager.id_target = targets.ElementAt(indexTar).GetId();
+                        WindowManager.idTarget = targets.ElementAt(indexTar).GetId();
                     }
                     else
                     {

@@ -73,6 +73,8 @@ namespace Upgrade.Classes.Blocks
                 {
                     categories.Add(new GlobalData.DataContainer(ServiceData.reader.GetInt32(0), ServiceData.reader.GetString(1)));
                 }
+
+                //index_categ = categories.First().GetId();
             }
         }
 
@@ -114,51 +116,106 @@ namespace Upgrade.Classes.Blocks
 
         private void AddDirectionForm_Shown(object sender, EventArgs e)
         {
-            textBox.Clear();
+            if (GlobalData.changeDirection == true)
+            {
+                nameDirection.Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                nameDirection.ForeColor = Color.Black;
 
-            color_mark.Active1 = Color.Gainsboro;
-            color_mark.Active2 = Color.Gainsboro;
-            color_mark.Inactive1 = Color.Gainsboro;
-            color_mark.Inactive2 = Color.Gainsboro;
-            color_mark.StrokeColor = Color.Gainsboro;
+                addDirection.Text = "изменить данные";
+                addDirection.Width = 160;
+                addDirection.Left = 271;
+
+                ServiceData.commandText = "SELECT name, color_mark FROM direction WHERE id_direct = @idDirect";
+                ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                ServiceData.command.Parameters.AddWithValue("@idDirect", WindowManager.idDirect);
+
+                ServiceData.reader = ServiceData.command.ExecuteReader();
+                if (ServiceData.reader.HasRows)
+                {
+                    ServiceData.reader.Read();
+                    nameDirection.Text = ServiceData.reader.GetString(0);
+                    color_mark.Inactive1 = System.Drawing.ColorTranslator.FromHtml(ServiceData.reader.GetString(1));
+                    color_mark.Inactive2 = System.Drawing.ColorTranslator.FromHtml(ServiceData.reader.GetString(1));
+                    color_mark.Active1 = System.Drawing.ColorTranslator.FromHtml(ServiceData.reader.GetString(1));
+                    color_mark.Active2 = System.Drawing.ColorTranslator.FromHtml(ServiceData.reader.GetString(1));
+                    color_mark.StrokeColor = System.Drawing.ColorTranslator.FromHtml(ServiceData.reader.GetString(1));
+                }
+            }
+            else 
+            {
+                addDirection.Text = "создать";
+                addDirection.Width = 100;
+                addDirection.Left = 327;
+
+                nameDirection.Text = "введите название направления";
+
+                color_mark.Active1 = Color.Gainsboro;
+                color_mark.Active2 = Color.Gainsboro;
+                color_mark.Inactive1 = Color.Gainsboro;
+                color_mark.Inactive2 = Color.Gainsboro;
+                color_mark.StrokeColor = Color.Gainsboro;
+            }
         }
 
         private async void addDirection_Click(object sender, EventArgs e)
         {
-            if (textBox.Text.Length != 0)
+            if (nameDirection.Text.Length != 0)
             {
                 try
                 {
                     int id_direct = 0;
 
-                    ServiceData.commandText = "INSERT INTO direction ('id_categ', 'name', 'color_mark') " +
-                        "VALUES(@idCateg, @name, @colorMark)"; 
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-                    ServiceData.command.Parameters.AddWithValue("@idCateg", index_categ);
-                    ServiceData.command.Parameters.AddWithValue("@name", textBox.Text);
-                    ServiceData.command.Parameters.AddWithValue("@colorMark", ColorTranslator.ToHtml(color_mark.Active1));
-                    ServiceData.command.ExecuteNonQuery();
-
-                    ServiceData.commandText = "SELECT id_direct FROM direction";
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-
-                    ServiceData.reader = ServiceData.command.ExecuteReader();
-                    if (ServiceData.reader.HasRows)
+                    if (GlobalData.changeDirection == false)
                     {
-                        while (ServiceData.reader.Read()) 
+                        ServiceData.commandText = "INSERT INTO direction ('id_categ', 'name', 'color_mark') " +
+                            "VALUES(@idCateg, @name, @colorMark)";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@idCateg", categories.ElementAt(index_categ).GetId());
+                        ServiceData.command.Parameters.AddWithValue("@name", nameDirection.Text);
+                        ServiceData.command.Parameters.AddWithValue("@colorMark", ColorTranslator.ToHtml(color_mark.Active1));
+                        ServiceData.command.ExecuteNonQuery();
+
+                        ServiceData.commandText = "SELECT id_direct FROM direction";
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+
+                        ServiceData.reader = ServiceData.command.ExecuteReader();
+                        if (ServiceData.reader.HasRows)
                         {
-                            id_direct = ServiceData.reader.GetInt32(0);
-                        }        
+                            while (ServiceData.reader.Read())
+                            {
+                                id_direct = ServiceData.reader.GetInt32(0);
+                            }
+                        }
+
+                        ServiceData.commandText = string.Format("INSERT INTO user_dir VALUES ({0},{1})", User.userId, id_direct);
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.ExecuteNonQuery();
+
+                        MessageBox.Show(
+                            "Направление создано!",
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else 
+                    {
+                        ServiceData.commandText = "UPDATE direction " +
+                            "SET id_categ = @idCateg, " +
+                            "name = @name, " +
+                            "color_mark = @colorMark " +
+                            "WHERE id_direct = 1 "; 
+                        ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
+                        ServiceData.command.Parameters.AddWithValue("@idCateg", categories.ElementAt(index_categ).GetId());
+                        ServiceData.command.Parameters.AddWithValue("@name", nameDirection.Text);
+                        ServiceData.command.Parameters.AddWithValue("@colorMark", ColorTranslator.ToHtml(color_mark.Active1));
+                        ServiceData.command.ExecuteNonQuery();
+
+                        MessageBox.Show(
+                            "Направление изменено!",
+                            "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        GlobalData.changeDirection = false;
                     }
 
-                    ServiceData.commandText = string.Format("INSERT INTO user_dir VALUES ({0},{1})", User.userId, id_direct);
-                    ServiceData.command = new SQLiteCommand(ServiceData.commandText, ServiceData.connect);
-                    ServiceData.command.ExecuteNonQuery();
-
-                    MessageBox.Show(
-                        "Направление создано!",
-                        "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    
                     this.Close();
                     Design.RefreshPanel(WindowManager.flowPanelDirect);
                     await WindowManager.SetDirectBlock();
@@ -213,6 +270,29 @@ namespace Upgrade.Classes.Blocks
             {
                 index_categ--;
                 categeory.Text = categories.ElementAt(index_categ).GetName();
+            }
+        }
+
+        private void textBox_Enter(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == "введите название направления")
+            {
+                ((TextBox)sender).Text = null;
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                ((TextBox)sender).ForeColor = Color.Black;
+            }
+        }
+
+        private void textBox_Leave(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == "")
+            {
+                ((TextBox)sender).ForeColor = Color.DarkGray;
+                ((TextBox)sender).Font = GlobalData.GetFont(Enums.TypeFont.Regular, 16);
+                if (((TextBox)sender).Name == "nameDirection")
+                {
+                    ((TextBox)sender).Text = "введите название направления";
+                }
             }
         }
     }

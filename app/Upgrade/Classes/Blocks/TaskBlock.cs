@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Upgrade.Classes;
+using Upgrade.Forms;
 
 namespace Upgrade.Classes
 {
@@ -291,6 +292,7 @@ namespace Upgrade.Classes
             boxChange.Cursor = Cursors.Hand;
             boxChange.MouseHover += BoxChange_MouseHover;
             boxChange.MouseLeave += BoxChange_MouseLeave;
+            boxChange.Click += BoxChange_Click;
             panelAction.Controls.Add(boxChange);
 
             boxDelete.Image = Properties.Resources.block_delete_off;
@@ -354,6 +356,22 @@ namespace Upgrade.Classes
 
             Design.heightContentTasks += panel.Height;
             Design.heightContentTaskTarget += panel.Height;
+        }
+
+        private void BoxChange_Click(object sender, EventArgs e)
+        {
+            GlobalData.changeTask = true;
+            WindowManager.idTask = id_record;
+
+            if (GlobalData.addTaskForm == null)
+            {
+                GlobalData.addTaskForm = new AddTaskForm();
+                GlobalData.addTaskForm.ShowDialog();
+            }
+            else
+            {
+                GlobalData.addTaskForm.ShowDialog();
+            }
         }
 
         private void BoxDelete_Click(object sender, EventArgs e)
